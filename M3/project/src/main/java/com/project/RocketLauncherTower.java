@@ -66,7 +66,4 @@ public class RocketLauncherTower extends DefenseUnit{
     public void takeDamage(int receivedDamage) {
         armor -= receivedDamage;
     } 
-    }
-
-     
 }
