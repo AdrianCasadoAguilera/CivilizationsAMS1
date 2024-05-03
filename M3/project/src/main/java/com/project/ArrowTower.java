@@ -29,50 +29,42 @@ public class ArrowTower extends DefenseUnit {
     }
 
     @Override
-    public void getExperience() {
-        
+    public int getExperience() {
+        return experience;
     }
 
     @Override
     public int getFoodCost() {
-        // TODO Auto-generated method stub
-        return 0;
+       return FOOD_COST_ARROWTOWER;
     }
 
     @Override
     public int getIronCost() {
-        // TODO Auto-generated method stub
-        return 0;
+        return IRON_COST_ARROWTOWER;
     }
 
     @Override
     public int getManaCost() {
-        // TODO Auto-generated method stub
-        return 0;
+        return MANA_COST_ARROWTOWER;
     }
 
     @Override
     public int getWoodCost() {
-        // TODO Auto-generated method stub
-        return 0;
+        return WOOD_COST_ARROWTOWER;
     }
 
     @Override
     public void resetArmor() {
-        // TODO Auto-generated method stub
-        
+        armor = initialArmor;
     }
 
     @Override
-    public void setExperience(int n) {
-        // TODO Auto-generated method stub
-        
+    public void setExperience(int exp) {
+        experience = exp;
     }
-
     @Override
     public void takeDamage(int receivedDamage) {
-        // TODO Auto-generated method stub
-        
+        armor -= receivedDamage;
     }
     
 }
