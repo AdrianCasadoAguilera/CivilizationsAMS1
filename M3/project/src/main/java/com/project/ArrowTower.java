@@ -5,17 +5,17 @@ public class ArrowTower extends DefenseUnit {
     public ArrowTower() {
         this.armor = (int)(ARMOR_ARROWTOWER * (1+Civilization.getInstance().getTechnologyDefense()*PLUS_ARMOR_ARROWTOWER_BY_TECHNOLOGY/100.0));
         this.initialArmor = armor;
-        this.baseDamage = (int)(BASE_DAMAGE_ARROWTOWER * (1+Civilization.getInstance().getTechnologyDefense()*PLUS_ATTACK_ARROWTOWER_BY_TECHNOLOGY/100.0));;
+        this.baseDamage = (int)(BASE_DAMAGE_ARROWTOWER * (1+Civilization.getInstance().getTechnologyDefense()*PLUS_ATTACK_ARROWTOWER_BY_TECHNOLOGY/100.0));
     }
 
     @Override
     public int attack() {
-        return baseDamage;
+        return (int)(baseDamage+baseDamage*experience*PLUS_ATTACK_UNIT_PER_EXPERIENCE_POINT/100);
     }
 
     @Override
     public int getActualArmor() {
-        return armor;
+        return (int)(armor+initialArmor*experience*PLUS_ARMOR_UNIT_PER_EXPERIENCE_POINT/100);
     }
 
     @Override
