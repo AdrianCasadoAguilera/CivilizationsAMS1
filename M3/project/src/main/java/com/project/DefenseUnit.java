@@ -1,9 +1,9 @@
 package com.project;
 
 public abstract class DefenseUnit implements Variables,MilitaryUnit {
-    private int armor;
-    private int initialArmor;
-    private int baseDamage;
-    private int experience;
-    private boolean sanctified;
+    protected int armor;
+    protected int initialArmor;
+    protected int baseDamage;
+    protected int experience;
+    protected boolean sanctified;
 }

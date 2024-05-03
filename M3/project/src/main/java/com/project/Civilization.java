@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class Civilization {
+    private static Civilization instance;
     private int technologyDefense;
     private int technologyAttack;
     private int wood;
@@ -15,8 +16,15 @@ public class Civilization {
     private int battles;
     private ArrayList<AttackUnit> army;
 
-    public Civilization() {
+    private Civilization() {
         army = new ArrayList<>(9);
+    }
+
+    public static Civilization getInstance() {
+        if (instance == null) {
+            instance = new Civilization();
+        }
+        return instance;
     }
 
     public int getTechnologyDefense() {

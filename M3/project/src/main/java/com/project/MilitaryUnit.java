@@ -1,7 +1,7 @@
 package com.project;
 
 public interface MilitaryUnit {
-    public abstract int attack();
+    public int attack();
     public abstract void takeDamage(int receivedDamage);
     public abstract int getActualArmor();
     public abstract int getFoodCost();
