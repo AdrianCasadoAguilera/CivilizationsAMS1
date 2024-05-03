@@ -2,15 +2,15 @@ package com.project;
 
 public class ArrowTower extends DefenseUnit {
 
-    public ArrowTower(int armor, int baseDamage) {
-        this.armor = armor;
+    public ArrowTower() {
+        this.armor = (int)(ARMOR_ARROWTOWER * (1+Civilization.getInstance().getTechnologyDefense()*PLUS_ARMOR_ARROWTOWER_BY_TECHNOLOGY/100.0));
         this.initialArmor = armor;
-        this.baseDamage = baseDamage;
+        this.baseDamage = (int)(BASE_DAMAGE_ARROWTOWER * (1+Civilization.getInstance().getTechnologyDefense()*PLUS_ATTACK_ARROWTOWER_BY_TECHNOLOGY/100.0));;
     }
 
     @Override
     public int attack() {
-        return baseDamage+Civilization.getInstance().getTechnologyAttack()*PLUS_ATTACK_ARROWTOWER_BY_TECHNOLOGY;
+        return baseDamage;
     }
 
     @Override
@@ -20,18 +20,16 @@ public class ArrowTower extends DefenseUnit {
 
     @Override
     public int getChanceAttackAgain() {
-        return 0;
+        return CHANCE_ATTACK_AGAIN_ARROWTOWER;
     }
 
     @Override
     public int getChanceGeneratinWaste() {
-        // TODO Auto-generated method stub
-        return 0;
+        return CHANCE_GENERATNG_WASTE_ARROWTOWER;
     }
 
     @Override
     public void getExperience() {
-        // TODO Auto-generated method stub
         
     }
 
