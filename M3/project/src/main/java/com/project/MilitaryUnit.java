@@ -13,4 +13,5 @@ public interface MilitaryUnit {
     public abstract void resetArmor();
     public abstract void setExperience(int n);
     public abstract int getExperience();
+    public abstract UnitTypes getType();
 }
