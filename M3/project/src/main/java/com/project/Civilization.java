@@ -1,3 +1,5 @@
+package com.project;
+
 import java.util.ArrayList;
 
 public class Civilization {
@@ -134,7 +136,7 @@ public class Civilization {
 
     public void newChurch() {
         if (wood < Variables.WOOD_COST_CHURCH) {
-            // excepción
+            throw new ResourceException("Mana",  Variables.MANA_COST_CHURCH, mana);
         }
         church++;
         wood -= Variables.WOOD_COST_CHURCH;
@@ -142,7 +144,7 @@ public class Civilization {
 
     public void newMagicTower() {
         if (mana < Variables.MANA_COST_MAGICTOWER) {
-            // excepción
+            throw new ResourceException("Mana",  Variables.MANA_COST_CHURCH, mana);
         }
         magicTower++;
         mana -= Variables.MANA_COST_MAGICTOWER;

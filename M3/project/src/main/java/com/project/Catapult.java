@@ -25,7 +25,7 @@ public class Catapult extends DefenseUnit{
 
     @Override
     public int getChanceGeneratinWaste() {
-        return CHANCE_GENERATNG_WASTE_CATAPULT;
+        return CHANCE_GENERATING_WASTE_CATAPULT;
     }
 
     @Override
@@ -66,4 +66,8 @@ public class Catapult extends DefenseUnit{
     public void takeDamage(int receivedDamage) {
         armor -= receivedDamage;
     } 
+    @Override
+    public UnitTypes getType(){
+        return UnitTypes.CATAPULT;
+    }
 }

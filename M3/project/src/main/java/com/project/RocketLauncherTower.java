@@ -25,7 +25,7 @@ public class RocketLauncherTower extends DefenseUnit{
 
     @Override
     public int getChanceGeneratinWaste() {
-        return CHANCE_GENERATNG_WASTE_ROCKETLAUNCHERTOWER;
+        return CHANCE_GENERATING_WASTE_ROCKETLAUNCHERTOWER;
     }
 
     @Override
@@ -65,5 +65,9 @@ public class RocketLauncherTower extends DefenseUnit{
     @Override
     public void takeDamage(int receivedDamage) {
         armor -= receivedDamage;
-    } 
+    }
+    @Override
+    public UnitTypes getType(){
+        return UnitTypes.ROCKETLAUNCHERTOWER;
+    }
 }
