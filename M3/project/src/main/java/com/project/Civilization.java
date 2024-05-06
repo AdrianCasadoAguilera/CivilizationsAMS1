@@ -133,66 +133,71 @@ public class Civilization {
 
 
     public void newChurch() {
-        if (wood < ??) {
+        if (wood < Variables.WOOD_COST_CHURCH) {
             // excepción
         }
         church++;
-        wood -= ??;
+        wood -= Variables.WOOD_COST_CHURCH;
     }
 
     public void newMagicTower() {
-        if (mana < ??) {
+        if (mana < Variables.MANA_COST_MAGICTOWER) {
             // excepción
         }
         magicTower++;
-        mana -= 50;
+        mana -= Variables.MANA_COST_MAGICTOWER;
     }
 
     public void newFarm() {
-        if (wood < 50) {
+        if (wood < Variables.WOOD_COST_FARM) {
             // excepción
         }
         farm++;
-        wood -= 50;
+        wood -= Variables.WOOD_COST_FARM;
     }
 
     public void newCarpentry() {
-        if (wood < ??) {
+        if (wood < Variables.WOOD_COST_CARPENTRY) {
             // excepción
         }
         carpentry++;
-        wood -= ??;
+        wood -= Variables.WOOD_COST_CARPENTRY;
     }
 
     public void newSmithy() {
-        if (iron < ??) {
+        if (iron < Variables.IRON_COST_SMITHY) {
             // excepción
         }
         smithy++;
-        iron -= ??;
+        iron -= Variables.IRON_COST_SMITHY;
     }
 
     public void upgradeTechnologyDefense() {
-        int cost = calculateCost(technologyDefense);
-        if (iron < cost) {
+        int baseCost = Variables.UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST;
+        int additionalCost = Variables.UPGRADE_PLUS_DEFENSE_TECHNOLOGY_IRON_COST * technologyDefense;
+        int totalCost = baseCost + additionalCost;
+
+        if (iron < totalCost) {
             // excepción
         }
         technologyDefense++;
-        iron -= cost;
+        iron -= totalCost;
     }
 
     public void upgradeTechnologyAttack() {
-        int cost = calculateCost(technologyAttack);
-        if (iron < cost) {
+        int baseCost = Variables.UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST;
+        int additionalCost = Variables.UPGRADE_PLUS_ATTACK_TECHNOLOGY_IRON_COST * technologyAttack;
+        int totalCost = baseCost + additionalCost;
+
+        if (iron < totalCost) {
             // excepción
         }
         technologyAttack++;
-        iron -= cost;
+        iron -= totalCost;
     }
 
-    private int calculateCost(int level) {
-        return 100 + (10 * level);
-    }
-
+//Función  de momento no necesaria    private int calculateCost(int level) {
+//        return 100 + (10 * level);
+//    }
 
 }
