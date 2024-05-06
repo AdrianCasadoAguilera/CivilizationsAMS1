@@ -16,7 +16,7 @@ public class Civilization {
     private int smithy;
     private int carpentry;
     private int battles;
-    private ArrayList<AttackUnit> army;
+    private ArrayList<MilitaryUnit> army;
 
     private Civilization() {
         army = new ArrayList<>(9);
@@ -125,11 +125,11 @@ public class Civilization {
         this.battles = battles;
     }
 
-    public ArrayList<AttackUnit> getArmy() {
+    public ArrayList<MilitaryUnit> getArmy() {
         return army;
     }
 
-    public void setArmy(ArrayList<AttackUnit> army) {
+    public void setArmy(ArrayList<MilitaryUnit> army) {
         this.army = army;
     }
 
@@ -295,6 +295,133 @@ public class Civilization {
         food -= totalFoodCost;
         wood -= totalWoodCost;
         iron -= totalIronCost;
+    }
+
+    public void AddUnit(UnitTypes unitType, int amount) {
+        int foodCost = 0;
+        int woodCost = 0;
+        int ironCost = 0;
+        int manaCost = 0;
+        try {
+            if (unitType == UnitTypes.PRIEST && CountUnits(unitType) >= church) {
+				throw new BuildingException("To Train a new Priest","Churches");
+            }
+            if (unitType == UnitTypes.MAGICIAN && CountUnits(unitType) >= magicTower) {
+				throw new BuildingException("To Train a new Magician", "Magicians");
+            }
+        }
+        catch (BuildingException e) {
+            System.out.println(e.getMessage());
+			return;
+        }
+        switch (unitType) {
+            case SWORDSMAN:
+                foodCost = Variables.FOOD_COST_SWORDSMAN;
+                woodCost = Variables.WOOD_COST_SWORDSMAN;
+                ironCost = Variables.IRON_COST_SWORDSMAN;
+                break;
+            case SPEARMAN:
+                foodCost = Variables.FOOD_COST_SPEARMAN;
+                woodCost = Variables.WOOD_COST_SPEARMAN;
+                ironCost = Variables.IRON_COST_SPEARMAN;
+                break;
+            case CROSSBOW:
+                foodCost = Variables.FOOD_COST_CROSSBOW;
+                woodCost = Variables.WOOD_COST_CROSSBOW;
+                ironCost = Variables.IRON_COST_CROSSBOW;
+                break;
+            case CANNON:
+                foodCost = Variables.FOOD_COST_CANNON;
+                woodCost = Variables.WOOD_COST_CANNON;
+                ironCost = Variables.IRON_COST_CANNON;
+                break;
+            case ARROWTOWER:
+                foodCost = Variables.FOOD_COST_ARROWTOWER;
+                woodCost = Variables.WOOD_COST_ARROWTOWER;
+                ironCost = Variables.IRON_COST_ARROWTOWER;
+                break;
+            case CATAPULT:
+                foodCost = Variables.FOOD_COST_CATAPULT;
+                woodCost = Variables.WOOD_COST_CATAPULT;
+                ironCost = Variables.IRON_COST_CATAPULT;
+                break;
+            case ROCKETLAUNCHERTOWER:
+                foodCost = Variables.FOOD_COST_ROCKETLAUNCHERTOWER;
+                woodCost = Variables.WOOD_COST_ROCKETLAUNCHERTOWER;
+                ironCost = Variables.IRON_COST_ROCKETLAUNCHERTOWER;
+                break;
+            case MAGICIAN:
+                foodCost = Variables.FOOD_COST_MAGICIAN;
+                woodCost = Variables.WOOD_COST_MAGICIAN;
+                ironCost = Variables.IRON_COST_MAGICIAN;
+                manaCost = Variables.MANA_COST_MAGICIAN;             
+                break;
+            case PRIEST:
+                foodCost = Variables.FOOD_COST_PRIEST;
+                woodCost = Variables.WOOD_COST_PRIEST;
+                ironCost = Variables.IRON_COST_PRIEST;
+                manaCost = Variables.MANA_COST_PRIEST;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + unitType);
+        }
+        try {
+            if (wood < woodCost) {
+                throw new ResourceException("wood", woodCost, wood);
+            }
+            if (food < foodCost) {
+                throw new ResourceException("food", foodCost, food);
+            }
+            if (iron < ironCost) {
+                throw new ResourceException("iron", ironCost, iron);
+            }
+            if (mana < manaCost) {
+                throw new ResourceException("mana", manaCost, mana);
+            }
+        } catch (ResourceException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
+        switch (unitType) {
+            case SWORDSMAN:
+                army.add(new Swordsman());
+                break;
+            case SPEARMAN:
+                army.add(new Spearman());
+                break;
+            case CROSSBOW:
+                army.add(new Crossbow());
+                break;
+            case CANNON:
+                army.add(new Cannon()); 
+                break;               
+            case ARROWTOWER:
+                army.add(new ArrowTower());
+                break;
+            case CATAPULT:
+                army.add(new Catapult());
+                break;
+            case ROCKETLAUNCHERTOWER:
+                army.add(new RocketLauncherTower());
+                break;
+            case MAGICIAN:
+                army.add(new Magician());
+                break;
+            case PRIEST:
+                army.add(new Priest());
+            default:
+                throw new IllegalStateException("Unexpected value: " + unitType);
+        }
+    }
+
+    public int CountUnits(UnitTypes unitType) {
+        int result = 0;
+        for (MilitaryUnit unit : army) {
+            if (unit.getType() == unitType) {
+                result++;
+            }
+        }
+        return result;
     }
 
 //Función  de momento no necesaria    private int calculateCost(int level) {
