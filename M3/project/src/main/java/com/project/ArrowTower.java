@@ -66,5 +66,10 @@ public class ArrowTower extends DefenseUnit {
     public void takeDamage(int receivedDamage) {
         armor -= receivedDamage;
     }
+
+    @Override
+    public UnitTypes getType() {
+        return UnitTypes.ARROWTOWER;
+    }
     
 }
