@@ -1,3 +1,5 @@
+package com.project;
+
 import java.util.ArrayList;
 
 public class Civilization {
@@ -138,7 +140,7 @@ public class Civilization {
                 throw new ResourceException("Food",  Variables.FOOD_COST_CHURCH, food);
             }
             if (wood < Variables.WOOD_COST_CHURCH) {
-                throw new ResourceException("wood",  Variables.WOOD_COST_CHURCH, wood),
+                throw new ResourceException("wood",  Variables.WOOD_COST_CHURCH, wood);
             }
             if (iron < Variables.IRON_COST_CHURCH) {
                 throw new ResourceException("Iron",  Variables.IRON_COST_CHURCH, iron);
@@ -163,7 +165,7 @@ public class Civilization {
                 throw new ResourceException("Food", Variables.FOOD_COST_MAGICTOWER, food);
             }
             if (wood < Variables.WOOD_COST_MAGICTOWER) {
-                throw new ResourceException("wood", Variables.WOOD_COST_MAGICTOWER, wood),
+                throw new ResourceException("wood", Variables.WOOD_COST_MAGICTOWER, wood);
             }
             if (iron < Variables.IRON_COST_MAGICTOWER) {
                 throw new ResourceException("Iron", Variables.IRON_COST_MAGICTOWER, iron);
@@ -184,7 +186,7 @@ public class Civilization {
                 throw new ResourceException("Food", Variables.FOOD_COST_FARM, food);
             }
             if (wood < Variables.WOOD_COST_FARM) {
-                throw new ResourceException("wood", Variables.WOOD_COST_FARM, wood),
+                throw new ResourceException("wood", Variables.WOOD_COST_FARM, wood);
             }
             if (iron < Variables.IRON_COST_FARM) {
                 throw new ResourceException("Iron", Variables.IRON_COST_FARM, iron);
@@ -205,7 +207,7 @@ public class Civilization {
                 throw new ResourceException("Food", Variables.FOOD_COST_CARPENTRY, food);
             }
             if (wood < Variables.WOOD_COST_CARPENTRY) {
-                throw new ResourceException("wood", Variables.WOOD_COST_CARPENTRY, wood),
+                throw new ResourceException("wood", Variables.WOOD_COST_CARPENTRY, wood);
             }
             if (iron < Variables.IRON_COST_CARPENTRY) {
                 throw new ResourceException("Iron", Variables.IRON_COST_CARPENTRY, iron);
@@ -247,12 +249,12 @@ public class Civilization {
                 throw new ResourceException("Food", totalFoodCost, food);
             }
             if (wood < totalWoodCost) {
-                throw new ResourceException("wood", totalWoodCost, wood),
+                throw new ResourceException("wood", totalWoodCost, wood);
             }
             if (iron < totalIronCost) {
                 throw new ResourceException("Iron", totalIronCost, iron);
             }
-        } catch (ResourceException exception) {
+        } catch (ResourceException e) {
             System.out.println(e.getMessage());
             return;
         }
@@ -280,12 +282,12 @@ public class Civilization {
                 throw new ResourceException("Food", totalFoodCost, food);
             }
             if (wood < totalWoodCost) {
-                throw new ResourceException("wood", totalWoodCost, wood),
+                throw new ResourceException("wood", totalWoodCost, wood);
             }
             if (iron < totalIronCost) {
                 throw new ResourceException("Iron", totalIronCost, iron);
             }
-        } catch (ResourceException exception) {
+        } catch (ResourceException e) {
             System.out.println(e.getMessage());
             return;
         }

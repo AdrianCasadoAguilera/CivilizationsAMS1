@@ -68,6 +68,7 @@ public interface Variables {
     public final int IRON_COST_PRIEST = 0;
     public final int MANA_COST_MAGICIAN = 5000;
     public final int MANA_COST_PRIEST = 15000;
+    public final int MANA_COST_MAGICTOWER = 0;
     // array units costs SWORDSMAN, SPEARMAN, CROSSBOW, CANNON, ARROWTOWER, CATAPULT, ROCKETLAUNCHERTOWER
     public final int WOOD_COST_UNITS[] =
     {WOOD_COST_SWORDSMAN,WOOD_COST_SPEARMAN,WOOD_COST_CROSSBOW,WOOD_COST_CANNON,WOOD_COST_ARROWTOWER,WOOD_COST_CATAPULT,WOOD_COST_ROCKETLAUNCHERTOWER,WOOD_COST_MAGICIAN,WOOD_COST_PRIEST};
@@ -114,6 +115,7 @@ public interface Variables {
     public final int PLUS_ARMOR_SPEARMAN_BY_TECHNOLOGY = 5;
     public final int PLUS_ARMOR_CROSSBOW_BY_TECHNOLOGY = 5;
     public final int PLUS_ARMOR_CANNON_BY_TECHNOLOGY = 5;
+    public final int PLUS_ARMOR_MAGICIAN_BY_TECHNOLOGY = 5;
     // defense armor increase percentage per tech level
     public final int PLUS_ARMOR_ARROWTOWER_BY_TECHNOLOGY = 5;
     public final int PLUS_ARMOR_CATAPULT_BY_TECHNOLOGY = 5;
@@ -136,17 +138,17 @@ public interface Variables {
     // Chance of resurrection by magician
     public final int CHANCE_MAGICIAN_RESSURECT = 2;
     // fleet probability of generating waste
-    public final int CHANCE_GENERATNG_WASTE_SWORDSMAN = 55;
-    public final int CHANCE_GENERATNG_WASTE_SPEARMAN = 65;
-    public final int CHANCE_GENERATNG_WASTE_CROSSBOW = 80;
-    public final int CHANCE_GENERATNG_WASTE_CANNON = 90;
+    public final int CHANCE_GENERATING_WASTE_SWORDSMAN = 55;
+    public final int CHANCE_GENERATING_WASTE_SPEARMAN = 65;
+    public final int CHANCE_GENERATING_WASTE_CROSSBOW = 80;
+    public final int CHANCE_GENERATING_WASTE_CANNON = 90;
     // Defense probability of generating waste ARROWTOWER, CATAPULT, ROCKETLAUNCHERTOWER
-    public final int CHANCE_GENERATNG_WASTE_ARROWTOWER = 55;
-    public final int CHANCE_GENERATNG_WASTE_CATAPULT = 65;
-    public final int CHANCE_GENERATNG_WASTE_ROCKETLAUNCHERTOWER = 75;
+    public final int CHANCE_GENERATING_WASTE_ARROWTOWER = 55;
+    public final int CHANCE_GENERATING_WASTE_CATAPULT = 65;
+    public final int CHANCE_GENERATING_WASTE_ROCKETLAUNCHERTOWER = 75;
     // especial Units
-    public final int CHANCE_GENERATNG_WASTE_PRIEST = 0;
-    public final int CHANCE_GENERATNG_WASTE_MAGICIAN = 0;
+    public final int CHANCE_GENERATING_WASTE_PRIEST = 0;
+    public final int CHANCE_GENERATING_WASTE_MAGICIAN = 0;
     // AttackUnit chance to attack again
     public final int CHANCE_ATTACK_AGAIN_SWORDSMAN = 3;
     public final int CHANCE_ATTACK_AGAIN_SPEARMAN = 7;
