@@ -133,35 +133,92 @@ public class Civilization {
 
 
     public void newChurch() {
-        if (wood < Variables.WOOD_COST_CHURCH) {
-            // excepción
+        try {
+            if (food < Variables.FOOD_COST_CHURCH) {
+                throw new ResourceException("Food",  Variables.FOOD_COST_CHURCH, food);
+            }
+            if (wood < Variables.WOOD_COST_CHURCH) {
+                throw new ResourceException("wood",  Variables.WOOD_COST_CHURCH, wood),
+            }
+            if (iron < Variables.IRON_COST_CHURCH) {
+                throw new ResourceException("Iron",  Variables.IRON_COST_CHURCH, iron);
+            }
+            if (mana < Variables.WOOD_COST_CHURCH) {
+                throw new ResourceException("Mana",  Variables.MANA_COST_CHURCH, mana);
+            }
+        } catch (ResourceException e) {
+            System.out.println(e.getMessage());
+            return;
         }
         church++;
         wood -= Variables.WOOD_COST_CHURCH;
+        iron -= Variables.IRON_COST_CHURCH;
+        food -= Variables.FOOD_COST_CHURCH;
+        mana -= Variables.MANA_COST_CHURCH;
     }
 
     public void newMagicTower() {
-        if (mana < Variables.MANA_COST_MAGICTOWER) {
-            // excepción
+        try {
+            if (food < Variables.FOOD_COST_MAGICTOWER) {
+                throw new ResourceException("Food", Variables.FOOD_COST_MAGICTOWER, food);
+            }
+            if (wood < Variables.WOOD_COST_MAGICTOWER) {
+                throw new ResourceException("wood", Variables.WOOD_COST_MAGICTOWER, wood),
+            }
+            if (iron < Variables.IRON_COST_MAGICTOWER) {
+                throw new ResourceException("Iron", Variables.IRON_COST_MAGICTOWER, iron);
+            }
+        } catch (ResourceException e) {
+            System.out.println(e.getMessage());
+            return;
         }
         magicTower++;
-        mana -= Variables.MANA_COST_MAGICTOWER;
+        food -= Variables.FOOD_COST_MAGICTOWER;
+        wood -= Variables.WOOD_COST_MAGICTOWER;
+        iron -= Variables.IRON_COST_MAGICTOWER;
     }
 
     public void newFarm() {
-        if (wood < Variables.WOOD_COST_FARM) {
-            // excepción
+        try {
+            if (food < Variables.FOOD_COST_FARM) {
+                throw new ResourceException("Food", Variables.FOOD_COST_FARM, food);
+            }
+            if (wood < Variables.WOOD_COST_FARM) {
+                throw new ResourceException("wood", Variables.WOOD_COST_FARM, wood),
+            }
+            if (iron < Variables.IRON_COST_FARM) {
+                throw new ResourceException("Iron", Variables.IRON_COST_FARM, iron);
+            }
+        } catch (ResourceException e) {
+            System.out.println(e.getMessage());
+            return;
         }
         farm++;
+        food -= Variables.FOOD_COST_FARM;
         wood -= Variables.WOOD_COST_FARM;
+        iron -= Variables.IRON_COST_FARM;
     }
 
     public void newCarpentry() {
-        if (wood < Variables.WOOD_COST_CARPENTRY) {
-            // excepción
+        try {
+            if (food < Variables.FOOD_COST_CARPENTRY) {
+                throw new ResourceException("Food", Variables.FOOD_COST_CARPENTRY, food);
+            }
+            if (wood < Variables.WOOD_COST_CARPENTRY) {
+                throw new ResourceException("wood", Variables.WOOD_COST_CARPENTRY, wood),
+            }
+            if (iron < Variables.IRON_COST_CARPENTRY) {
+                throw new ResourceException("Iron", Variables.IRON_COST_CARPENTRY, iron);
+            }
+
+        } catch (ResourceException e) {
+            System.out.println(e.getMessage());
+            return;
         }
         carpentry++;
+        food -= Variables.FOOD_COST_CARPENTRY;
         wood -= Variables.WOOD_COST_CARPENTRY;
+        iron -= Variables.IRON_COST_CARPENTRY;
     }
 
     public void newSmithy() {
@@ -173,27 +230,69 @@ public class Civilization {
     }
 
     public void upgradeTechnologyDefense() {
-        int baseCost = Variables.UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST;
-        int additionalCost = Variables.UPGRADE_PLUS_DEFENSE_TECHNOLOGY_IRON_COST * technologyDefense;
-        int totalCost = baseCost + additionalCost;
+        int baseFoodCost = Variables.UPGRADE_BASE_DEFENSE_TECHNOLOGY_FOOD_COST;
+        int plusFoodPercentage = Variables.UPGRADE_PLUS_DEFENSE_TECHNOLOGY_FOOD_COST * technologyDefense;
+        int totalFoodCost = baseFoodCost + baseFoodCost*plusFoodPercentage/100;
+        
+        int baseWoodCost = Variables.UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST;
+        int plusWoodPercentage = Variables.UPGRADE_PLUS_DEFENSE_TECHNOLOGY_WOOD_COST * technologyDefense;
+        int totalWoodCost = baseWoodCost + baseWoodCost*plusWoodPercentage/100;
 
-        if (iron < totalCost) {
-            // excepción
+        int baseIronCost = Variables.UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST;
+        int plusIronPercentage = Variables.UPGRADE_PLUS_DEFENSE_TECHNOLOGY_IRON_COST * technologyDefense;
+        int totalIronCost = baseIronCost + baseIronCost*plusIronPercentage/100;
+
+        try {
+            if (food < totalFoodCost) {
+                throw new ResourceException("Food", totalFoodCost, food);
+            }
+            if (wood < totalWoodCost) {
+                throw new ResourceException("wood", totalWoodCost, wood),
+            }
+            if (iron < totalIronCost) {
+                throw new ResourceException("Iron", totalIronCost, iron);
+            }
+        } catch (ResourceException exception) {
+            System.out.println(e.getMessage());
+            return;
         }
         technologyDefense++;
-        iron -= totalCost;
+        food -= totalFoodCost;
+        wood -= totalWoodCost;
+        iron -= totalIronCost;
     }
 
     public void upgradeTechnologyAttack() {
-        int baseCost = Variables.UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST;
-        int additionalCost = Variables.UPGRADE_PLUS_ATTACK_TECHNOLOGY_IRON_COST * technologyAttack;
-        int totalCost = baseCost + additionalCost;
+        int baseFoodCost = Variables.UPGRADE_BASE_ATTACK_TECHNOLOGY_FOOD_COST;
+        int plusFoodPercentage = Variables.UPGRADE_PLUS_ATTACK_TECHNOLOGY_FOOD_COST * technologyDefense;
+        int totalFoodCost = baseFoodCost + baseFoodCost*plusFoodPercentage/100;
+        
+        int baseWoodCost = Variables.UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST;
+        int plusWoodPercentage = Variables.UPGRADE_PLUS_ATTACK_TECHNOLOGY_WOOD_COST * technologyDefense;
+        int totalWoodCost = baseWoodCost + baseWoodCost*plusWoodPercentage/100;
 
-        if (iron < totalCost) {
-            // excepción
+        int baseIronCost = Variables.UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST;
+        int plusIronPercentage = Variables.UPGRADE_PLUS_ATTACK_TECHNOLOGY_IRON_COST * technologyDefense;
+        int totalIronCost = baseIronCost + baseIronCost*plusIronPercentage/100;
+
+        try {
+            if (food < totalFoodCost) {
+                throw new ResourceException("Food", totalFoodCost, food);
+            }
+            if (wood < totalWoodCost) {
+                throw new ResourceException("wood", totalWoodCost, wood),
+            }
+            if (iron < totalIronCost) {
+                throw new ResourceException("Iron", totalIronCost, iron);
+            }
+        } catch (ResourceException exception) {
+            System.out.println(e.getMessage());
+            return;
         }
         technologyAttack++;
-        iron -= totalCost;
+        food -= totalFoodCost;
+        wood -= totalWoodCost;
+        iron -= totalIronCost;
     }
 
 //Función  de momento no necesaria    private int calculateCost(int level) {
