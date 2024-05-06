@@ -130,4 +130,74 @@ public class Civilization {
     public void setArmy(ArrayList<AttackUnit> army) {
         this.army = army;
     }
+
+
+    public void newChurch() {
+        if (wood < Variables.WOOD_COST_CHURCH) {
+            // excepción
+        }
+        church++;
+        wood -= Variables.WOOD_COST_CHURCH;
+    }
+
+    public void newMagicTower() {
+        if (mana < Variables.MANA_COST_MAGICTOWER) {
+            // excepción
+        }
+        magicTower++;
+        mana -= Variables.MANA_COST_MAGICTOWER;
+    }
+
+    public void newFarm() {
+        if (wood < Variables.WOOD_COST_FARM) {
+            // excepción
+        }
+        farm++;
+        wood -= Variables.WOOD_COST_FARM;
+    }
+
+    public void newCarpentry() {
+        if (wood < Variables.WOOD_COST_CARPENTRY) {
+            // excepción
+        }
+        carpentry++;
+        wood -= Variables.WOOD_COST_CARPENTRY;
+    }
+
+    public void newSmithy() {
+        if (iron < Variables.IRON_COST_SMITHY) {
+            // excepción
+        }
+        smithy++;
+        iron -= Variables.IRON_COST_SMITHY;
+    }
+
+    public void upgradeTechnologyDefense() {
+        int baseCost = Variables.UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST;
+        int additionalCost = Variables.UPGRADE_PLUS_DEFENSE_TECHNOLOGY_IRON_COST * technologyDefense;
+        int totalCost = baseCost + additionalCost;
+
+        if (iron < totalCost) {
+            // excepción
+        }
+        technologyDefense++;
+        iron -= totalCost;
+    }
+
+    public void upgradeTechnologyAttack() {
+        int baseCost = Variables.UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST;
+        int additionalCost = Variables.UPGRADE_PLUS_ATTACK_TECHNOLOGY_IRON_COST * technologyAttack;
+        int totalCost = baseCost + additionalCost;
+
+        if (iron < totalCost) {
+            // excepción
+        }
+        technologyAttack++;
+        iron -= totalCost;
+    }
+
+//Función  de momento no necesaria    private int calculateCost(int level) {
+//        return 100 + (10 * level);
+//    }
+
 }
