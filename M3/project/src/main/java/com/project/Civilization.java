@@ -130,4 +130,69 @@ public class Civilization {
     public void setArmy(ArrayList<AttackUnit> army) {
         this.army = army;
     }
+
+
+    public void newChurch() {
+        if (wood < ??) {
+            // excepción
+        }
+        church++;
+        wood -= ??;
+    }
+
+    public void newMagicTower() {
+        if (mana < ??) {
+            // excepción
+        }
+        magicTower++;
+        mana -= 50;
+    }
+
+    public void newFarm() {
+        if (wood < 50) {
+            // excepción
+        }
+        farm++;
+        wood -= 50;
+    }
+
+    public void newCarpentry() {
+        if (wood < ??) {
+            // excepción
+        }
+        carpentry++;
+        wood -= ??;
+    }
+
+    public void newSmithy() {
+        if (iron < ??) {
+            // excepción
+        }
+        smithy++;
+        iron -= ??;
+    }
+
+    public void upgradeTechnologyDefense() {
+        int cost = calculateCost(technologyDefense);
+        if (iron < cost) {
+            // excepción
+        }
+        technologyDefense++;
+        iron -= cost;
+    }
+
+    public void upgradeTechnologyAttack() {
+        int cost = calculateCost(technologyAttack);
+        if (iron < cost) {
+            // excepción
+        }
+        technologyAttack++;
+        iron -= cost;
+    }
+
+    private int calculateCost(int level) {
+        return 100 + (10 * level);
+    }
+
+
 }
