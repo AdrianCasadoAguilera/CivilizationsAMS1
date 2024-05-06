@@ -25,7 +25,7 @@ public class ArrowTower extends DefenseUnit {
 
     @Override
     public int getChanceGeneratinWaste() {
-        return CHANCE_GENERATNG_WASTE_ARROWTOWER;
+        return CHANCE_GENERATING_WASTE_ARROWTOWER;
     }
 
     @Override
@@ -65,6 +65,10 @@ public class ArrowTower extends DefenseUnit {
     @Override
     public void takeDamage(int receivedDamage) {
         armor -= receivedDamage;
+    }
+    @Override
+    public UnitTypes getType(){
+        return UnitTypes.ARROWTOWER;
     }
     
 }
