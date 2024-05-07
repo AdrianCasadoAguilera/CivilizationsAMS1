@@ -2,6 +2,8 @@ package com.project;
 
 import java.io.IOException;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -14,6 +16,7 @@ public class Main {
     public static float deltaTime = 1.0f/UPS;
     public static Civilization civilization;
     public static Boolean stoped = false;
+    public static float BattleTimer = 175;
     public static TimerTask MainLoop = new TimerTask() {
         @Override
         public void run() {
@@ -22,9 +25,12 @@ public class Main {
                 //System.out.println("update Active");
         }
     };
+    public static ArrayList<MilitaryUnit> NextEnemyArmy = new ArrayList<>();
+    public static int wave = 0;
 
     public static void main(String[] args) {
         civilization = Civilization.getInstance();
+        createEnemyArmy(); 
         Timer timer = new Timer();
         timer.schedule(MainLoop, 0, 1000/UPS);
         stoped = false;
@@ -68,6 +74,57 @@ public class Main {
     private static void Update() {
         //Updates values about the civilization (resources, enemy army, battles)
         civilization.GenerateResources(deltaTime);
+        BattleTimer += deltaTime;
+        if (BattleTimer >= 180) {
+            BattleTimer = 0;
+            wave++;
+            Battle battle = new Battle(civilization.getArmy(), NextEnemyArmy);
+            battle.startBattle();
+            battle.recollectWaste(civilization);
+            battle.civilizationArmyAfter(civilization);
+            createEnemyArmy();
+            System.out.println("\n\nA battle Happened\n");
+            String b = battle.getDeteiledReport();
+            System.out.println(b);
+        }
+    }
+
+    private static void createEnemyArmy() {
+        NextEnemyArmy.clear();
+        int food = Variables.FOOD_BASE_ENEMY_ARMY + Variables.FOOD_BASE_ENEMY_ARMY*Variables.ENEMY_FLEET_INCREASE/100*wave;
+        int wood = Variables.WOOD_BASE_ENEMY_ARMY + Variables.WOOD_BASE_ENEMY_ARMY*Variables.ENEMY_FLEET_INCREASE/100*wave;
+        int iron = Variables.IRON_BASE_ENEMY_ARMY + Variables.IRON_BASE_ENEMY_ARMY*Variables.ENEMY_FLEET_INCREASE/100*wave;
+        /*Para crear el ejército enemigo, dispondremos de unos recursos iniciales, que conforme vayan
+        sucediendo batallas, serán mayores .
+        Iremos creando unidades enemigas aleatoriamente pero con las siguientes probabilidades:
+        Swordsman 35%, Spearman 25%, Crossbow 20%, Cannon 20%.
+        Mientras tengamos suficientes recursos para crear la unidad con menor coste, es decir, Swordsman
+        iremos creando unidades aleatoriamente según las probabilidades anteriores. */
+        Random random = new Random();
+        while (food >= Variables.FOOD_COST_SWORDSMAN && wood >= Variables.WOOD_COST_SWORDSMAN && iron >= Variables.IRON_COST_SWORDSMAN) {
+            int r = random.nextInt(100);
+            if (r < 35) {
+                food -= Variables.FOOD_COST_SWORDSMAN;
+                wood -= Variables.WOOD_COST_SWORDSMAN;
+                iron -= Variables.IRON_COST_SWORDSMAN;
+                NextEnemyArmy.add(new Swordsman());
+            } else if (r < 60) {
+                food -= Variables.FOOD_COST_SPEARMAN;
+                wood -= Variables.WOOD_COST_SPEARMAN;
+                iron -= Variables.IRON_COST_SPEARMAN;
+                NextEnemyArmy.add(new Spearman());
+            } else if (r < 80) {
+                food -= Variables.FOOD_COST_CROSSBOW;
+                wood -= Variables.WOOD_COST_CROSSBOW;
+                iron -= Variables.IRON_COST_CROSSBOW;
+                NextEnemyArmy.add(new Crossbow());
+            } else {
+                food -= Variables.FOOD_COST_CANNON;
+                wood -= Variables.WOOD_COST_CANNON;
+                iron -= Variables.IRON_COST_CANNON;
+                NextEnemyArmy.add(new Cannon());
+            }
+        }
     }
 
     private static void MainMenu() {

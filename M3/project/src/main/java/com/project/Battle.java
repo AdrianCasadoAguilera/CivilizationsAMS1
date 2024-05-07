@@ -1,7 +1,9 @@
 package com.project;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Arrays;
 
 public class Battle {
     private ArrayList<MilitaryUnit> civilizationArmy;
@@ -25,6 +27,7 @@ public class Battle {
     public Battle(ArrayList<MilitaryUnit> civilizationArmy, ArrayList<MilitaryUnit> enemyArmy) {
         this.civilizationArmy = civilizationArmy;
         this.enemyArmy = enemyArmy;
+
         this.civilizationArmyOrdered = orderByUnitType(civilizationArmy);
         this.enemyArmyOrdered = orderByUnitType(enemyArmy);
         this.initialCivilizationArmySize = civilizationArmy.size();
@@ -34,7 +37,11 @@ public class Battle {
     }
 
     public ArrayList<ArrayList<MilitaryUnit>> orderByUnitType(ArrayList<MilitaryUnit> army) {
-        ArrayList<ArrayList<MilitaryUnit>> result = new ArrayList<>(9);
+        ArrayList<ArrayList<MilitaryUnit>> result = new ArrayList<>();
+        for (int i = 0; i < 9; i++) {
+            result.add(new ArrayList<>());
+        }
+        System.out.println(result);
         for (int i = 0; i < army.size(); i++) {
             MilitaryUnit unit = army.get(i);
             switch (unit.getType()) {
@@ -75,30 +82,34 @@ public class Battle {
     public void startBattle() {
         Random random = new Random();
         boolean turn = random.nextBoolean();
-
-        while (civilizationArmyOrdered.size() > initialCivilizationArmySize*0.2 || enemyArmyOrdered.size() > initialEnemyArmySize*0.2) {
-            AddLineToDeteiledReport("********************CHANGE ATTACKER********************");
-            ArrayList<ArrayList<MilitaryUnit>> AttackArmy = turn ? civilizationArmyOrdered : enemyArmyOrdered;
-            ArrayList<ArrayList<MilitaryUnit>> DefenseArmy = turn ? enemyArmyOrdered : civilizationArmyOrdered;
-            boolean repeatAttack = false;
-            ArrayList<MilitaryUnit> AttackGroup = SelectAttackGroup(AttackArmy,turn);
-            MilitaryUnit attackUnit = AttackGroup.get(random.nextInt(AttackGroup.size()));
-            while (repeatAttack) {
-                MilitaryUnit defenseUnit = SelectDefenseUnit(DefenseArmy);
-                AddLineToDeteiledReport("Attacks: " + (turn ? "civilization" : "enemy army: ") + attackUnit.getType().toString() + " attacks " + defenseUnit.getType().toString());
-                AddLineToDeteiledReport(attackUnit.getType().toString() + " deals damage = " + attackUnit.attack());
-                defenseUnit.takeDamage(attackUnit.attack());
-                AddLineToDeteiledReport(defenseUnit.getType().toString() + " stays with armor = " + defenseUnit.getActualArmor());
-                if (defenseUnit.getActualArmor() <= 0) {
-                    RemoveUnit(defenseUnit, turn ? enemyArmyOrdered : civilizationArmyOrdered);
-                    AddToLosses(defenseUnit, turn);
-                    GenerateWaste(defenseUnit);
-                    repeatAttack = attackUnit.getChanceAttackAgain() > random.nextInt(100);
+        if (civilizationArmy.size() > 0) {
+            while (civilizationArmyOrdered.size() > initialCivilizationArmySize*0.2 || enemyArmyOrdered.size() > initialEnemyArmySize*0.2) {
+                AddLineToDeteiledReport("********************CHANGE ATTACKER********************");
+                ArrayList<ArrayList<MilitaryUnit>> AttackArmy = turn ? civilizationArmyOrdered : enemyArmyOrdered;
+                ArrayList<ArrayList<MilitaryUnit>> DefenseArmy = turn ? enemyArmyOrdered : civilizationArmyOrdered;
+                boolean repeatAttack = false;
+                ArrayList<MilitaryUnit> AttackGroup = SelectAttackGroup(AttackArmy,turn);
+                MilitaryUnit attackUnit = AttackGroup.get(random.nextInt(AttackGroup.size()));
+                while (repeatAttack) {
+                    MilitaryUnit defenseUnit = SelectDefenseUnit(DefenseArmy);
+                    AddLineToDeteiledReport("Attacks: " + (turn ? "civilization" : "enemy army: ") + attackUnit.getType().toString() + " attacks " + defenseUnit.getType().toString());
+                    AddLineToDeteiledReport(attackUnit.getType().toString() + " deals damage = " + attackUnit.attack());
+                    defenseUnit.takeDamage(attackUnit.attack());
+                    AddLineToDeteiledReport(defenseUnit.getType().toString() + " stays with armor = " + defenseUnit.getActualArmor());
+                    if (defenseUnit.getActualArmor() <= 0) {
+                        RemoveUnit(defenseUnit, turn ? enemyArmyOrdered : civilizationArmyOrdered);
+                        AddToLosses(defenseUnit, turn);
+                        GenerateWaste(defenseUnit);
+                        repeatAttack = attackUnit.getChanceAttackAgain() > random.nextInt(100);
+                    }
                 }
             }
+            Win = civilizationTotalLoses < enemyTotalLoses;
         }
-        Win = civilizationTotalLoses < enemyTotalLoses;
-
+        else {
+            Win = false;
+        }
+        AddLineToDeteiledReport("The battle was win by: " + (Win ? "Civilization" : "Enemy"));
     }
 
     private void AddToLosses(MilitaryUnit defenseUnit, boolean turn) {
@@ -210,9 +221,10 @@ public class Battle {
         //Cost
         sb.append(String.format("%-" + 25+6+10+40 + "s", "Cost Army Civilization"));
         sb.append(String.format("%-" + 25 + "s", "Cost Army Enemy") + "\n");
-        ArrayList<Integer> civCost = new ArrayList<>(3);
-        ArrayList<Integer> enemyCost = new ArrayList<>();
-        for (MilitaryUnit unit :civilizationArmy) {
+        ArrayList<Integer> civCost = new ArrayList<>(Arrays.asList(0,0,0));
+        ArrayList<Integer> enemyCost = new ArrayList<>(Arrays.asList(0,0,0));
+        System.out.println(enemyArmy.size());
+        for (MilitaryUnit unit : civilizationArmy) {
             civCost.set(0, civCost.get(0) + unit.getFoodCost());
             civCost.set(1, civCost.get(1) + unit.getWoodCost());
             civCost.set(2, civCost.get(2) + unit.getIronCost());
@@ -253,6 +265,7 @@ public class Battle {
         sb.append("#".repeat(25+6+10+40+25+6+10) + "\n");
         sb.append("\n");
         sb.append("View Battle development?(S/n)" + "\n");
+
         return sb.toString();
     }
 
@@ -262,5 +275,13 @@ public class Battle {
 
     public String getDeteiledReport() {
         return DeteiledReport;
+    }
+
+    public void recollectWaste(Civilization civilization) {
+
+    }
+
+    public void civilizationArmyAfter(Civilization civilization) {
+
     }
 }
