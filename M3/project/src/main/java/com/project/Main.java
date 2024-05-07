@@ -1,5 +1,6 @@
 package com.project;
 
+import java.io.IOException;
 import java.sql.Time;
 import java.util.Scanner;
 import java.util.Timer;
@@ -20,6 +21,7 @@ public class Main {
         public void run() {
             if (!stopped)
                 Update();
+                //System.out.println("update Active");
         }
     };
 
@@ -45,6 +47,24 @@ public class Main {
         }
     }
 
+    public static String title(String input) {
+        StringBuilder titleCase = new StringBuilder();
+        boolean nextTitleCase = true;
+
+        for (char c : input.toCharArray()) {
+            if (Character.isSpaceChar(c)) {
+                nextTitleCase = true;
+            } else if (nextTitleCase) {
+                c = Character.toTitleCase(c);
+                nextTitleCase = false;
+            } else {
+                c = Character.toLowerCase(c);
+            }
+            titleCase.append(c);
+        }
+
+        return titleCase.toString();
+    }
 
     private static void Update() {
         //Updates values about the civilization (resources, enemy army, battles)
@@ -53,6 +73,7 @@ public class Main {
 
     private static void MainMenu() {
         Boolean menu = true;
+        Boolean error = true;
         while (true) {
             if (menu) {
                 clearConsole();
@@ -65,29 +86,39 @@ public class Main {
                 System.out.print("Choose an option: ");
             }
             menu = true;
-            int option = input.nextInt();
-            switch (option) {
-                case 1:
-                    CreateBuildingMenu();
-                    break;
-                case 2:
-                    TrainUnitMenu();
-                    break;
-                case 3:
-                    TechnologyMenu();
-                    break;
-                case 4:
-                    StatsMenu();
-                    break;
-                case 5:
-                    PauseMenu();
-                    break;
-                case 6:
-                    return;
-                default:
-                    System.out.println("\nInvalid option");
+            try {
+                int option = input.nextInt();
+                error = true;
+                switch (option) {
+                    case 1:
+                        CreateBuildingMenu();
+                        break;
+                    case 2:
+                        TrainUnitMenu();
+                        break;
+                    case 3:
+                        TechnologyMenu();
+                        break;
+                    case 4:
+                        error = false;
+                        StatsMenu();
+                        break;
+                    case 5:
+                        PauseMenu();
+                        break;
+                    case 6:
+                        return;
+                    default:
+                        System.out.println("\nInvalid option");
+                        menu = false;
+                        break;
+                }
+            } catch (Exception e) {
+                if (error) {
+                    System.out.println("\nInvalid option type");
                     menu = false;
-                    break;
+                }
+                input.next();
             }
         }
     }
@@ -132,8 +163,8 @@ public class Main {
         String option;
         int amount;
         Boolean exit = false;
-        input.nextLine();
         while(!exit){
+            input.nextLine();
             ArrayList<String> units = new ArrayList<>(Arrays.asList("Swordsman","Spearman","Crossbow","Cannon","Arrow tower","Catapult","Rocket launcher","Magician","Priest"));
             for(int i = 0;i < units.size();i++){
                 System.out.println(units.get(i));
@@ -142,11 +173,10 @@ public class Main {
             System.out.println("What unit do you want to train?");
             option = input.nextLine();
             if(option.toLowerCase().equals("exit")){
-                System.out.println("ENTRA ENTRA ENTRA ENTRA ENTRA ENTRA ENTRA");
                 exit = true;
                 break;
             }
-            if(units.contains(option.toUpperCase())){
+            if(units.contains(option.substring(0,1).toUpperCase()+option.substring(1).toLowerCase())){
                 System.out.println("How many "+option+"s do you want to train?");
                 amount = input.nextInt();
                 switch (option.toLowerCase()) {
@@ -178,7 +208,6 @@ public class Main {
                         civilization.AddUnit(UnitTypes.PRIEST, amount);
                         break;
                     case "exit":
-                        System.out.println("ENTRA ENTRA ENTRA ENTRA ENTRA ENTRA ENTRA");
                         exit = true;
                         break;
                     default:
@@ -193,31 +222,46 @@ public class Main {
     }
 
     private static void StatsMenu() {
+        clearConsole();
+        
         Timer timer = new Timer();
-        CountDownLatch latch = new CountDownLatch(1);
+        
+    
         TimerTask displayStatsTask = new TimerTask() {
             @Override
             public void run() {
-                //print stats
                 clearConsole();
                 System.out.println("Stats");
-
-                System.out.println("Press Anything to return");
-                //view input
-                if (input.hasNextLine()) {
-                    timer.cancel();
-                    latch.countDown();
-                    return;
+                System.out.println("\nResources:");
+                System.out.println("Food: " + civilization.getFood());
+                System.out.println("Wood: " + civilization.getWood());
+                System.out.println("Iron: " + civilization.getIron());
+                System.out.println("Mana: " + civilization.getMana());
+                System.out.println("\nTechnology:");
+                System.out.println("Attack: " + civilization.getTechnologyAttack());
+                System.out.println("Defense: " + civilization.getTechnologyDefense());
+                System.out.println("\nBuildings:");
+                System.out.println("Frms: " + civilization.getFarm());
+                System.out.println("Carpentry: " + civilization.getCarpentry());
+                System.out.println("Smithy: " + civilization.getSmithy());
+                System.out.println("Magic Tower: " + civilization.getMagicTower());
+                System.out.println("Church: " + civilization.getChurch());
+                System.out.println("\nArmy:");
+                for(UnitTypes type : UnitTypes.values()) {
+                    System.out.println(title(type.toString()) + ": " + civilization.CountUnits(type));
                 }
-
+                System.out.println("\nPress Enter to return");
             }
         };
-        timer.scheduleAtFixedRate(displayStatsTask, 0, UPS);
+    
+        timer.scheduleAtFixedRate(displayStatsTask, 0, 1000/UPS);
+
         try {
-            latch.await();
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+            System.in.read();
+        } catch (Exception e) {
+
         }
+        timer.cancel();
     }
 
     private static void PauseMenu() {
