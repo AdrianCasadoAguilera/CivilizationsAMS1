@@ -1,5 +1,6 @@
 package com.project;
 
+import java.io.IOException;
 import java.sql.Time;
 import java.util.Scanner;
 import java.util.Timer;
@@ -18,15 +19,17 @@ public class Main {
         public void run() {
             if (!stoped)
                 Update();
+                //System.out.println("update Active");
         }
     };
 
     public static void main(String[] args) {
         civilization = Civilization.getInstance();
         Timer timer = new Timer();
-        timer.schedule(MainLoop, 0, UPS);
+        timer.schedule(MainLoop, 0, 1000/UPS);
         stoped = false;
         MainMenu();
+        timer.cancel();
     }
 
     private static void clearConsole() {
@@ -50,6 +53,7 @@ public class Main {
 
     private static void MainMenu() {
         Boolean menu = true;
+        Boolean error = true;
         while (true) {
             if (menu) {
                 clearConsole();
@@ -62,29 +66,39 @@ public class Main {
                 System.out.print("Choose an option: ");
             }
             menu = true;
-            int option = input.nextInt();
-            switch (option) {
-                case 1:
-                    CreateBuildingMenu();
-                    break;
-                case 2:
-                    TrainUnitMenu();
-                    break;
-                case 3:
-                    TechnologyMenu();
-                    break;
-                case 4:
-                    StatsMenu();
-                    break;
-                case 5:
-                    PauseMenu();
-                    break;
-                case 6:
-                    break;
-                default:
-                    System.out.println("\nInvalid option");
+            try {
+                int option = input.nextInt();
+                error = true;
+                switch (option) {
+                    case 1:
+                        CreateBuildingMenu();
+                        break;
+                    case 2:
+                        TrainUnitMenu();
+                        break;
+                    case 3:
+                        TechnologyMenu();
+                        break;
+                    case 4:
+                        error = false;
+                        StatsMenu();
+                        break;
+                    case 5:
+                        PauseMenu();
+                        break;
+                    case 6:
+                        return;
+                    default:
+                        System.out.println("\nInvalid option");
+                        menu = false;
+                        break;
+                }
+            } catch (Exception e) {
+                if (error) {
+                    System.out.println("\nInvalid option type");
                     menu = false;
-                    break;
+                }
+                input.next();
             }
         }
     }
@@ -102,31 +116,34 @@ public class Main {
     }
 
     private static void StatsMenu() {
+        clearConsole();
+        
         Timer timer = new Timer();
-        CountDownLatch latch = new CountDownLatch(1);
+        
+    
         TimerTask displayStatsTask = new TimerTask() {
             @Override
             public void run() {
-                //print stats
                 clearConsole();
                 System.out.println("Stats");
-
-                System.out.println("Press Anything to return");
-                //view input
-                if (input.hasNextLine()) {
-                    timer.cancel();
-                    latch.countDown();
-                    return;
-                }
-
+                System.out.println("Resources: ");
+                System.out.println("Food: " + civilization.getFood());
+                System.out.println("Wood: " + civilization.getWood());
+                System.out.println("Iron: " + civilization.getIron());
+                System.out.println("Mana: " + civilization.getMana());
+                System.out.println("Press Enter to return");
             }
         };
-        timer.scheduleAtFixedRate(displayStatsTask, 0, UPS);
+    
+        timer.scheduleAtFixedRate(displayStatsTask, 0, 1000/UPS);
+
         try {
-            latch.await();
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+            System.in.read();
+            
+        } catch (Exception e) {
+            
         }
+        timer.cancel();
     }
 
     private static void PauseMenu() {
