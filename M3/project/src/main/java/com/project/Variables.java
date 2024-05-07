@@ -67,7 +67,8 @@ public interface Variables {
     public final int IRON_COST_MAGICIAN = 500;
     public final int IRON_COST_PRIEST = 0;
     public final int MANA_COST_MAGICIAN = 5000;
-    public final int MANA_COST_PRIEST = 15000;
+    public final int MANA_COST_PRIEST = 0;              // VALOR DE PRUEBA. CAMBIAR!!!!!!!!!
+    // public final int MANA_COST_PRIEST = 15000;
     public final int MANA_COST_MAGICTOWER = 0;
     // array units costs SWORDSMAN, SPEARMAN, CROSSBOW, CANNON, ARROWTOWER, CATAPULT, ROCKETLAUNCHERTOWER
     public final int WOOD_COST_UNITS[] =
