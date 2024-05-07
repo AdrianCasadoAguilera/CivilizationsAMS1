@@ -28,6 +28,7 @@ public class Main {
         Timer timer = new Timer();
         timer.schedule(MainLoop, 0, 1000/UPS);
         stoped = false;
+
         MainMenu();
         timer.cancel();
     }
@@ -45,6 +46,24 @@ public class Main {
         }
     }
 
+    public static String title(String input) {
+        StringBuilder titleCase = new StringBuilder();
+        boolean nextTitleCase = true;
+
+        for (char c : input.toCharArray()) {
+            if (Character.isSpaceChar(c)) {
+                nextTitleCase = true;
+            } else if (nextTitleCase) {
+                c = Character.toTitleCase(c);
+                nextTitleCase = false;
+            } else {
+                c = Character.toLowerCase(c);
+            }
+            titleCase.append(c);
+        }
+
+        return titleCase.toString();
+    }
 
     private static void Update() {
         //Updates values about the civilization (resources, enemy army, battles)
@@ -142,7 +161,7 @@ public class Main {
                 System.out.println("Church: " + civilization.getChurch());
                 System.out.println("\nArmy:");
                 for(UnitTypes type : UnitTypes.values()) {
-                    System.out.println(type.toString() + ": " + civilization.CountUnits(type));
+                    System.out.println(title(type.toString()) + ": " + civilization.CountUnits(type));
                 }
                 System.out.println("\nPress Enter to return");
             }
@@ -152,9 +171,8 @@ public class Main {
 
         try {
             System.in.read();
-            
         } catch (Exception e) {
-            
+
         }
         timer.cancel();
     }
