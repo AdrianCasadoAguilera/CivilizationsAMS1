@@ -1,14 +1,13 @@
 package com.project;
 
-public class Magician extends SpecialUnit {
-
-    public Magician(int armor,int baseDamage){
+public class Priest extends SpecialUnit {
+    public Priest(int armor,int baseDamage){
         this.armor = 0;
         this.initialArmor = this.armor;
-        this.baseDamage = BASE_DAMAGE_MAGICIAN + (Civilization.getInstance().getTechnologyAttack()*BASE_DAMAGE_MAGICIAN/100);
+        this.baseDamage = 0;
         this.experience = 0;
     }
-    public Magician(){
+    public Priest(){
         
     }
 
@@ -76,5 +75,4 @@ public class Magician extends SpecialUnit {
     public UnitTypes getType(){
         return UnitTypes.MAGICIAN;
     }
-    
 }
