@@ -126,12 +126,25 @@ public class Main {
             public void run() {
                 clearConsole();
                 System.out.println("Stats");
-                System.out.println("Resources: ");
+                System.out.println("\nResources:");
                 System.out.println("Food: " + civilization.getFood());
                 System.out.println("Wood: " + civilization.getWood());
                 System.out.println("Iron: " + civilization.getIron());
                 System.out.println("Mana: " + civilization.getMana());
-                System.out.println("Press Enter to return");
+                System.out.println("\nTechnology:");
+                System.out.println("Attack: " + civilization.getTechnologyAttack());
+                System.out.println("Defense: " + civilization.getTechnologyDefense());
+                System.out.println("\nBuildings:");
+                System.out.println("Frms: " + civilization.getFarm());
+                System.out.println("Carpentry: " + civilization.getCarpentry());
+                System.out.println("Smithy: " + civilization.getSmithy());
+                System.out.println("Magic Tower: " + civilization.getMagicTower());
+                System.out.println("Church: " + civilization.getChurch());
+                System.out.println("\nArmy:");
+                for(UnitTypes type : UnitTypes.values()) {
+                    System.out.println(type.toString() + ": " + civilization.CountUnits(type));
+                }
+                System.out.println("\nPress Enter to return");
             }
         };
     
