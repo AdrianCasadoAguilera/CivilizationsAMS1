@@ -424,6 +424,13 @@ public class Civilization {
         return result;
     }
 
+    public void GenerateResources(float deltaTime) {
+        food += (Variables.CIVILIZATION_FOOD_GENERATED+Variables.CIVILIZATION_FOOD_GENERATED_PER_FARM*farm/60.0)*deltaTime;
+        wood += (Variables.CIVILIZATION_WOOD_GENERATED+Variables.CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY*carpentry/60.0)*deltaTime;
+        iron += (Variables.CIVILIZATION_IRON_GENERATED+Variables.CIVILIZATION_IRON_GENERATED_PER_SMITHY*smithy/60.0)*deltaTime;
+        mana += (Variables.CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER*magicTower/60.0)*deltaTime;
+    }
+
 //Función  de momento no necesaria    private int calculateCost(int level) {
 //        return 100 + (10 * level);
 //    }
