@@ -8,7 +8,10 @@ public class Priest extends SpecialUnit {
         this.experience = 0;
     }
     public Priest(){
-        
+        this.armor = 0;
+        this.initialArmor = this.armor;
+        this.baseDamage = 0;
+        this.experience = 0;
     }
 
 

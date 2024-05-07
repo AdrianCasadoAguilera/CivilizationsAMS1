@@ -307,8 +307,10 @@ public class Civilization {
         int woodCost = 0;
         int ironCost = 0;
         int manaCost = 0;
+
+        int total = 0;
         
-        for(int i = 0;i<=amount;i++){
+        for(int i = 0;i<amount;i++){
             try {
                 if (unitType == UnitTypes.PRIEST && CountUnits(unitType) >= church) {
                     throw new BuildingException("To Train a new Priest","Churches");
@@ -415,12 +417,15 @@ public class Civilization {
                     army.add(new Magician());
                     break;
                 case PRIEST:
+                System.out.println("ENTRA PRIEST");
                     army.add(new Priest());
+                    break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + unitType);
             }
-            System.out.println("Created "+i+" units.");
+            total = i+1;
         }
+        System.out.println("Created "+total+" units.");
     }
 
     public int CountUnits(UnitTypes unitType) {

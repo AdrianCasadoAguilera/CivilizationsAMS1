@@ -16,9 +16,6 @@ public class Magician extends SpecialUnit {
     @Override
     public int attack() {
         int calculatedDamage = (int)(baseDamage + baseDamage * experience * PLUS_ATTACK_UNIT_PER_EXPERIENCE_POINT / 100);
-        if (sanctified) {
-            calculatedDamage += baseDamage * PLUS_ATTACK_UNIT_SANCTIFIED / 100;
-        }
         return calculatedDamage;
     }
 
