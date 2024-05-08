@@ -224,8 +224,13 @@ public class Civilization {
     }
 
     public void newSmithy() {
-        if (iron < Variables.IRON_COST_SMITHY) {
-            // excepción
+        try{
+            if (iron < Variables.IRON_COST_SMITHY) {
+                throw new ResourceException("Iron", Variables.IRON_COST_SMITHY, iron);
+            }
+        }catch(ResourceException e){
+            System.out.println(e.getMessage());
+            return;
         }
         smithy++;
         iron -= Variables.IRON_COST_SMITHY;
@@ -420,6 +425,7 @@ public class Civilization {
             }
             total = i+1;
         }
+        System.out.println("Created "+total+" units.");
     }
 
     public int CountUnits(UnitTypes unitType) {

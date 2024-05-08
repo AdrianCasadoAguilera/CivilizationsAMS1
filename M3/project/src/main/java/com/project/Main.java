@@ -8,6 +8,8 @@ import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.CountDownLatch;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
     
@@ -15,12 +17,12 @@ public class Main {
     public static int UPS = 1;
     public static float deltaTime = 1.0f/UPS;
     public static Civilization civilization;
-    public static Boolean stoped = false;
-    public static float BattleTimer = 140;
+    public static Boolean stopped = false;
+    public static float BattleTimer = 160;
     public static TimerTask MainLoop = new TimerTask() {
         @Override
         public void run() {
-            if (!stoped)
+            if (!stopped)
                 Update();
                 //System.out.println("update Active");
         }
@@ -33,8 +35,7 @@ public class Main {
         createEnemyArmy(); 
         Timer timer = new Timer();
         timer.schedule(MainLoop, 0, 1000/UPS);
-        stoped = false;
-
+        stopped = false;
         MainMenu();
         timer.cancel();
     }
@@ -180,11 +181,97 @@ public class Main {
     }
 
     private static void CreateBuildingMenu() {
-
+        String option;
+        input.nextLine();
+        while(true){
+            System.out.println("Smithy");
+            System.out.println("Carpentry");
+            System.out.println("Farm");
+            System.out.println("Magic Tower");
+            System.out.println("Church");
+            System.out.println("Exit");
+            System.out.println("What do you want to build?");
+            option = input.nextLine().toLowerCase();
+            switch (option) {
+                case "smithy":
+                    civilization.newSmithy();
+                    break;
+                case "carpentry":
+                    civilization.newCarpentry();
+                    break;
+                case "farm":
+                    civilization.newFarm();
+                    break;
+                case "magic tower":
+                    civilization.newMagicTower();
+                    break;
+                case "church":
+                    civilization.newChurch();
+                    break;
+                case "exit":
+                    return;
+                default:
+                    break;
+            }
+        }
     }
 
     private static void TrainUnitMenu() {
-
+        String option;
+        int amount;
+        Boolean exit = false;
+        while(!exit){
+            input.nextLine();
+            ArrayList<String> units = new ArrayList<>(Arrays.asList("Swordsman","Spearman","Crossbow","Cannon","Arrow tower","Catapult","Rocket launcher","Magician","Priest"));
+            for(int i = 0;i < units.size();i++){
+                System.out.println(units.get(i));
+            }
+            System.out.println("Exit");
+            System.out.println("What unit do you want to train?");
+            option = input.nextLine();
+            if(option.toLowerCase().equals("exit")){
+                exit = true;
+                break;
+            }
+            if(units.contains(option.substring(0,1).toUpperCase()+option.substring(1).toLowerCase())){
+                System.out.println("How many "+option+"s do you want to train?");
+                amount = input.nextInt();
+                switch (option.toLowerCase()) {
+                    case "swordsman":
+                        civilization.AddUnit(UnitTypes.SWORDSMAN, amount);
+                        break;
+                    case "spearman":
+                        civilization.AddUnit(UnitTypes.SPEARMAN, amount);
+                        break;
+                    case "crossbow":
+                        civilization.AddUnit(UnitTypes.CROSSBOW, amount);
+                        break;
+                    case "cannon":
+                        civilization.AddUnit(UnitTypes.CANNON, amount);
+                        break;
+                    case "arrow tower":
+                        civilization.AddUnit(UnitTypes.ARROWTOWER, amount);
+                        break;
+                    case "catapult":
+                        civilization.AddUnit(UnitTypes.CATAPULT, amount);
+                        break;
+                    case "rocket launcher":
+                        civilization.AddUnit(UnitTypes.ROCKETLAUNCHERTOWER, amount);
+                        break;
+                    case "magician":
+                        civilization.AddUnit(UnitTypes.MAGICIAN, amount);
+                        break;
+                    case "priest":
+                        civilization.AddUnit(UnitTypes.PRIEST, amount);
+                        break;
+                    case "exit":
+                        exit = true;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
 
     private static void TechnologyMenu() {
@@ -235,7 +322,7 @@ public class Main {
     }
 
     private static void PauseMenu() {
-        stoped = true;
+        stopped = true;
         while (true) {
             System.out.println("1. Resume");
             System.out.println("2. Quit");
@@ -247,7 +334,7 @@ public class Main {
                 System.exit(0);
             }
         }
-        stoped = false;
+        stopped = false;
     }
 
 }

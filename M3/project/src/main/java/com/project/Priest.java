@@ -1,22 +1,23 @@
 package com.project;
 
-public class Magician extends SpecialUnit {
-
-    public Magician(int armor,int baseDamage){
+public class Priest extends SpecialUnit {
+    public Priest(int armor,int baseDamage){
         this.armor = 0;
         this.initialArmor = this.armor;
-        this.baseDamage = BASE_DAMAGE_MAGICIAN + (Civilization.getInstance().getTechnologyAttack()*BASE_DAMAGE_MAGICIAN/100);
+        this.baseDamage = 0;
         this.experience = 0;
     }
-    public Magician(){
-        
+    public Priest(){
+        this.armor = 0;
+        this.initialArmor = this.armor;
+        this.baseDamage = 0;
+        this.experience = 0;
     }
 
 
     @Override
     public int attack() {
-        int calculatedDamage = (int)(baseDamage + baseDamage * experience * PLUS_ATTACK_UNIT_PER_EXPERIENCE_POINT / 100);
-        return calculatedDamage;
+        return (int)(baseDamage+baseDamage*experience*PLUS_ATTACK_UNIT_PER_EXPERIENCE_POINT/100);
     }
 
     @Override
@@ -77,5 +78,4 @@ public class Magician extends SpecialUnit {
     public UnitTypes getType(){
         return UnitTypes.MAGICIAN;
     }
-    
 }
