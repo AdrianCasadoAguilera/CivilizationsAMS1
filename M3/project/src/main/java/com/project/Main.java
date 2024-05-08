@@ -84,9 +84,7 @@ public class Main {
             battle.recollectWaste(civilization);
             battle.civilizationArmyAfter(civilization);
             createEnemyArmy();
-            System.out.println("\n\nA battle Happened\n");
-            String b = battle.getDeteiledReport();
-            System.out.println(b);
+            //System.out.println("\n\nA battle Happened\n");
         }
     }
 
@@ -128,6 +126,16 @@ public class Main {
         }
     }
 
+    private static int CountUnitType(ArrayList<MilitaryUnit> army, UnitTypes unitType) {
+        int count = 0;
+        for (MilitaryUnit unit : army) {
+            if (unit.getType() == unitType) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     private static void MainMenu() {
         Boolean menu = true;
         Boolean error = true;
@@ -138,9 +146,9 @@ public class Main {
                 System.out.println("2. Train a new Unit");
                 System.out.println("3. Research a Technology");
                 System.out.println("4. See Stats");
-                System.out.println("5. Pause");
-                System.out.println("6. View Thread");
-                System.out.println("7. Battle Logs");
+                System.out.println("5. View Thread");
+                System.out.println("6. Battle Logs");
+                System.out.println("7. Pause");
                 System.out.println("0. Quit\n");
                 System.out.print("Choose an option: ");
             }
@@ -163,10 +171,14 @@ public class Main {
                         StatsMenu();
                         break;
                     case 5:
-                        PauseMenu();
+                        ViewThreadMenu();
                         break;
                     case 6:
+                        BattleLogsMenu();
+                        break;
                     case 7:
+                        PauseMenu();
+                        break;
                     case 0:
                         return;
                     default:
@@ -183,6 +195,8 @@ public class Main {
             }
         }
     }
+
+
 
     private static void CreateBuildingMenu() {
         String option;
@@ -327,6 +341,21 @@ public class Main {
 
         }
         timer.cancel();
+    }
+
+    private static void ViewThreadMenu() {
+        clearConsole();
+        System.out.println("Swordsman: " + CountUnitType(NextEnemyArmy, UnitTypes.SPEARMAN));
+        System.out.println("Spearman: " + CountUnitType(NextEnemyArmy, UnitTypes.SPEARMAN));
+        System.out.println("Crossbow: " + CountUnitType(NextEnemyArmy, UnitTypes.CROSSBOW));
+        System.out.println("Cannon: " + CountUnitType(NextEnemyArmy, UnitTypes.CANNON));
+        System.out.println("Type anything to returen");
+        input.nextLine();
+        input.nextLine();
+    }
+
+    private static void BattleLogsMenu() {
+
     }
 
     private static void PauseMenu() {

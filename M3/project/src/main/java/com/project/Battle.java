@@ -302,7 +302,6 @@ public class Battle {
 
     public void AddLineToDeteiledReport(String line) {
         DeteiledReport += line+"\n";
-        System.out.println(line);
     }
 
     public String getDeteiledReport() {
