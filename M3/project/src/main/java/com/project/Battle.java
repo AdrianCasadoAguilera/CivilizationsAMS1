@@ -156,11 +156,25 @@ public class Battle {
 
     private ArrayList<MilitaryUnit> SelectAttackGroup(ArrayList<ArrayList<MilitaryUnit>> attackArmy, boolean turn) {
         int[] probabilities = turn ? Variables.CHANCE_ATTACK_CIVILIZATION_UNITS : Variables.CHANCE_ATTACK_ENEMY_UNITS;
-        int random = new Random().nextInt(100);
-        int index = 0;
-        int cumulativeProv = probabilities[0];
-        while (random >= cumulativeProv) {
-            cumulativeProv += probabilities[index + 1];
+        ArrayList<Boolean> groupIsEmpty = new ArrayList<>();
+        for (int i = 0; i < attackArmy.size(); i++) {
+            if (attackArmy.get(i) == null || attackArmy.get(i).size() == 0)
+                groupIsEmpty.add(true);
+            else
+                groupIsEmpty.add(false);
+        }
+        int maxProbaility = 0;
+        for (int i = 0; i < groupIsEmpty.size(); i++) {
+            if (!groupIsEmpty.get(i))
+                maxProbaility += probabilities[i];
+        }
+
+        int random = new Random().nextInt(maxProbaility);
+        int index = -1;
+        int cumulativeProv = 0;
+        while (random > cumulativeProv) {
+            if (!groupIsEmpty.get(index+1)) 
+                cumulativeProv += probabilities[index+1];
             index++;
         }
         return attackArmy.get(index);
@@ -271,6 +285,7 @@ public class Battle {
 
     public void AddLineToDeteiledReport(String line) {
         DeteiledReport += line+"\n";
+        System.out.println(line);
     }
 
     public String getDeteiledReport() {

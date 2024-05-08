@@ -16,7 +16,7 @@ public class Main {
     public static float deltaTime = 1.0f/UPS;
     public static Civilization civilization;
     public static Boolean stoped = false;
-    public static float BattleTimer = 175;
+    public static float BattleTimer = 140;
     public static TimerTask MainLoop = new TimerTask() {
         @Override
         public void run() {
