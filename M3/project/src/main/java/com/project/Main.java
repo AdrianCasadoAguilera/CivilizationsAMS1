@@ -29,6 +29,7 @@ public class Main {
     };
     public static ArrayList<MilitaryUnit> NextEnemyArmy = new ArrayList<>();
     public static int wave = 0;
+    public static String ActiveMenu = "";
 
     public static void main(String[] args) {
         civilization = Civilization.getInstance();
@@ -84,9 +85,8 @@ public class Main {
             battle.recollectWaste(civilization);
             battle.civilizationArmyAfter(civilization);
             createEnemyArmy();
-            System.out.println("\n\nA battle Happened\n");
-            String b = battle.getDeteiledReport();
-            System.out.println(b);
+            if (ActiveMenu == "Main")
+                System.out.println("\n\nA battle Happened\n");
         }
     }
 
@@ -131,6 +131,7 @@ public class Main {
     private static void MainMenu() {
         Boolean menu = true;
         Boolean error = true;
+        ActiveMenu = "Main";
         while (true) {
             if (menu) {
                 clearConsole();
@@ -181,6 +182,7 @@ public class Main {
     }
 
     private static void CreateBuildingMenu() {
+        ActiveMenu = "Building";
         String option;
         input.nextLine();
         while(true){
@@ -217,6 +219,7 @@ public class Main {
     }
 
     private static void TrainUnitMenu() {
+        ActiveMenu = "Train";
         String option;
         int amount;
         Boolean exit = false;
@@ -275,10 +278,11 @@ public class Main {
     }
 
     private static void TechnologyMenu() {
-
+        ActiveMenu = "Tech";
     }
 
     private static void StatsMenu() {
+        ActiveMenu = "Stats";
         clearConsole();
         
         Timer timer = new Timer();
@@ -322,6 +326,7 @@ public class Main {
     }
 
     private static void PauseMenu() {
+        ActiveMenu = "Pause";
         stopped = true;
         while (true) {
             System.out.println("1. Resume");
