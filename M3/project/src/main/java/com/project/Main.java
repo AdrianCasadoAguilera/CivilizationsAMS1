@@ -18,7 +18,7 @@ public class Main {
     public static float deltaTime = 1.0f/UPS;
     public static Civilization civilization;
     public static Boolean stopped = false;
-    public static float BattleTimer = 160;
+    public static float BattleTimer = 0;
     public static TimerTask MainLoop = new TimerTask() {
         @Override
         public void run() {
@@ -139,7 +139,9 @@ public class Main {
                 System.out.println("3. Research a Technology");
                 System.out.println("4. See Stats");
                 System.out.println("5. Pause");
-                System.out.println("6. Quit\n");
+                System.out.println("6. View Thread");
+                System.out.println("7. Battle Logs");
+                System.out.println("0. Quit\n");
                 System.out.print("Choose an option: ");
             }
             menu = true;
@@ -164,6 +166,8 @@ public class Main {
                         PauseMenu();
                         break;
                     case 6:
+                    case 7:
+                    case 0:
                         return;
                     default:
                         System.out.println("\nInvalid option");
@@ -219,8 +223,12 @@ public class Main {
     private static void TrainUnitMenu() {
         String option;
         int amount;
+        int total = -1;
         Boolean exit = false;
         while(!exit){
+            if (total != -1)
+                System.out.println("Created "+total+" units.");
+            total = -1;
             input.nextLine();
             ArrayList<String> units = new ArrayList<>(Arrays.asList("Swordsman","Spearman","Crossbow","Cannon","Arrow tower","Catapult","Rocket launcher","Magician","Priest"));
             for(int i = 0;i < units.size();i++){
@@ -238,31 +246,31 @@ public class Main {
                 amount = input.nextInt();
                 switch (option.toLowerCase()) {
                     case "swordsman":
-                        civilization.AddUnit(UnitTypes.SWORDSMAN, amount);
+                        total = civilization.AddUnit(UnitTypes.SWORDSMAN, amount);
                         break;
                     case "spearman":
-                        civilization.AddUnit(UnitTypes.SPEARMAN, amount);
+                        total = civilization.AddUnit(UnitTypes.SPEARMAN, amount);
                         break;
                     case "crossbow":
-                        civilization.AddUnit(UnitTypes.CROSSBOW, amount);
+                        total = civilization.AddUnit(UnitTypes.CROSSBOW, amount);
                         break;
                     case "cannon":
-                        civilization.AddUnit(UnitTypes.CANNON, amount);
+                        total = civilization.AddUnit(UnitTypes.CANNON, amount);
                         break;
                     case "arrow tower":
-                        civilization.AddUnit(UnitTypes.ARROWTOWER, amount);
+                        total = civilization.AddUnit(UnitTypes.ARROWTOWER, amount);
                         break;
                     case "catapult":
-                        civilization.AddUnit(UnitTypes.CATAPULT, amount);
+                        total = civilization.AddUnit(UnitTypes.CATAPULT, amount);
                         break;
                     case "rocket launcher":
-                        civilization.AddUnit(UnitTypes.ROCKETLAUNCHERTOWER, amount);
+                        total = civilization.AddUnit(UnitTypes.ROCKETLAUNCHERTOWER, amount);
                         break;
                     case "magician":
-                        civilization.AddUnit(UnitTypes.MAGICIAN, amount);
+                        total = civilization.AddUnit(UnitTypes.MAGICIAN, amount);
                         break;
                     case "priest":
-                        civilization.AddUnit(UnitTypes.PRIEST, amount);
+                        total = civilization.AddUnit(UnitTypes.PRIEST, amount);
                         break;
                     case "exit":
                         exit = true;

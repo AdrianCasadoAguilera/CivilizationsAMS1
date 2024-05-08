@@ -226,7 +226,6 @@ public class Battle {
         Battle Winned by Civilization, We Collect Rubble
         ##########################################################################
         View Battle development?(S\n) */
-        //TODO: reports
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("%-" + 25 + "s", "Civilization's Army"));
         sb.append(String.format("%-" + 6 + "s", "Units"));

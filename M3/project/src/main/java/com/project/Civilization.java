@@ -302,7 +302,7 @@ public class Civilization {
         iron -= totalIronCost;
     }
 
-    public void AddUnit(UnitTypes unitType, int amount) {
+    public int AddUnit(UnitTypes unitType, int amount) {
         int foodCost = 0;
         int woodCost = 0;
         int ironCost = 0;
@@ -321,7 +321,7 @@ public class Civilization {
             }
             catch (BuildingException e) {
                 System.out.println(e.getMessage());
-                return;
+                return total;
             }
             switch (unitType) {
                 case SWORDSMAN:
@@ -389,7 +389,7 @@ public class Civilization {
                 }
             } catch (ResourceException e) {
                 System.out.println(e.getMessage());
-                return;
+                return total;
             }
             switch (unitType) {
                 case SWORDSMAN:
@@ -417,15 +417,20 @@ public class Civilization {
                     //army.add(new Magician());
                     break;
                 case PRIEST:
-                System.out.println("ENTRA PRIEST");
+                    System.out.println("ENTRA PRIEST");
                     army.add(new Priest());
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + unitType);
             }
             total = i+1;
+            food -= foodCost;
+            wood -= woodCost;
+            iron -= ironCost;
+            mana -= manaCost;
+            total++;
         }
-        System.out.println("Created "+total+" units.");
+        return total;
     }
 
     public int CountUnits(UnitTypes unitType) {
