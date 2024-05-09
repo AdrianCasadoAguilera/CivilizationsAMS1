@@ -27,8 +27,8 @@ public class Main {
                 //System.out.println("update Active");
         }
     };
+    public static ArrayList<Battle> battlesFaugth = new ArrayList<>();
     public static ArrayList<MilitaryUnit> NextEnemyArmy = new ArrayList<>();
-    public static int wave = 0;
     public static String ActiveMenu = "";
 
     public static void main(String[] args) {
@@ -79,26 +79,23 @@ public class Main {
         BattleTimer += deltaTime;
         if (BattleTimer >= 180) {
             BattleTimer = 0;
-            wave++;
-            Battle battle = new Battle(civilization.getArmy(), NextEnemyArmy);
+            civilization.setBattles(civilization.getBattles()+1);
+            Battle battle = new Battle((ArrayList<MilitaryUnit>)civilization.getArmy().clone(), (ArrayList<MilitaryUnit>)NextEnemyArmy.clone());
             battle.startBattle();
             battle.recollectWaste(civilization);
             battle.civilizationArmyAfter(civilization);
             createEnemyArmy();
-<<<<<<< HEAD
+            battlesFaugth.add(battle);
             if (ActiveMenu == "Main")
                 System.out.println("\n\nA battle Happened\n");
-=======
-            //System.out.println("\n\nA battle Happened\n");
->>>>>>> Oscar
         }
     }
 
     private static void createEnemyArmy() {
         NextEnemyArmy.clear();
-        int food = Variables.FOOD_BASE_ENEMY_ARMY + Variables.FOOD_BASE_ENEMY_ARMY*Variables.ENEMY_FLEET_INCREASE/100*wave;
-        int wood = Variables.WOOD_BASE_ENEMY_ARMY + Variables.WOOD_BASE_ENEMY_ARMY*Variables.ENEMY_FLEET_INCREASE/100*wave;
-        int iron = Variables.IRON_BASE_ENEMY_ARMY + Variables.IRON_BASE_ENEMY_ARMY*Variables.ENEMY_FLEET_INCREASE/100*wave;
+        int food = Variables.FOOD_BASE_ENEMY_ARMY + Variables.FOOD_BASE_ENEMY_ARMY*Variables.ENEMY_FLEET_INCREASE/100*civilization.getBattles();
+        int wood = Variables.WOOD_BASE_ENEMY_ARMY + Variables.WOOD_BASE_ENEMY_ARMY*Variables.ENEMY_FLEET_INCREASE/100*civilization.getBattles();
+        int iron = Variables.IRON_BASE_ENEMY_ARMY + Variables.IRON_BASE_ENEMY_ARMY*Variables.ENEMY_FLEET_INCREASE/100*civilization.getBattles();
         /*Para crear el ejército enemigo, dispondremos de unos recursos iniciales, que conforme vayan
         sucediendo batallas, serán mayores .
         Iremos creando unidades enemigas aleatoriamente pero con las siguientes probabilidades:
@@ -145,8 +142,8 @@ public class Main {
     private static void MainMenu() {
         Boolean menu = true;
         Boolean error = true;
-        ActiveMenu = "Main";
         while (true) {
+            ActiveMenu = "Main";
             if (menu) {
                 clearConsole();
                 System.out.println("1. Create a Building");
@@ -193,7 +190,7 @@ public class Main {
                         menu = false;
                         break;
                 }
-            } catch (Exception e) {
+            }catch (Exception e) {
                 if (error) {
                     System.out.println("\nInvalid option type");
                     menu = false;
@@ -203,12 +200,11 @@ public class Main {
         }
     }
 
-
-
     private static void CreateBuildingMenu() {
         ActiveMenu = "Building";
         String option;
         input.nextLine();
+        clearConsole();
         while(true){
             System.out.println("Smithy");
             System.out.println("Carpentry");
@@ -218,24 +214,25 @@ public class Main {
             System.out.println("Exit");
             System.out.println("What do you want to build?");
             option = input.nextLine().toLowerCase();
+            clearConsole();
             switch (option) {
                 case "smithy":
-                    civilization.newSmithy();
-                    break;
+                civilization.newSmithy();
+                break;
                 case "carpentry":
-                    civilization.newCarpentry();
-                    break;
+                civilization.newCarpentry();
+                break;
                 case "farm":
-                    civilization.newFarm();
-                    break;
+                civilization.newFarm();
+                break;
                 case "magic tower":
-                    civilization.newMagicTower();
-                    break;
+                civilization.newMagicTower();
+                break;
                 case "church":
-                    civilization.newChurch();
-                    break;
+                civilization.newChurch();
+                break;
                 case "exit":
-                    return;
+                return;
                 default:
                     break;
             }
@@ -249,13 +246,42 @@ public class Main {
         int total = -1;
         Boolean exit = false;
         while(!exit){
+            clearConsole();
             if (total != -1)
                 System.out.println("Created "+total+" units.");
-            total = -1;
-            input.nextLine();
-            ArrayList<String> units = new ArrayList<>(Arrays.asList("Swordsman","Spearman","Crossbow","Cannon","Arrow tower","Catapult","Rocket launcher","Magician","Priest"));
-            for(int i = 0;i < units.size();i++){
-                System.out.println(units.get(i));
+            for(int i = 0;i < UnitTypes.values().length;i++){
+                System.out.print(title(UnitTypes.values()[i].toString()));
+                switch (UnitTypes.values()[i]) {
+                    case SWORDSMAN:
+                        System.out.println(" (food: " + Variables.FOOD_COST_SWORDSMAN + ", wood: " + Variables.WOOD_COST_SWORDSMAN + ", iron: " + Variables.IRON_COST_SWORDSMAN + ", mana: " +Variables.MANA_COST_SWORDSMAN+ ")");
+                        break;
+                    case SPEARMAN:
+                        System.out.println(" (food: " + Variables.FOOD_COST_SPEARMAN + ", wood: " + Variables.WOOD_COST_SPEARMAN + ", iron: " + Variables.IRON_COST_SPEARMAN + ", mana: " +Variables.MANA_COST_SPEARMAN+ ")");
+                        break;
+                    case CROSSBOW:
+                        System.out.println(" (food: " + Variables.FOOD_COST_CROSSBOW + ", wood: " + Variables.WOOD_COST_CROSSBOW + ", iron: " + Variables.IRON_COST_CROSSBOW + ", mana: " +Variables.MANA_COST_CROSSBOW+ ")");
+                        break;
+                    case CANNON:
+                        System.out.println(" (food: " + Variables.FOOD_COST_CANNON + ", wood: " + Variables.WOOD_COST_CANNON + ", iron: " + Variables.IRON_COST_CANNON + ", mana: " +Variables.MANA_COST_CANNON+ ")");
+                        break;
+                    case ARROWTOWER:
+                        System.out.println(" (food: " + Variables.FOOD_COST_ARROWTOWER + ", wood: " + Variables.WOOD_COST_ARROWTOWER + ", iron: " + Variables.IRON_COST_ARROWTOWER + ", mana: " +Variables.MANA_COST_ARROWTOWER+ ")");
+                        break;
+                    case CATAPULT:
+                        System.out.println(" (food: " + Variables.FOOD_COST_CATAPULT + ", wood: " + Variables.WOOD_COST_CATAPULT + ", iron: " + Variables.IRON_COST_CATAPULT + ", mana: " +Variables.MANA_COST_CATAPULT+ ")");
+                        break;
+                    case ROCKETLAUNCHERTOWER:
+                        System.out.println(" (food: " + Variables.FOOD_COST_ROCKETLAUNCHERTOWER + ", wood: " + Variables.WOOD_COST_ROCKETLAUNCHERTOWER + ", iron: " + Variables.IRON_COST_ROCKETLAUNCHERTOWER + ", mana: " +Variables.MANA_COST_ROCKETLAUNCHERTOWER+ ")");
+                        break;
+                    case MAGICIAN:
+                        System.out.println(" (food: " + Variables.FOOD_COST_MAGICIAN + ", wood: " + Variables.WOOD_COST_MAGICIAN + ", iron: " + Variables.IRON_COST_MAGICIAN + ", mana: " +Variables.MANA_COST_MAGICIAN+ ")");
+                        break;
+                    case PRIEST:
+                        System.out.println(" (food: " + Variables.FOOD_COST_PRIEST + ", wood: " + Variables.WOOD_COST_PRIEST + ", iron: " + Variables.IRON_COST_PRIEST + ", mana: " +Variables.MANA_COST_PRIEST+ ")");
+                        break;
+                    default:
+                        break;
+                }
             }
             System.out.println("Exit");
             System.out.println("What unit do you want to train?");
@@ -264,7 +290,7 @@ public class Main {
                 exit = true;
                 break;
             }
-            if(units.contains(option.substring(0,1).toUpperCase()+option.substring(1).toLowerCase())){
+            if(!option.isEmpty() && UnitTypes.valueOf(option.toUpperCase()) != null){
                 System.out.println("How many "+option+"s do you want to train?");
                 amount = input.nextInt();
                 switch (option.toLowerCase()) {
@@ -355,6 +381,7 @@ public class Main {
 
     private static void ViewThreadMenu() {
         clearConsole();
+        ActiveMenu = "Thread";
         System.out.println("Swordsman: " + CountUnitType(NextEnemyArmy, UnitTypes.SPEARMAN));
         System.out.println("Spearman: " + CountUnitType(NextEnemyArmy, UnitTypes.SPEARMAN));
         System.out.println("Crossbow: " + CountUnitType(NextEnemyArmy, UnitTypes.CROSSBOW));
@@ -365,7 +392,60 @@ public class Main {
     }
 
     private static void BattleLogsMenu() {
-
+        ActiveMenu = "Battle";
+        clearConsole();
+        while (true) {
+            System.out.println("You have faught " + battlesFaugth.size() + " battles");
+            System.out.println("1. View battle report");
+            System.out.println("2. View battle detailed report");
+            System.out.println("3. View last battle report");
+            System.out.println("4. View last battle detailed report");
+            System.out.println("0. Return");
+            int choice = input.nextInt();
+            int index = -1;
+            switch (choice) {
+                case 1:
+                    System.out.println("Which battle do you want to see?");
+                    index = input.nextInt();
+                    if (index < battlesFaugth.size()) {
+                        System.out.println(battlesFaugth.get(index).getReport());
+                    }
+                    else {
+                        System.out.println("Invalid index");
+                    }
+                    break;
+                case 2:
+                    System.out.println("Which battle do you want to see?");
+                    index = input.nextInt();
+                    if (index < battlesFaugth.size()) {
+                        System.out.println(battlesFaugth.get(index).getDeteiledReport());
+                    }
+                    else {
+                        System.out.println("Invalid index");
+                    }
+                    break;
+                case 3:
+                    if (battlesFaugth.size() > 0) {
+                        System.out.println(battlesFaugth.get(battlesFaugth.size() - 1).getReport());
+                    }
+                    else {
+                        System.out.println("You didn't fight any battles yet");
+                    }
+                    break;
+                case 4:
+                    if (battlesFaugth.size() > 0) {
+                        System.out.println(battlesFaugth.get(battlesFaugth.size() - 1).getDeteiledReport());
+                    }
+                    else {
+                        System.out.println("You didn't fight any battles yet");
+                    }
+                    break;
+                case 0:
+                    return;
+                default:
+                    break;
+            }
+        }
     }
 
     private static void PauseMenu() {

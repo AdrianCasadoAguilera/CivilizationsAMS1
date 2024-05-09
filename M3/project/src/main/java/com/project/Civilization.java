@@ -423,7 +423,7 @@ public class Civilization {
                 default:
                     throw new IllegalStateException("Unexpected value: " + unitType);
             }
-            total = i+1;
+
             food -= foodCost;
             wood -= woodCost;
             iron -= ironCost;
@@ -444,9 +444,9 @@ public class Civilization {
     }
 
     public void GenerateResources(float deltaTime) {
-        food += (Variables.CIVILIZATION_FOOD_GENERATED+Variables.CIVILIZATION_FOOD_GENERATED_PER_FARM*farm/60.0)*deltaTime;
-        wood += (Variables.CIVILIZATION_WOOD_GENERATED+Variables.CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY*carpentry/60.0)*deltaTime;
-        iron += (Variables.CIVILIZATION_IRON_GENERATED+Variables.CIVILIZATION_IRON_GENERATED_PER_SMITHY*smithy/60.0)*deltaTime;
+        food += (Variables.CIVILIZATION_FOOD_GENERATED+Variables.CIVILIZATION_FOOD_GENERATED_PER_FARM*farm)/60.0*deltaTime;
+        wood += (Variables.CIVILIZATION_WOOD_GENERATED+Variables.CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY*carpentry)/60.0*deltaTime;
+        iron += (Variables.CIVILIZATION_IRON_GENERATED+Variables.CIVILIZATION_IRON_GENERATED_PER_SMITHY*smithy)/60.0*deltaTime;
         mana += (Variables.CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER*magicTower/60.0)*deltaTime;
     }
 
