@@ -34,6 +34,8 @@ public class Battle {
         this.initialEnemyArmySize = enemyArmy.size();
         civilizationTotalLoses = 0;
         enemyTotalLoses = 0;
+        civilizationLoses = new ArrayList<>(Arrays.asList(0,0,0));
+        enemyLoses = new ArrayList<>(Arrays.asList(0,0,0));
     }
 
     public ArrayList<ArrayList<MilitaryUnit>> orderByUnitType(ArrayList<MilitaryUnit> army) {
@@ -41,7 +43,6 @@ public class Battle {
         for (int i = 0; i < 9; i++) {
             result.add(new ArrayList<>());
         }
-        System.out.println(result);
         for (int i = 0; i < army.size(); i++) {
             MilitaryUnit unit = army.get(i);
             switch (unit.getType()) {
@@ -83,14 +84,17 @@ public class Battle {
         Random random = new Random();
         boolean turn = random.nextBoolean();
         if (civilizationArmy.size() > 0) {
-            while (civilizationArmyOrdered.size() > initialCivilizationArmySize*0.2 || enemyArmyOrdered.size() > initialEnemyArmySize*0.2) {
+            while (CountUnits(civilizationArmyOrdered) > 0 && CountUnits(enemyArmyOrdered) > 0 &&   
+            (CountUnits(civilizationArmyOrdered) > initialCivilizationArmySize*0.2 || CountUnits(enemyArmyOrdered) > initialEnemyArmySize *0.2)) {
                 AddLineToDeteiledReport("********************CHANGE ATTACKER********************");
+                CountUnits(civilizationArmyOrdered);
+                CountUnits(enemyArmyOrdered);
                 ArrayList<ArrayList<MilitaryUnit>> AttackArmy = turn ? civilizationArmyOrdered : enemyArmyOrdered;
                 ArrayList<ArrayList<MilitaryUnit>> DefenseArmy = turn ? enemyArmyOrdered : civilizationArmyOrdered;
                 boolean repeatAttack = false;
                 ArrayList<MilitaryUnit> AttackGroup = SelectAttackGroup(AttackArmy,turn);
                 MilitaryUnit attackUnit = AttackGroup.get(random.nextInt(AttackGroup.size()));
-                while (repeatAttack) {
+                do {
                     MilitaryUnit defenseUnit = SelectDefenseUnit(DefenseArmy);
                     AddLineToDeteiledReport("Attacks: " + (turn ? "civilization" : "enemy army: ") + attackUnit.getType().toString() + " attacks " + defenseUnit.getType().toString());
                     AddLineToDeteiledReport(attackUnit.getType().toString() + " deals damage = " + attackUnit.attack());
@@ -101,8 +105,11 @@ public class Battle {
                         AddToLosses(defenseUnit, turn);
                         GenerateWaste(defenseUnit);
                         repeatAttack = attackUnit.getChanceAttackAgain() > random.nextInt(100);
+                        if (repeatAttack)
+                            AddLineToDeteiledReport(attackUnit.getType().toString() + " Attacks again");
                     }
-                }
+                } while (repeatAttack && CountUnits(civilizationArmyOrdered) > 0 && CountUnits(enemyArmyOrdered) > 0);
+                turn = !turn;
             }
             Win = civilizationTotalLoses < enemyTotalLoses;
         }
@@ -110,6 +117,14 @@ public class Battle {
             Win = false;
         }
         AddLineToDeteiledReport("The battle was win by: " + (Win ? "Civilization" : "Enemy"));
+    }
+
+    private int CountUnits(ArrayList<ArrayList<MilitaryUnit>> army) {
+        int result = 0;
+        for (ArrayList<MilitaryUnit> group : army) {
+            result += group.size();
+        }
+        return result;
     }
 
     private void AddToLosses(MilitaryUnit defenseUnit, boolean turn) {
@@ -156,12 +171,29 @@ public class Battle {
 
     private ArrayList<MilitaryUnit> SelectAttackGroup(ArrayList<ArrayList<MilitaryUnit>> attackArmy, boolean turn) {
         int[] probabilities = turn ? Variables.CHANCE_ATTACK_CIVILIZATION_UNITS : Variables.CHANCE_ATTACK_ENEMY_UNITS;
-        int random = new Random().nextInt(100);
-        int index = 0;
-        int cumulativeProv = probabilities[0];
-        while (random >= cumulativeProv) {
-            cumulativeProv += probabilities[index + 1];
+        ArrayList<Boolean> groupIsEmpty = new ArrayList<>();
+        for (int i = 0; i < attackArmy.size(); i++) {
+            if (attackArmy.get(i) == null || attackArmy.get(i).size() == 0)
+                groupIsEmpty.add(true);
+            else
+                groupIsEmpty.add(false);
+        }
+        int maxProbaility = 0;
+        for (int i = 0; i < groupIsEmpty.size(); i++) {
+            if (!groupIsEmpty.get(i))
+                maxProbaility += probabilities[i];
+        }
+
+        int random = new Random().nextInt(maxProbaility);
+        int index = -1;
+        int cumulativeProv = 0;
+        while (random+1 > cumulativeProv) {
+            if (!groupIsEmpty.get(index+1)) 
+                cumulativeProv += probabilities[index+1];
             index++;
+        }
+        if (index == -1) {
+            throw new IllegalStateException(attackArmy.toString() + " : " + maxProbaility + " : " + groupIsEmpty + " : " + random);
         }
         return attackArmy.get(index);
     }
@@ -194,7 +226,6 @@ public class Battle {
         Battle Winned by Civilization, We Collect Rubble
         ##########################################################################
         View Battle development?(S\n) */
-        //TODO: reports
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("%-" + 25 + "s", "Civilization's Army"));
         sb.append(String.format("%-" + 6 + "s", "Units"));

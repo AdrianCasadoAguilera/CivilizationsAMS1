@@ -9,7 +9,9 @@ public class Magician extends SpecialUnit {
         this.experience = 0;
     }
     public Magician(){
-        
+        this.armor = (int)(1 * (1+Civilization.getInstance().getTechnologyDefense()*PLUS_ARMOR_MAGICIAN_BY_TECHNOLOGY/100.0));
+        this.initialArmor = armor;
+        this.baseDamage = (int)(BASE_DAMAGE_MAGICIAN * (1+Civilization.getInstance().getTechnologyDefense()*PLUS_ARMOR_MAGICIAN_BY_TECHNOLOGY/100.0));
     }
 
 
