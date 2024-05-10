@@ -64,11 +64,9 @@ public class Catapult extends DefenseUnit{
     }
     @Override
     public void takeDamage(int receivedDamage) {
-        if (sanctified) {
-            armor += (int)(armor * 0.07);
-            armor -= receivedDamage;
-        }
-            armor -= receivedDamage;
+        if (sanctified)
+            receivedDamage *= (1-Variables.PLUS_ARMOR_UNIT_SANCTIFIED/100);
+        armor -= receivedDamage;
     }
 
 

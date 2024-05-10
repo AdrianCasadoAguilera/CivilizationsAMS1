@@ -23,11 +23,7 @@ public class Magician extends SpecialUnit {
 
     @Override
     public void takeDamage(int receivedDamage) {
-        if (sanctified) {
-            armor += (int)(armor * 0.07);
-            armor -= receivedDamage;
-        }
-            armor -= receivedDamage;
+        armor -= receivedDamage;
     }
 
     @Override
@@ -87,11 +83,11 @@ public class Magician extends SpecialUnit {
 
 
     public boolean isSanctified() {
-        return sanctified;
+        return false;
     }
 
     public void setSanctified(boolean sanctified) {
-        this.sanctified = sanctified;
+        
     }
 
 }

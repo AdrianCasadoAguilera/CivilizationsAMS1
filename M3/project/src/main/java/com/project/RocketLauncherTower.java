@@ -64,10 +64,23 @@ public class RocketLauncherTower extends DefenseUnit{
     }
     @Override
     public void takeDamage(int receivedDamage) {
+        if (sanctified)
+            receivedDamage *= (1-Variables.PLUS_ARMOR_UNIT_SANCTIFIED/100);
         armor -= receivedDamage;
     }
     @Override
     public UnitTypes getType(){
         return UnitTypes.ROCKETLAUNCHERTOWER;
     }
+
+    @Override
+    public boolean isSanctified() {
+        return sanctified;
+    }
+
+    @Override
+    public void setSanctified(boolean b) {
+        sanctified = b;
+    }
+    
 }

@@ -1,6 +1,5 @@
 package com.project;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Arrays;
@@ -96,10 +95,10 @@ public class Battle {
                 MilitaryUnit attackUnit = AttackGroup.get(random.nextInt(AttackGroup.size()));
                 do {
                     MilitaryUnit defenseUnit = SelectDefenseUnit(DefenseArmy);
-                    AddLineToDeteiledReport("Attacks: " + (turn ? "civilization arny: " : "enemy army: ") + (attackUnit.) + attackUnit.getType().toString() + " attacks " + defenseUnit.getType().toString());
-                    AddLineToDeteiledReport(attackUnit.getType().toString() + " deals damage = " + attackUnit.attack());
+                    AddLineToDeteiledReport("Attacks: " + (turn ? "civilization arny: " : "enemy army: ") + (attackUnit.isSanctified() ? "sactified " : "") + attackUnit.getType().toString() + " attacks " + defenseUnit.getType().toString());
+                    AddLineToDeteiledReport((attackUnit.isSanctified() ? "sactified " : "") + attackUnit.getType().toString() + " deals damage = " + attackUnit.attack());
                     defenseUnit.takeDamage(attackUnit.attack());
-                    AddLineToDeteiledReport(defenseUnit.getType().toString() + " stays with armor = " + defenseUnit.getActualArmor());
+                    AddLineToDeteiledReport((defenseUnit.isSanctified() ? "sactified " : "") + defenseUnit.getType().toString() + " stays with armor = " + defenseUnit.getActualArmor());
                     if (defenseUnit.getActualArmor() <= 0) {
                         RemoveUnit(defenseUnit, turn ? enemyArmyOrdered : civilizationArmyOrdered);
                         AddToLosses(defenseUnit, turn);
@@ -108,7 +107,7 @@ public class Battle {
                     if (!repeatAttack) {
                         repeatAttack = attackUnit.getChanceAttackAgain() > random.nextInt(100);
                         if (repeatAttack)
-                            AddLineToDeteiledReport(attackUnit.getType().toString() + " Attacks again");
+                            AddLineToDeteiledReport((attackUnit.isSanctified() ? "sactified " : "") +attackUnit.getType().toString() + " Attacks again");
                     }
                     else {
                         repeatAttack = false;
@@ -162,7 +161,7 @@ public class Battle {
     }
 
     private void RemoveUnit(MilitaryUnit unit, ArrayList<ArrayList<MilitaryUnit>> army) {
-        AddLineToDeteiledReport("we remove " + unit.getType().toString());
+        AddLineToDeteiledReport("we remove " + (unit.isSanctified() ? "sactified " : "") + unit.getType().toString());
         army.get(unit.getType().ordinal()).remove(unit);
     }
 

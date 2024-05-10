@@ -14,4 +14,6 @@ public interface MilitaryUnit {
     public abstract void setExperience(int n);
     public abstract int getExperience();
     public abstract UnitTypes getType();
+    public abstract boolean isSanctified();
+    public abstract void setSanctified(boolean b);
 }

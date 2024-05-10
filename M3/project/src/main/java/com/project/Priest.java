@@ -22,11 +22,7 @@ public class Priest extends SpecialUnit {
 
     @Override
     public void takeDamage(int receivedDamage) {
-        if (sanctified) {
-            armor += (int)(armor * 0.07);
-            armor -= receivedDamage;
-        }
-            armor -= receivedDamage;
+        armor -= receivedDamage;
     }
 
     @Override
@@ -81,5 +77,13 @@ public class Priest extends SpecialUnit {
     @Override 
     public UnitTypes getType(){
         return UnitTypes.MAGICIAN;
+    }
+    @Override
+    public boolean isSanctified() {
+        return false;
+    }
+    @Override
+    public void setSanctified(boolean b) {
+        
     }
 }
