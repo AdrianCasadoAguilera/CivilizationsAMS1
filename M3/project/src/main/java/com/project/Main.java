@@ -148,7 +148,7 @@ public class Main {
                 System.out.print(deltaTime);
                 System.out.println("1. Create a Building");
                 System.out.println("2. Train a new Unit");
-                System.out.println("3. Research a Technology");
+                System.out.println("3. Upgrade Technology Level");
                 System.out.println("4. See Stats");
                 System.out.println("5. View Thread");
                 System.out.println("6. Battle Logs");
@@ -334,6 +334,30 @@ public class Main {
 
     private static void TechnologyMenu() {
         ActiveMenu = "Tech";
+        boolean Running = true;
+        while (Running) {
+            clearConsole();
+            System.out.println("Upgrade technology");
+            System.out.println("1. Upgrade Technology Defense");
+            System.out.println("2. Upgrade Technology Attack");
+            System.out.println("3. Exit");
+            System.out.print("Choose an option: ");
+                    int option = scanner.nextInt();
+            switch (option) {
+                case 1:
+                    civilization.upgradeTechnologyDefense();
+                    break;
+                case 2:
+                    civilization.upgradeTechnologyAttack();
+                    break;
+                case 3:
+                    Running = false;
+                    break;
+                default:
+                    System.out.println("Invalid option. Please choose again.");
+                    break;
+            }
+        }
     }
 
     private static void StatsMenu() {
