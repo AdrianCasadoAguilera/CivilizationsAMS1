@@ -15,8 +15,6 @@ CREATE TABLE civilization_stats (
     battles_counter NUMBER 
 );
 
-CREATE SEQUENCE civilization_id START WITH 1 INCREMENT BY 1;
-
 CREATE TABLE attack_unit_stats ( 
     attack_unit_id NUMBER PRIMARY KEY, 
     civilization_id NUMBER NOT NULL, 
@@ -31,8 +29,6 @@ CREATE TABLE attack_unit_stats (
     	REFERENCES civilization_stats(civilization_id)
 );
 
-CREATE SEQUENCE attack_unit_id START WITH 1 INCREMENT BY 1;
-
 CREATE TABLE special_unit_stats ( 
     special_unit_id NUMBER PRIMARY KEY, 
     civilization_id NUMBER NOT NULL, 
@@ -45,8 +41,6 @@ CREATE TABLE special_unit_stats (
     	FOREIGN KEY (civilization_id)
     	REFERENCES civilization_stats(civilization_id)
 );
-
-CREATE SEQUENCE special_unit_id START WITH 1 INCREMENT BY 1;
 
 CREATE TABLE defence_unit_stats ( 
     defence_unit_id NUMBER PRIMARY KEY, 
@@ -62,8 +56,6 @@ CREATE TABLE defence_unit_stats (
     	REFERENCES civilization_stats(civilization_id)
 );
 
-CREATE SEQUENCE defence_unit_id START WITH 1 INCREMENT BY 1;
-
 CREATE TABLE battle_stats ( 
     civilization_id NUMBER NOT NULL, 
     num_battle NUMBER NOT NULL, 
@@ -75,7 +67,6 @@ CREATE TABLE battle_stats (
     	REFERENCES civilization_stats(civilization_id)
 );
 
-CREATE SEQUENCE num_battle START WITH 1 INCREMENT BY 1;
 
 CREATE TABLE civilization_attack_stats ( 
     civilization_id NUMBER NOT NULL, 
@@ -126,6 +117,16 @@ CREATE TABLE enemy_attack_stats (
     PRIMARY KEY(civilization_id, num_battle, type), 
     CONSTRAINT ck_type_enemy_attack CHECK (type IN ('Swordsman','Spearman','Crossbow','Cannon')  ),
   	CONSTRAINT fk_civilization_enemy_attack
+    	FOREIGN KEY (civilization_id, num_battle)
+    	REFERENCES battle_stats(civilization_id, num_battle)
+);
+
+CREATE TABLE battle_log (
+    civilization_id NUMBER NOT NULL, 
+    num_battle NUMBER NOT NULL, 
+    log_entry CLOB,
+    PRIMARY KEY(civilization_id,num_battle),
+  	CONSTRAINT fk_civilization_battle_log
     	FOREIGN KEY (civilization_id, num_battle)
     	REFERENCES battle_stats(civilization_id, num_battle)
 );
