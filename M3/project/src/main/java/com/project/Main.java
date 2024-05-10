@@ -175,6 +175,7 @@ public class Main {
                         StatsMenu();
                         break;
                     case 5:
+                        error = false;
                         ViewThreadMenu();
                         break;
                     case 6:
@@ -379,22 +380,38 @@ public class Main {
         timer.cancel();
     }
 
+    public static String formatTime(float seconds) {
+        int minutes = (int) (seconds / 60);
+        int remainingSeconds = Math.round(seconds % 60);
+        return minutes + (minutes != 1 ? " minutes ": " minute ")+ remainingSeconds + (remainingSeconds != 1 ? " seconds": " second");
+     }
+
     private static void ViewThreadMenu() {
-        clearConsole();
         ActiveMenu = "Thread";
-        System.out.println("Swordsman: " + CountUnitType(NextEnemyArmy, UnitTypes.SPEARMAN));
-        System.out.println("Spearman: " + CountUnitType(NextEnemyArmy, UnitTypes.SPEARMAN));
-        System.out.println("Crossbow: " + CountUnitType(NextEnemyArmy, UnitTypes.CROSSBOW));
-        System.out.println("Cannon: " + CountUnitType(NextEnemyArmy, UnitTypes.CANNON));
-        System.out.println("Type anything to returen");
-        input.nextLine();
-        input.nextLine();
+        Timer timer = new Timer();
+        TimerTask displayThreadTask = new TimerTask() {
+            @Override
+            public void run() {
+                clearConsole();
+                System.out.println("Next Battle in " + formatTime(180.0f-BattleTimer));
+                System.out.println("Swordsman: " + CountUnitType(NextEnemyArmy, UnitTypes.SPEARMAN));
+                System.out.println("Spearman: " + CountUnitType(NextEnemyArmy, UnitTypes.SPEARMAN));
+                System.out.println("Crossbow: " + CountUnitType(NextEnemyArmy, UnitTypes.CROSSBOW));
+                System.out.println("Cannon: " + CountUnitType(NextEnemyArmy, UnitTypes.CANNON));
+                System.out.println("Press Enter to return");
+            }
+        };
+        timer.schedule(displayThreadTask, 0, 1000/UPS);
+        try {
+            System.in.read();
+        } catch (Exception e) {}
+        timer.cancel();
     }
 
     private static void BattleLogsMenu() {
         ActiveMenu = "Battle";
-        clearConsole();
         while (true) {
+
             System.out.println("You have faught " + battlesFaugth.size() + " battles");
             System.out.println("1. View battle report");
             System.out.println("2. View battle detailed report");

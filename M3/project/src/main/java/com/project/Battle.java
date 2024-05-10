@@ -96,7 +96,7 @@ public class Battle {
                 MilitaryUnit attackUnit = AttackGroup.get(random.nextInt(AttackGroup.size()));
                 do {
                     MilitaryUnit defenseUnit = SelectDefenseUnit(DefenseArmy);
-                    AddLineToDeteiledReport("Attacks: " + (turn ? "civilization arny: " : "enemy army: ") + attackUnit.getType().toString() + " attacks " + defenseUnit.getType().toString());
+                    AddLineToDeteiledReport("Attacks: " + (turn ? "civilization arny: " : "enemy army: ") + (attackUnit.) + attackUnit.getType().toString() + " attacks " + defenseUnit.getType().toString());
                     AddLineToDeteiledReport(attackUnit.getType().toString() + " deals damage = " + attackUnit.attack());
                     defenseUnit.takeDamage(attackUnit.attack());
                     AddLineToDeteiledReport(defenseUnit.getType().toString() + " stays with armor = " + defenseUnit.getActualArmor());
