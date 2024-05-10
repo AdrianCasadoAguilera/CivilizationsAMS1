@@ -182,7 +182,7 @@ public class Main {
 
     private static void CreateBuildingMenu() {
         String option;
-        input.nextLine();
+        // input.nextLine();
         while(true){
             System.out.println("Smithy");
             System.out.println("Carpentry");

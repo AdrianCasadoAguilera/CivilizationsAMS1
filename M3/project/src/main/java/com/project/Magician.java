@@ -9,7 +9,10 @@ public class Magician extends SpecialUnit {
         this.experience = 0;
     }
     public Magician(){
-        
+        this.armor = 0;
+        this.initialArmor = this.armor;
+        this.baseDamage = BASE_DAMAGE_MAGICIAN;
+        this.experience = 0;
     }
 
 
