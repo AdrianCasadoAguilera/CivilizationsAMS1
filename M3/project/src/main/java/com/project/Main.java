@@ -5,7 +5,6 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.Arrays;
 
 public class Main {
     
@@ -145,7 +144,6 @@ public class Main {
             ActiveMenu = "Main";
             if (menu) {
                 clearConsole();
-                System.out.print(deltaTime);
                 System.out.println("1. Create a Building");
                 System.out.println("2. Train a new Unit");
                 System.out.println("3. Research a Technology");
@@ -347,12 +345,13 @@ public class Main {
             @Override
             public void run() {
                 clearConsole();
+                ArrayList<Float> generation = civilization.GetGenerationPerSecond();
                 System.out.println("Stats");
                 System.out.println("\nResources:");
-                System.out.println("Food: " + civilization.getFood());
-                System.out.println("Wood: " + civilization.getWood());
-                System.out.println("Iron: " + civilization.getIron());
-                System.out.println("Mana: " + civilization.getMana());
+                System.out.println("Food: " + civilization.getFood() + " (+"+String.format("%.0f", generation.get(0))+"/s)");
+                System.out.println("Wood: " + civilization.getWood() + " (+"+String.format("%.0f", generation.get(1))+"/s)");
+                System.out.println("Iron: " + civilization.getIron() + " (+"+String.format("%.0f", generation.get(2))+"/s)");
+                System.out.println("Mana: " + civilization.getMana() + " (+"+String.format("%.0f", generation.get(3))+"/s)");
                 System.out.println("\nTechnology:");
                 System.out.println("Attack: " + civilization.getTechnologyAttack());
                 System.out.println("Defense: " + civilization.getTechnologyDefense());

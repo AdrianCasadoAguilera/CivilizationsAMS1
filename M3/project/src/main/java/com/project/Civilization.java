@@ -444,10 +444,19 @@ public class Civilization {
     }
 
     public void GenerateResources(float deltaTime) {
-        food += Math.ceil((Variables.CIVILIZATION_FOOD_GENERATED+Variables.CIVILIZATION_FOOD_GENERATED_PER_FARM*farm)/60.0*deltaTime);
-        wood += Math.ceil((Variables.CIVILIZATION_WOOD_GENERATED+Variables.CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY*carpentry)/60.0*deltaTime);
-        iron += Math.ceil((Variables.CIVILIZATION_IRON_GENERATED+Variables.CIVILIZATION_IRON_GENERATED_PER_SMITHY*smithy)/60.0*deltaTime);
+        food += Math.ceil((Variables.CIVILIZATION_FOOD_GENERATED+Variables.CIVILIZATION_FOOD_GENERATED_PER_FARM*farm)/60.0f*deltaTime);
+        wood += Math.ceil((Variables.CIVILIZATION_WOOD_GENERATED+Variables.CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY*carpentry)/60.0f*deltaTime);
+        iron += Math.ceil((Variables.CIVILIZATION_IRON_GENERATED+Variables.CIVILIZATION_IRON_GENERATED_PER_SMITHY*smithy)/60.0f*deltaTime);
         mana += Math.ceil((Variables.CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER*magicTower)/60.0*deltaTime);
+    }
+
+    public ArrayList<Float> GetGenerationPerSecond() {
+        ArrayList<Float> result = new ArrayList<>();
+        result.add((Variables.CIVILIZATION_FOOD_GENERATED+Variables.CIVILIZATION_FOOD_GENERATED_PER_FARM*farm)/60.0f);
+        result.add((Variables.CIVILIZATION_WOOD_GENERATED+Variables.CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY*carpentry)/60.0f);
+        result.add((Variables.CIVILIZATION_IRON_GENERATED+Variables.CIVILIZATION_IRON_GENERATED_PER_SMITHY*smithy)/60.0f);
+        result.add((Variables.CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER*magicTower)/60.0f);
+        return result;
     }
 
 //Función  de momento no necesaria    private int calculateCost(int level) {
