@@ -342,7 +342,7 @@ public class Main {
             System.out.println("2. Upgrade Technology Attack");
             System.out.println("3. Exit");
             System.out.print("Choose an option: ");
-                    int option = scanner.nextInt();
+                    int option = input.nextInt();
             switch (option) {
                 case 1:
                     civilization.upgradeTechnologyDefense();
