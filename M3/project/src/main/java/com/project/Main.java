@@ -8,13 +8,17 @@ import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.CountDownLatch;
+
+import com.project.UI.MainWindow;
+import javax.swing.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
     
     public static Scanner input = new Scanner(System.in);
-    public static int UPS = 1;
+    public static int UPS = 60;
     public static float deltaTime = 1.0f/UPS;
     public static Civilization civilization;
     public static Boolean stopped = false;
@@ -37,6 +41,11 @@ public class Main {
         Timer timer = new Timer();
         timer.schedule(MainLoop, 0, 1000/UPS);
         stopped = false;
+
+        SwingUtilities.invokeLater(()->{
+            new MainWindow().setVisible(true);
+        });
+
         MainMenu();
         timer.cancel();
     }
