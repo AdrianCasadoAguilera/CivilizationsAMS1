@@ -163,6 +163,7 @@ public class Main {
                         CreateBuildingMenu();
                         break;
                     case 2:
+                        input.nextLine();
                         TrainUnitMenu();
                         break;
                     case 3:
@@ -257,129 +258,83 @@ public class Main {
     private static void TrainUnitMenu() {
         ActiveMenu = "Train";
         String option;
-        int amount;
-        int total = -1;
-        Boolean exit = false;
-        while(!exit){
-            clearConsole();
-            if (total != -1)
-                System.out.println("Created "+total+" units.");
-            for(int i = 0;i < UnitTypes.values().length;i++){
-                System.out.print(title(UnitTypes.values()[i].toString()));
-                switch (UnitTypes.values()[i]) {
-                    case SWORDSMAN:
-                        System.out.println(" (food: " + Variables.FOOD_COST_SWORDSMAN + ", wood: " + Variables.WOOD_COST_SWORDSMAN + ", iron: " + Variables.IRON_COST_SWORDSMAN + ", mana: " +Variables.MANA_COST_SWORDSMAN+ ")");
-                        break;
-                    case SPEARMAN:
-                        System.out.println(" (food: " + Variables.FOOD_COST_SPEARMAN + ", wood: " + Variables.WOOD_COST_SPEARMAN + ", iron: " + Variables.IRON_COST_SPEARMAN + ", mana: " +Variables.MANA_COST_SPEARMAN+ ")");
-                        break;
-                    case CROSSBOW:
-                        System.out.println(" (food: " + Variables.FOOD_COST_CROSSBOW + ", wood: " + Variables.WOOD_COST_CROSSBOW + ", iron: " + Variables.IRON_COST_CROSSBOW + ", mana: " +Variables.MANA_COST_CROSSBOW+ ")");
-                        break;
-                    case CANNON:
-                        System.out.println(" (food: " + Variables.FOOD_COST_CANNON + ", wood: " + Variables.WOOD_COST_CANNON + ", iron: " + Variables.IRON_COST_CANNON + ", mana: " +Variables.MANA_COST_CANNON+ ")");
-                        break;
-                    case ARROWTOWER:
-                        System.out.println(" (food: " + Variables.FOOD_COST_ARROWTOWER + ", wood: " + Variables.WOOD_COST_ARROWTOWER + ", iron: " + Variables.IRON_COST_ARROWTOWER + ", mana: " +Variables.MANA_COST_ARROWTOWER+ ")");
-                        break;
-                    case CATAPULT:
-                        System.out.println(" (food: " + Variables.FOOD_COST_CATAPULT + ", wood: " + Variables.WOOD_COST_CATAPULT + ", iron: " + Variables.IRON_COST_CATAPULT + ", mana: " +Variables.MANA_COST_CATAPULT+ ")");
-                        break;
-                    case ROCKETLAUNCHERTOWER:
-                        System.out.println(" (food: " + Variables.FOOD_COST_ROCKETLAUNCHERTOWER + ", wood: " + Variables.WOOD_COST_ROCKETLAUNCHERTOWER + ", iron: " + Variables.IRON_COST_ROCKETLAUNCHERTOWER + ", mana: " +Variables.MANA_COST_ROCKETLAUNCHERTOWER+ ")");
-                        break;
-                    case MAGICIAN:
-                        System.out.println(" (food: " + Variables.FOOD_COST_MAGICIAN + ", wood: " + Variables.WOOD_COST_MAGICIAN + ", iron: " + Variables.IRON_COST_MAGICIAN + ", mana: " +Variables.MANA_COST_MAGICIAN+ ")");
-                        break;
-                    case PRIEST:
-                        System.out.println(" (food: " + Variables.FOOD_COST_PRIEST + ", wood: " + Variables.WOOD_COST_PRIEST + ", iron: " + Variables.IRON_COST_PRIEST + ", mana: " +Variables.MANA_COST_PRIEST+ ")");
-                        break;
-                    default:
-                        break;
-                }
+        int total = 0;
+        clearConsole();
+        while (true) {
+            if (total != 0) {
+                total = 0;
+                System.out.println(total + "Units trained");
+            }
+            for (UnitTypes type : UnitTypes.values()) {
+                System.out.println(title(type.toString()));
             }
             System.out.println("Exit");
             System.out.println("What unit do you want to train?");
             option = input.nextLine();
-            if(option.toLowerCase().equals("exit")){
-                exit = true;
-                break;
-            }
-            boolean istype = false;
+            UnitTypes type;
             try {
-                UnitTypes.valueOf(option.toUpperCase());
-                istype = true;
+                type = UnitTypes.valueOf(option.toUpperCase());
+            } catch (Exception e) {
+                type = null;
             }
-            catch (Exception e){
-                istype = false;
+            if (type == null) {
+                clearConsole();
+                System.out.println("Invalid option. Please choose again.");
+                continue;
             }
-            if(!option.isEmpty() && istype){
-                System.out.println("How many "+option+"s do you want to train?");
-                try {
-                    amount = input.nextInt();
-                    switch (option.toLowerCase()) {
-                        case "swordsman":
-                            total = civilization.AddUnit(UnitTypes.SWORDSMAN, amount);
-                            break;
-                        case "spearman":
-                            total = civilization.AddUnit(UnitTypes.SPEARMAN, amount);
-                            break;
-                        case "crossbow":
-                            total = civilization.AddUnit(UnitTypes.CROSSBOW, amount);
-                            break;
-                        case "cannon":
-                            total = civilization.AddUnit(UnitTypes.CANNON, amount);
-                            break;
-                        case "arrow tower":
-                            total = civilization.AddUnit(UnitTypes.ARROWTOWER, amount);
-                            break;
-                        case "catapult":
-                            total = civilization.AddUnit(UnitTypes.CATAPULT, amount);
-                            break;
-                        case "rocket launcher":
-                            total = civilization.AddUnit(UnitTypes.ROCKETLAUNCHERTOWER, amount);
-                            break;
-                        case "magician":
-                            total = civilization.AddUnit(UnitTypes.MAGICIAN, amount);
-                            break;
-                        case "priest":
-                            total = civilization.AddUnit(UnitTypes.PRIEST, amount);
-                            break;
-                        case "exit":
-                            exit = true;
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                catch (Exception e){
-                    amount = -1;
-                }
+            System.out.println("How many units do you want to train?");
+            int amount = -1;
+            try {
+                amount = input.nextInt();
+                clearConsole();
+            }
+            catch (Exception e) {
+                amount = -1;
+                System.out.println("Invalid option. Please choose again.");
+            }
+            input.next();
+            if (amount != -1) {
+                total = civilization.AddUnit(type, amount);
             }
         }
     }
 
     private static void TechnologyMenu() {
         ActiveMenu = "Tech";
-        boolean Running = true;
-        while (Running) {
-            clearConsole();
+        boolean upgraded = false;
+        clearConsole();
+        while (true) {
+            if (upgraded) {
+                upgraded = false;
+                System.out.println("Technology upgraded");
+            }
             System.out.println("Upgrade technology");
             System.out.println("1. Upgrade Technology Defense");
             System.out.println("2. Upgrade Technology Attack");
             System.out.println("3. Exit");
             System.out.print("Choose an option: ");
-                    int option = input.nextInt();
+            int option;
+            try {
+                option = input.nextInt();
+            } catch (Exception e) {
+                option = -1;
+                input.next();
+            }
+            clearConsole();
+            int level;
             switch (option) {
                 case 1:
+                    level = civilization.getTechnologyDefense();
                     civilization.upgradeTechnologyDefense();
+                    upgraded = level < civilization.getTechnologyDefense();
                     break;
                 case 2:
+                    level = civilization.getTechnologyAttack();
                     civilization.upgradeTechnologyAttack();
+                    upgraded = level < civilization.getTechnologyAttack();
                     break;
                 case 3:
-                    Running = false;
-                    break;
+                    return;
                 default:
                     System.out.println("Invalid option. Please choose again.");
                     break;
