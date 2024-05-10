@@ -92,4 +92,14 @@ public class Spearman extends AttackUnit {
     public UnitTypes getType() {
         return UnitTypes.SPEARMAN;
     }
+
+
+    public boolean isSanctified() {
+        return sanctified;
+    }
+
+    public void setSanctified(boolean sanctified) {
+        this.sanctified = sanctified;
+    }
+
 }

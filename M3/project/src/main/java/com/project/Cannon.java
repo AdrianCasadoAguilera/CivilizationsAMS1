@@ -90,4 +90,14 @@ public class Cannon extends AttackUnit {
     public UnitTypes getType(){
         return UnitTypes.CANNON;
     }
+
+
+    public boolean isSanctified() {
+        return sanctified;
+    }
+
+    public void setSanctified(boolean sanctified) {
+        this.sanctified = sanctified;
+    }
+
 }

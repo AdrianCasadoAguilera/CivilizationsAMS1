@@ -76,4 +76,14 @@ public class Catapult extends DefenseUnit{
     public UnitTypes getType(){
         return UnitTypes.CATAPULT;
     }
+
+
+    public boolean isSanctified() {
+        return sanctified;
+    }
+
+    public void setSanctified(boolean sanctified) {
+        this.sanctified = sanctified;
+    }
+
 }
