@@ -84,4 +84,14 @@ public class Magician extends SpecialUnit {
         return UnitTypes.MAGICIAN;
     }
     
+
+
+    public boolean isSanctified() {
+        return sanctified;
+    }
+
+    public void setSanctified(boolean sanctified) {
+        this.sanctified = sanctified;
+    }
+
 }
