@@ -202,9 +202,14 @@ public class Main {
     private static void CreateBuildingMenu() {
         ActiveMenu = "Building";
         String option;
+        Boolean created = false;
         input.nextLine();
         clearConsole();
         while(true){
+            if (created) {
+                System.out.println("Building created");
+                created = false;
+            }
             System.out.println("Smithy");
             System.out.println("Carpentry");
             System.out.println("Farm");
@@ -214,21 +219,32 @@ public class Main {
             System.out.println("What do you want to build?");
             option = input.nextLine().toLowerCase();
             clearConsole();
+            int build;
             switch (option) {
                 case "smithy":
+                build =  civilization.getSmithy();
                 civilization.newSmithy();
+                created = build < civilization.getSmithy();
                 break;
                 case "carpentry":
+                build = civilization.getCarpentry();
                 civilization.newCarpentry();
+                created = build < civilization.getCarpentry();
                 break;
                 case "farm":
+                build = civilization.getFarm();
                 civilization.newFarm();
+                created = build < civilization.getFarm();
                 break;
                 case "magic tower":
+                build = civilization.getMagicTower();
                 civilization.newMagicTower();
+                created = build < civilization.getMagicTower();
                 break;
                 case "church":
+                build = civilization.getChurch();
                 civilization.newChurch();
+                created = build < civilization.getChurch();
                 break;
                 case "exit":
                 return;
@@ -289,42 +305,55 @@ public class Main {
                 exit = true;
                 break;
             }
-            if(!option.isEmpty() && UnitTypes.valueOf(option.toUpperCase()) != null){
+            boolean istype = false;
+            try {
+                UnitTypes.valueOf(option.toUpperCase());
+                istype = true;
+            }
+            catch (Exception e){
+                istype = false;
+            }
+            if(!option.isEmpty() && istype){
                 System.out.println("How many "+option+"s do you want to train?");
-                amount = input.nextInt();
-                switch (option.toLowerCase()) {
-                    case "swordsman":
-                        total = civilization.AddUnit(UnitTypes.SWORDSMAN, amount);
-                        break;
-                    case "spearman":
-                        total = civilization.AddUnit(UnitTypes.SPEARMAN, amount);
-                        break;
-                    case "crossbow":
-                        total = civilization.AddUnit(UnitTypes.CROSSBOW, amount);
-                        break;
-                    case "cannon":
-                        total = civilization.AddUnit(UnitTypes.CANNON, amount);
-                        break;
-                    case "arrow tower":
-                        total = civilization.AddUnit(UnitTypes.ARROWTOWER, amount);
-                        break;
-                    case "catapult":
-                        total = civilization.AddUnit(UnitTypes.CATAPULT, amount);
-                        break;
-                    case "rocket launcher":
-                        total = civilization.AddUnit(UnitTypes.ROCKETLAUNCHERTOWER, amount);
-                        break;
-                    case "magician":
-                        total = civilization.AddUnit(UnitTypes.MAGICIAN, amount);
-                        break;
-                    case "priest":
-                        total = civilization.AddUnit(UnitTypes.PRIEST, amount);
-                        break;
-                    case "exit":
-                        exit = true;
-                        break;
-                    default:
-                        break;
+                try {
+                    amount = input.nextInt();
+                    switch (option.toLowerCase()) {
+                        case "swordsman":
+                            total = civilization.AddUnit(UnitTypes.SWORDSMAN, amount);
+                            break;
+                        case "spearman":
+                            total = civilization.AddUnit(UnitTypes.SPEARMAN, amount);
+                            break;
+                        case "crossbow":
+                            total = civilization.AddUnit(UnitTypes.CROSSBOW, amount);
+                            break;
+                        case "cannon":
+                            total = civilization.AddUnit(UnitTypes.CANNON, amount);
+                            break;
+                        case "arrow tower":
+                            total = civilization.AddUnit(UnitTypes.ARROWTOWER, amount);
+                            break;
+                        case "catapult":
+                            total = civilization.AddUnit(UnitTypes.CATAPULT, amount);
+                            break;
+                        case "rocket launcher":
+                            total = civilization.AddUnit(UnitTypes.ROCKETLAUNCHERTOWER, amount);
+                            break;
+                        case "magician":
+                            total = civilization.AddUnit(UnitTypes.MAGICIAN, amount);
+                            break;
+                        case "priest":
+                            total = civilization.AddUnit(UnitTypes.PRIEST, amount);
+                            break;
+                        case "exit":
+                            exit = true;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                catch (Exception e){
+                    amount = -1;
                 }
             }
         }
