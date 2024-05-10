@@ -1,14 +1,10 @@
 package com.project;
 
-import java.io.IOException;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.CountDownLatch;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
@@ -23,15 +19,17 @@ public class Main {
         @Override
         public void run() {
             if (!stopped)
-                Update();
-                //System.out.println("update Active");
+            Update();
+            //System.out.println("update Active");
         }
     };
     public static ArrayList<Battle> battlesFaugth = new ArrayList<>();
     public static ArrayList<MilitaryUnit> NextEnemyArmy = new ArrayList<>();
+    public static int NextBattleIn = 180;
     public static String ActiveMenu = "";
 
     public static void main(String[] args) {
+        NextBattleIn = 120 + new Random().nextInt(300 - 120 + 1);
         civilization = Civilization.getInstance();
         createEnemyArmy(); 
         Timer timer = new Timer();
@@ -77,7 +75,8 @@ public class Main {
         //Updates values about the civilization (resources, enemy army, battles)
         civilization.GenerateResources(deltaTime);
         BattleTimer += deltaTime;
-        if (BattleTimer >= 180) {
+        if (BattleTimer >= NextBattleIn) {
+            NextBattleIn = 120 + new Random().nextInt(300 - 120 + 1);
             BattleTimer = 0;
             civilization.setBattles(civilization.getBattles()+1);
             Battle battle = new Battle((ArrayList<MilitaryUnit>)civilization.getArmy().clone(), (ArrayList<MilitaryUnit>)NextEnemyArmy.clone());
@@ -146,6 +145,7 @@ public class Main {
             ActiveMenu = "Main";
             if (menu) {
                 clearConsole();
+                System.out.print(deltaTime);
                 System.out.println("1. Create a Building");
                 System.out.println("2. Train a new Unit");
                 System.out.println("3. Research a Technology");
@@ -175,6 +175,7 @@ public class Main {
                         StatsMenu();
                         break;
                     case 5:
+                        error = false;
                         ViewThreadMenu();
                         break;
                     case 6:
@@ -362,6 +363,7 @@ public class Main {
                 System.out.println("Magic Tower: " + civilization.getMagicTower());
                 System.out.println("Church: " + civilization.getChurch());
                 System.out.println("\nArmy:");
+
                 for(UnitTypes type : UnitTypes.values()) {
                     System.out.println(title(type.toString()) + ": " + civilization.CountUnits(type));
                 }
@@ -379,22 +381,38 @@ public class Main {
         timer.cancel();
     }
 
+    public static String formatTime(float seconds) {
+        int minutes = (int) (seconds / 60);
+        int remainingSeconds = Math.round(seconds % 60);
+        return minutes + (minutes != 1 ? " minutes ": " minute ")+ remainingSeconds + (remainingSeconds != 1 ? " seconds": " second");
+     }
+
     private static void ViewThreadMenu() {
-        clearConsole();
         ActiveMenu = "Thread";
-        System.out.println("Swordsman: " + CountUnitType(NextEnemyArmy, UnitTypes.SPEARMAN));
-        System.out.println("Spearman: " + CountUnitType(NextEnemyArmy, UnitTypes.SPEARMAN));
-        System.out.println("Crossbow: " + CountUnitType(NextEnemyArmy, UnitTypes.CROSSBOW));
-        System.out.println("Cannon: " + CountUnitType(NextEnemyArmy, UnitTypes.CANNON));
-        System.out.println("Type anything to returen");
-        input.nextLine();
-        input.nextLine();
+        Timer timer = new Timer();
+        TimerTask displayThreadTask = new TimerTask() {
+            @Override
+            public void run() {
+                clearConsole();
+                System.out.println("Next Battle in " + formatTime(NextBattleIn-BattleTimer));
+                System.out.println("Swordsman: " + CountUnitType(NextEnemyArmy, UnitTypes.SPEARMAN));
+                System.out.println("Spearman: " + CountUnitType(NextEnemyArmy, UnitTypes.SPEARMAN));
+                System.out.println("Crossbow: " + CountUnitType(NextEnemyArmy, UnitTypes.CROSSBOW));
+                System.out.println("Cannon: " + CountUnitType(NextEnemyArmy, UnitTypes.CANNON));
+                System.out.println("Press Enter to return");
+            }
+        };
+        timer.schedule(displayThreadTask, 0, 1000/UPS);
+        try {
+            System.in.read();
+        } catch (Exception e) {}
+        timer.cancel();
     }
 
     private static void BattleLogsMenu() {
         ActiveMenu = "Battle";
-        clearConsole();
         while (true) {
+
             System.out.println("You have faught " + battlesFaugth.size() + " battles");
             System.out.println("1. View battle report");
             System.out.println("2. View battle detailed report");
@@ -406,11 +424,15 @@ public class Main {
             switch (choice) {
                 case 1:
                     System.out.println("Which battle do you want to see?");
-                    index = input.nextInt();
-                    if (index < battlesFaugth.size()) {
-                        System.out.println(battlesFaugth.get(index).getReport());
-                    }
-                    else {
+                    try {
+                        index = input.nextInt();
+                        if (index < battlesFaugth.size()) {
+                            System.out.println(battlesFaugth.get(index).getReport());
+                        }
+                        else {
+                            System.out.println("Invalid index");
+                        }
+                    } catch (Exception e) {
                         System.out.println("Invalid index");
                     }
                     break;

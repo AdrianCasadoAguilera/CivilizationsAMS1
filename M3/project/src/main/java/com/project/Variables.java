@@ -136,6 +136,7 @@ public interface Variables {
     //Units plus armor/attack increase percentage when sanctified
     public final int PLUS_ARMOR_UNIT_SANCTIFIED = 7;
     public final int PLUS_ATTACK_UNIT_SANCTIFIED = 7;
+    public final int SANCTIFIED_AMOUNT_PER_PRIEST = 4;
     // Chance of resurrection by magician
     public final int CHANCE_MAGICIAN_RESSURECT = 2;
     // fleet probability of generating waste
