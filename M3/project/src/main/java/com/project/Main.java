@@ -1,16 +1,16 @@
 package com.project;
 
-
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.Arrays;
 
 public class Main {
     
     public static Scanner input = new Scanner(System.in);
-    public static int UPS = 1;
+    public static int UPS = 60;
     public static float deltaTime = 1.0f/UPS;
     public static Civilization civilization;
     public static Boolean stopped = false;
@@ -33,6 +33,7 @@ public class Main {
         Timer timer = new Timer();
         timer.schedule(MainLoop, 0, 1000/UPS);
         stopped = false;
+        civilization.setArmy(new ArrayList<>(Arrays.asList(new Priest())));
         MainMenu();
         timer.cancel();
     }
@@ -71,7 +72,7 @@ public class Main {
 
     private static void Update() {
         //Updates values about the civilization (resources, enemy army, battles)
-        civilization.GenerateResources(BattleTimer);
+        civilization.GenerateResources(deltaTime);
         BattleTimer += deltaTime;
         if (BattleTimer >= 20) {
             BattleTimer = 0;
@@ -142,6 +143,7 @@ public class Main {
             ActiveMenu = "Main";
             if (menu) {
                 clearConsole();
+                System.out.print(deltaTime);
                 System.out.println("1. Create a Building");
                 System.out.println("2. Train a new Unit");
                 System.out.println("3. Research a Technology");
@@ -359,6 +361,7 @@ public class Main {
                 System.out.println("Magic Tower: " + civilization.getMagicTower());
                 System.out.println("Church: " + civilization.getChurch());
                 System.out.println("\nArmy:");
+
                 for(UnitTypes type : UnitTypes.values()) {
                     System.out.println(title(type.toString()) + ": " + civilization.CountUnits(type));
                 }

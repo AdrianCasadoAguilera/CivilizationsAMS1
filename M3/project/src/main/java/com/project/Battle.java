@@ -82,6 +82,7 @@ public class Battle {
     public void startBattle() {
         Random random = new Random();
         boolean turn = random.nextBoolean();
+        
         if (civilizationArmy.size() > 0) {
             while (CountUnits(civilizationArmyOrdered) > 0 && CountUnits(enemyArmyOrdered) > 0 &&   
             (CountUnits(civilizationArmyOrdered) > initialCivilizationArmySize*0.2 || CountUnits(enemyArmyOrdered) > initialEnemyArmySize *0.2)) {

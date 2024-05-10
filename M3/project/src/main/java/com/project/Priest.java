@@ -76,7 +76,7 @@ public class Priest extends SpecialUnit {
 
     @Override 
     public UnitTypes getType(){
-        return UnitTypes.MAGICIAN;
+        return UnitTypes.PRIEST;
     }
     @Override
     public boolean isSanctified() {
