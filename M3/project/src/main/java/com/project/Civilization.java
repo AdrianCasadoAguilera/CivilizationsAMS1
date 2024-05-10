@@ -237,6 +237,10 @@ public class Civilization {
     }
 
     public void upgradeTechnologyDefense() {
+        if (technologyDefense >= 50) {
+            System.out.println("Defense technology level has reached the limit");
+            return;
+        }
         int baseFoodCost = Variables.UPGRADE_BASE_DEFENSE_TECHNOLOGY_FOOD_COST;
         int plusFoodPercentage = Variables.UPGRADE_PLUS_DEFENSE_TECHNOLOGY_FOOD_COST * technologyDefense;
         int totalFoodCost = baseFoodCost + baseFoodCost*plusFoodPercentage/100;
@@ -270,6 +274,10 @@ public class Civilization {
     }
 
     public void upgradeTechnologyAttack() {
+        if (technologyAttack >= 50) {
+            System.out.println("Attack technology level has reached the limit");
+            return;
+        }
         int baseFoodCost = Variables.UPGRADE_BASE_ATTACK_TECHNOLOGY_FOOD_COST;
         int plusFoodPercentage = Variables.UPGRADE_PLUS_ATTACK_TECHNOLOGY_FOOD_COST * technologyDefense;
         int totalFoodCost = baseFoodCost + baseFoodCost*plusFoodPercentage/100;
