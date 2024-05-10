@@ -31,7 +31,11 @@ public class Spearman extends AttackUnit {
 
     @Override
     public void takeDamage(int receivedDamage) {
-        armor -= receivedDamage;
+        if (sanctified) {
+            armor += (int)(armor * 0.07);
+            armor -= receivedDamage;
+        }
+            armor -= receivedDamage;
     }
 
     @Override

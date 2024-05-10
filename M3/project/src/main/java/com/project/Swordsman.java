@@ -31,10 +31,14 @@ public class Swordsman extends AttackUnit {
 
 @Override
     public void takeDamage(int receivedDamage) {
-        armor -= receivedDamage;
+        if (sanctified) {
+            armor += (int)(armor * 0.07);
+            armor -= receivedDamage;
+        }
+            armor -= receivedDamage;
     }
 
-    @Override
+@Override
     public int getActualArmor() {
         return (int)(armor+initialArmor*experience*PLUS_ARMOR_UNIT_PER_EXPERIENCE_POINT/100);
     }
