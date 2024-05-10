@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class Main {
     
     public static Scanner input = new Scanner(System.in);
-    public static int UPS = 60;
+    public static int UPS = 1;
     public static float deltaTime = 1.0f/UPS;
     public static Civilization civilization;
     public static Boolean stopped = false;
@@ -19,21 +19,22 @@ public class Main {
         @Override
         public void run() {
             if (!stopped)
-                Update();
-                //System.out.println("update Active");
+            Update();
+            //System.out.println("update Active");
         }
     };
     public static ArrayList<Battle> battlesFaugth = new ArrayList<>();
     public static ArrayList<MilitaryUnit> NextEnemyArmy = new ArrayList<>();
+    public static int NextBattleIn = 180;
     public static String ActiveMenu = "";
 
     public static void main(String[] args) {
+        NextBattleIn = 120 + new Random().nextInt(300 - 120 + 1);
         civilization = Civilization.getInstance();
         createEnemyArmy(); 
         Timer timer = new Timer();
         timer.schedule(MainLoop, 0, 1000/UPS);
         stopped = false;
-        civilization.setArmy(new ArrayList<>(Arrays.asList(new Priest())));
         MainMenu();
         timer.cancel();
     }
@@ -74,7 +75,8 @@ public class Main {
         //Updates values about the civilization (resources, enemy army, battles)
         civilization.GenerateResources(deltaTime);
         BattleTimer += deltaTime;
-        if (BattleTimer >= 20) {
+        if (BattleTimer >= NextBattleIn) {
+            NextBattleIn = 120 + new Random().nextInt(300 - 120 + 1);
             BattleTimer = 0;
             civilization.setBattles(civilization.getBattles()+1);
             Battle battle = new Battle((ArrayList<MilitaryUnit>)civilization.getArmy().clone(), (ArrayList<MilitaryUnit>)NextEnemyArmy.clone());
@@ -392,7 +394,7 @@ public class Main {
             @Override
             public void run() {
                 clearConsole();
-                System.out.println("Next Battle in " + formatTime(180.0f-BattleTimer));
+                System.out.println("Next Battle in " + formatTime(NextBattleIn-BattleTimer));
                 System.out.println("Swordsman: " + CountUnitType(NextEnemyArmy, UnitTypes.SPEARMAN));
                 System.out.println("Spearman: " + CountUnitType(NextEnemyArmy, UnitTypes.SPEARMAN));
                 System.out.println("Crossbow: " + CountUnitType(NextEnemyArmy, UnitTypes.CROSSBOW));
