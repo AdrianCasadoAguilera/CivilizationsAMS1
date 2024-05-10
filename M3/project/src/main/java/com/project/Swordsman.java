@@ -93,4 +93,12 @@ public class Swordsman extends AttackUnit {
         return UnitTypes.SWORDSMAN;
     }
 
+    public boolean isSanctified() {
+        return sanctified;
+    }
+
+    public void setSanctified(boolean sanctified) {
+        this.sanctified = sanctified;
+    }
+
 }
