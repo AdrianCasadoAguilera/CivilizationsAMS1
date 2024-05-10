@@ -255,7 +255,7 @@ public class Battle {
         }
         sb.append("*".repeat(25+6+10+40+25+6+10) + "\n");
         //Cost
-        /*sb.append(String.format("%-" + 25+6+10+40 + "s", "Cost Army Civilization"));
+        sb.append(String.format("%-" + (25+6+10+40) + "s", "Cost Army Civilization"));
         sb.append(String.format("%-" + 25 + "s", "Cost Army Enemy") + "\n");
         ArrayList<Integer> civCost = new ArrayList<>(Arrays.asList(0,0,0));
         ArrayList<Integer> enemyCost = new ArrayList<>(Arrays.asList(0,0,0));
@@ -270,28 +270,28 @@ public class Battle {
             enemyCost.set(1, enemyCost.get(1) + unit.getWoodCost());
             enemyCost.set(2, enemyCost.get(2) + unit.getIronCost());
         }
-        /*sb.append(String.format("%-" + 25+6+10+40 + "s", "Food: " + civCost.get(0)));
-        /*sb.append(String.format("%-" + 25 + "s", "Food: " + enemyCost.get(0)) + "\n");
-        sb.append(String.format("%-" + 25+6+10+40 + "s", "Wood: " + civCost.get(1)));
+        sb.append(String.format("%-" + (25+6+10+40) + "s", "Food: " + civCost.get(0)));
+        sb.append(String.format("%-" + 25 + "s", "Food: " + enemyCost.get(0)) + "\n");
+        sb.append(String.format("%-" + (25+6+10+40) + "s", "Wood: " + civCost.get(1)));
         sb.append(String.format("%-" + 25 + "s", "Wood: " + enemyCost.get(1)) + "\n");
-        sb.append(String.format("%-" + 25+6+10+40 + "s", "Iron: " + civCost.get(2)));
+        sb.append(String.format("%-" + (25+6+10+40) + "s", "Iron: " + civCost.get(2)));
         sb.append(String.format("%-" + 25 + "s", "Iron: " + enemyCost.get(2)) + "\n");
-        //sb.append("*".repeat(25+6+10+40+25+6+10) + "\n");
+        sb.append("*".repeat(25+6+10+40+25+6+10) + "\n");
         //Losses
-        sb.append(String.format("%-" + 25+6+10+40 + "s", "Losses Army Civilization"));
+        sb.append(String.format("%-" + (25+6+10+40) + "s", "Losses Army Civilization"));
         sb.append(String.format("%-" + 25 + "s", "Losses Army Enemy") + "\n");
-        sb.append(String.format("%-" + 25+6+10+40 + "s", "Food: " + civilizationTotalLoses));
+        sb.append(String.format("%-" + (25+6+10+40) + "s", "Food: " + civilizationTotalLoses));
         sb.append(String.format("%-" + 25 + "s", "Food: " + enemyTotalLoses) + "\n");
-        sb.append(String.format("%-" + 25+6+10+40 + "s", "Wood: " + civilizationTotalLoses/5));
+        sb.append(String.format("%-" + (25+6+10+40) + "s", "Wood: " + civilizationTotalLoses/5));
         sb.append(String.format("%-" + 25 + "s", "Wood: " + enemyTotalLoses/5) + "\n");
-        sb.append(String.format("%-" + 25+6+10+40 + "s", "Iron: " + civilizationTotalLoses/10));
+        sb.append(String.format("%-" + (25+6+10+40) + "s", "Iron: " + civilizationTotalLoses/10));
         sb.append(String.format("%-" + 25 + "s", "Iron: " + enemyTotalLoses/10) + "\n");
-        //sb.append("*".repeat(25+6+10+40+25+6+10) + "\n");
+        sb.append("*".repeat(25+6+10+40+25+6+10) + "\n");
         //Waste Generated
-        sb.append(String.format("%-" + 25+6+10+40 + "s", "Waste Generated") + "\n");
-        sb.append(String.format("%-" + 25+6+10+40 + "s", "Wood: " + WoodWaste));
+        sb.append(String.format("%-" + (25+6+10+40) + "s", "Waste Generated") + "\n");
+        sb.append(String.format("%-" + (25+6+10+40) + "s", "Wood: " + WoodWaste));
         sb.append(String.format("%-" + 25 + "s", "Iron: " + IronWaste) + "\n");
-        sb.append("\n");*/
+        sb.append("\n");
         //Win and ask detailed
         if (Win)
             sb.append("Battle Winned by Civilization, We Collect Rubble" + "\n");

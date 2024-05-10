@@ -75,9 +75,9 @@ public class Main {
 
     private static void Update() {
         //Updates values about the civilization (resources, enemy army, battles)
-        civilization.GenerateResources(deltaTime);
+        civilization.GenerateResources(BattleTimer);
         BattleTimer += deltaTime;
-        if (BattleTimer >= 180) {
+        if (BattleTimer >= 20) {
             BattleTimer = 0;
             civilization.setBattles(civilization.getBattles()+1);
             Battle battle = new Battle((ArrayList<MilitaryUnit>)civilization.getArmy().clone(), (ArrayList<MilitaryUnit>)NextEnemyArmy.clone());
@@ -406,11 +406,15 @@ public class Main {
             switch (choice) {
                 case 1:
                     System.out.println("Which battle do you want to see?");
-                    index = input.nextInt();
-                    if (index < battlesFaugth.size()) {
-                        System.out.println(battlesFaugth.get(index).getReport());
-                    }
-                    else {
+                    try {
+                        index = input.nextInt();
+                        if (index < battlesFaugth.size()) {
+                            System.out.println(battlesFaugth.get(index).getReport());
+                        }
+                        else {
+                            System.out.println("Invalid index");
+                        }
+                    } catch (Exception e) {
                         System.out.println("Invalid index");
                     }
                     break;
