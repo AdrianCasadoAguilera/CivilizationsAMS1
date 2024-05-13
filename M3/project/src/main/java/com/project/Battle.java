@@ -84,6 +84,18 @@ public class Battle {
         boolean turn = random.nextBoolean();
         
         if (civilizationArmy.size() > 0) {
+            if (civilizationArmyOrdered.get(8).size() > 0) {
+                ArrayList<MilitaryUnit> civSacntifiedUnits = SampleUnits(civilizationArmy,Variables.SANCTIFIED_AMOUNT_PER_PRIEST*civilizationArmyOrdered.get(8).size());
+                for (MilitaryUnit unit : civSacntifiedUnits) {
+                    unit.setSanctified(true);
+                }
+            }
+            if (enemyArmyOrdered.get(8).size() > 0) {
+                ArrayList<MilitaryUnit> enemySacntifiedUnits = SampleUnits(enemyArmy, Variables.SANCTIFIED_AMOUNT_PER_PRIEST*enemyArmyOrdered.get(8).size());
+                for (MilitaryUnit unit : enemySacntifiedUnits) {
+                    unit.setSanctified(true);
+                }
+            }
             while (CountUnits(civilizationArmyOrdered) > 0 && CountUnits(enemyArmyOrdered) > 0 &&   
             (CountUnits(civilizationArmyOrdered) > initialCivilizationArmySize*0.2 || CountUnits(enemyArmyOrdered) > initialEnemyArmySize *0.2)) {
                 AddLineToDeteiledReport("********************CHANGE ATTACKER********************");
@@ -336,11 +348,27 @@ public class Battle {
         }
         //heal remaing army
         //army experience
+        //army unsanctify
         for (MilitaryUnit unit : armyAfter) {
             unit.resetArmor();
             unit.setExperience(unit.getExperience() + 1);
+            unit.setSanctified(false);
         }
         //set civilizations army
         civilization.setArmy(armyAfter);
+    }
+
+    public ArrayList<MilitaryUnit> SampleUnits(ArrayList<MilitaryUnit> units, int amount) {
+        ArrayList<MilitaryUnit> sample = new ArrayList<>();
+        ArrayList<MilitaryUnit> untsLeft = units;
+        Random random = new Random();
+        if (amount > units.size())
+            return units;
+        for (int i = 0; i < amount; i++) {
+            int index = random.nextInt(untsLeft.size());
+            sample.add(untsLeft.get(index));
+            untsLeft.remove(index);
+        }
+        return sample;
     }
 }
