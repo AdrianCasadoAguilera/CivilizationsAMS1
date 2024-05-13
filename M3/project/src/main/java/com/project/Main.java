@@ -14,7 +14,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
-    
+    public static Timer timer;
+    public static Saves saves;
     public static Scanner input = new Scanner(System.in);
     public static int UPS = 1;
     public static float deltaTime = 1.0f/UPS;
@@ -33,13 +34,14 @@ public class Main {
     public static ArrayList<MilitaryUnit> NextEnemyArmy = new ArrayList<>();
     public static int NextBattleIn = 180;
     public static String ActiveMenu = "";
+    public static int ActiveSave = -1;
 
     public static void main(String[] args) {
-        NextBattleIn = 120 + new Random().nextInt(300 - 120 + 1);
-        civilization = Civilization.getInstance();
-        createEnemyArmy(); 
-        Timer timer = new Timer();
+        timer = new Timer();
         timer.schedule(MainLoop, 0, 1000/UPS);
+        stopped = true;
+        civilization = Civilization.getInstance();
+        saves = Saves.getInstance();
         stopped = false;
 
         /*SwingUtilities.invokeLater(()->{
@@ -150,6 +152,86 @@ public class Main {
     }
 
     private static void MainMenu() {
+        clearConsole();
+        while (true) {
+            System.out.println("1. New Game");
+            if (saves.GetSaveCount() > 0) {
+                System.out.println("2. Continue");
+            }
+            System.out.println("0. Quit\n");
+            System.out.print("Choose an option: ");
+            int option = -1;
+            try {
+                option = input.nextInt();
+            } catch (Exception e) {
+                System.out.println("Invalid option");
+            }
+            clearConsole();
+            input.nextLine();
+            switch (option) {
+                case 0:
+                    return;
+                case 1: 
+                    NewGame();
+                    clearConsole();
+                    break;
+                case 2:
+                    if (saves.GetSaveCount() == 0) {
+                        System.out.println("Invalid option");
+                        break;
+                    }
+                    ContinueMenu();
+                    clearConsole();
+                    break;
+                default:
+                    System.out.println("Invalid option");
+                    break;
+            }
+        
+        }
+    }
+
+    private static void NewGame() {
+        ActiveSave = saves.AddNewSaveData();
+        saves.LoadSaveData(ActiveSave);
+        createEnemyArmy();
+        MainGameMenu();
+    }
+
+    private static void ContinueMenu() {
+        while (true) {
+            for (int i = 0; i < saves.GetSaveCount(); i++) {
+                System.out.println(i + 1 + "Save number " + (i+1));
+            }
+            System.out.println("0. Back");
+            System.out.print("Choose an option: ");
+            int option = -1;
+            try {
+                option = input.nextInt();
+            } catch (Exception e) {
+                System.out.println("Invalid option");
+            }
+            input.nextLine();
+            if (option == 0) {
+                return;
+            }
+            else if (option < 0 || option > saves.GetSaveCount()) {
+                System.out.println("Invalid option");
+                continue;
+            }
+            ContinueGame(option-1);
+            return;
+        }
+    }
+
+    private static void ContinueGame(int index) {
+        ActiveSave = index;
+        saves.LoadSaveData(index);
+        MainGameMenu();
+    }
+
+    private static void MainGameMenu() {
+        stopped = false;
         Boolean menu = true;
         Boolean error = true;
         while (true) {
@@ -194,8 +276,12 @@ public class Main {
                         break;
                     case 7:
                         PauseMenu();
+                        if (stopped)
+                            return;
                         break;
                     case 0:
+                        stopped = true;
+                        SaveGame();
                         return;
                     default:
                         System.out.println("\nInvalid option");
@@ -283,6 +369,8 @@ public class Main {
             System.out.println("Exit");
             System.out.println("What unit do you want to train?");
             option = input.nextLine();
+            if (option.toUpperCase().equals("EXIT"))
+                return;
             UnitTypes type;
             try {
                 type = UnitTypes.valueOf(option.toUpperCase());
@@ -490,6 +578,7 @@ public class Main {
     }
 
     private static void PauseMenu() {
+        SaveGame();
         ActiveMenu = "Pause";
         stopped = true;
         while (true) {
@@ -500,10 +589,14 @@ public class Main {
                 break;
             } 
             else if (choice == 2) {
-                System.exit(0);
+                return;
             }
         }
         stopped = false;
+    }
+
+    private static void SaveGame() {
+        saves.UpdateSaveData(ActiveSave);
     }
 
 }

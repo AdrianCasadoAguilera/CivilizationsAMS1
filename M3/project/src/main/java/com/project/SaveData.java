@@ -215,4 +215,12 @@ public class SaveData {
     public void setWave(int wave) {
         this.wave = wave;
     }
+
+    public int getNextBattleIn() {
+        return NextBattleIn;
+    }
+
+    public void setNextBattleIn(int nextBattleIn) {
+        NextBattleIn = nextBattleIn;
+    }
 }

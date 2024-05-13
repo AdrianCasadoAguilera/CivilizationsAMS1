@@ -19,6 +19,10 @@ public class Saves {
         return instance;
     }
 
+    public int GetSaveCount() {
+        return savedata.size();
+    }
+
     public void LoadSavesFromDB() {
         
     }
