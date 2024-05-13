@@ -5,6 +5,8 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.*;
+import com.project.UI.*;
 
 public class Main {
     public static Timer timer;
@@ -37,9 +39,7 @@ public class Main {
         saves = Saves.getInstance();
         stopped = false;
 
-        /*SwingUtilities.invokeLater(()->{
-            new MainWindow().setVisible(true);
-        });*/
+        startUI();
 
         MainMenu();
         timer.cancel();
@@ -167,6 +167,7 @@ public class Main {
                 case 1: 
                     NewGame();
                     clearConsole();
+                    
                     break;
                 case 2:
                     if (saves.GetSaveCount() == 0) {
@@ -182,6 +183,12 @@ public class Main {
             }
         
         }
+    }
+
+    private static void startUI(){
+        SwingUtilities.invokeLater(()->{
+            new MainWindow().setVisible(true);
+        });
     }
 
     private static void NewGame() {

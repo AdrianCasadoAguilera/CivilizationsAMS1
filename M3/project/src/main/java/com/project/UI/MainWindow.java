@@ -9,6 +9,7 @@ import javax.swing.*;
 
 public class MainWindow extends JFrame {
     
+    private StartView startView;
     private MainView mainView;
     private StatsView statsView;
     private CardLayout cardLayout;
@@ -43,15 +44,17 @@ public class MainWindow extends JFrame {
     }
 
     private void setCards(){
+        startView = new StartView();
         mainView = new MainView(model);
         statsView = new StatsView(model);
 
         cardLayout = new CardLayout();
         cards = new JPanel(cardLayout);
+        cards.add(startView,"start");
         cards.add(mainView,"main");
         cards.add(statsView,"stats");
 
-        cardLayout.show(cards,"main");
+        cardLayout.show(cards,"start");
 
         add(cards);
     }
