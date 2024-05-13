@@ -11,6 +11,8 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <my.resources.dir>${user.dir}/src/main/java/com/project</my.resources.dir>
     </properties>
 
 </project>

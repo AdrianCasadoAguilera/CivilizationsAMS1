@@ -16,7 +16,7 @@ import java.util.Arrays;
 public class Main {
     
     public static Scanner input = new Scanner(System.in);
-    public static int UPS = 60;
+    public static int UPS = 1;
     public static float deltaTime = 1.0f/UPS;
     public static Civilization civilization;
     public static Boolean stopped = false;
@@ -42,9 +42,9 @@ public class Main {
         timer.schedule(MainLoop, 0, 1000/UPS);
         stopped = false;
 
-        SwingUtilities.invokeLater(()->{
+        /*SwingUtilities.invokeLater(()->{
             new MainWindow().setVisible(true);
-        });
+        });*/
 
         MainMenu();
         timer.cancel();
@@ -274,8 +274,8 @@ public class Main {
         clearConsole();
         while (true) {
             if (total != 0) {
+                System.out.println(total + " Units trained");
                 total = 0;
-                System.out.println(total + "Units trained");
             }
             for (UnitTypes type : UnitTypes.values()) {
                 System.out.println(title(type.toString()));
@@ -304,7 +304,7 @@ public class Main {
                 amount = -1;
                 System.out.println("Invalid option. Please choose again.");
             }
-            input.next();
+            input.nextLine();
             if (amount != -1) {
                 total = civilization.AddUnit(type, amount);
             }

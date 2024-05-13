@@ -1,6 +1,10 @@
 package com.project.UI;
 
 import java.awt.*;
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import javax.swing.*;
 
 public class ResourcesMenu extends JPanel {
@@ -42,14 +46,16 @@ public class ResourcesMenu extends JPanel {
         manaLabel = new JLabel();
     }
 
-    private void uploadImages(){ 
-        String dir = System.getProperty("user.dir")+"\\project\\src\\main\\java\\com\\project\\UI\\src\\";
-        foodIcon = new ImageIcon(new ImageIcon(dir+"resources_food.png").getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT));
-        woodIcon = new ImageIcon(new ImageIcon(dir+"resources_wood.png").getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT));
-        ironIcon = new ImageIcon(new ImageIcon(dir+"resources_iron.png").getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT));
-        manaIcon = new ImageIcon(new ImageIcon(dir+"resources_mana.png").getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT));
+    private void uploadImages() {
+        String resourcesPath = "/com/project/UI/resources_food.png";
+        foodIcon = new ImageIcon(new ImageIcon(getClass().getResource(resourcesPath)).getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT));
+        /*resourcesPath = "/com/project/UI/resources_wood.png";
+        woodIcon = new ImageIcon(getClass().getResource(resourcesPath)).getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT);
+        resourcesPath = "/com/project/UI/resources_iron.png";
+        ironIcon = new ImageIcon(getClass().getResource(resourcesPath)).getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT);
+        resourcesPath = "/com/project/UI/resources_mana.png";
+        manaIcon = new ImageIcon(getClass().getResource(resourcesPath)).getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT);*/
     }
-
     public void updateResources() {
         foodLabel.setText(String.valueOf(model.food));
         woodLabel.setText(String.valueOf(model.wood));
