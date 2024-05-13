@@ -63,7 +63,7 @@ public class Saves {
         save.setTechnologyDefense(0);
 
         save.setBattleTimer(0);
-        save.setNextBattleIn(120 + new Random().nextInt(300 - 120 + 1));
+        save.setNextBattleIn(/*120 + new Random().nextInt(300 - 120 + 1)*/5);
 
         save.setWave(0);
         save.setBattles(new ArrayList<>());

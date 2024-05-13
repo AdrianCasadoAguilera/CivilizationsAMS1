@@ -30,12 +30,12 @@ public class Main {
     public static int ActiveSave = -1;
 
     public static void main(String[] args) {
-        /*timer = new Timer();
+        timer = new Timer();
         timer.schedule(MainLoop, 0, 1000/UPS);
         stopped = true;
         civilization = Civilization.getInstance();
         saves = Saves.getInstance();
-        stopped = false;*/
+        stopped = false;
 
         /*SwingUtilities.invokeLater(()->{
             new MainWindow().setVisible(true);
@@ -82,7 +82,7 @@ public class Main {
         civilization.GenerateResources(deltaTime);
         BattleTimer += deltaTime;
         if (BattleTimer >= NextBattleIn) {
-            NextBattleIn = 120 + new Random().nextInt(300 - 120 + 1);
+            NextBattleIn = 5;
             BattleTimer = 0;
             civilization.setBattles(civilization.getBattles()+1);
             Battle battle = new Battle((ArrayList<MilitaryUnit>)civilization.getArmy().clone(), (ArrayList<MilitaryUnit>)NextEnemyArmy.clone());

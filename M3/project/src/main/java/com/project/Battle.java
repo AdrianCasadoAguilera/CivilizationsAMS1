@@ -33,8 +33,8 @@ public class Battle {
         this.initialEnemyArmySize = enemyArmy.size();
         civilizationTotalLoses = 0;
         enemyTotalLoses = 0;
-        civilizationLoses = new ArrayList<>(Arrays.asList(0,0,0));
-        enemyLoses = new ArrayList<>(Arrays.asList(0,0,0));
+        civilizationLoses = new ArrayList<>(Arrays.asList(0,0,0,0));
+        enemyLoses = new ArrayList<>(Arrays.asList(0,0,0,0));
     }
 
     public ArrayList<ArrayList<MilitaryUnit>> orderByUnitType(ArrayList<MilitaryUnit> army) {
@@ -137,7 +137,9 @@ public class Battle {
             enemyLoses.set(0, enemyLoses.get(0) + defenseUnit.getFoodCost());
             enemyLoses.set(1, enemyLoses.get(1) + defenseUnit.getWoodCost());
             enemyLoses.set(2, enemyLoses.get(2) + defenseUnit.getIronCost());
+            enemyLoses.set(3, enemyLoses.get(3) + defenseUnit.getManaCost());
 
+            enemyTotalLoses += defenseUnit.getManaCost()*1.5;
             enemyTotalLoses += defenseUnit.getIronCost();
             enemyTotalLoses += defenseUnit.getWoodCost()/5;
             enemyTotalLoses += defenseUnit.getFoodCost()/10;
@@ -146,7 +148,9 @@ public class Battle {
             civilizationLoses.set(0, civilizationLoses.get(0) + defenseUnit.getFoodCost());
             civilizationLoses.set(1, civilizationLoses.get(1) + defenseUnit.getWoodCost());
             civilizationLoses.set(2, civilizationLoses.get(2) + defenseUnit.getIronCost());
+            civilizationLoses.set(3, civilizationLoses.get(3) + defenseUnit.getManaCost());
 
+            civilizationTotalLoses += defenseUnit.getManaCost()*1.5;
             civilizationTotalLoses += defenseUnit.getIronCost();
             civilizationTotalLoses += defenseUnit.getWoodCost()/5;
             civilizationTotalLoses += defenseUnit.getFoodCost()/10;
@@ -257,18 +261,20 @@ public class Battle {
         //Cost
         sb.append(String.format("%-" + (25+6+10+40) + "s", "Cost Army Civilization"));
         sb.append(String.format("%-" + 25 + "s", "Cost Army Enemy") + "\n");
-        ArrayList<Integer> civCost = new ArrayList<>(Arrays.asList(0,0,0));
-        ArrayList<Integer> enemyCost = new ArrayList<>(Arrays.asList(0,0,0));
+        ArrayList<Integer> civCost = new ArrayList<>(Arrays.asList(0,0,0,0));
+        ArrayList<Integer> enemyCost = new ArrayList<>(Arrays.asList(0,0,0,0));
         System.out.println(enemyArmy.size());
         for (MilitaryUnit unit : civilizationArmy) {
             civCost.set(0, civCost.get(0) + unit.getFoodCost());
             civCost.set(1, civCost.get(1) + unit.getWoodCost());
             civCost.set(2, civCost.get(2) + unit.getIronCost());
+            civCost.set(3, civCost.get(3) + unit.getManaCost());
         }
         for (MilitaryUnit unit :enemyArmy) {
             enemyCost.set(0, enemyCost.get(0) + unit.getFoodCost());
             enemyCost.set(1, enemyCost.get(1) + unit.getWoodCost());
             enemyCost.set(2, enemyCost.get(2) + unit.getIronCost());
+            enemyCost.set(3, enemyCost.get(3) + unit.getManaCost());
         }
         sb.append(String.format("%-" + (25+6+10+40) + "s", "Food: " + civCost.get(0)));
         sb.append(String.format("%-" + 25 + "s", "Food: " + enemyCost.get(0)) + "\n");
@@ -276,16 +282,21 @@ public class Battle {
         sb.append(String.format("%-" + 25 + "s", "Wood: " + enemyCost.get(1)) + "\n");
         sb.append(String.format("%-" + (25+6+10+40) + "s", "Iron: " + civCost.get(2)));
         sb.append(String.format("%-" + 25 + "s", "Iron: " + enemyCost.get(2)) + "\n");
+        sb.append(String.format("%-" + (25+6+10+40) + "s", "Mana: " + civCost.get(3)));
+        sb.append(String.format("%-" + 25 + "s", "Mana: " + enemyCost.get(3)) + "\n");
         sb.append("*".repeat(25+6+10+40+25+6+10) + "\n");
         //Losses
         sb.append(String.format("%-" + (25+6+10+40) + "s", "Losses Army Civilization"));
         sb.append(String.format("%-" + 25 + "s", "Losses Army Enemy") + "\n");
-        sb.append(String.format("%-" + (25+6+10+40) + "s", "Food: " + civilizationTotalLoses));
-        sb.append(String.format("%-" + 25 + "s", "Food: " + enemyTotalLoses) + "\n");
-        sb.append(String.format("%-" + (25+6+10+40) + "s", "Wood: " + civilizationTotalLoses/5));
-        sb.append(String.format("%-" + 25 + "s", "Wood: " + enemyTotalLoses/5) + "\n");
-        sb.append(String.format("%-" + (25+6+10+40) + "s", "Iron: " + civilizationTotalLoses/10));
-        sb.append(String.format("%-" + 25 + "s", "Iron: " + enemyTotalLoses/10) + "\n");
+        sb.append(String.format("%-" + (25+6+10+40) + "s", "Food: " + civilizationLoses.get(0)));
+        sb.append(String.format("%-" + 25 + "s", "Food: " + enemyLoses.get(0)) + "\n");
+        sb.append(String.format("%-" + (25+6+10+40) + "s", "Wood: " + civilizationLoses.get(1)));
+        sb.append(String.format("%-" + 25 + "s", "Wood: " + enemyLoses.get(1)) + "\n");
+        sb.append(String.format("%-" + (25+6+10+40) + "s", "Iron: " + civilizationLoses.get(2)));
+        sb.append(String.format("%-" + 25 + "s", "Iron: " + enemyLoses.get(2)) + "\n");
+        sb.append(String.format("%-" + (25+6+10+40) + "s", "Mana: " + civilizationLoses.get(3)));
+        sb.append(String.format("%-" + 25 + "s", "Mana: " + enemyLoses.get(3)) + "\n");
+
         sb.append("*".repeat(25+6+10+40+25+6+10) + "\n");
         //Waste Generated
         sb.append(String.format("%-" + (25+6+10+40) + "s", "Waste Generated") + "\n");
