@@ -5,13 +5,6 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.CountDownLatch;
-
-import com.project.UI.MainWindow;
-import javax.swing.*;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Main {
     public static Timer timer;
@@ -37,12 +30,12 @@ public class Main {
     public static int ActiveSave = -1;
 
     public static void main(String[] args) {
-        timer = new Timer();
+        /*timer = new Timer();
         timer.schedule(MainLoop, 0, 1000/UPS);
         stopped = true;
         civilization = Civilization.getInstance();
         saves = Saves.getInstance();
-        stopped = false;
+        stopped = false;*/
 
         /*SwingUtilities.invokeLater(()->{
             new MainWindow().setVisible(true);
