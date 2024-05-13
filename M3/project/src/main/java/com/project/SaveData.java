@@ -3,6 +3,7 @@ package com.project;
 import java.util.ArrayList;
 
 public class SaveData {
+    private String name;
     private int saveId;
     //resources
     private int wood;

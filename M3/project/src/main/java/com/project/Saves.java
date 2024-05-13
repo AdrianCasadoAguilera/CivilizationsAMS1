@@ -1,6 +1,7 @@
 package com.project;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Saves {
     public static Saves instance;
@@ -59,8 +60,9 @@ public class Saves {
         savedata.remove(index);
     }
 
-    public int AddNewSaveData() {
+    public int AddNewSaveData(String name) {
         SaveData save = new SaveData();
+        save.setName(name);
         save.setFood(0);
         save.setMana(0);
         save.setIron(0);
@@ -76,7 +78,7 @@ public class Saves {
         save.setTechnologyDefense(0);
 
         save.setBattleTimer(0);
-        save.setNextBattleIn(/*120 + new Random().nextInt(300 - 120 + 1)*/5);
+        save.setNextBattleIn(120 + new Random().nextInt(300 - 120 + 1));
 
         save.setWave(0);
         save.setBattles(new ArrayList<>());
