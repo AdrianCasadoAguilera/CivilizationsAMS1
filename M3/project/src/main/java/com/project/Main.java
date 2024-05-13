@@ -194,7 +194,7 @@ public class Main {
     private static void ContinueMenu() {
         while (true) {
             for (int i = 0; i < saves.GetSaveCount(); i++) {
-                System.out.println(i + 1 + "Save number " + (i+1));
+                System.out.println(i + 1 + " Save number " + (i+1));
             }
             System.out.println("0. Back");
             System.out.print("Choose an option: ");
