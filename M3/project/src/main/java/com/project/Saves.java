@@ -1,7 +1,6 @@
 package com.project;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Saves {
     public static Saves instance;
@@ -24,11 +23,23 @@ public class Saves {
     }
 
     public void LoadSavesFromDB() {
-        
+        CivilizationDao dao = new CivilizationDao();
+        ArrayList<SaveData> saves = dao.getSaves();
+        for (SaveData save : saves) {
+            savedata.add(save);
+        }
     }
-
+    
     public void SaveDataToDB(int index) {
-        
+        CivilizationDao dao = new CivilizationDao();
+        SaveData data = savedata.get(index);
+        dao.updateSave(data);
+    }
+    
+    private void DeleleSaveFromDB(int index) {
+        CivilizationDao dao = new CivilizationDao();
+        SaveData data = savedata.get(index);
+        dao.deleteSave(data);
     }
 
     public void UpdateSaveData(int index) {
@@ -43,6 +54,8 @@ public class Saves {
     }
 
     public void DeleteSaveData(int index) {
+        //On DB
+        DeleleSaveFromDB(index);
         savedata.remove(index);
     }
 
@@ -70,11 +83,8 @@ public class Saves {
         save.setOwnArmy(new ArrayList<>());
         save.setEnemyArmy(new ArrayList<>());
 
-        //TODO INSERT IN DB
-        /*
-        * int id from DAO
-        * save.setSaveId(id);
-        */
+        CivilizationDao dao = new CivilizationDao();
+        dao.addSave(save);
         savedata.add(save);
         return savedata.size() - 1;
     }

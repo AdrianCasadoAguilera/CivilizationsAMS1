@@ -30,6 +30,7 @@ public class Main {
     public static int ActiveSave = -1;
 
     public static void main(String[] args) {
+        AppData data = AppData.getInstance();
         timer = new Timer();
         timer.schedule(MainLoop, 0, 1000/UPS);
         stopped = true;
@@ -43,6 +44,8 @@ public class Main {
 
         MainMenu();
         timer.cancel();
+        data.close();
+        input.close();
     }
 
     private static void clearConsole() {
