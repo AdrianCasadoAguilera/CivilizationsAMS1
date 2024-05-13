@@ -60,7 +60,7 @@ public class MainWindow extends JFrame {
     }
 
     private void setController(){
-        new Controller(mainView, statsView, cardLayout, cards);
+        new Controller(startView ,mainView, statsView, cardLayout, cards);
     }
 
     private void updateResources(){

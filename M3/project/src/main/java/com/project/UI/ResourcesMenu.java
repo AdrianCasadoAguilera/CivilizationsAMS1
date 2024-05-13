@@ -46,7 +46,7 @@ public class ResourcesMenu extends JPanel {
 
     private void uploadImages(){ 
         File resourcesFile;
-        String route = "./project/src/main/java/com/project/UI/src/";
+        String route = "./M3/project/src/main/java/com/project/UI/src/";
         // Construir la ruta del archivo utilizando la clase File
         resourcesFile = new File(route,"resources_food.png");
         foodIcon = new ImageIcon(new ImageIcon(resourcesFile.getAbsolutePath()).getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT));

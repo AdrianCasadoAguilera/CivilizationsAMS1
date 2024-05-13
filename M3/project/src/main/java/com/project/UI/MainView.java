@@ -8,6 +8,7 @@ import java.awt.*;
 public class MainView extends View {
     
     public JButton seeStats;
+    public JButton returnMenu;
     private ResourcesMenu rsc;
 
     public MainView(Model model){
@@ -21,7 +22,9 @@ public class MainView extends View {
     private void setOptions(){
         JPanel options = new JPanel();
             seeStats = new JButton("See Stats");
+            returnMenu = new JButton("Back to Menu");
         options.add(seeStats);
+        options.add(returnMenu);
 
         add(options,BorderLayout.SOUTH);
     }

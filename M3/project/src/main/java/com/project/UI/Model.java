@@ -19,5 +19,7 @@ public class Model {
     public void update(){
         this.wood = civilization.getWood();
         this.food = civilization.getFood();
+        this.iron = civilization.getIron();
+        this.mana = civilization.getMana();
     }
 }
