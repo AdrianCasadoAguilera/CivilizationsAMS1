@@ -2,9 +2,12 @@ package com.project;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
+import oracle.security.o3logon.a;
 import oracle.sql.NUMBER;
 
 import java.sql.*;
@@ -59,7 +62,141 @@ public class CivilizationDao {
     }
 
     public ArrayList<SaveData> getSaves() {
-       return null;
+       ArrayList<SaveData> saves = new ArrayList<SaveData>();
+       AppData db = AppData.getInstance();
+       List<Map<String, Object>> savesList = db.query("SELECT * FROM civilization_stats;");
+       for (Map<String, Object> save : savesList) {
+            SaveData newSave = new SaveData();
+            newSave.setSaveId((int) save.get("id"));
+            newSave.setName((String) save.get("name"));
+            newSave.setWood((int) save.get("wood_amount"));
+            newSave.setIron((int) save.get("iron_amount"));
+            newSave.setFood((int) save.get("food_amount"));
+            newSave.setMana((int) save.get("mana_amount"));
+            newSave.setMagicTower((int) save.get("magicTower_counter"));
+            newSave.setChurch((int) save.get("church_counter"));
+            newSave.setFarm((int) save.get("farm_counter"));
+            newSave.setSmithy((int) save.get("smithy_counter"));
+            newSave.setCarpentry((int) save.get("carpentry_counter"));
+            newSave.setTechnologyDefense((int) save.get("technology_defence_level"));
+            newSave.setTechnologyAttack((int) save.get("technology_attack_level"));
+            newSave.setWave((int) save.get("battles_counter"));
+            newSave.setBattleTimer((int) save.get("battle_timer"));
+            newSave.setNextBattleIn((int) save.get("NextBattleIn"));
+            //OwnArmy
+            ArrayList<MilitaryUnit> army = new ArrayList<MilitaryUnit>();
+            List<Map<String, Object>> armyList = db.query("SELECT * FROM units WHERE civilization_id = " + newSave.getSaveId() + ";");
+            for (Map<String, Object> unit : armyList) {
+                MilitaryUnit armyUnit = getNewUnit(UnitTypes.valueOf((String) unit.get("type")));
+                armyUnit.setExperience((int) unit.get("experience"));
+                army.add(armyUnit);
+            }
+            newSave.setOwnArmy(army);
+            //EnemyArmy
+            ArrayList<MilitaryUnit> enemyArmy = new ArrayList<MilitaryUnit>();
+            List<Map<String, Object>> enemyArmyList = db.query("SELECT * FROM enemy_unit WHERE civilization_id = " + newSave.getSaveId() + ";");
+            for (Map<String, Object> unit : enemyArmyList) {
+                MilitaryUnit enemyUnit = getNewUnit(UnitTypes.valueOf((String) unit.get("type")));
+                enemyUnit.setExperience((int) unit.get("experience"));
+                enemyArmy.add(enemyUnit);
+            }
+            newSave.setEnemyArmy(enemyArmy);
+            //Battles
+            //battles_stats
+            ArrayList<Battle> battles = new ArrayList<Battle>();
+            List<Map<String, Object>> battlesList = db.query("SELECT * FROM battles_stats WHERE civilization_id = " + newSave.getSaveId() + " order by id asc;");
+            for (Map<String,Object> battle : battlesList) {
+                Battle newBattle = new Battle();
+                newBattle.setWoodWaste((int) battle.get("wood_acquired"));
+                newBattle.setIronWaste((int) battle.get("iron_acquired"));
+                newBattle.setWin((boolean) battle.get("win"));
+                NUMBER[] civilizationLoses = (NUMBER[]) battle.get("civilizationLoses");
+                NUMBER[] enemyLoses = (NUMBER[]) battle.get("EnemyLoses");
+                ArrayList<Integer> civilizationLosesInt = new ArrayList<>();
+                for (int i = 0; i < 4; i++) {
+                    try {
+                        civilizationLosesInt.add(civilizationLoses[i].intValue());
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+                newBattle.setCivilizationLoses(civilizationLosesInt);
+                ArrayList<Integer> enemyLosesInt = new ArrayList<>();
+                for (int i = 0; i < 4; i++) {
+                    try {
+                        enemyLosesInt.add(enemyLoses[i].intValue());
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+                newBattle.setEnemyLoses(enemyLosesInt);
+                //civilization_unit_stats
+                List<Map<String, Object>> civilizationUnitStats = db.query("SELECT * FROM civilization_unit_stats WHERE num_battle = " + battle.get("id") + " and civilization_id = " + newSave.getSaveId() + ";");
+                for (Map<String, Object> unitStats : civilizationUnitStats) {
+                    ArrayList<MilitaryUnit> initialUnits = new ArrayList<>();
+                    ArrayList<MilitaryUnit> dropsUnits = new ArrayList<>();
+                    int initial = (int)unitStats.get("initial");
+                    int drops = (int)unitStats.get("drops");
+                    for (int i = 0; i < initial; i++) {
+                        initialUnits.add(getNewUnit(UnitTypes.valueOf((String) unitStats.get("type"))));
+                    }
+                    for (int i = 0; i < drops; i++) {
+                        dropsUnits.add(getNewUnit(UnitTypes.valueOf((String) unitStats.get("type"))));
+                    }
+                    newBattle.setCivilizationArmy(initialUnits);
+                    ArrayList<ArrayList<MilitaryUnit>> orderDrops = newBattle.orderByUnitType(dropsUnits);
+                    newBattle.setCivilizationArmyOrdered(orderDrops);
+
+                }
+                //enemy_unit_stats
+                List<Map<String, Object>> enemyUnitStats = db.query("SELECT * FROM enemy_unit_stats WHERE num_battle = " + battle.get("id") + " and civilization_id = " + newSave.getSaveId() + ";");
+                for (Map<String, Object> unitStats : enemyUnitStats) {
+                    ArrayList<MilitaryUnit> initialUnits = new ArrayList<>();
+                    ArrayList<MilitaryUnit> dropsUnits = new ArrayList<>();
+                    int initial = (int)unitStats.get("initial");
+                    int drops = (int)unitStats.get("drops");
+                    for (int i = 0; i < initial; i++) {
+                        initialUnits.add(getNewUnit(UnitTypes.valueOf((String) unitStats.get("type"))));
+                    }
+                    for (int i = 0; i < drops; i++) {
+                        dropsUnits.add(getNewUnit(UnitTypes.valueOf((String) unitStats.get("type"))));
+                    }
+                    newBattle.setEnemyArmy(initialUnits);
+                    ArrayList<ArrayList<MilitaryUnit>> orderDrops = newBattle.orderByUnitType(dropsUnits);
+                    newBattle.setEnemyArmyOrdered(orderDrops);
+                }
+                //battle_log
+                List<Map<String, Object>> battleLog = db.query("SELECT * FROM battle_log WHERE num_battle = " + battle.get("id") + "and civilization_id = " + newSave.getSaveId() + ";");
+                newBattle.setDetailedReport((String)battleLog.get(0).get("log_entry"));
+                battles.add(newBattle);
+            }
+        }
+        return saves;
+    }
+
+    private MilitaryUnit getNewUnit(UnitTypes type) {
+        switch (type) {
+            case SWORDSMAN:
+                return new Swordsman();
+            case SPEARMAN:
+                return new Spearman();
+            case CROSSBOW:
+                return new Crossbow();
+            case CANNON:
+                return new Cannon();
+            case ARROWTOWER:
+                return new ArrowTower();
+            case CATAPULT:
+                return new Catapult();
+            case ROCKETLAUNCHERTOWER:
+                return new RocketLauncherTower();
+            case MAGICIAN:
+                return new Magician();
+            case PRIEST:
+                return new Priest();
+            default:
+                throw new IllegalStateException("Unexpected value: " + type);
+        }
     }
 
     public void updateSave(SaveData save) {

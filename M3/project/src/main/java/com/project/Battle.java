@@ -40,6 +40,13 @@ public class Battle {
         enemyLoses = new ArrayList<>(Arrays.asList(0,0,0,0));
     }
 
+    public Battle() {
+        civilizationTotalLoses = 0;
+        enemyTotalLoses = 0;
+        civilizationLoses = new ArrayList<>(Arrays.asList(0,0,0,0));
+        enemyLoses = new ArrayList<>(Arrays.asList(0,0,0,0));
+    }
+
     public ArrayList<ArrayList<MilitaryUnit>> orderByUnitType(ArrayList<MilitaryUnit> army) {
         ArrayList<ArrayList<MilitaryUnit>> result = new ArrayList<>();
         for (int i = 0; i < 9; i++) {
@@ -376,6 +383,10 @@ public class Battle {
     }
 
     
+    public void setDetailedReport(String deteiledReport) {
+        DeteiledReport = deteiledReport;
+    }
+
     public int getWoodWaste() {
         return WoodWaste;
     }
@@ -383,8 +394,6 @@ public class Battle {
     public void setWoodWaste(int woodWaste) {
         WoodWaste = woodWaste;
     }
-
-
     
     public int getIronWaste() {
         return IronWaste;
