@@ -224,7 +224,6 @@ public class Main {
                     System.out.println("Invalid option");
                     break;
             }
-        
         }
     }
 
