@@ -39,6 +39,7 @@ public class CivilizationDao {
         sql += save.getWave() + ",";
         sql += save.getBattleTimer() + ",";
         sql += save.getNextBattleIn() + ");";
+        System.out.println(sql);
         int civId = db.insertAndGetId(sql);
         save.setSaveId(civId);
         //Battles
@@ -46,13 +47,13 @@ public class CivilizationDao {
         //OwnArmy
             //We start with no army
         //EnemyArmy
-        for (MilitaryUnit unit : save.getEnemyArmy()) {
+        /*for (MilitaryUnit unit : save.getEnemyArmy()) {
             sql = "INSERT INTO enemy_unit  (civilization_id, type,experience) VALUES (";
             sql += civId + ",";
             sql += "'" + unit.getType() + "',";
             sql += unit.getExperience() + ");";
             db.update(sql);
-        }
+        }*/
     }
 
     public ArrayList<SaveData> getSaves() {

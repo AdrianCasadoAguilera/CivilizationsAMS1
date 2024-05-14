@@ -9,11 +9,11 @@ import java.util.Map;
 class AppData {
     private static AppData instance;
     private Connection conn;
-    private String HostName = "";
-    private String Port = "";
-    private String DatabaseName = "";
-    private String Username = "";
-    private String Password = "";
+    private String HostName = "localhost";
+    private String Port = "1521";
+    private String DatabaseName = "xe";
+    private String Username = "botiga";
+    private String Password = "botiga";
 
     private AppData() {
         // Connecta al crear la primera instància
@@ -36,7 +36,7 @@ class AppData {
         } catch (SQLException e) {
             System.out.println("Error conecting to the database");
             System.out.println(e.getMessage());
-            //System.exit(0);
+            System.exit(0);
         }
     }
 
