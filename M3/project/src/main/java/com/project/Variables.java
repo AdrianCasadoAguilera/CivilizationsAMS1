@@ -1,6 +1,7 @@
 package com.project;
 
 public interface Variables {
+
     // resources available to create the first enemy fleet
     public final int IRON_BASE_ENEMY_ARMY = 26000;
     public final int WOOD_BASE_ENEMY_ARMY = 180000;
@@ -111,6 +112,8 @@ public interface Variables {
     public final int ARMOR_ARROWTOWER = 200;
     public final int ARMOR_CATAPULT = 1200;
     public final int ARMOR_ROCKETLAUNCHERTOWER = 7000;
+    // number of units a priest sanctifies 
+    public final int NUMBER_OF_UNITS_SANCTIFIED_BY_PRIEST = 5;
     //Attack Units armor increase percentage per tech level
     public final int PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY = 5;
     public final int PLUS_ARMOR_SPEARMAN_BY_TECHNOLOGY = 5;

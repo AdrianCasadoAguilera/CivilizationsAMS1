@@ -9,7 +9,7 @@ public class Saves {
 
     private Saves() {
         savedata = new ArrayList<>();
-        LoadSavesFromDB();
+        //LoadSavesFromDB();
     }
 
     public static Saves getInstance() {
@@ -24,11 +24,23 @@ public class Saves {
     }
 
     public void LoadSavesFromDB() {
-        
+        /*CivilizationDao dao = new CivilizationDao();
+        ArrayList<SaveData> saves = dao.getSaves();
+        for (SaveData save : saves) {
+            savedata.add(save);
+        }*/
     }
-
+    
     public void SaveDataToDB(int index) {
-        
+        /*CivilizationDao dao = new CivilizationDao();
+        SaveData data = savedata.get(index);
+        dao.updateSave(data);*/
+    }
+    
+    private void DeleleSaveFromDB(int index) {
+        /*CivilizationDao dao = new CivilizationDao();
+        SaveData data = savedata.get(index);
+        dao.deleteSave(data);*/
     }
 
     public void UpdateSaveData(int index) {
@@ -43,11 +55,14 @@ public class Saves {
     }
 
     public void DeleteSaveData(int index) {
+        //On DB
+        DeleleSaveFromDB(index);
         savedata.remove(index);
     }
 
-    public int AddNewSaveData() {
+    public int AddNewSaveData(String name) {
         SaveData save = new SaveData();
+        save.setName(name);
         save.setFood(0);
         save.setMana(0);
         save.setIron(0);
@@ -63,18 +78,15 @@ public class Saves {
         save.setTechnologyDefense(0);
 
         save.setBattleTimer(0);
-        save.setNextBattleIn(/*120 + new Random().nextInt(300 - 120 + 1)*/5);
+        save.setNextBattleIn(120 + new Random().nextInt(300 - 120 + 1));
 
         save.setWave(0);
         save.setBattles(new ArrayList<>());
         save.setOwnArmy(new ArrayList<>());
-        save.setEnemyArmy(new ArrayList<>());
+        save.setEnemyArmy(Main.NextEnemyArmy);
 
-        //TODO INSERT IN DB
-        /*
-        * int id from DAO
-        * save.setSaveId(id);
-        */
+        /*CivilizationDao dao = new CivilizationDao();
+        dao.addSave(save);*/
         savedata.add(save);
         return savedata.size() - 1;
     }

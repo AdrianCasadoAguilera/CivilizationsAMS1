@@ -3,6 +3,7 @@ package com.project;
 import java.util.ArrayList;
 
 public class SaveData {
+    private String name;
     private int saveId;
     //resources
     private int wood;
@@ -222,5 +223,13 @@ public class SaveData {
 
     public void setNextBattleIn(int nextBattleIn) {
         NextBattleIn = nextBattleIn;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -7,16 +7,19 @@ import java.util.Arrays;
 public class Battle {
     private ArrayList<MilitaryUnit> civilizationArmy;
     private ArrayList<MilitaryUnit> enemyArmy;
+
     private ArrayList<ArrayList<MilitaryUnit>> civilizationArmyOrdered;
     private ArrayList<ArrayList<MilitaryUnit>> enemyArmyOrdered;
+    
     private int initialCivilizationArmySize;
     private int initialEnemyArmySize;
 
     private int WoodWaste;
     private int IronWaste;
 
-    private ArrayList<Integer> civilizationLoses = new ArrayList<>(); //Food, Wood, Iron
-    private ArrayList<Integer> enemyLoses = new ArrayList<>(); //Food, Wood, Iron
+    private ArrayList<Integer> civilizationLoses = new ArrayList<>(); //Food, Wood, Iron, Mana
+    private ArrayList<Integer> enemyLoses = new ArrayList<>(); //Food, Wood, Iron, Mana
+
     private int civilizationTotalLoses;
     private int enemyTotalLoses;
 
@@ -31,6 +34,13 @@ public class Battle {
         this.enemyArmyOrdered = orderByUnitType(enemyArmy);
         this.initialCivilizationArmySize = civilizationArmy.size();
         this.initialEnemyArmySize = enemyArmy.size();
+        civilizationTotalLoses = 0;
+        enemyTotalLoses = 0;
+        civilizationLoses = new ArrayList<>(Arrays.asList(0,0,0,0));
+        enemyLoses = new ArrayList<>(Arrays.asList(0,0,0,0));
+    }
+
+    public Battle() {
         civilizationTotalLoses = 0;
         enemyTotalLoses = 0;
         civilizationLoses = new ArrayList<>(Arrays.asList(0,0,0,0));
@@ -84,6 +94,18 @@ public class Battle {
         boolean turn = random.nextBoolean();
         
         if (civilizationArmy.size() > 0) {
+            if (civilizationArmyOrdered.get(8).size() > 0) {
+                ArrayList<MilitaryUnit> civSacntifiedUnits = SampleUnits(civilizationArmy,Variables.SANCTIFIED_AMOUNT_PER_PRIEST*civilizationArmyOrdered.get(8).size());
+                for (MilitaryUnit unit : civSacntifiedUnits) {
+                    unit.setSanctified(true);
+                }
+            }
+            if (enemyArmyOrdered.get(8).size() > 0) {
+                ArrayList<MilitaryUnit> enemySacntifiedUnits = SampleUnits(enemyArmy, Variables.SANCTIFIED_AMOUNT_PER_PRIEST*enemyArmyOrdered.get(8).size());
+                for (MilitaryUnit unit : enemySacntifiedUnits) {
+                    unit.setSanctified(true);
+                }
+            }
             while (CountUnits(civilizationArmyOrdered) > 0 && CountUnits(enemyArmyOrdered) > 0 &&   
             (CountUnits(civilizationArmyOrdered) > initialCivilizationArmySize*0.2 || CountUnits(enemyArmyOrdered) > initialEnemyArmySize *0.2)) {
                 AddLineToDeteiledReport("********************CHANGE ATTACKER********************");
@@ -336,11 +358,105 @@ public class Battle {
         }
         //heal remaing army
         //army experience
+        //army unsanctify
         for (MilitaryUnit unit : armyAfter) {
             unit.resetArmor();
             unit.setExperience(unit.getExperience() + 1);
+            unit.setSanctified(false);
         }
         //set civilizations army
         civilization.setArmy(armyAfter);
     }
+
+    public ArrayList<MilitaryUnit> SampleUnits(ArrayList<MilitaryUnit> units, int amount) {
+        ArrayList<MilitaryUnit> sample = new ArrayList<>();
+        ArrayList<MilitaryUnit> untsLeft = units;
+        Random random = new Random();
+        if (amount > units.size())
+            return units;
+        for (int i = 0; i < amount; i++) {
+            int index = random.nextInt(untsLeft.size());
+            sample.add(untsLeft.get(index));
+            untsLeft.remove(index);
+        }
+        return sample;
+    }
+
+    
+    public void setDetailedReport(String deteiledReport) {
+        DeteiledReport = deteiledReport;
+    }
+
+    public int getWoodWaste() {
+        return WoodWaste;
+    }
+
+    public void setWoodWaste(int woodWaste) {
+        WoodWaste = woodWaste;
+    }
+    
+    public int getIronWaste() {
+        return IronWaste;
+    }
+
+    public void setIronWaste(int ironWaste) {
+        IronWaste = ironWaste;
+    }
+
+    public boolean isWin() {
+        return Win;
+    }
+
+    public void setWin(boolean win) {
+        Win = win;
+    }
+
+    public ArrayList<Integer> getCivilizationLoses() {
+        return civilizationLoses;
+    }
+
+    public void setCivilizationLoses(ArrayList<Integer> civilizationLoses) {
+        this.civilizationLoses = civilizationLoses;
+    }
+
+    public ArrayList<Integer> getEnemyLoses() {
+        return enemyLoses;
+    }
+
+    public void setEnemyLoses(ArrayList<Integer> enemyLoses) {
+        this.enemyLoses = enemyLoses;
+    }
+
+    public ArrayList<MilitaryUnit> getCivilizationArmy() {
+        return civilizationArmy;
+    }
+
+    public void setCivilizationArmy(ArrayList<MilitaryUnit> civilizationArmy) {
+        this.civilizationArmy = civilizationArmy;
+    }
+
+    public ArrayList<MilitaryUnit> getEnemyArmy() {
+        return enemyArmy;
+    }
+
+    public void setEnemyArmy(ArrayList<MilitaryUnit> enemyArmy) {
+        this.enemyArmy = enemyArmy;
+    }
+
+    public ArrayList<ArrayList<MilitaryUnit>> getCivilizationArmyOrdered() {
+        return civilizationArmyOrdered;
+    }
+
+    public void setCivilizationArmyOrdered(ArrayList<ArrayList<MilitaryUnit>> civilizationArmyOrdered) {
+        this.civilizationArmyOrdered = civilizationArmyOrdered;
+    }
+
+    public ArrayList<ArrayList<MilitaryUnit>> getEnemyArmyOrdered() {
+        return enemyArmyOrdered;
+    }
+
+    public void setEnemyArmyOrdered(ArrayList<ArrayList<MilitaryUnit>> enemyArmyOrdered) {
+        this.enemyArmyOrdered = enemyArmyOrdered;
+    }
+
 }

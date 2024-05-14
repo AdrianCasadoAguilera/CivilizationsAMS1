@@ -32,6 +32,7 @@ public class Main {
     public static int ActiveSave = -1;
 
     public static void main(String[] args) {
+        AppData data = AppData.getInstance();
         timer = new Timer();
         timer.schedule(MainLoop, 0, 1000/UPS);
         stopped = true;
@@ -43,6 +44,8 @@ public class Main {
 
         MainMenu();
         timer.cancel();
+        data.close();
+        input.close();
     }
 
     private static void clearConsole() {
@@ -94,6 +97,45 @@ public class Main {
             if (ActiveMenu == "Main")
                 System.out.println("\n\nA battle Happened\n");
         }
+    }
+    
+    public static ArrayList<MilitaryUnit> NewEnemyArmy() {
+        ArrayList<MilitaryUnit> result = new ArrayList<>();
+        int food = Variables.FOOD_BASE_ENEMY_ARMY;
+        int wood = Variables.WOOD_BASE_ENEMY_ARMY;
+        int iron = Variables.IRON_BASE_ENEMY_ARMY;
+        /*Para crear el ejército enemigo, dispondremos de unos recursos iniciales, que conforme vayan
+        sucediendo batallas, serán mayores .
+        Iremos creando unidades enemigas aleatoriamente pero con las siguientes probabilidades:
+        Swordsman 35%, Spearman 25%, Crossbow 20%, Cannon 20%.
+        Mientras tengamos suficientes recursos para crear la unidad con menor coste, es decir, Swordsman
+        iremos creando unidades aleatoriamente según las probabilidades anteriores. */
+        Random random = new Random();
+        while (food >= Variables.FOOD_COST_SWORDSMAN && wood >= Variables.WOOD_COST_SWORDSMAN && iron >= Variables.IRON_COST_SWORDSMAN) {
+            int r = random.nextInt(100);
+            if (r < 35) {
+                food -= Variables.FOOD_COST_SWORDSMAN;
+                wood -= Variables.WOOD_COST_SWORDSMAN;
+                iron -= Variables.IRON_COST_SWORDSMAN;
+                result.add(new Swordsman());
+            } else if (r < 60) {
+                food -= Variables.FOOD_COST_SPEARMAN;
+                wood -= Variables.WOOD_COST_SPEARMAN;
+                iron -= Variables.IRON_COST_SPEARMAN;
+                result.add(new Spearman());
+            } else if (r < 80) {
+                food -= Variables.FOOD_COST_CROSSBOW;
+                wood -= Variables.WOOD_COST_CROSSBOW;
+                iron -= Variables.IRON_COST_CROSSBOW;
+                result.add(new Crossbow());
+            } else {
+                food -= Variables.FOOD_COST_CANNON;
+                wood -= Variables.WOOD_COST_CANNON;
+                iron -= Variables.IRON_COST_CANNON;
+                result.add(new Cannon());
+            }
+        }
+        return result;
     }
 
     private static void createEnemyArmy() {
@@ -165,7 +207,9 @@ public class Main {
                 case 0:
                     return;
                 case 1: 
-                    NewGame();
+                    System.out.println("Enter your name: ");
+                    String name = input.nextLine();
+                    NewGame(name);
                     clearConsole();
                     
                     break;
@@ -181,20 +225,18 @@ public class Main {
                     System.out.println("Invalid option");
                     break;
             }
-        
         }
     }
 
     private static void startUI(){
         SwingUtilities.invokeLater(()->{
             new MainWindow().setVisible(true);
-        });
+        })
     }
-
-    private static void NewGame() {
-        ActiveSave = saves.AddNewSaveData();
+    
+    private static void NewGame(String name) {
+        ActiveSave = saves.AddNewSaveData(name);
         saves.LoadSaveData(ActiveSave);
-        createEnemyArmy();
         MainGameMenu();
     }
 
@@ -290,6 +332,7 @@ public class Main {
                 }
             }catch (Exception e) {
                 if (error) {
+                    //System.out.println(e.getMessage());
                     System.out.println("\nInvalid option type");
                     menu = false;
                 }
