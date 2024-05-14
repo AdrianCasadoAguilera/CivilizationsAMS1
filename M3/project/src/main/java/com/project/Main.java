@@ -85,7 +85,7 @@ public class Main {
         civilization.GenerateResources(deltaTime);
         BattleTimer += deltaTime;
         if (BattleTimer >= NextBattleIn) {
-            NextBattleIn = 5;
+            NextBattleIn = 120 + new Random().nextInt(300 - 120 + 1);
             BattleTimer = 0;
             civilization.setBattles(civilization.getBattles()+1);
             Battle battle = new Battle((ArrayList<MilitaryUnit>)civilization.getArmy().clone(), (ArrayList<MilitaryUnit>)NextEnemyArmy.clone());

@@ -29,9 +29,9 @@ class AppData {
     }
 
     private void connect() {
-        String url = "jdbc:oracle:thin:@//" + HostName + ":" + Port + "/" + DatabaseName; // Nom de l'arxiu amb les dades 'dades.sqlite'
+        String url = "jdbc:oracle:thin:" + Username + "/" + Password + "@" + HostName + ":" + Port + ":" + DatabaseName;
         try {
-            conn = DriverManager.getConnection(url,Username,Password);
+            conn = DriverManager.getConnection(url);
             conn.setAutoCommit(false); // Desactiva l'autocommit per permetre control manual de transaccions
         } catch (SQLException e) {
             System.out.println("Error conecting to the database");
@@ -98,7 +98,6 @@ class AppData {
              ResultSet rs = stmt.executeQuery(sql)) {
             ResultSetMetaData metaData = rs.getMetaData();
             int columnCount = metaData.getColumnCount();
-
             while (rs.next()) {
                 Map<String, Object> row = new HashMap<>();
                 for (int i = 1; i <= columnCount; i++) {

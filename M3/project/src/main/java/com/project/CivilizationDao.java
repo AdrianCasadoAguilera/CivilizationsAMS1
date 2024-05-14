@@ -10,20 +10,8 @@ public class CivilizationDao {
 
     public void addSave(SaveData save) {
         AppData db = AppData.getInstance();
-        /*iron_amount NUMBER NOT NULL, 
-        food_amount NUMBER NOT NULL, 
-        mana_amount NUMBER NOT NULL, 
-        magicTower_counter NUMBER NOT NULL, 
-        church_counter NUMBER NOT NULL, 
-        farm_counter NUMBER NOT NULL, 
-        smithy_counter NUMBER NOT NULL, 
-        carpentry_counter NUMBER NOT NULL, 
-        technology_defence_level NUMBER, 
-        technology_attack_level NUMBER, 
-        battles_counter NUMBER,
-        --battle_timer NUMBER,
-        NextBattleIn */
-        String sql = "INSERT INTO civilization_stats (name,wood_amount,iron_amount,food_amount,mana_amount,magicTower_counter,church_counter,farm_counter,smithy_counter,carpentry_counter,technology_defence_level,technology_attack_level,battles_counter,battle_timer,NextBattleIn) VALUES (";
+        String sql = "INSERT INTO botiga.civilization_stats (civilization_id,name, wood_amount, iron_amount, food_amount, mana_amount, magicTower_counter, church_counter, farm_counter, smithy_counter, carpentry_counter, technology_defence_level, technology_attack_level, battles_counter, battle_timer, NextBattleIn) VALUES (9,'h',0,0,0,0,0,0,0,0,0,0,0,0,0.0,227);";
+        /*sql += 9 + ",";
         sql += "'" + save.getName() + "',";
         sql += save.getWood() + ",";
         sql += save.getIron() + ",";
@@ -38,10 +26,10 @@ public class CivilizationDao {
         sql += save.getTechnologyAttack() + ",";
         sql += save.getWave() + ",";
         sql += save.getBattleTimer() + ",";
-        sql += save.getNextBattleIn() + ");";
+        sql += save.getNextBattleIn() + ");";*/
         System.out.println(sql);
-        int civId = db.insertAndGetId(sql);
-        save.setSaveId(civId);
+        db.update(sql);
+        //save.setSaveId(civId);
         //Battles
             //Is eamty so we don't do anything
         //OwnArmy
