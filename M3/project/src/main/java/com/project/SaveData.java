@@ -224,4 +224,12 @@ public class SaveData {
     public void setNextBattleIn(int nextBattleIn) {
         NextBattleIn = nextBattleIn;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

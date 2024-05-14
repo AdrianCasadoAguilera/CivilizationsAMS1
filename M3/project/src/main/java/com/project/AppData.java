@@ -36,7 +36,7 @@ class AppData {
         } catch (SQLException e) {
             System.out.println("Error conecting to the database");
             System.out.println(e.getMessage());
-            System.exit(0);
+            //System.exit(0);
         }
     }
 

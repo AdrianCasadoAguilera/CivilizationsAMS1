@@ -2,15 +2,9 @@ package com.project;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-
-import oracle.security.o3logon.a;
 import oracle.sql.NUMBER;
-
-import java.sql.*;
 
 public class CivilizationDao {
 

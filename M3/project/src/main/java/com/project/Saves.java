@@ -9,7 +9,7 @@ public class Saves {
 
     private Saves() {
         savedata = new ArrayList<>();
-        LoadSavesFromDB();
+        //LoadSavesFromDB();
     }
 
     public static Saves getInstance() {
@@ -24,23 +24,23 @@ public class Saves {
     }
 
     public void LoadSavesFromDB() {
-        CivilizationDao dao = new CivilizationDao();
+        /*CivilizationDao dao = new CivilizationDao();
         ArrayList<SaveData> saves = dao.getSaves();
         for (SaveData save : saves) {
             savedata.add(save);
-        }
+        }*/
     }
     
     public void SaveDataToDB(int index) {
-        CivilizationDao dao = new CivilizationDao();
+        /*CivilizationDao dao = new CivilizationDao();
         SaveData data = savedata.get(index);
-        dao.updateSave(data);
+        dao.updateSave(data);*/
     }
     
     private void DeleleSaveFromDB(int index) {
-        CivilizationDao dao = new CivilizationDao();
+        /*CivilizationDao dao = new CivilizationDao();
         SaveData data = savedata.get(index);
-        dao.deleteSave(data);
+        dao.deleteSave(data);*/
     }
 
     public void UpdateSaveData(int index) {
@@ -83,10 +83,10 @@ public class Saves {
         save.setWave(0);
         save.setBattles(new ArrayList<>());
         save.setOwnArmy(new ArrayList<>());
-        save.setEnemyArmy(new ArrayList<>());
+        save.setEnemyArmy(Main.NextEnemyArmy);
 
-        CivilizationDao dao = new CivilizationDao();
-        dao.addSave(save);
+        /*CivilizationDao dao = new CivilizationDao();
+        dao.addSave(save);*/
         savedata.add(save);
         return savedata.size() - 1;
     }

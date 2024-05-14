@@ -326,6 +326,7 @@ public class Main {
                 }
             }catch (Exception e) {
                 if (error) {
+                    //System.out.println(e.getMessage());
                     System.out.println("\nInvalid option type");
                     menu = false;
                 }
