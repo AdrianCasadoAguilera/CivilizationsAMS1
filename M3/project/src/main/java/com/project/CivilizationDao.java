@@ -8,28 +8,32 @@ import oracle.sql.NUMBER;
 
 public class CivilizationDao {
 
+    private String title (String str) {
+        StringBuilder titleCase = new StringBuilder();
+        boolean nextTitleCase = true;
+
+        for (char c : str.toCharArray()) {
+            if (Character.isSpaceChar(c)) {
+                nextTitleCase = true;
+            } else if (nextTitleCase) {
+                c = Character.toTitleCase(c);
+                nextTitleCase = false;
+            } else {
+                c = Character.toLowerCase(c);
+            }
+            titleCase.append(c);
+        }
+
+        return titleCase.toString();
+    }
+
     public void addSave(SaveData save) {
-        /*    civilization_id NUMBER PRIMARY KEY AUTO-INCREMENT, 
-    name VARCHAR2(255), 
-    wood_amount NUMBER NOT NULL, 
-    iron_amount NUMBER NOT NULL, 
-    food_amount NUMBER NOT NULL, 
-    mana_amount NUMBER NOT NULL, 
-    magicTower_counter NUMBER NOT NULL, 
-    church_counter NUMBER NOT NULL, 
-    farm_counter NUMBER NOT NULL, 
-    smithy_counter NUMBER NOT NULL, 
-    carpentry_counter NUMBER NOT NULL, 
-    technology_defence_level NUMBER, 
-    technology_attack_level NUMBER, 
-    battles_counter NUMBER,
-    battle_timer NUMBER,
-    NextBattleIn NUMBER */
         Connection con = AppData.getConnection();
         String sql = "INSERT INTO civilization_stats (name, wood_amount, iron_amount, food_amount, mana_amount, magicTower_counter, church_counter, farm_counter, smithy_counter, carpentry_counter, technology_defence_level, technology_attack_level, battles_counter, battle_timer, NextBattleIn) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String sql2 = "SELECT civilization_id FROM civilization_stats ORDER BY civilization_id DESC FETCH FIRST 1 ROWS ONLY";
         PreparedStatement ps = null;
         ResultSet rs = null;
+        int civId = -1;
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, save.getName());
@@ -52,8 +56,8 @@ public class CivilizationDao {
             Statement s = con.createStatement();
             rs = s.executeQuery(sql2);
             if (rs.next()) {
-                int lastInsertedId = rs.getInt("civilization_id");
-                System.out.println("Last inserted ID: " + lastInsertedId);
+                civId = rs.getInt("civilization_id");
+                save.setSaveId(civId);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -65,13 +69,15 @@ public class CivilizationDao {
         //OwnArmy
             //We start with no army
         //EnemyArmy
-        /*for (MilitaryUnit unit : save.getEnemyArmy()) {
-            sql = "INSERT INTO enemy_unit  (civilization_id, type,experience) VALUES (";
+        AppData db = AppData.getInstance();
+        for (MilitaryUnit unit : save.getEnemyArmy()) {
+            sql = "INSERT INTO enemy_unit (civilization_id, type,experience) VALUES (";
             sql += civId + ",";
-            sql += "'" + unit.getType() + "',";
-            sql += unit.getExperience() + ");";
+            sql += "'" + title(unit.getType().toString()) + "',";
+            sql += unit.getExperience() + ")";
+            System.out.println(sql);
             db.update(sql);
-        }*/
+        }
     }
 
     public ArrayList<SaveData> getSaves() {

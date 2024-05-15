@@ -83,7 +83,9 @@ public class Saves {
         save.setWave(0);
         save.setBattles(new ArrayList<>());
         save.setOwnArmy(new ArrayList<>());
-        save.setEnemyArmy(Main.NewEnemyArmy());
+        ArrayList<MilitaryUnit> enemyArmy = Main.NewEnemyArmy();
+        System.out.println(enemyArmy);
+        save.setEnemyArmy(enemyArmy);
 
         CivilizationDao dao = new CivilizationDao();
         dao.addSave(save);

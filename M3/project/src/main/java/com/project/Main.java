@@ -84,7 +84,7 @@ public class Main {
         //Updates values about the civilization (resources, enemy army, battles)
         civilization.GenerateResources(deltaTime);
         BattleTimer += deltaTime;
-        if (BattleTimer >= NextBattleIn) {
+        /*if (BattleTimer >= NextBattleIn) {
             NextBattleIn = 120 + new Random().nextInt(300 - 120 + 1);
             BattleTimer = 0;
             civilization.setBattles(civilization.getBattles()+1);
@@ -96,7 +96,7 @@ public class Main {
             battlesFaugth.add(battle);
             if (ActiveMenu == "Main")
                 System.out.println("\n\nA battle Happened\n");
-        }
+        }*/
     }
     
     public static ArrayList<MilitaryUnit> NewEnemyArmy() {
@@ -179,7 +179,7 @@ public class Main {
     private static int CountUnitType(ArrayList<MilitaryUnit> army, UnitTypes unitType) {
         int count = 0;
         for (MilitaryUnit unit : army) {
-            if (unit.getType() == unitType) {
+            if (unit.getType().equals(unitType)) {
                 count++;
             }
         }
@@ -229,6 +229,7 @@ public class Main {
 
     private static void NewGame(String name) {
         ActiveSave = saves.AddNewSaveData(name);
+        NextEnemyArmy = null;
         saves.LoadSaveData(ActiveSave);
         MainGameMenu();
     }
@@ -537,8 +538,9 @@ public class Main {
             @Override
             public void run() {
                 clearConsole();
+                System.out.println(NextEnemyArmy);
                 System.out.println("Next Battle in " + formatTime(NextBattleIn-BattleTimer));
-                System.out.println("Swordsman: " + CountUnitType(NextEnemyArmy, UnitTypes.SPEARMAN));
+                System.out.println("Swordsman: " + CountUnitType(NextEnemyArmy, UnitTypes.SWORDSMAN));
                 System.out.println("Spearman: " + CountUnitType(NextEnemyArmy, UnitTypes.SPEARMAN));
                 System.out.println("Crossbow: " + CountUnitType(NextEnemyArmy, UnitTypes.CROSSBOW));
                 System.out.println("Cannon: " + CountUnitType(NextEnemyArmy, UnitTypes.CANNON));

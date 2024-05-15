@@ -45,7 +45,7 @@ public class SaveData {
         carpentry = civ.getCarpentry();
 
         ownArmy = (ArrayList<MilitaryUnit>)civ.getArmy().clone();
-        enemyArmy = Main.NextEnemyArmy;
+        enemyArmy = (ArrayList<MilitaryUnit>)Main.NextEnemyArmy.clone();
         battleTimer = Main.BattleTimer;
         NextBattleIn = Main.NextBattleIn;
         wave = civ.getBattles();
@@ -70,7 +70,7 @@ public class SaveData {
         civ.setCarpentry(carpentry);
 
         civ.setArmy(ownArmy);
-        Main.NextEnemyArmy = enemyArmy;
+        Main.NextEnemyArmy = (ArrayList<MilitaryUnit>)enemyArmy.clone();
         Main.BattleTimer = battleTimer;
         Main.NextBattleIn = NextBattleIn;
         civ.setBattles(wave);
