@@ -40,6 +40,10 @@ class AppData {
         }
     }
 
+    public static Connection getConnection() {
+        return instance.conn;
+    }
+
     public void close() {
         try {
             if (conn != null) conn.close();

@@ -1,6 +1,6 @@
 package com.project;
 
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -9,26 +9,56 @@ import oracle.sql.NUMBER;
 public class CivilizationDao {
 
     public void addSave(SaveData save) {
-        AppData db = AppData.getInstance();
-        String sql = "INSERT INTO botiga.civilization_stats (civilization_id,name, wood_amount, iron_amount, food_amount, mana_amount, magicTower_counter, church_counter, farm_counter, smithy_counter, carpentry_counter, technology_defence_level, technology_attack_level, battles_counter, battle_timer, NextBattleIn) VALUES (9,'h',0,0,0,0,0,0,0,0,0,0,0,0,0.0,227);";
-        /*sql += 9 + ",";
-        sql += "'" + save.getName() + "',";
-        sql += save.getWood() + ",";
-        sql += save.getIron() + ",";
-        sql += save.getFood() + ",";
-        sql += save.getMana() + ",";
-        sql += save.getMagicTower() + ",";
-        sql += save.getChurch() + ",";
-        sql += save.getFarm() + ",";
-        sql += save.getSmithy() + ",";
-        sql += save.getCarpentry() + ",";
-        sql += save.getTechnologyDefense() + ",";
-        sql += save.getTechnologyAttack() + ",";
-        sql += save.getWave() + ",";
-        sql += save.getBattleTimer() + ",";
-        sql += save.getNextBattleIn() + ");";*/
-        System.out.println(sql);
-        db.update(sql);
+        /*    civilization_id NUMBER PRIMARY KEY AUTO-INCREMENT, 
+    name VARCHAR2(255), 
+    wood_amount NUMBER NOT NULL, 
+    iron_amount NUMBER NOT NULL, 
+    food_amount NUMBER NOT NULL, 
+    mana_amount NUMBER NOT NULL, 
+    magicTower_counter NUMBER NOT NULL, 
+    church_counter NUMBER NOT NULL, 
+    farm_counter NUMBER NOT NULL, 
+    smithy_counter NUMBER NOT NULL, 
+    carpentry_counter NUMBER NOT NULL, 
+    technology_defence_level NUMBER, 
+    technology_attack_level NUMBER, 
+    battles_counter NUMBER,
+    battle_timer NUMBER,
+    NextBattleIn NUMBER */
+        Connection con = AppData.getConnection();
+        String sql = "INSERT INTO civilization_stats (name, wood_amount, iron_amount, food_amount, mana_amount, magicTower_counter, church_counter, farm_counter, smithy_counter, carpentry_counter, technology_defence_level, technology_attack_level, battles_counter, battle_timer, NextBattleIn) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql2 = "SELECT civilization_id FROM civilization_stats ORDER BY civilization_id DESC FETCH FIRST 1 ROWS ONLY";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, save.getName());
+            ps.setInt(2, save.getWood());
+            ps.setInt(3, save.getIron());
+            ps.setInt(4, save.getFood());
+            ps.setInt(5, save.getMana());
+            ps.setInt(6, save.getMagicTower());
+            ps.setInt(7, save.getChurch());
+            ps.setInt(8, save.getFarm());
+            ps.setInt(9, save.getSmithy());
+            ps.setInt(10, save.getCarpentry());
+            ps.setInt(11, save.getTechnologyDefense());
+            ps.setInt(12, save.getTechnologyAttack());
+            ps.setInt(13, save.getWave());
+            ps.setInt(14, (int)save.getBattleTimer());
+            ps.setInt(15, save.getNextBattleIn());
+            ps.executeUpdate();
+            con.commit();
+            Statement s = con.createStatement();
+            rs = s.executeQuery(sql2);
+            if (rs.next()) {
+                int lastInsertedId = rs.getInt("civilization_id");
+                System.out.println("Last inserted ID: " + lastInsertedId);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         //save.setSaveId(civId);
         //Battles
             //Is eamty so we don't do anything
