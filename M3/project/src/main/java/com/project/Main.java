@@ -84,7 +84,7 @@ public class Main {
         //Updates values about the civilization (resources, enemy army, battles)
         civilization.GenerateResources(deltaTime);
         BattleTimer += deltaTime;
-        /*if (BattleTimer >= NextBattleIn) {
+        if (BattleTimer >= NextBattleIn) {
             NextBattleIn = 120 + new Random().nextInt(300 - 120 + 1);
             BattleTimer = 0;
             civilization.setBattles(civilization.getBattles()+1);
@@ -96,7 +96,7 @@ public class Main {
             battlesFaugth.add(battle);
             if (ActiveMenu == "Main")
                 System.out.println("\n\nA battle Happened\n");
-        }*/
+        }
     }
     
     public static ArrayList<MilitaryUnit> NewEnemyArmy() {
@@ -139,16 +139,11 @@ public class Main {
     }
 
     private static void createEnemyArmy() {
+        //NOTA: si todos los costes son 0 entonces esto ira infinito
         NextEnemyArmy.clear();
         int food = Variables.FOOD_BASE_ENEMY_ARMY + Variables.FOOD_BASE_ENEMY_ARMY*Variables.ENEMY_FLEET_INCREASE/100*civilization.getBattles();
         int wood = Variables.WOOD_BASE_ENEMY_ARMY + Variables.WOOD_BASE_ENEMY_ARMY*Variables.ENEMY_FLEET_INCREASE/100*civilization.getBattles();
         int iron = Variables.IRON_BASE_ENEMY_ARMY + Variables.IRON_BASE_ENEMY_ARMY*Variables.ENEMY_FLEET_INCREASE/100*civilization.getBattles();
-        /*Para crear el ejército enemigo, dispondremos de unos recursos iniciales, que conforme vayan
-        sucediendo batallas, serán mayores .
-        Iremos creando unidades enemigas aleatoriamente pero con las siguientes probabilidades:
-        Swordsman 35%, Spearman 25%, Crossbow 20%, Cannon 20%.
-        Mientras tengamos suficientes recursos para crear la unidad con menor coste, es decir, Swordsman
-        iremos creando unidades aleatoriamente según las probabilidades anteriores. */
         Random random = new Random();
         while (food >= Variables.FOOD_COST_SWORDSMAN && wood >= Variables.WOOD_COST_SWORDSMAN && iron >= Variables.IRON_COST_SWORDSMAN) {
             int r = random.nextInt(100);
@@ -326,7 +321,7 @@ public class Main {
                 }
             }catch (Exception e) {
                 if (error) {
-                    //System.out.println(e.getMessage());
+                    System.out.println(e.getMessage());
                     System.out.println("\nInvalid option type");
                     menu = false;
                 }
@@ -634,7 +629,9 @@ public class Main {
     }
 
     private static void SaveGame() {
+        System.out.println("Saving game...");
         saves.UpdateSaveData(ActiveSave);
+        System.out.println("Game saved");
     }
 
 }

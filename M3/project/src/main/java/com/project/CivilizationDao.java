@@ -1,5 +1,6 @@
 package com.project;
 
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -75,7 +76,6 @@ public class CivilizationDao {
             sql += civId + ",";
             sql += "'" + title(unit.getType().toString()) + "',";
             sql += unit.getExperience() + ")";
-            System.out.println(sql);
             db.update(sql);
         }
     }
@@ -83,47 +83,48 @@ public class CivilizationDao {
     public ArrayList<SaveData> getSaves() {
        ArrayList<SaveData> saves = new ArrayList<SaveData>();
        AppData db = AppData.getInstance();
-       List<Map<String, Object>> savesList = db.query("SELECT * FROM civilization_stats;");
+       List<Map<String, Object>> savesList = db.query("SELECT * FROM civilization_stats");
+       //System.out.println(savesList);
        for (Map<String, Object> save : savesList) {
             SaveData newSave = new SaveData();
-            newSave.setSaveId((int) save.get("id"));
+            newSave.setSaveId(((Number)save.get("civilization_id")).intValue());
             newSave.setName((String) save.get("name"));
-            newSave.setWood((int) save.get("wood_amount"));
-            newSave.setIron((int) save.get("iron_amount"));
-            newSave.setFood((int) save.get("food_amount"));
-            newSave.setMana((int) save.get("mana_amount"));
-            newSave.setMagicTower((int) save.get("magicTower_counter"));
-            newSave.setChurch((int) save.get("church_counter"));
-            newSave.setFarm((int) save.get("farm_counter"));
-            newSave.setSmithy((int) save.get("smithy_counter"));
-            newSave.setCarpentry((int) save.get("carpentry_counter"));
-            newSave.setTechnologyDefense((int) save.get("technology_defence_level"));
-            newSave.setTechnologyAttack((int) save.get("technology_attack_level"));
-            newSave.setWave((int) save.get("battles_counter"));
-            newSave.setBattleTimer((int) save.get("battle_timer"));
-            newSave.setNextBattleIn((int) save.get("NextBattleIn"));
+            newSave.setWood(((Number) save.get("wood_amount")).intValue());
+            newSave.setIron(((Number) save.get("iron_amount")).intValue());
+            newSave.setFood(((Number) save.get("food_amount")).intValue());
+            newSave.setMana(((Number) save.get("mana_amount")).intValue());
+            newSave.setMagicTower(((Number) save.get("magictower_counter")).intValue());
+            newSave.setChurch(((Number) save.get("church_counter")).intValue());
+            newSave.setFarm(((Number) save.get("farm_counter")).intValue());
+            newSave.setSmithy(((Number) save.get("smithy_counter")).intValue());
+            newSave.setCarpentry(((Number) save.get("carpentry_counter")).intValue());
+            newSave.setTechnologyDefense(((Number) save.get("technology_defence_level")).intValue());
+            newSave.setTechnologyAttack(((Number) save.get("technology_attack_level")).intValue());
+            newSave.setWave(((Number) save.get("battles_counter")).intValue());
+            newSave.setBattleTimer(((Number) save.get("battle_timer")).intValue());
+            newSave.setNextBattleIn(((Number) save.get("nextbattlein")).intValue());
             //OwnArmy
             ArrayList<MilitaryUnit> army = new ArrayList<MilitaryUnit>();
-            List<Map<String, Object>> armyList = db.query("SELECT * FROM units WHERE civilization_id = " + newSave.getSaveId() + ";");
+            List<Map<String, Object>> armyList = db.query("SELECT * FROM units WHERE civilization_id = " + newSave.getSaveId());
             for (Map<String, Object> unit : armyList) {
-                MilitaryUnit armyUnit = getNewUnit(UnitTypes.valueOf((String) unit.get("type")));
-                armyUnit.setExperience((int) unit.get("experience"));
+                MilitaryUnit armyUnit = getNewUnit(UnitTypes.valueOf(((String) unit.get("type")).toUpperCase()));
+                armyUnit.setExperience(((Number) unit.get("experience")).intValue());
                 army.add(armyUnit);
             }
             newSave.setOwnArmy(army);
             //EnemyArmy
             ArrayList<MilitaryUnit> enemyArmy = new ArrayList<MilitaryUnit>();
-            List<Map<String, Object>> enemyArmyList = db.query("SELECT * FROM enemy_unit WHERE civilization_id = " + newSave.getSaveId() + ";");
+            List<Map<String, Object>> enemyArmyList = db.query("SELECT * FROM enemy_unit WHERE civilization_id = " + newSave.getSaveId());
             for (Map<String, Object> unit : enemyArmyList) {
-                MilitaryUnit enemyUnit = getNewUnit(UnitTypes.valueOf((String) unit.get("type")));
-                enemyUnit.setExperience((int) unit.get("experience"));
+                MilitaryUnit enemyUnit = getNewUnit(UnitTypes.valueOf(((String) unit.get("type")).toUpperCase()));
+                enemyUnit.setExperience(((Number) unit.get("experience")).intValue());
                 enemyArmy.add(enemyUnit);
             }
             newSave.setEnemyArmy(enemyArmy);
-            //Battles
+            /*//Battles
             //battles_stats
             ArrayList<Battle> battles = new ArrayList<Battle>();
-            List<Map<String, Object>> battlesList = db.query("SELECT * FROM battles_stats WHERE civilization_id = " + newSave.getSaveId() + " order by id asc;");
+            List<Map<String, Object>> battlesList = db.query("SELECT * FROM battles_stats WHERE civilization_id = " + newSave.getSaveId() + " order by id asc");
             for (Map<String,Object> battle : battlesList) {
                 Battle newBattle = new Battle();
                 newBattle.setWoodWaste((int) battle.get("wood_acquired"));
@@ -150,7 +151,7 @@ public class CivilizationDao {
                 }
                 newBattle.setEnemyLoses(enemyLosesInt);
                 //civilization_unit_stats
-                List<Map<String, Object>> civilizationUnitStats = db.query("SELECT * FROM civilization_unit_stats WHERE num_battle = " + battle.get("id") + " and civilization_id = " + newSave.getSaveId() + ";");
+                List<Map<String, Object>> civilizationUnitStats = db.query("SELECT * FROM civilization_unit_stats WHERE num_battle = " + battle.get("id") + " and civilization_id = " + newSave.getSaveId());
                 for (Map<String, Object> unitStats : civilizationUnitStats) {
                     ArrayList<MilitaryUnit> initialUnits = new ArrayList<>();
                     ArrayList<MilitaryUnit> dropsUnits = new ArrayList<>();
@@ -168,7 +169,7 @@ public class CivilizationDao {
 
                 }
                 //enemy_unit_stats
-                List<Map<String, Object>> enemyUnitStats = db.query("SELECT * FROM enemy_unit_stats WHERE num_battle = " + battle.get("id") + " and civilization_id = " + newSave.getSaveId() + ";");
+                List<Map<String, Object>> enemyUnitStats = db.query("SELECT * FROM enemy_unit_stats WHERE num_battle = " + battle.get("id") + " and civilization_id = " + newSave.getSaveId());
                 for (Map<String, Object> unitStats : enemyUnitStats) {
                     ArrayList<MilitaryUnit> initialUnits = new ArrayList<>();
                     ArrayList<MilitaryUnit> dropsUnits = new ArrayList<>();
@@ -185,10 +186,11 @@ public class CivilizationDao {
                     newBattle.setEnemyArmyOrdered(orderDrops);
                 }
                 //battle_log
-                List<Map<String, Object>> battleLog = db.query("SELECT * FROM battle_log WHERE num_battle = " + battle.get("id") + "and civilization_id = " + newSave.getSaveId() + ";");
+                List<Map<String, Object>> battleLog = db.query("SELECT * FROM battle_log WHERE num_battle = " + battle.get("id") + "and civilization_id = " + newSave.getSaveId());
                 newBattle.setDetailedReport((String)battleLog.get(0).get("log_entry"));
                 battles.add(newBattle);
-            }
+            }*/
+            saves.add(newSave);
         }
         return saves;
     }
@@ -219,6 +221,7 @@ public class CivilizationDao {
     }
 
     public void updateSave(SaveData save) {
+        System.out.println("sss");
         AppData db = AppData.getInstance();
         int id = save.getSaveId();
         //Civilization
@@ -237,73 +240,73 @@ public class CivilizationDao {
         sql += " battles_counter = " + save.getWave() + ",";
         sql += " battle_timer = " + save.getBattleTimer() + ",";
         sql += " NextBattleIn = " + save.getNextBattleIn() + " ";
-        sql += " WHERE id = " + id + ";";
+        sql += " WHERE civilization_id = " + id;
         db.update(sql);
         //Army
-        List<Map<String, Object>> army = db.query("SELECT * FROM units WHERE civilization_id = " + id + ";");
+        List<Map<String, Object>> army = db.query("SELECT * FROM units WHERE civilization_id = " + id);
         if (save.getOwnArmy().size() > army.size()) {
             for (int i = 0; i < army.size(); i++) {
                 sql = "UPDATE units SET";
-                sql += " type = '" + save.getOwnArmy().get(i).getType() + "',";
+                sql += " type = '" + title(save.getOwnArmy().get(i).getType().toString()) + "',";
                 sql += " experience = " + save.getOwnArmy().get(i).getExperience() + " ";
-                sql += " WHERE unit_id = " + army.get(i).get("id") + "and civilization_id = "+id+";";
+                sql += " WHERE unit_id = " + army.get(i).get("unit_id") + "and civilization_id = "+id;
                 db.update(sql);
             }
             //insert the rest
             for (int i = army.size(); i < save.getOwnArmy().size(); i++) {
                 sql = "INSERT INTO units (civilization_id, type, experience) VALUES (";
                 sql += id + ",";
-                sql += "'" + save.getOwnArmy().get(i).getType() + "',";
-                sql += save.getOwnArmy().get(i).getExperience() + ");";
+                sql += "'" + title(save.getOwnArmy().get(i).getType().toString()) + "',";
+                sql += save.getOwnArmy().get(i).getExperience() + ")";
                 db.update(sql);
             }
         }
         else {
             for (int i = 0; i < save.getOwnArmy().size(); i++) {
                 sql = "UPDATE units SET";
-                sql += " type = '" + save.getOwnArmy().get(i).getType() + "',";
+                sql += " type = '" + title(save.getOwnArmy().get(i).getType().toString()) + "',";
                 sql += " experience = " + save.getOwnArmy().get(i).getExperience() + " ";
-                sql += " WHERE unit_id = " + army.get(i).get("id") + "and civilization_id = "+id+";";
+                sql += " WHERE unit_id = " + army.get(i).get("unit_id") + "and civilization_id = "+id;
                 db.update(sql);
             }
             for (int i = save.getOwnArmy().size(); i < army.size(); i++) {
-                db.update("DELETE FROM units WHERE unit_id = " + army.get(i).get("id") + "and civilization_id = "+id+";");
+                db.update("DELETE FROM units WHERE unit_id = " + army.get(i).get("unit_id") + "and civilization_id = "+id);
             }
             //delete the rest
         }
         //Enemy
-        List<Map<String, Object>> enemy =  db.query("SELECT * FROM enemy_unit WHERE civilization_id = " + id + ";");
+        List<Map<String, Object>> enemy =  db.query("SELECT * FROM enemy_unit WHERE civilization_id = " + id);
         if (save.getEnemyArmy().size() > enemy.size()) {
             for (int i = 0; i < enemy.size(); i++) {
                 sql = "UPDATE enemy_unit SET";
-                sql += " type = '" + save.getEnemyArmy().get(i).getType() + "',";
+                sql += " type = '" + title(save.getEnemyArmy().get(i).getType().toString()) + "',";
                 sql += " experience = " + save.getEnemyArmy().get(i).getExperience() + " ";
-                sql += " WHERE unit_id = " + enemy.get(i).get("id") + "and civilization_id = "+id+";";
+                sql += " WHERE unit_id = " + enemy.get(i).get("id") + "and civilization_id = "+id;
                 db.update(sql);
             }
             //insert the rest
             for (int i = enemy.size(); i < save.getEnemyArmy().size(); i++) {
                 sql = "INSERT INTO enemy_unit (civilization_id, type, experience) VALUES (";
                 sql += id + ",";
-                sql += "'" + save.getEnemyArmy().get(i).getType() + "',";
-                sql += save.getEnemyArmy().get(i).getExperience() + ");";
+                sql += "'" + title(save.getEnemyArmy().get(i).getType().toString()) + "',";
+                sql += save.getEnemyArmy().get(i).getExperience() + ")";
                 db.update(sql);
             }
         }
         else {
             for (int i = 0; i < save.getEnemyArmy().size(); i++) {
                 sql = "UPDATE enemy_unit SET";
-                sql += " type = '" + save.getEnemyArmy().get(i).getType() + "',";
+                sql += " type = '" + title(save.getEnemyArmy().get(i).getType().toString()) + "',";
                 sql += " experience = " + save.getEnemyArmy().get(i).getExperience() + " ";
-                sql += " WHERE id = " + enemy.get(i).get("id") + "and civilization_id = "+id+";";
+                sql += " WHERE id = " + enemy.get(i).get("id") + "and civilization_id = "+id;
                 db.update(sql);
             }
             //delete the rest
             for (int i = save.getEnemyArmy().size(); i < enemy.size(); i++) {
-                db.update("DELETE FROM enemy_unit WHERE unit_id = " + enemy.get(i).get("id") + "and civilization_id = "+id+";");
+                db.update("DELETE FROM enemy_unit WHERE unit_id = " + enemy.get(i).get("id") + "and civilization_id = "+id);
             }
         }
-        //Battles
+        /*//Battles
         List<Map<String, Object>> battles = db.query("Select * FROM battles_stats WHERE civilization_id = " + id + ";");
         if (save.getBattles().size() > battles.size()) {
             //Insert the new Battles
@@ -360,7 +363,7 @@ public class CivilizationDao {
                 sql += "TO_CLOB('" + battle.getDeteiledReport() + "'));";
 
             }
-        }
+        }*/
 
     }
 

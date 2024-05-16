@@ -17,9 +17,9 @@ public class SaveData {
     private int smithy;
     private int carpentry;
     //own army
-    private ArrayList<MilitaryUnit> ownArmy;
+    private ArrayList<MilitaryUnit> ownArmy = new ArrayList<>();
     //enemy army
-    private ArrayList<MilitaryUnit> enemyArmy;
+    private ArrayList<MilitaryUnit> enemyArmy = new ArrayList<>();
     //Timers
     private float battleTimer;
     private int NextBattleIn;
@@ -27,7 +27,7 @@ public class SaveData {
     private int technologyDefense;
     private int technologyAttack;
     //Battles
-    private ArrayList<Battle> battles;
+    private ArrayList<Battle> battles = new ArrayList<>();
     //wave
     private int wave;
 
