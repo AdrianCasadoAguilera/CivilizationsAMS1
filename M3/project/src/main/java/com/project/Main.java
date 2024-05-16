@@ -137,8 +137,8 @@ public class Main {
         }
         return result;
     }
-
-    private static void createEnemyArmy() {
+    //synchronized para que no escriba en NextEnemyArmy mientras ViewThreadMenu esta leyendo la misma arrayList
+    private static synchronized void createEnemyArmy() {
         //NOTA: si todos los costes son 0 entonces esto ira infinito
         NextEnemyArmy.clear();
         int food = Variables.FOOD_BASE_ENEMY_ARMY + Variables.FOOD_BASE_ENEMY_ARMY*Variables.ENEMY_FLEET_INCREASE/100*civilization.getBattles();
@@ -533,7 +533,6 @@ public class Main {
             @Override
             public void run() {
                 clearConsole();
-                System.out.println(NextEnemyArmy);
                 System.out.println("Next Battle in " + formatTime(NextBattleIn-BattleTimer));
                 System.out.println("Swordsman: " + CountUnitType(NextEnemyArmy, UnitTypes.SWORDSMAN));
                 System.out.println("Spearman: " + CountUnitType(NextEnemyArmy, UnitTypes.SPEARMAN));
