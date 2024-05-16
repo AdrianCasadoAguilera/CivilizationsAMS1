@@ -49,7 +49,7 @@ public class Main {
     }
 
     private static void clearConsole() {
-        try {
+        /*try {
             final String os = System.getProperty("os.name");
             if (os.contains("Windows")) {
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor(); 
@@ -58,7 +58,7 @@ public class Main {
             }
         } catch (final Exception e) {
             // Handle any exceptions.
-        }
+        }*/
     }
 
     public static String title(String input) {
@@ -85,7 +85,7 @@ public class Main {
         civilization.GenerateResources(deltaTime);
         BattleTimer += deltaTime;
         if (BattleTimer >= NextBattleIn) {
-            NextBattleIn = 5;
+            NextBattleIn = 120 + new Random().nextInt(300 - 120 + 1);
             BattleTimer = 0;
             civilization.setBattles(civilization.getBattles()+1);
             Battle battle = new Battle((ArrayList<MilitaryUnit>)civilization.getArmy().clone(), (ArrayList<MilitaryUnit>)NextEnemyArmy.clone());
@@ -137,18 +137,13 @@ public class Main {
         }
         return result;
     }
-
-    private static void createEnemyArmy() {
+    //synchronized para que no escriba en NextEnemyArmy mientras ViewThreadMenu esta leyendo la misma arrayList
+    private static synchronized void createEnemyArmy() {
+        //NOTA: si todos los costes son 0 entonces esto ira infinito
         NextEnemyArmy.clear();
         int food = Variables.FOOD_BASE_ENEMY_ARMY + Variables.FOOD_BASE_ENEMY_ARMY*Variables.ENEMY_FLEET_INCREASE/100*civilization.getBattles();
         int wood = Variables.WOOD_BASE_ENEMY_ARMY + Variables.WOOD_BASE_ENEMY_ARMY*Variables.ENEMY_FLEET_INCREASE/100*civilization.getBattles();
         int iron = Variables.IRON_BASE_ENEMY_ARMY + Variables.IRON_BASE_ENEMY_ARMY*Variables.ENEMY_FLEET_INCREASE/100*civilization.getBattles();
-        /*Para crear el ejército enemigo, dispondremos de unos recursos iniciales, que conforme vayan
-        sucediendo batallas, serán mayores .
-        Iremos creando unidades enemigas aleatoriamente pero con las siguientes probabilidades:
-        Swordsman 35%, Spearman 25%, Crossbow 20%, Cannon 20%.
-        Mientras tengamos suficientes recursos para crear la unidad con menor coste, es decir, Swordsman
-        iremos creando unidades aleatoriamente según las probabilidades anteriores. */
         Random random = new Random();
         while (food >= Variables.FOOD_COST_SWORDSMAN && wood >= Variables.WOOD_COST_SWORDSMAN && iron >= Variables.IRON_COST_SWORDSMAN) {
             int r = random.nextInt(100);
@@ -179,7 +174,7 @@ public class Main {
     private static int CountUnitType(ArrayList<MilitaryUnit> army, UnitTypes unitType) {
         int count = 0;
         for (MilitaryUnit unit : army) {
-            if (unit.getType() == unitType) {
+            if (unit.getType().equals(unitType)) {
                 count++;
             }
         }
@@ -229,6 +224,7 @@ public class Main {
 
     private static void NewGame(String name) {
         ActiveSave = saves.AddNewSaveData(name);
+        NextEnemyArmy = null;
         saves.LoadSaveData(ActiveSave);
         MainGameMenu();
     }
@@ -325,7 +321,7 @@ public class Main {
                 }
             }catch (Exception e) {
                 if (error) {
-                    //System.out.println(e.getMessage());
+                    System.out.println(e.getMessage());
                     System.out.println("\nInvalid option type");
                     menu = false;
                 }
@@ -538,7 +534,7 @@ public class Main {
             public void run() {
                 clearConsole();
                 System.out.println("Next Battle in " + formatTime(NextBattleIn-BattleTimer));
-                System.out.println("Swordsman: " + CountUnitType(NextEnemyArmy, UnitTypes.SPEARMAN));
+                System.out.println("Swordsman: " + CountUnitType(NextEnemyArmy, UnitTypes.SWORDSMAN));
                 System.out.println("Spearman: " + CountUnitType(NextEnemyArmy, UnitTypes.SPEARMAN));
                 System.out.println("Crossbow: " + CountUnitType(NextEnemyArmy, UnitTypes.CROSSBOW));
                 System.out.println("Cannon: " + CountUnitType(NextEnemyArmy, UnitTypes.CANNON));
@@ -632,7 +628,9 @@ public class Main {
     }
 
     private static void SaveGame() {
+        System.out.println("Saving game...");
         saves.UpdateSaveData(ActiveSave);
+        System.out.println("Game saved");
     }
 
 }

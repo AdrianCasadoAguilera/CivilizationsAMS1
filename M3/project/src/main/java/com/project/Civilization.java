@@ -16,7 +16,7 @@ public class Civilization {
     private int smithy;
     private int carpentry;
     private int battles;
-    private ArrayList<MilitaryUnit> army;
+    private ArrayList<MilitaryUnit> army = new ArrayList<>();
 
     private Civilization() {
         army = new ArrayList<>(9);

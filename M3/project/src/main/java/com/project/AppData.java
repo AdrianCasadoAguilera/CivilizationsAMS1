@@ -9,11 +9,11 @@ import java.util.Map;
 class AppData {
     private static AppData instance;
     private Connection conn;
-    private String HostName = "";
-    private String Port = "";
-    private String DatabaseName = "";
-    private String Username = "";
-    private String Password = "";
+    private String HostName = "localhost";
+    private String Port = "1521";
+    private String DatabaseName = "xe";
+    private String Username = "botiga";
+    private String Password = "botiga";
 
     private AppData() {
         // Connecta al crear la primera instància
@@ -29,15 +29,19 @@ class AppData {
     }
 
     private void connect() {
-        String url = "jdbc:oracle:thin:@//" + HostName + ":" + Port + "/" + DatabaseName; // Nom de l'arxiu amb les dades 'dades.sqlite'
+        String url = "jdbc:oracle:thin:" + Username + "/" + Password + "@" + HostName + ":" + Port + ":" + DatabaseName;
         try {
-            conn = DriverManager.getConnection(url,Username,Password);
+            conn = DriverManager.getConnection(url);
             conn.setAutoCommit(false); // Desactiva l'autocommit per permetre control manual de transaccions
         } catch (SQLException e) {
             System.out.println("Error conecting to the database");
             System.out.println(e.getMessage());
-            //System.exit(0);
+            System.exit(0);
         }
+    }
+
+    public static Connection getConnection() {
+        return instance.conn;
     }
 
     public void close() {
@@ -98,11 +102,10 @@ class AppData {
              ResultSet rs = stmt.executeQuery(sql)) {
             ResultSetMetaData metaData = rs.getMetaData();
             int columnCount = metaData.getColumnCount();
-
             while (rs.next()) {
                 Map<String, Object> row = new HashMap<>();
                 for (int i = 1; i <= columnCount; i++) {
-                    row.put(metaData.getColumnLabel(i), rs.getObject(i));
+                    row.put(metaData.getColumnLabel(i).toLowerCase(), rs.getObject(i));
                 }
                 resultList.add(row);
             }
