@@ -374,25 +374,25 @@ public class CivilizationDao {
                 System.out.println(sql);
                 db.update(sql);
                 //civilization_unit_stats
-                /*ArrayList<ArrayList<MilitaryUnit>> orderedInitialUnits = battle.orderByUnitType(battle.getCivilizationArmy());
+                ArrayList<ArrayList<MilitaryUnit>> orderedInitialUnits = battle.orderByUnitType(battle.getCivilizationArmy());
                 ArrayList<ArrayList<MilitaryUnit>> orderedDropsUnits = battle.getCivilizationArmyOrdered();
                 for (int j = 0; j < UnitTypes.values().length; j++) {
                     sql = "INSERT INTO civilization_unit_stats (civilization_id, num_battle, TYPE, initial, drops) VALUES (";
                     sql += id + ",";
                     sql += (i+1) + ",";
-                    sql += "'" + title(UnitTypes.values()[j].toString())) + "',";
+                    sql += "'" + title(UnitTypes.values()[j].toString()) + "',";
                     sql += orderedInitialUnits.get(j).size() + ",";
                     sql += orderedDropsUnits.get(j).size() + ")";
                     db.update(sql);
                 }
                 //enemy_unit_stats
-                ArrayList<ArrayList<MilitaryUnit>> orderedInitialEnemyUnits = battle.orderByUnitType(battle.getEnemyArmy());
+                /*ArrayList<ArrayList<MilitaryUnit>> orderedInitialEnemyUnits = battle.orderByUnitType(battle.getEnemyArmy());
                 ArrayList<ArrayList<MilitaryUnit>> orderedDropsEnemyUnits = battle.getEnemyArmyOrdered();
                 for (int j = 0; j < UnitTypes.values().length; j++) {
                     sql = "INSERT INTO enemy_unit_stats (civilization_id, num_battle, TYPE, initial, drops) VALUES (";
                     sql += id + ",";
                     sql += (i+1) + ",";
-                    sql += "'" + title(UnitTypes.values()[j].toString())) + "',";
+                    sql += "'" + title(UnitTypes.values()[j].toString()) + "',";
                     sql += orderedInitialEnemyUnits.get(j).size() + ",";
                     sql += orderedDropsEnemyUnits.get(j).size() + ")";
                     db.update(sql);
