@@ -19,6 +19,14 @@ public class Saves {
         return instance;
     }
 
+    public String[] GetSaveNames() {
+        String[] names = new String[savedata.size()];
+        for (int i = 0; i < savedata.size(); i++) {
+            names[i] = savedata.get(i).getName();
+        }
+        return names;
+    }
+
     public int GetSaveCount() {
         return savedata.size();
     }

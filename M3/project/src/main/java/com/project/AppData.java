@@ -9,6 +9,12 @@ import java.util.Map;
 class AppData {
     private static AppData instance;
     private Connection conn;
+    /*
+    private String HostName = "localhost";
+    private String Port = "1521";
+    private String DatabaseName = "xe";
+    private String Username = "botiga";
+    private String Password = "botiga";*/
     private String HostName = "localhost";
     private String Port = "1521";
     private String DatabaseName = "xe";

@@ -431,7 +431,7 @@ public class CivilizationDao {
         db.update("DELETE FROM civilization_unit_stats WHERE civilization_id = " + save.getSaveId());
         db.update("DELETE FROM enemy_unit_stats WHERE civilization_id = " + save.getSaveId());
         db.update("DELETE FROM battle_log WHERE civilization_id = " + save.getSaveId());
-        db.update("DELETE FROM battles_stats WHERE civilization_id = " + save.getSaveId());
+        db.update("DELETE FROM battle_stats WHERE civilization_id = " + save.getSaveId());
         //Civilization
         db.update("DELETE FROM civilization_stats WHERE name = '" + save.getName() + "'");
     }

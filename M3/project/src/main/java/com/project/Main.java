@@ -230,9 +230,11 @@ public class Main {
     }
 
     private static void ContinueMenu() {
+        String[] saveNames;
         while (true) {
-            for (int i = 0; i < saves.GetSaveCount(); i++) {
-                System.out.println(i + 1 + " Save number " + (i+1));
+            saveNames = saves.GetSaveNames();
+            for (int i = 0; i < saveNames.length; i++) {
+                System.out.println(i + 1 + " Save name: " + saveNames[i]);
             }
             System.out.println("0. Back");
             System.out.print("Choose an option: ");
@@ -250,9 +252,41 @@ public class Main {
                 System.out.println("Invalid option");
                 continue;
             }
-            ContinueGame(option-1);
-            return;
+            int saveId = option-1;
+            option = -1;
+            System.out.println("1. Play");
+            System.out.println("2. Delete");
+            System.out.println("0. Back");
+            try {
+                option = input.nextInt();
+            } catch (Exception e) {
+                System.out.println("Invalid option");
+            }
+            input.nextLine();
+            if (option == 0) {
+                continue;
+            }
+            if (option < 0 || option > 2) {
+                System.out.println("Invalid option");
+                continue;
+            }
+            if (option == 1) {
+                ContinueGame(option-1);
+                return;
+            }
+            if (option == 2) {
+                System.out.println("Write 'DELETE' to confirm");
+                String confirm = input.nextLine();
+                if (confirm.equals("DELETE")) {
+                    DeleteSave(saveId);
+                    System.out.println("Save Deleted");
+                }
+            }
         }
+    }
+
+    private static void DeleteSave(int saveId) {
+        saves.DeleteSaveData(saveId);
     }
 
     private static void ContinueGame(int index) {
