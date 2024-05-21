@@ -2,7 +2,7 @@ import oracledb
 import os
 
 # Parámetros de conexión y conexión a la db
-username = 'azueuser'
+username = 'azureuser'
 password = 'CivilizationsAMS1'
 host = '20.224.68.0'
 port = '1521'
