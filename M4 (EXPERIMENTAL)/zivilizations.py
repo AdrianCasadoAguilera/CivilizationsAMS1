@@ -24,19 +24,7 @@ def transform_xml_to_html(xml_path, xsl_path, output_path, **params):
     write_html(output_path, html_result)
 
 if __name__ == "__main__":
-    xml_path1 = './xml/attack_units.xml'
-    xsl_path1 = './xml/attack_units.xsl'
-    output_path1 = './html/attack_units.html'
-    xml_path2 = './xml/buildings.xml'
-    xsl_path2 = './xml/buildings.xsl'
-    output_path2 = './html/buildings.html'
-    xml_path3 = './xml/defences.xml'
-    xsl_path3 = './xml/defences.xsl'
-    output_path3 = './html/defences.html'
-    xml_path4 = './xml/special_units.xml'
-    xsl_path4 = './xml/special_units.xsl'
-    output_path4 = './html/special_units.html'
-    transform_xml_to_html(xml_path1, xsl_path1, output_path1)
-    transform_xml_to_html(xml_path2, xsl_path2, output_path2)
-    transform_xml_to_html(xml_path3, xsl_path3, output_path3)
-    transform_xml_to_html(xml_path4, xsl_path4, output_path4)
+    xml_path = '/xml/database.xml'
+    xsl_path = '/xml/database.xsl'
+    output_path = '/html/recursos.html'
+    transform_xml_to_html(xml_path, xsl_path, output_path)
