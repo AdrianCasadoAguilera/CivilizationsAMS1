@@ -19,6 +19,11 @@
                         background-color: #f2f2f2;
                     }
                 </style>
+<ul>
+    <li><a href="buildings.html">Buildings</a></li>
+    <li><a href="attack_units.html">Attack Units</a></li>
+    <li><a href="special_units.html">Special Units</a></li>
+</ul>
             </head>
             <body>
                 <h2>Defence Units</h2>

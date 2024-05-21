@@ -2,9 +2,9 @@ import oracledb
 import os
 
 # Parámetros de conexión y conexión a la db
-username = 'botiga'
-password = 'botiga'
-host = '192.168.56.101'
+username = 'azueuser'
+password = 'CivilizationsAMS1'
+host = '20.224.68.0'
 port = '1521'
 service_name = 'orcl'  # o SID si usas SID en lugar de service name
 dsn = oracledb.makedsn(host, port, service_name=service_name)
@@ -58,4 +58,4 @@ def fetch_xml_from_db(output_path):
             connection.close()
             print("Conexión cerrada")
 
-fetch_xml_from_db('/xml/zivilizations.xml')
+fetch_xml_from_db('./xml/zivilizations.xml')
