@@ -60,10 +60,10 @@ CREATE TABLE civilization_unit_stats (
     civilization_id NUMBER NOT NULL, 
     num_battle NUMBER NOT NULL, 
     type VARCHAR2(20), 
-    initial_attack NUMBER, 
+    initial NUMBER, 
     drops NUMBER, 
     PRIMARY KEY(civilization_id, num_battle, type), 
-    CONSTRAINT ck_type_unit_stats CHECK (type IN ('Swordsman','Spearman','Crossbow','Cannon')  ),
+    CONSTRAINT ck_type_unit_stats CHECK (type IN ('Swordsman','Spearman','Crossbow','Cannon','Arrowtower', 'Catapult', 'Rocketlaunchertower','Magician','Priest')  ),
   	CONSTRAINT fk_unit_stats
     	FOREIGN KEY (civilization_id, num_battle)
     	REFERENCES battle_stats(civilization_id, num_battle)
@@ -73,7 +73,7 @@ CREATE TABLE enemy_unit_stats (
     civilization_id NUMBER NOT NULL, 
     num_battle NUMBER NOT NULL, 
     type VARCHAR2(20), 
-    initial_enemy_attack NUMBER, 
+    initial NUMBER, 
     drops NUMBER, 
     PRIMARY KEY(civilization_id, num_battle, type), 
     CONSTRAINT ck_type_enemy_stats CHECK (type IN ('Swordsman','Spearman','Crossbow','Cannon')  ),
