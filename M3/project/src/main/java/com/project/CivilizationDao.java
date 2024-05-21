@@ -12,6 +12,7 @@ import java.util.Map;
 import javax.naming.spi.DirStateFactory.Result;
 
 import oracle.security.o3logon.b;
+import oracle.sql.NUMBER;
 
 public class CivilizationDao {
 
@@ -167,40 +168,40 @@ public class CivilizationDao {
                 }
                 newBattle.setEnemyLoses(enemyLosesInt);
                 //civilization_unit_stats
-                /*List<Map<String, Object>> civilizationUnitStats = db.query("SELECT * FROM civilization_unit_stats WHERE num_battle = " + battle.get("id") + " and civilization_id = " + newSave.getSaveId());
+                System.out.println("loading civilization_unit_stats");
+                List<Map<String, Object>> civilizationUnitStats = db.query("SELECT * FROM civilization_unit_stats WHERE num_battle = " + battle.get("num_battle") + " and civilization_id = " + newSave.getSaveId());
+                ArrayList<MilitaryUnit> initialUnits = new ArrayList<>();
+                ArrayList<MilitaryUnit> dropsUnits = new ArrayList<>();
                 for (Map<String, Object> unitStats : civilizationUnitStats) {
-                    ArrayList<MilitaryUnit> initialUnits = new ArrayList<>();
-                    ArrayList<MilitaryUnit> dropsUnits = new ArrayList<>();
-                    int initial = (int)unitStats.get("initial");
-                    int drops = (int)unitStats.get("drops");
+                    int initial = ((Number)unitStats.get("initial")).intValue();
+                    int drops = ((Number)unitStats.get("drops")).intValue();
                     for (int i = 0; i < initial; i++) {
-                        initialUnits.add(getNewUnit(UnitTypes.valueOf((String) unitStats.get("type"))));
+                        initialUnits.add(getNewUnit(UnitTypes.valueOf(((String) unitStats.get("type")).toUpperCase())));
                     }
                     for (int i = 0; i < drops; i++) {
-                        dropsUnits.add(getNewUnit(UnitTypes.valueOf((String) unitStats.get("type"))));
+                        dropsUnits.add(getNewUnit(UnitTypes.valueOf(((String) unitStats.get("type")).toUpperCase())));
                     }
-                    newBattle.setCivilizationArmy(initialUnits);
-                    ArrayList<ArrayList<MilitaryUnit>> orderDrops = newBattle.orderByUnitType(dropsUnits);
-                    newBattle.setCivilizationArmyOrdered(orderDrops);
-
                 }
+                newBattle.setCivilizationArmy(initialUnits);
+                ArrayList<ArrayList<MilitaryUnit>> orderDrops = newBattle.orderByUnitType(dropsUnits);
+                newBattle.setCivilizationArmyOrdered(orderDrops);
                 //enemy_unit_stats
-                List<Map<String, Object>> enemyUnitStats = db.query("SELECT * FROM enemy_unit_stats WHERE num_battle = " + battle.get("id") + " and civilization_id = " + newSave.getSaveId());
+                List<Map<String, Object>> enemyUnitStats = db.query("SELECT * FROM enemy_unit_stats WHERE num_battle = " + battle.get("num_battle") + " and civilization_id = " + newSave.getSaveId());
+                ArrayList<MilitaryUnit> initialEUnits = new ArrayList<>();
+                ArrayList<MilitaryUnit> dropsEUnits = new ArrayList<>();
                 for (Map<String, Object> unitStats : enemyUnitStats) {
-                    ArrayList<MilitaryUnit> initialUnits = new ArrayList<>();
-                    ArrayList<MilitaryUnit> dropsUnits = new ArrayList<>();
-                    int initial = (int)unitStats.get("initial");
-                    int drops = (int)unitStats.get("drops");
+                    int initial = ((Number)unitStats.get("initial")).intValue();
+                    int drops = ((Number)unitStats.get("drops")).intValue();
                     for (int i = 0; i < initial; i++) {
-                        initialUnits.add(getNewUnit(UnitTypes.valueOf((String) unitStats.get("type"))));
+                        initialEUnits.add(getNewUnit(UnitTypes.valueOf(((String) unitStats.get("type")).toUpperCase())));
                     }
                     for (int i = 0; i < drops; i++) {
-                        dropsUnits.add(getNewUnit(UnitTypes.valueOf((String) unitStats.get("type"))));
+                        dropsEUnits.add(getNewUnit(UnitTypes.valueOf(((String) unitStats.get("type")).toUpperCase())));
                     }
-                    newBattle.setEnemyArmy(initialUnits);
-                    ArrayList<ArrayList<MilitaryUnit>> orderDrops = newBattle.orderByUnitType(dropsUnits);
-                    newBattle.setEnemyArmyOrdered(orderDrops);
-                }*/
+                }
+                newBattle.setEnemyArmy(initialEUnits);
+                ArrayList<ArrayList<MilitaryUnit>> orderEDrops = newBattle.orderByUnitType(dropsUnits);
+                newBattle.setEnemyArmyOrdered(orderEDrops);
                 //battle_log
                 Connection con = AppData.getConnection();
                 PreparedStatement ps = null;
@@ -371,32 +372,36 @@ public class CivilizationDao {
                     }
                 }
                 sql += "))";
-                System.out.println(sql);
                 db.update(sql);
                 //civilization_unit_stats
-                /*ArrayList<ArrayList<MilitaryUnit>> orderedInitialUnits = battle.orderByUnitType(battle.getCivilizationArmy());
+                System.out.println("saving battle civilization units");
+                ArrayList<ArrayList<MilitaryUnit>> orderedInitialUnits = battle.orderByUnitType(battle.getCivilizationArmy());
                 ArrayList<ArrayList<MilitaryUnit>> orderedDropsUnits = battle.getCivilizationArmyOrdered();
                 for (int j = 0; j < UnitTypes.values().length; j++) {
-                    sql = "INSERT INTO civilization_unit_stats (civilization_id, num_battle, TYPE, initial, drops) VALUES (";
+                    sql = "INSERT INTO civilization_unit_stats (civilization_id, num_battle, TYPE, \"INITIAL\", drops) VALUES (";
                     sql += id + ",";
                     sql += (i+1) + ",";
-                    sql += "'" + title(UnitTypes.values()[j].toString())) + "',";
+                    sql += "'" + title(UnitTypes.values()[j].toString()) + "',";
                     sql += orderedInitialUnits.get(j).size() + ",";
                     sql += orderedDropsUnits.get(j).size() + ")";
                     db.update(sql);
                 }
                 //enemy_unit_stats
+                System.out.println("saving battle enemy units");
                 ArrayList<ArrayList<MilitaryUnit>> orderedInitialEnemyUnits = battle.orderByUnitType(battle.getEnemyArmy());
                 ArrayList<ArrayList<MilitaryUnit>> orderedDropsEnemyUnits = battle.getEnemyArmyOrdered();
                 for (int j = 0; j < UnitTypes.values().length; j++) {
-                    sql = "INSERT INTO enemy_unit_stats (civilization_id, num_battle, TYPE, initial, drops) VALUES (";
+                    if (j == 4)
+                        break;
+                    sql = "INSERT INTO enemy_unit_stats (civilization_id, num_battle, TYPE, \"INITIAL\", drops) VALUES (";
                     sql += id + ",";
                     sql += (i+1) + ",";
-                    sql += "'" + title(UnitTypes.values()[j].toString())) + "',";
+                    sql += "'" + title(UnitTypes.values()[j].toString()) + "',";
                     sql += orderedInitialEnemyUnits.get(j).size() + ",";
                     sql += orderedDropsEnemyUnits.get(j).size() + ")";
+                    System.out.println(sql);
                     db.update(sql);
-                }*/
+                }
                 //battle_log
                 Connection con = AppData.getConnection();
                 PreparedStatement ps = null;
