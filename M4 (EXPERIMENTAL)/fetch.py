@@ -1,16 +1,21 @@
 import oracledb
 import os
 
+# Inicializar el cliente de Oracle (ajusta la ruta según corresponda)
+oracledb.init_oracle_client(lib_dir=r"C:\oracle\instantclient_21_3")
+
 # Parámetros de conexión y conexión a la db
-username = 'botiga'
-password = 'botiga'
-host = '192.168.56.101'
-port = '1521'
-service_name = 'orcl'  # o SID si usas SID en lugar de service name
+username = 'azureuser'
+password = 'CivilizationsAMS1'
+host = '20.224.68.0'
+port = 1521
+service_name = 'MYDB'
 dsn = oracledb.makedsn(host, port, service_name=service_name)
 
 def fetch_xml_from_db(output_path):
+    connection = None  # Inicializar la variable connection a None
     try:
+        print(f"Intentando conectar a la base de datos con DSN: {dsn}")
         connection = oracledb.connect(user=username, password=password, dsn=dsn)
         print("Connected to Oracle Database!")
 
@@ -38,24 +43,25 @@ def fetch_xml_from_db(output_path):
         END;
         """
 
-        # ejecutar la consulta
+        # Ejecutar la consulta
         with connection.cursor() as cursor:
             full_xml_var = cursor.var(oracledb.CLOB)
             cursor.execute(plsql_query, full_xml=full_xml_var)
             full_xml = full_xml_var.getvalue()
 
-        # guardar el xml en la ruta  o crearla si no existe
+        # Guardar el xml en la ruta o crearla si no existe
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
         with open(output_path, 'w', encoding='utf-8') as file:
-            file.write(full_xml)
+            file.write(full_xml.read())
         print(f"El resultado se ha guardado en {output_path}")
 
     except oracledb.DatabaseError as e:
-        print(f"Error al conectarse a la base de datos: {str(e)}")
+        error, = e.args
+        print(f"Error al conectarse a la base de datos: {error.message}")
 
     finally:
         if connection:
             connection.close()
             print("Conexión cerrada")
 
-fetch_xml_from_db('/xml/zivilizations.xml')
+fetch_xml_from_db('./xml/civilizations.xml')
