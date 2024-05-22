@@ -15,14 +15,10 @@ screenshots from the game
 <h2>Controls</h2>
 Point and click controls
 <h2>Colaborators</h2>
+<a href="https://github.com/OscarMG018">Óscar MG018</a>
 
-<a href="https://github.com/OscarMG018">OscarMG018 </a>
+<a href="https://github.com/AdrianCasadoAguilera">Adrián Casado Aguilera</a>
 
-<a href="https://github.com/OscarMG018">OscarMG018</a>
+<a href="https://github.com/AAyoubelbakhti">Ayoub El Bakhti</a>
 
-<a href="https://github.com/OscarMG018">OscarMG018</a>
-
-<a href="https://github.com/OscarMG018">OscarMG018</a>
-
-
-
+<a href="https://github.com/MarcArques">Marc Arqués Marimón</a>
