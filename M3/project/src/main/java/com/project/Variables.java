@@ -37,7 +37,7 @@ public interface Variables {
     public final int FOOD_COST_CANNON = 0;
     public final int WOOD_COST_SWORDSMAN = 3000;
     public final int WOOD_COST_SPEARMAN = 6500;
-    public final int WOOD_COST_CROSSBOW = 45000;
+    public final int WOOD_COST_CROSSBOW = 4500;
     public final int WOOD_COST_CANNON = 30000;
     public final int IRON_COST_SWORDSMAN = 50;
     public final int IRON_COST_SPEARMAN = 50;
