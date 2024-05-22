@@ -14,7 +14,7 @@ public class StartGameUI extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         setElements();
-        setSize(mainPanel.backgroundImage.getWidth(rootPane),mainPanel.backgroundImage.getHeight(rootPane));
+        setSize(614,300);
 
         new StartController(this,mainPanel);
     }

@@ -42,7 +42,13 @@ public class Main {
         saves = Saves.getInstance();
         stopped = false;
 
-        MainMenu();
+        System.out.println("Executing on Swing...");
+        SwingUtilities.invokeLater(()->{
+            StartGameUI wdw = new StartGameUI();
+            wdw.setVisible(true);
+            wdw.setLocationRelativeTo(null);
+        });
+        // MainMenu();
         timer.cancel();
         data.close();
         input.close();
@@ -52,7 +58,7 @@ public class Main {
         try {
             final String os = System.getProperty("os.name");
             if (os.contains("Windows")) {
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor(); 
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
             } else {
                 Runtime.getRuntime().exec("clear");
             }
@@ -183,11 +189,6 @@ public class Main {
 
     private static void MainMenu() {
         clearConsole();
-        SwingUtilities.invokeLater(()->{
-            StartGameUI wdw = new StartGameUI();
-            wdw.setVisible(true);
-            wdw.setLocationRelativeTo(null);
-        });
         while (true) {
             System.out.println("1. New Game");
             if (saves.GetSaveCount() > 0) {
@@ -680,7 +681,7 @@ public class Main {
         stopped = false;
     }
 
-    private static void SaveGame() {
+    public static void SaveGame() {
         System.out.println("Saving game...");
         saves.UpdateSaveData(ActiveSave);
         System.out.println("Game saved");
