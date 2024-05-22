@@ -19,6 +19,12 @@
 <p>
   <img src="images/java.png" width="100" alt="Java"/>
   <img src="images/swing.png" width="100" alt="Swing"/>
+  <img src="images/azure.jpg" height="100" alt="Azure"/>
+  <img src="images/plsql.png" height="100" alt="PlSql"/>
+  <img src="images/xml.png" width="100" alt="Xml"/>
+  <img src="images/xslt.jpg" width="100" alt="Xmlt"/>
+  <img src="images/python.jpg" height="100" alt="Python"/>
+  <img src="images/flask.png" height="" alt="flask.jpg"/>
 </p>
 
 <h2>Controls</h2>
