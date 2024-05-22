@@ -1,7 +1,8 @@
 package com.project;
 
 public interface Variables {
-
+    //Battle lost resources percentage after a defeat
+    public final float BATTLE_LOST_RESOURCES_PERCENTAGE = 0.5f;
     // resources available to create the first enemy fleet
     public final int IRON_BASE_ENEMY_ARMY = 26000;
     public final int WOOD_BASE_ENEMY_ARMY = 180000;
