@@ -24,7 +24,7 @@
   <img src="images/xml.png" width="100" alt="Xml"/>
   <img src="images/xslt.jpg" width="100" alt="Xmlt"/>
   <img src="images/python.jpg" height="100" alt="Python"/>
-  <img src="images/flask.png" height="" alt="flask.jpg"/>
+  <img src="images/flask.png" width="100" alt="flask.jpg"/>
 </p>
 
 <h2>Controls</h2>
