@@ -41,6 +41,7 @@ class AppData {
         try {
             conn = DriverManager.getConnection(url);
             conn.setAutoCommit(false); // Desactiva l'autocommit per permetre control manual de transaccions
+            
         } catch (SQLException e) {
             System.out.println("Error conecting to the database");
             e.printStackTrace();

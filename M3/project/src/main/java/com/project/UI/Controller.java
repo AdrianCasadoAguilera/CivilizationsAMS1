@@ -1,30 +1,30 @@
 package com.project.UI;
 
-import java.awt.CardLayout;
-import javax.swing.*;
+import com.project.*;
 
 public class Controller {
-    MainView mainView;
-    StatsView statsView;
-    CardLayout cardLayout;
-    JPanel cards;
 
-    public Controller(MainView mainView,StatsView statsView,CardLayout cardLayout,JPanel cards){
+    private MainView mainView;
+
+    public Controller(MainView mainView){
         this.mainView = mainView;
-        this.statsView = statsView;
-        this.cardLayout = cardLayout;
-        this.cards = cards;
 
-        setListeners();
+        setMainListeners();
     }
 
-    private void setListeners(){
-        mainView.seeStats.addActionListener(e-> {
-            cardLayout.show(cards,"stats");
+    private void setMainListeners(){
+        mainView.pause.addActionListener(e->{
+            Main.stopped = true;
+            mainView.pause.setVisible(false);
+            mainView.resume.setVisible(true);
+            Main.SaveGame();
         });
-
-        statsView.goBack.addActionListener(e->{
-           cardLayout.show(cards,"main"); 
+        mainView.resume.addActionListener(e->{
+            Main.stopped = false;
+            mainView.pause.setVisible(true);
+            mainView.resume.setVisible(false);
+            Main.SaveGame();
         });
     }
+    
 }

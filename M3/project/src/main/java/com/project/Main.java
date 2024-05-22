@@ -5,8 +5,12 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.*;
+import com.project.UI.*;
+import com.project.UI.startgame.StartGameUI;
 
 public class Main {
+    private static MainWindow window;
     public static Timer timer;
     public static Saves saves;
     public static Scanner input = new Scanner(System.in);
@@ -38,11 +42,13 @@ public class Main {
         saves = Saves.getInstance();
         stopped = false;
 
-        /*SwingUtilities.invokeLater(()->{
-            new MainWindow().setVisible(true);
-        });*/
-
-        MainMenu();
+        System.out.println("Executing on Swing...");
+        SwingUtilities.invokeLater(()->{
+            StartGameUI wdw = new StartGameUI();
+            wdw.setVisible(true);
+            wdw.setLocationRelativeTo(null);
+        });
+        // MainMenu();
         timer.cancel();
         data.close();
         input.close();
@@ -52,7 +58,7 @@ public class Main {
         try {
             final String os = System.getProperty("os.name");
             if (os.contains("Windows")) {
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor(); 
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
             } else {
                 Runtime.getRuntime().exec("clear");
             }
@@ -206,6 +212,7 @@ public class Main {
                     String name = input.nextLine();
                     NewGame(name);
                     clearConsole();
+                    
                     break;
                 case 2:
                     if (saves.GetSaveCount() == 0) {
@@ -222,11 +229,22 @@ public class Main {
         }
     }
 
-    private static void NewGame(String name) {
+    private static void startUI(){
+        window = new MainWindow();
+        window.setVisible(true);
+    }
+    
+    public static void NewGame(String name) {
+        startUI();
         ActiveSave = saves.AddNewSaveData(name);
         NextEnemyArmy = null;
         saves.LoadSaveData(ActiveSave);
         MainGameMenu();
+        endUI();
+    }
+
+    private static void endUI(){
+        window.dispose();
     }
 
     private static void ContinueMenu() {
@@ -297,9 +315,11 @@ public class Main {
     }
 
     private static void ContinueGame(int index) {
+        startUI();
         ActiveSave = index;
         saves.LoadSaveData(index);
         MainGameMenu();
+        endUI();
     }
 
     private static void MainGameMenu() {
@@ -668,7 +688,7 @@ public class Main {
         stopped = false;
     }
 
-    private static void SaveGame() {
+    public static void SaveGame() {
         System.out.println("Saving game...");
         saves.UpdateSaveData(ActiveSave);
         System.out.println("Game saved");

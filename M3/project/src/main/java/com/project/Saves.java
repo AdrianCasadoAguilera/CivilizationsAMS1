@@ -33,10 +33,10 @@ public class Saves {
 
     public void LoadSavesFromDB() {
         CivilizationDao dao = new CivilizationDao();
-        ArrayList<SaveData> saves = dao.getSaves();
-        for (SaveData save : saves) {
-            savedata.add(save);
-        }
+        // ArrayList<SaveData> saves = dao.getSaves();
+        // for (SaveData save : saves) {
+        //     savedata.add(save);
+        // }
     }
     
     public void SaveDataToDB(int index) {
