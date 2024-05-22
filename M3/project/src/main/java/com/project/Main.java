@@ -48,7 +48,7 @@ public class Main {
             wdw.setVisible(true);
             wdw.setLocationRelativeTo(null);
         });
-        // MainMenu();
+        //MainMenu();
         timer.cancel();
         data.close();
         input.close();
