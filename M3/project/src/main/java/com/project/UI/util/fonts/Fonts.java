@@ -2,6 +2,7 @@ package com.project.UI.util.fonts;
 
 import java.awt.Font;
 import java.io.File;
+import java.net.URL;
 
 public class Fonts {
     private static Fonts instance;
@@ -10,7 +11,8 @@ public class Fonts {
 
     private Fonts(){
         try{
-            rusticFont = Font.createFont(Font.TRUETYPE_FONT, new File("./project/src/main/java/com/project/UI/util/fonts/rustic.ttf")).deriveFont(15f);
+            URL url = getClass().getResource("/com/project/UI/util/fonts/rustic.ttf");
+            rusticFont = Font.createFont(Font.TRUETYPE_FONT, new File(url.getPath())).deriveFont(15f);
         }catch(Exception e){
             System.out.println("Error obtaining fonts");
         }
