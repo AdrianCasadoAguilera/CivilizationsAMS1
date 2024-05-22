@@ -366,6 +366,16 @@ public class Battle {
         }
         //set civilizations army
         civilization.setArmy(armyAfter);
+        //recollect waste
+        if (Win)
+            recollectWaste(civilization);
+        else {
+            //lose resorces
+            civilization.setFood((int)(civilization.getFood()*(1-Variables.BATTLE_LOST_RESOURCES_PERCENTAGE)));
+            civilization.setWood((int)(civilization.getWood()*(1-Variables.BATTLE_LOST_RESOURCES_PERCENTAGE)));
+            civilization.setIron((int)(civilization.getIron()*(1-Variables.BATTLE_LOST_RESOURCES_PERCENTAGE)));
+            civilization.setMana((int)(civilization.getMana()*(1-Variables.BATTLE_LOST_RESOURCES_PERCENTAGE)));
+        }
     }
 
     public ArrayList<MilitaryUnit> SampleUnits(ArrayList<MilitaryUnit> units, int amount) {
