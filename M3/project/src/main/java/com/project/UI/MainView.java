@@ -1,40 +1,66 @@
 package com.project.UI;
 
-import com.project.*;
-
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
-public class MainView extends View {
-    
-    public JButton seeStats;
-    public JButton returnMenu;
-    private ResourcesMenu rsc;
+public class MainView extends JPanel {
 
-    public MainView(Model model){
+    // MENU OPTIONS ELEMENTS
+    public JPanel menuOptionsPanel;
+    public JButton pause;
+    public JButton resume;
+
+    // CENTRAL ELEMENTS
+    public JPanel centralPanel;
+    public JButton createBuildingButton;
+    public JButton trainButton;
+    public JButton upgradeTechLevelButton;
+
+    public MainView(){
         setLayout(new BorderLayout());
 
-        rsc = new ResourcesMenu(model);
-        setResources();
-        setOptions();
+        setUpButtons();
+        setCentralOptions();
+        
+        setMenuOptions();
     }
 
-    private void setOptions(){
-        JPanel options = new JPanel();
-            seeStats = new JButton("See Stats");
-            returnMenu = new JButton("Back to Menu");
-        options.add(seeStats);
-        options.add(returnMenu);
+    private void setUpButtons(){
+        createBuildingButton = new JButton("Create Building");
+        trainButton = new JButton("Train Units");
+        upgradeTechLevelButton = new JButton("Upgrade Technology Level");
 
-        add(options,BorderLayout.SOUTH);
+        upgradeTechLevelButton.setBorderPainted(false);
+        // upgradeTechLevelButton.back
+
+        pause = new JButton("Pause");
+        resume = new JButton("Resume");
     }
 
-    private void setResources(){
-        add(rsc,BorderLayout.NORTH);
+    private void setCentralOptions(){
+        centralPanel = new JPanel();
+        centralPanel.setLayout(new FlowLayout());
+        centralPanel.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.BLACK));
+
+        centralPanel.add(createBuildingButton);
+        centralPanel.add(trainButton);
+        centralPanel.add(upgradeTechLevelButton);
+
+        add(centralPanel,BorderLayout.CENTER);
     }
 
-    public void update(){
-        rsc.updateResources();
-        add(rsc,BorderLayout.NORTH);
+    private void setMenuOptions(){
+        menuOptionsPanel = new JPanel();
+        menuOptionsPanel.setLayout(new FlowLayout());
+        menuOptionsPanel.setBorder(BorderFactory.createMatteBorder(0,1,1,1,Color.BLACK));
+        menuOptionsPanel.setBackground(Color.LIGHT_GRAY);
+
+        pause.setVisible(true);
+        resume.setVisible(false);
+
+        menuOptionsPanel.add(pause);
+        menuOptionsPanel.add(resume);
+
+        add(menuOptionsPanel,BorderLayout.SOUTH);
     }
 }

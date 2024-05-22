@@ -7,8 +7,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.*;
 import com.project.UI.*;
+import com.project.UI.startgame.StartGameUI;
 
 public class Main {
+    private static MainWindow window;
     public static Timer timer;
     public static Saves saves;
     public static Scanner input = new Scanner(System.in);
@@ -39,8 +41,6 @@ public class Main {
         civilization = Civilization.getInstance();
         saves = Saves.getInstance();
         stopped = false;
-
-        startUI();
 
         MainMenu();
         timer.cancel();
@@ -188,6 +188,11 @@ public class Main {
 
     private static void MainMenu() {
         clearConsole();
+        SwingUtilities.invokeLater(()->{
+            StartGameUI wdw = new StartGameUI();
+            wdw.setVisible(true);
+            wdw.setLocationRelativeTo(null);
+        });
         while (true) {
             System.out.println("1. New Game");
             if (saves.GetSaveCount() > 0) {
@@ -229,15 +234,20 @@ public class Main {
     }
 
     private static void startUI(){
-        SwingUtilities.invokeLater(()->{
-            new MainWindow().setVisible(true);
-        })
+        window = new MainWindow();
+        window.setVisible(true);
     }
     
-    private static void NewGame(String name) {
+    public static void NewGame(String name) {
+        startUI();
         ActiveSave = saves.AddNewSaveData(name);
         saves.LoadSaveData(ActiveSave);
         MainGameMenu();
+        endUI();
+    }
+
+    private static void endUI(){
+        window.dispose();
     }
 
     private static void ContinueMenu() {
@@ -267,9 +277,11 @@ public class Main {
     }
 
     private static void ContinueGame(int index) {
+        startUI();
         ActiveSave = index;
         saves.LoadSaveData(index);
         MainGameMenu();
+        endUI();
     }
 
     private static void MainGameMenu() {
@@ -638,7 +650,7 @@ public class Main {
         stopped = false;
     }
 
-    private static void SaveGame() {
+    public static void SaveGame() {
         saves.UpdateSaveData(ActiveSave);
     }
 

@@ -1,75 +1,44 @@
 package com.project.UI;
 
-import com.project.*;
-
 import java.awt.*;
-import java.awt.event.*;
 
 import javax.swing.*;
 
+import com.project.UI.entities.*;
+
 public class MainWindow extends JFrame {
-    
-    private StartView startView;
-    private MainView mainView;
-    private StatsView statsView;
+
     private CardLayout cardLayout;
     private JPanel cards;
-    private ResourcesMenu resourcesMenu;
 
-    private Model model;
-
+    private MainView mainView;
+    private SeeEntitiesView seeEntitiesView;
+    
     public MainWindow(){
         super("Civilizations");
-        setSize(500,500);
+        setSize(600,600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
 
-        model = new Model(Civilization.getInstance());
+        setView();
 
-        // Temporitzador d'actualització de la info al Swing
-        setTimer();
-
-        setCards();
-
-        setController();
+        new Controller(mainView);
+        new entitiesController(seeEntitiesView);
     }
 
-    private void setTimer(){
-        int delay = 100; //milliseconds
-        ActionListener taskPerformer = new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                updateResources();
-            }
-        };
-        new Timer(delay, taskPerformer).start();
-    }
-
-    private void setCards(){
-        startView = new StartView();
-        mainView = new MainView(model);
-        statsView = new StatsView(model);
-
+    private void setView(){
         cardLayout = new CardLayout();
-        cards = new JPanel(cardLayout);
-        cards.add(startView,"start");
-        cards.add(mainView,"main");
-        cards.add(statsView,"stats");
+        cards = new JPanel();
+        cards.setLayout(cardLayout);
 
-        cardLayout.show(cards,"start");
+        mainView = new MainView();
+        seeEntitiesView = new SeeEntitiesView();
+        cards.add(mainView,"main");
+        cards.add(seeEntitiesView,"entities");
+
+        cardLayout.show(cards, "main");
 
         add(cards);
     }
 
-    private void setController(){
-        new Controller(startView ,mainView, statsView, cardLayout, cards);
-    }
-
-    private void updateResources(){
-        model.update();
-        updateViews();
-    }
-
-    private void updateViews(){
-        statsView.update();
-        mainView.update();
-    }
 }
