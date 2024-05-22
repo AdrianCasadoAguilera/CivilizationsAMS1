@@ -3,16 +3,11 @@ package com.project;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.naming.spi.DirStateFactory.Result;
-
-import oracle.security.o3logon.b;
-import oracle.sql.NUMBER;
 
 public class CivilizationDao {
 
@@ -85,18 +80,6 @@ public class CivilizationDao {
             sql += unit.getExperience() + ")";
             db.update(sql);
         }
-    }
-
-    private String clobToString(Clob clob) throws IOException, SQLException {
-        StringBuilder sb = new StringBuilder();
-        Reader reader = clob.getCharacterStream();
-        BufferedReader br = new BufferedReader(reader);
-        String line;
-        while ((line = br.readLine()) != null) {
-            sb.append(line);
-        }
-        br.close();
-        return sb.toString();
     }
 
     public ArrayList<SaveData> getSaves() {

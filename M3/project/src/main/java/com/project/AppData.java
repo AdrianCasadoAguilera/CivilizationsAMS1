@@ -9,21 +9,23 @@ import java.util.Map;
 class AppData {
     private static AppData instance;
     private Connection conn;
-    /*
-    private String HostName = "localhost";
-    private String Port = "1521";
-    private String DatabaseName = "xe";
-    private String Username = "botiga";
-    private String Password = "botiga";*/
+    
     private String HostName = "localhost";
     private String Port = "1521";
     private String DatabaseName = "xe";
     private String Username = "botiga";
     private String Password = "botiga";
+    /*private String HostName = "20.224.68.0";
+    private String Port = "1521";
+    private String DatabaseName = "MYDB";
+    private String Username = "usuario";
+    private String Password = "1234";*/
 
     private AppData() {
         // Connecta al crear la primera instància
+        System.out.println("Connecting to the database...");
         connect();
+        System.out.println("Connected");
     }
 
     // Singleton
@@ -41,7 +43,7 @@ class AppData {
             conn.setAutoCommit(false); // Desactiva l'autocommit per permetre control manual de transaccions
         } catch (SQLException e) {
             System.out.println("Error conecting to the database");
-            System.out.println(e.getMessage());
+            e.printStackTrace();
             System.exit(0);
         }
     }
