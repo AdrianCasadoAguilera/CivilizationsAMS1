@@ -10,9 +10,9 @@ public interface Variables {
     // percentage increase of resources available to create enemy fleet
     public final int ENEMY_FLEET_INCREASE = 6;
     // resources increment every minute
-    public final int CIVILIZATION_IRON_GENERATED = 1500;
-    public final int CIVILIZATION_WOOD_GENERATED = 5000;
-    public final int CIVILIZATION_FOOD_GENERATED = 8000;
+    public final int CIVILIZATION_IRON_GENERATED = 5000;
+    public final int CIVILIZATION_WOOD_GENERATED = 17500;
+    public final int CIVILIZATION_FOOD_GENERATED = 25000;
     public final int CIVILIZATION_IRON_GENERATED_PER_SMITHY = (int) (0.5*CIVILIZATION_IRON_GENERATED);
     public final int CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY = (int) (0.5*CIVILIZATION_WOOD_GENERATED);
     public final int CIVILIZATION_FOOD_GENERATED_PER_FARM = (int) (0.5*CIVILIZATION_FOOD_GENERATED);

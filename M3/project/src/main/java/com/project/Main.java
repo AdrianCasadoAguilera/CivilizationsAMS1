@@ -43,15 +43,12 @@ public class Main {
         stopped = false;
 
         System.out.println("Executing on Swing...");
-        SwingUtilities.invokeLater(()->{
+        /*SwingUtilities.invokeLater(()->{
             StartGameUI wdw = new StartGameUI();
             wdw.setVisible(true);
             wdw.setLocationRelativeTo(null);
-        });
-        //MainMenu();
-        timer.cancel();
-        data.close();
-        input.close();
+        });*/
+        MainMenu();
     }
 
     private static void clearConsole() {
