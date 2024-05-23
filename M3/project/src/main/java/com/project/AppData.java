@@ -60,18 +60,18 @@ class AppData {
     }
 
     public void update(String sql) {
-        try (Statement stmt = conn.createStatement()) {
-            stmt.executeUpdate(sql);
-            conn.commit(); // Confirma els canvis
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            try {
-                conn.rollback(); // Reverteix els canvis en cas d'error
-            } catch (SQLException ex) {
-                System.out.println("Error en fer rollback.");
-                ex.printStackTrace();
-            }
-        }
+        // try (Statement stmt = conn.createStatement()) {
+        //     stmt.executeUpdate(sql);
+        //     conn.commit(); // Confirma els canvis
+        // } catch (SQLException e) {
+        //     System.out.println(e.getMessage());
+        //     try {
+        //         conn.rollback(); // Reverteix els canvis en cas d'error
+        //     } catch (SQLException ex) {
+        //         System.out.println("Error en fer rollback.");
+        //         ex.printStackTrace();
+        //     }
+        // }
     }
 
     public int insertAndGetId(String sql) {
@@ -104,21 +104,21 @@ class AppData {
     public List<Map<String, Object>> query(String sql) {
         List<Map<String, Object>> resultList = new ArrayList<>();
 
-        // try-with-resources tancarà el ResultSet quan acabi el bloc
-        try (Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            ResultSetMetaData metaData = rs.getMetaData();
-            int columnCount = metaData.getColumnCount();
-            while (rs.next()) {
-                Map<String, Object> row = new HashMap<>();
-                for (int i = 1; i <= columnCount; i++) {
-                    row.put(metaData.getColumnLabel(i).toLowerCase(), rs.getObject(i));
-                }
-                resultList.add(row);
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+    //     // try-with-resources tancarà el ResultSet quan acabi el bloc
+    //     try (Statement stmt = conn.createStatement();
+    //          ResultSet rs = stmt.executeQuery(sql)) {
+    //         ResultSetMetaData metaData = rs.getMetaData();
+    //         int columnCount = metaData.getColumnCount();
+    //         while (rs.next()) {
+    //             Map<String, Object> row = new HashMap<>();
+    //             for (int i = 1; i <= columnCount; i++) {
+    //                 row.put(metaData.getColumnLabel(i).toLowerCase(), rs.getObject(i));
+    //             }
+    //             resultList.add(row);
+    //         }
+    //     } catch (SQLException e) {
+    //         System.out.println(e.getMessage());
+    //     }
         return resultList;
     }
 }

@@ -1,5 +1,6 @@
 package com.project.UI;
 
+import com.project.UI.resources.ResourcesPanel;
 import com.project.UI.util.swing_elements.*;
 
 import java.awt.*;
@@ -9,34 +10,41 @@ public class MainView extends JPanel {
 
     // MENU OPTIONS ELEMENTS
     public JPanel menuOptionsPanel;
-    public JButton pause;
-    public JButton resume;
+    public PButton pause;
+    public PButton resume;
+
+    // RESOURCES ELEMENTS
+    public ResourcesPanel resourcesPanel;
 
     // CENTRAL ELEMENTS
     public JPanel centralPanel;
-    public JButton createBuildingButton;
-    public JButton trainButton;
-    public JButton upgradeTechLevelButton;
+    public PButton createBuildingButton;
+    public PButton trainButton;
+    public PButton upgradeTechLevelButton;
 
     public MainView(){
         setLayout(new BorderLayout());
 
+        setNorthPanel();
         setUpButtons();
         setCentralOptions();
         
         setMenuOptions();
     }
+    
+    private void setNorthPanel(){
+        resourcesPanel = new ResourcesPanel();
+
+        add(resourcesPanel,BorderLayout.NORTH);
+    }
 
     private void setUpButtons(){
-        createBuildingButton = new JButton("Create Building");
-        trainButton = new JButton("Train Units");
-        upgradeTechLevelButton = new JButton("Upgrade Technology Level");
+        createBuildingButton = new PButton("Create Building");
+        trainButton = new PButton("Train Units");
+        upgradeTechLevelButton = new PButton("Upgrade Technology Level");
 
-        upgradeTechLevelButton.setBorderPainted(false);
-        // upgradeTechLevelButton.back
-
-        pause = new JButton("Pause");
-        resume = new JButton("Resume");
+        pause = new PButton("Pause");
+        resume = new PButton("Resume");
     }
 
     private void setCentralOptions(){

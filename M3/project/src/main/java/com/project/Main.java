@@ -24,7 +24,7 @@ public class Main {
         public void run() {
             if (!stopped)
             Update();
-            //System.out.println("update Active");
+            // System.out.println("update Active");
         }
     };
     public static ArrayList<Battle> battlesFaugth = new ArrayList<>();
@@ -43,15 +43,13 @@ public class Main {
         stopped = false;
 
         System.out.println("Executing on Swing...");
+        Saves.getInstance().AddNewSaveData("test");
         SwingUtilities.invokeLater(()->{
             StartGameUI wdw = new StartGameUI();
             wdw.setVisible(true);
             wdw.setLocationRelativeTo(null);
         });
         // MainMenu();
-        timer.cancel();
-        data.close();
-        input.close();
     }
 
     private static void clearConsole() {
@@ -235,7 +233,6 @@ public class Main {
     }
     
     public static void NewGame(String name) {
-        startUI();
         ActiveSave = saves.AddNewSaveData(name);
         NextEnemyArmy = null;
         saves.LoadSaveData(ActiveSave);

@@ -16,8 +16,11 @@ import java.awt.event.MouseEvent;
 
 public class PFrontpageButton extends JButton {
 
+    String originalTxt;
+
     public PFrontpageButton(String txt){
         super(txt);
+        originalTxt = txt;
         setContentAreaFilled(false);
         setOpaque(false);
         setBorderPainted(false);
@@ -32,10 +35,12 @@ public class PFrontpageButton extends JButton {
         return new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent arg0) {
+                setText("> "+getText()+" <");
                 setFont(Fonts.getInstance().rusticFont.deriveFont(Font.BOLD,15));
             }
             @Override
             public void mouseExited(MouseEvent arg0) {
+                setText(originalTxt);
                 setFont(Fonts.getInstance().rusticFont);
             }
         };
