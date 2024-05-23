@@ -1,28 +1,18 @@
 package com.project;
 
 public class Spearman extends AttackUnit {
-    private static final int ARMOR_SPEARMAN = 1000;
-    private static final int BASE_DAMAGE_SPEARMAN = 150;
-
-    public Spearman(int technologyDefenseLevel, int technologyAttackLevel) {
-        this.armor = ARMOR_SPEARMAN + (int)(PLUS_ARMOR_SPEARMAN_BY_TECHNOLOGY*technologyDefenseLevel)*ARMOR_SPEARMAN/100;
-        this.initialArmor = this.armor;
-        this.baseDamage = BASE_DAMAGE_SPEARMAN + (int)(PLUS_ATTACK_SPEARMAN_BY_TECHNOLOGY * technologyAttackLevel)*BASE_DAMAGE_SPEARMAN/100;
-        this.experience = 0;
-        this.sanctified = false;
-    }
 
     public Spearman() {
-        this.armor = ARMOR_SPEARMAN;
-        this.initialArmor = this.armor;
-        this.baseDamage = BASE_DAMAGE_SPEARMAN;
+        this.armor = (int)(ARMOR_SPEARMAN * (1+Civilization.getInstance().getTechnologyDefense()*PLUS_ARMOR_SPEARMAN_BY_TECHNOLOGY/100.0));
+        this.initialArmor = armor;
+        this.baseDamage = (int)(BASE_DAMAGE_SPEARMAN * (1+Civilization.getInstance().getTechnologyDefense()*PLUS_ATTACK_SPEARMAN_BY_TECHNOLOGY/100.0));
         this.experience = 0;
         this.sanctified = false;
     }
 
     @Override
     public int attack() {
-        int calculatedDamage = (int)(baseDamage + baseDamage * experience * PLUS_ATTACK_UNIT_PER_EXPERIENCE_POINT / 100);
+        int calculatedDamage = (int)(baseDamage * (1+experience * PLUS_ATTACK_UNIT_PER_EXPERIENCE_POINT / 100));
         if (sanctified) {
             calculatedDamage += baseDamage * PLUS_ATTACK_UNIT_SANCTIFIED / 100;
         }
