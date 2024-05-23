@@ -257,13 +257,16 @@ public class Main {
             try {
                 option = input.nextInt();
             } catch (Exception e) {
+                clearConsole();
                 System.out.println("Invalid option");
+                continue;
             }
             input.nextLine();
             if (option == 0) {
                 return;
             }
             else if (option < 0 || option > saves.GetSaveCount()) {
+                clearConsole();
                 System.out.println("Invalid option");
                 continue;
             }
@@ -275,13 +278,16 @@ public class Main {
             try {
                 option = input.nextInt();
             } catch (Exception e) {
+                clearConsole();
                 System.out.println("Invalid option");
             }
             input.nextLine();
             if (option == 0) {
+                clearConsole();
                 continue;
             }
             if (option < 0 || option > 2) {
+                clearConsole();
                 System.out.println("Invalid option");
                 continue;
             }
@@ -296,6 +302,7 @@ public class Main {
                     DeleteSave(saveId);
                     System.out.println("Save Deleted");
                 }
+                clearConsole();
             }
         }
     }
