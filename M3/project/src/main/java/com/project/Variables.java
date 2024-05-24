@@ -77,15 +77,15 @@ public interface Variables {
     public final int IRON_COST_UNITS[] = {IRON_COST_SWORDSMAN,IRON_COST_SPEARMAN,IRON_COST_CROSSBOW,IRON_COST_CANNON,IRON_COST_ARROWTOWER,IRON_COST_CATAPULT,IRON_COST_ROCKETLAUNCHERTOWER,IRON_COST_MAGICIAN,IRON_COST_PRIEST};
     public final int FOOD_COST_UNITS[] = {FOOD_COST_SWORDSMAN,FOOD_COST_SPEARMAN,FOOD_COST_CROSSBOW,FOOD_COST_CANNON,FOOD_COST_ARROWTOWER,FOOD_COST_CATAPULT,FOOD_COST_ROCKETLAUNCHERTOWER,FOOD_COST_MAGICIAN,FOOD_COST_PRIEST};
     //Cost Buildings
-    public final int FOOD_COST_FARM = 5000;
-    public final int WOOD_COST_FARM = 3000;
+    public final int FOOD_COST_FARM = 2000;
+    public final int WOOD_COST_FARM = 2000;
     public final int IRON_COST_FARM = 2000;
-    public final int FOOD_COST_CARPENTRY = 2000;
-    public final int WOOD_COST_CARPENTRY = 5000;
-    public final int IRON_COST_CARPENTRY = 3000;
-    public final int FOOD_COST_SMITHY = 3000;
-    public final int WOOD_COST_SMITHY = 2000;
-    public final int IRON_COST_SMITHY = 5000;
+    public final int FOOD_COST_CARPENTRY = 3000;
+    public final int WOOD_COST_CARPENTRY = 2000;
+    public final int IRON_COST_CARPENTRY = 4000;
+    public final int FOOD_COST_SMITHY = 1000;
+    public final int WOOD_COST_SMITHY = 7000;
+    public final int IRON_COST_SMITHY = 2500;
     public final int FOOD_COST_CHURCH = 7000;
     public final int WOOD_COST_CHURCH = 2000;
     public final int IRON_COST_CHURCH = 2000;

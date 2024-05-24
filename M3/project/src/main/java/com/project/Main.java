@@ -51,7 +51,7 @@ public class Main {
         MainMenu();
     }
     private static void clearConsole() {
-        /*try {
+        try {
             final String os = System.getProperty("os.name");
             if (os.contains("Windows")) {
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -60,7 +60,7 @@ public class Main {
             }
         } catch (final Exception e) {
             // Handle any ex1ceptions.
-        }*/
+        }
     }
 
     public static String title(String input) {
