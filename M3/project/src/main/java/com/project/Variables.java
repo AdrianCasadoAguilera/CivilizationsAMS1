@@ -34,15 +34,15 @@ public interface Variables {
     // COST ATTACK UNITS
     public final int FOOD_COST_SWORDSMAN = 5000;
     public final int WOOD_COST_SWORDSMAN = 3000;
-    public final int IRON_COST_SWORDSMAN = 50;
+    public final int IRON_COST_SWORDSMAN = 400;
     public final int MANA_COST_SWORDSMAN = 0;
     public final int FOOD_COST_SPEARMAN = 6000;
     public final int WOOD_COST_SPEARMAN = 2000;
-    public final int IRON_COST_SPEARMAN = 100;
+    public final int IRON_COST_SPEARMAN = 600;
     public final int MANA_COST_SPEARMAN = 0;
     public final int FOOD_COST_CROSSBOW = 7500;
     public final int WOOD_COST_CROSSBOW = 4500;
-    public final int IRON_COST_CROSSBOW = 200;
+    public final int IRON_COST_CROSSBOW = 1000;
     public final int MANA_COST_CROSSBOW = 0;
     public final int FOOD_COST_CANNON = 1000;
     public final int WOOD_COST_CANNON = 10000;
@@ -55,7 +55,7 @@ public interface Variables {
     public final int MANA_COST_ARROWTOWER = 0;
     public final int FOOD_COST_CATAPULT = 1000;
     public final int WOOD_COST_CATAPULT = 7000;
-    public final int IRON_COST_CATAPULT = 250;
+    public final int IRON_COST_CATAPULT = 750;
     public final int MANA_COST_CATAPULT = 0;
     public final int FOOD_COST_ROCKETLAUNCHERTOWER = 2000;
     public final int WOOD_COST_ROCKETLAUNCHERTOWER = 2000;
@@ -64,14 +64,13 @@ public interface Variables {
     //Cost Especial units
     public final int FOOD_COST_MAGICIAN = 4000;
     public final int WOOD_COST_MAGICIAN = 4000;
-    public final int IRON_COST_MAGICIAN = 100;
+    public final int IRON_COST_MAGICIAN = 1000;
     public final int MANA_COST_MAGICIAN = 5000;
     public final int FOOD_COST_PRIEST = 5000;
     public final int WOOD_COST_PRIEST = 2000;
-    public final int IRON_COST_PRIEST = 200;
+    public final int IRON_COST_PRIEST = 500;
     public final int MANA_COST_PRIEST = 7000;              // VALOR DE PRUEBA. CAMBIAR!!!!!!!!!
     // public final int MANA_COST_PRIEST = 15000;
-    public final int MANA_COST_MAGICTOWER = 0;
     // array units costs SWORDSMAN, SPEARMAN, CROSSBOW, CANNON, ARROWTOWER, CATAPULT, ROCKETLAUNCHERTOWER
     public final int WOOD_COST_UNITS[] =
     {WOOD_COST_SWORDSMAN,WOOD_COST_SPEARMAN,WOOD_COST_CROSSBOW,WOOD_COST_CANNON,WOOD_COST_ARROWTOWER,WOOD_COST_CATAPULT,WOOD_COST_ROCKETLAUNCHERTOWER,WOOD_COST_MAGICIAN,WOOD_COST_PRIEST};
@@ -79,21 +78,22 @@ public interface Variables {
     public final int FOOD_COST_UNITS[] = {FOOD_COST_SWORDSMAN,FOOD_COST_SPEARMAN,FOOD_COST_CROSSBOW,FOOD_COST_CANNON,FOOD_COST_ARROWTOWER,FOOD_COST_CATAPULT,FOOD_COST_ROCKETLAUNCHERTOWER,FOOD_COST_MAGICIAN,FOOD_COST_PRIEST};
     //Cost Buildings
     public final int FOOD_COST_FARM = 5000;
-    public final int WOOD_COST_FARM = 10000;
-    public final int IRON_COST_FARM = 12000;
-    public final int FOOD_COST_CARPENTRY = 5000;
-    public final int WOOD_COST_CARPENTRY = 10000;
-    public final int IRON_COST_CARPENTRY = 12000;
-    public final int FOOD_COST_SMITHY = 5000;
-    public final int WOOD_COST_SMITHY = 10000;
-    public final int IRON_COST_SMITHY = 12000;
-    public final int FOOD_COST_CHURCH = 5000;
-    public final int WOOD_COST_CHURCH = 10000;
-    public final int IRON_COST_CHURCH = 12000;
-    public final int MANA_COST_CHURCH = 10000;
-    public final int FOOD_COST_MAGICTOWER = 5000;
-    public final int WOOD_COST_MAGICTOWER = 10000;
-    public final int IRON_COST_MAGICTOWER = 12000;
+    public final int WOOD_COST_FARM = 3000;
+    public final int IRON_COST_FARM = 2000;
+    public final int FOOD_COST_CARPENTRY = 2000;
+    public final int WOOD_COST_CARPENTRY = 5000;
+    public final int IRON_COST_CARPENTRY = 3000;
+    public final int FOOD_COST_SMITHY = 3000;
+    public final int WOOD_COST_SMITHY = 2000;
+    public final int IRON_COST_SMITHY = 5000;
+    public final int FOOD_COST_CHURCH = 7000;
+    public final int WOOD_COST_CHURCH = 2000;
+    public final int IRON_COST_CHURCH = 2000;
+    public final int MANA_COST_CHURCH = 2000;
+    public final int FOOD_COST_MAGICTOWER = 3000;
+    public final int WOOD_COST_MAGICTOWER = 5000;
+    public final int IRON_COST_MAGICTOWER = 5000;
+    public final int MANA_COST_MAGICTOWER = 0;
     // BASE DAMAGE ATTACK UNITS
     public final int BASE_DAMAGE_SWORDSMAN = 200;
     public final int BASE_DAMAGE_SPEARMAN = 400;
@@ -108,7 +108,7 @@ public interface Variables {
     public final int ARMOR_SWORDSMAN = 750;
     public final int ARMOR_SPEARMAN = 400;
     public final int ARMOR_CROSSBOW = 500;
-    public final int ARMOR_CANNON = 2000;
+    public final int ARMOR_CANNON = 3000;
     // ARMOR DEFENSES
     public final int ARMOR_ARROWTOWER = 300;
     public final int ARMOR_CATAPULT = 800;
