@@ -55,6 +55,9 @@ def fetch_xml_from_db(output_path):
             file.write(full_xml.read())
         print(f"El resultado se ha guardado en {output_path}")
 
+        # Leer el archivo y eliminar cabeceras duplicadas
+        remove_duplicate_xml_headers(output_path)
+
     except oracledb.DatabaseError as e:
         print(f"Error al conectarse a la base de datos: {str(e)}")
 
@@ -62,5 +65,25 @@ def fetch_xml_from_db(output_path):
         if connection:
             connection.close()
             print("Conexión cerrada")
+
+def remove_duplicate_xml_headers(file_path):
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            content = file.read()
+
+        # Eliminar todas las cabeceras <?xml version="1.0"?>
+        content = content.replace('<?xml version="1.0"?>', '')
+        
+        # Añadir la cabecera completa al inicio del archivo
+        content = '<?xml version="1.0" encoding="UTF-8"?>\n' + content
+
+        # Escribir el contenido actualizado de vuelta al archivo
+        with open(file_path, 'w', encoding='utf-8') as file:
+            file.write(content)
+
+        print(f"La cabecera del archivo XML ha sido actualizada en {file_path}")
+
+    except Exception as e:
+        print(f"Error al procesar el archivo XML: {str(e)}")
 
 fetch_xml_from_db('./xml/civilizations.xml')

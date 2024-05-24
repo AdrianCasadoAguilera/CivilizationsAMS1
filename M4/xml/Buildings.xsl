@@ -5,7 +5,7 @@
         <html>
             <head>
                 <title>Buildings</title>
-    <link rel="stylesheet" href="Buildings.css">
+    <link rel="stylesheet" href="Buildings.css"/>
 <ul>
     <li><a href="attack_units.html">Attack Units</a></li>
     <li><a href="defences.html">Defence Units</a></li>

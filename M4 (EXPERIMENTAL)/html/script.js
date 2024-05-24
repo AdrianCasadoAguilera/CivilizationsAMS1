@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', function() {
+const button = document.getElementById('miBoton');
+button.addEventListener('click', function() {
     fetch('/run-script')
         .then(response => response.json())
         .then(data => {
