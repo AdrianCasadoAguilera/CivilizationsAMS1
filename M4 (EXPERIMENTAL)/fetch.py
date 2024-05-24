@@ -1,25 +1,22 @@
 import oracledb
 import os
 
-# Inicializar el cliente de Oracle (ajusta la ruta según corresponda)
-oracledb.init_oracle_client(lib_dir=r"C:\oracle\instantclient_21_3")
-
 # Parámetros de conexión y conexión a la db
-username = 'azureuser'
-password = 'CivilizationsAMS1'
+username = 'usuario'
+password = '1234'
 host = '20.224.68.0'
-port = 1521
-service_name = 'MYDB'
+port = '1521'
+service_name = 'MYDB'  # o SID si usas SID en lugar de service name
 dsn = oracledb.makedsn(host, port, service_name=service_name)
 
 def fetch_xml_from_db(output_path):
-    connection = None  # Inicializar la variable connection a None
+    connection = None
     try:
         print(f"Intentando conectar a la base de datos con DSN: {dsn}")
         connection = oracledb.connect(user=username, password=password, dsn=dsn)
         print("Connected to Oracle Database!")
 
-        # Consulta PL/SQL para conseguir el xml
+        # Consulta PL/SQL para conseguir el xml sin tablas con CLOB
         plsql_query = """
         DECLARE
             l_context    DBMS_XMLGEN.ctxHandle;
@@ -30,13 +27,16 @@ def fetch_xml_from_db(output_path):
         BEGIN
             FOR table_record IN (SELECT table_name FROM user_tables) LOOP
                 l_table_name := table_record.table_name;
-                l_sql := 'SELECT * FROM ' || l_table_name;
-                l_context := DBMS_XMLGEN.newContext(l_sql);
-                DBMS_XMLGEN.setRowTag(l_context, l_table_name);
-                DBMS_XMLGEN.setRowSetTag(l_context, 'ROWSET');
-                l_xml := DBMS_XMLGEN.getXML(l_context);
-                DBMS_XMLGEN.closeContext(l_context);
-                l_full_xml := l_full_xml || '<' || l_table_name || '>' || l_xml || '</' || l_table_name || '>';
+                -- Excluir tablas que tienen campos CLOB
+                IF l_table_name NOT IN ('BATTLE_LOG') THEN
+                    l_sql := 'SELECT * FROM ' || l_table_name;
+                    l_context := DBMS_XMLGEN.newContext(l_sql);
+                    DBMS_XMLGEN.setRowTag(l_context, l_table_name);
+                    DBMS_XMLGEN.setRowSetTag(l_context, 'ROWSET');
+                    l_xml := DBMS_XMLGEN.getXML(l_context);
+                    DBMS_XMLGEN.closeContext(l_context);
+                    l_full_xml := l_full_xml || '<' || l_table_name || '>' || l_xml || '</' || l_table_name || '>';
+                END IF;
             END LOOP;
             l_full_xml := l_full_xml || '</database>';
             :full_xml := l_full_xml;
@@ -56,8 +56,7 @@ def fetch_xml_from_db(output_path):
         print(f"El resultado se ha guardado en {output_path}")
 
     except oracledb.DatabaseError as e:
-        error, = e.args
-        print(f"Error al conectarse a la base de datos: {error.message}")
+        print(f"Error al conectarse a la base de datos: {str(e)}")
 
     finally:
         if connection:
