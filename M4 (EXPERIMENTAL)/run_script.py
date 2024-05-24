@@ -16,7 +16,7 @@ def run_script():
         subprocess.run(['python', './fetch.py'], check=True)
         time.sleep(2)
         subprocess.run(['python', './zivilizations.py'], check=True)
-        return jsonify({'status': 'success', 'message': 'Scripts ejecutados correctamente.'})
+        return jsonify({'status': 'success', 'message': 'Página refrescada.'})
     except subprocess.CalledProcessError as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
 

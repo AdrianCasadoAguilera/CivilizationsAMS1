@@ -8,11 +8,19 @@
             <head>
                 <title>Civilization Stats</title>
                 <meta charset="UTF-8"/>
-                <script src="script.js"></script>
             </head>
             <body>
                 <h1>Civilization Stats</h1>
-                <button id="miBoton">Ejecutar Script</button>
+<button onclick="refrescar()">Refrescar recursos</button>
+
+<script>
+function refrescar() {
+  var url = 'http://localhost:5000/run-script';
+  
+  var nuevaVentana = window.open(url, '_blank');
+  
+  return false;
+}</script>
 
                 <ul>
                     <li><a href="#civilization_stats">Civilization Stats</a></li>
