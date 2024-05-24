@@ -5,21 +5,7 @@
         <html>
             <head>
                 <title>Special Units</title>
-                <style>
-                    table {
-                        width: 100%;
-                        border-collapse: collapse;
-                    }
-                    th, td {
-                        border: 1px solid black;
-                        padding: 8px;
-                        text-align: left;
-                    }
-                    th {
-                        background-color: #f2f2f2;
-                    }
-                </style>
-
+    <link rel="stylesheet" href="special_units.css">
 <ul>
     <li><a href="buildings.html">Buildings</a></li>
     <li><a href="defences.html">Defence Units</a></li>
