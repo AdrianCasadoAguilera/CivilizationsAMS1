@@ -1,5 +1,6 @@
 package com.project.UI;
 
+import com.project.UI.nextBattle.NextBattlePanel;
 import com.project.UI.resources.ResourcesPanel;
 import com.project.UI.util.swing_elements.*;
 
@@ -8,10 +9,8 @@ import javax.swing.*;
 
 public class MainView extends JPanel {
 
-    // MENU OPTIONS ELEMENTS
-    public JPanel menuOptionsPanel;
-    public PButton pause;
-    public PButton resume;
+    // NEXT BALLE ELEMENTS
+    public NextBattlePanel nextBattlePanel;
 
     // RESOURCES ELEMENTS
     public ResourcesPanel resourcesPanel;
@@ -42,9 +41,6 @@ public class MainView extends JPanel {
         createBuildingButton = new PButton("Create Building");
         trainButton = new PButton("Train Units");
         upgradeTechLevelButton = new PButton("Upgrade Technology Level");
-
-        pause = new PButton("Pause");
-        resume = new PButton("Resume");
     }
 
     private void setCentralOptions(){
@@ -60,17 +56,10 @@ public class MainView extends JPanel {
     }
 
     private void setMenuOptions(){
-        menuOptionsPanel = new JPanel();
-        menuOptionsPanel.setLayout(new FlowLayout());
-        menuOptionsPanel.setBorder(BorderFactory.createMatteBorder(0,1,1,1,Color.BLACK));
-        menuOptionsPanel.setBackground(Color.LIGHT_GRAY);
+        nextBattlePanel = new NextBattlePanel();
 
-        pause.setVisible(true);
-        resume.setVisible(false);
+        nextBattlePanel.add(new PLabel("Next Battle in: "));
 
-        menuOptionsPanel.add(pause);
-        menuOptionsPanel.add(resume);
-
-        add(menuOptionsPanel,BorderLayout.SOUTH);
+        add(nextBattlePanel,BorderLayout.SOUTH);
     }
 }

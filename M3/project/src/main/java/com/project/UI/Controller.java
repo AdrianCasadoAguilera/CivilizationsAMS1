@@ -21,18 +21,6 @@ public class Controller {
     }
 
     private void setMainListeners(){
-        mainView.pause.addActionListener(e->{
-            Main.stopped = true;
-            mainView.pause.setVisible(false);
-            mainView.resume.setVisible(true);
-            Main.SaveGame();
-        });
-        mainView.resume.addActionListener(e->{
-            Main.stopped = false;
-            mainView.pause.setVisible(true);
-            mainView.resume.setVisible(false);
-            Main.SaveGame();
-        });
 
         mainView.createBuildingButton.addActionListener(e->{
             layout.show(cards, "new building");
