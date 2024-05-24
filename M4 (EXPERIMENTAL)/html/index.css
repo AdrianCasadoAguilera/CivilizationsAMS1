@@ -1,0 +1,80 @@
+/* styles.css */
+
+body {
+    font-family: 'Garamond', serif;
+    margin: 0;
+    padding: 0;
+    background: url('images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: rgba(34, 49, 34, 0.8); /* Verde oscuro semi-transparente */
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid #8B4513; /* Marrón oscuro */
+}
+
+header h1 {
+    margin: 0;
+    font-family: 'Trajan Pro', serif;
+    font-size: 2em;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+section {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 2em;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
+
+.buttons button {
+    background-color: #8B4513; /* Marrón */
+    color: white;
+    border: none;
+    padding: 1em 2em;
+    font-size: 1.5em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    width: 300px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.buttons button:hover {
+    background-color: #556B2F; /* Verde oliva oscuro */
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+footer {
+    background-color: rgba(34, 49, 34, 0.8); /* Verde oscuro semi-transparente */
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+    border-top: 2px solid #8B4513; /* Marrón oscuro */
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
