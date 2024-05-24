@@ -1,5 +1,6 @@
 package com.project.UI;
 
+import com.project.UI.nextBattle.NextBattleController;
 import com.project.UI.nextBattle.NextBattlePanel;
 import com.project.UI.resources.ResourcesPanel;
 import com.project.UI.util.swing_elements.*;
@@ -29,6 +30,8 @@ public class MainView extends JPanel {
         setCentralOptions();
         
         setMenuOptions();
+
+        new NextBattleController(nextBattlePanel);
     }
     
     private void setNorthPanel(){
@@ -57,8 +60,6 @@ public class MainView extends JPanel {
 
     private void setMenuOptions(){
         nextBattlePanel = new NextBattlePanel();
-
-        nextBattlePanel.add(new PLabel("Next Battle in: "));
 
         add(nextBattlePanel,BorderLayout.SOUTH);
     }

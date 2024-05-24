@@ -7,17 +7,34 @@ import java.awt.Image;
 import java.net.URL;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import com.project.UI.util.fonts.Fonts;
+import com.project.UI.util.swing_elements.PLabel;
 
 public class NextBattlePanel extends JPanel {
 
     private Image backgroundImage;
+    public JLabel timeToBattleLabel;
     
     public NextBattlePanel(){
-        setLayout(new FlowLayout());
+        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        setAlignmentX(CENTER_ALIGNMENT);
         setBorder(BorderFactory.createMatteBorder(0,1,1,1,Color.BLACK));
         setBackground(Color.LIGHT_GRAY);
+
+        PLabel title = new PLabel("Next battle in: ");
+        title.setAlignmentX(CENTER_ALIGNMENT);
+        timeToBattleLabel = new JLabel("000");
+        timeToBattleLabel.setFont(Fonts.getInstance().itemsFont);
+        timeToBattleLabel.setForeground(Color.WHITE);
+        timeToBattleLabel.setAlignmentX(CENTER_ALIGNMENT);
+        
+        add(title);
+        add(timeToBattleLabel);
 
         initBackgroundImage();
     }

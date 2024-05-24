@@ -12,6 +12,7 @@ import com.project.Saves;
 import com.project.UI.entities.*;
 import com.project.UI.newBuilding.NewBuildingController;
 import com.project.UI.newBuilding.NewBuildingView;
+import com.project.UI.nextBattle.NextBattleController;
 
 public class MainWindow extends JFrame {
 

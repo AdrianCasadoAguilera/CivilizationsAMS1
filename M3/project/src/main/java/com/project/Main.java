@@ -98,6 +98,7 @@ public class Main {
             battle.civilizationArmyAfter(civilization);
             createEnemyArmy();
             battlesFaugth.add(battle);
+            System.out.println("Battle");
             if (ActiveMenu == "Main")
                 System.out.println("\n\nA battle Happened\n");
         }
