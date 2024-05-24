@@ -263,14 +263,14 @@ public class CivilizationDao {
         if (save.getOwnArmy().size() > army.size()) {
             for (int i = 0; i < army.size(); i++) {
                 sql = "UPDATE units SET";
-                sql += " TYPE = '" + title(save.getOwnArmy().get(i).getType().toString()) + "',";
+                sql += " type = '" + title(save.getOwnArmy().get(i).getType().toString()) + "',";
                 sql += " experience = " + save.getOwnArmy().get(i).getExperience() + " ";
                 sql += " WHERE unit_id = " + army.get(i).get("unit_id") + "and civilization_id = "+id;
                 db.update(sql);
             }
             //insert the rest
             for (int i = army.size(); i < save.getOwnArmy().size(); i++) {
-                sql = "INSERT INTO units (civilization_id, TYPE, experience) VALUES (";
+                sql = "INSERT INTO units (civilization_id, type, experience) VALUES (";
                 sql += id + ",";
                 sql += "'" + title(save.getOwnArmy().get(i).getType().toString()) + "',";
                 sql += save.getOwnArmy().get(i).getExperience() + ")";
@@ -280,7 +280,7 @@ public class CivilizationDao {
         else {
             for (int i = 0; i < save.getOwnArmy().size(); i++) {
                 sql = "UPDATE units SET";
-                sql += " TYPE = '" + title(save.getOwnArmy().get(i).getType().toString()) + "',";
+                sql += " type = '" + title(save.getOwnArmy().get(i).getType().toString()) + "',";
                 sql += " experience = " + save.getOwnArmy().get(i).getExperience() + " ";
                 sql += " WHERE unit_id = " + army.get(i).get("unit_id") + "and civilization_id = "+id;
                 db.update(sql);
@@ -296,14 +296,14 @@ public class CivilizationDao {
         if (save.getEnemyArmy().size() > enemy.size()) {
             for (int i = 0; i < enemy.size(); i++) {
                 sql = "UPDATE enemy_unit SET";
-                sql += " TYPE = '" + title(save.getEnemyArmy().get(i).getType().toString()) + "',";
+                sql += " type = '" + title(save.getEnemyArmy().get(i).getType().toString()) + "',";
                 sql += " experience = " + save.getEnemyArmy().get(i).getExperience() + " ";
                 sql += " WHERE unit_id = " + enemy.get(i).get("unit_id") + "and civilization_id = "+id;
                 db.update(sql);
             }
             //insert the rest
             for (int i = enemy.size(); i < save.getEnemyArmy().size(); i++) {
-                sql = "INSERT INTO enemy_unit (civilization_id, TYPE, experience) VALUES (";
+                sql = "INSERT INTO enemy_unit (civilization_id, type, experience) VALUES (";
                 sql += id + ",";
                 sql += "'" + title(save.getEnemyArmy().get(i).getType().toString()) + "',";
                 sql += save.getEnemyArmy().get(i).getExperience() + ")";
@@ -313,7 +313,7 @@ public class CivilizationDao {
         else {
             for (int i = 0; i < save.getEnemyArmy().size(); i++) {
                 sql = "UPDATE enemy_unit SET";
-                sql += " TYPE = '" + title(save.getEnemyArmy().get(i).getType().toString()) + "',";
+                sql += " type = '" + title(save.getEnemyArmy().get(i).getType().toString()) + "',";
                 sql += " experience = " + save.getEnemyArmy().get(i).getExperience() + " ";
                 sql += " WHERE unit_id = " + enemy.get(i).get("unit_id") + "and civilization_id = "+id;
                 db.update(sql);
@@ -361,7 +361,7 @@ public class CivilizationDao {
                 ArrayList<ArrayList<MilitaryUnit>> orderedInitialUnits = battle.orderByUnitType(battle.getCivilizationArmy());
                 ArrayList<ArrayList<MilitaryUnit>> orderedDropsUnits = battle.getCivilizationArmyOrdered();
                 for (int j = 0; j < UnitTypes.values().length; j++) {
-                    sql = "INSERT INTO civilization_unit_stats (civilization_id, num_battle, TYPE, \"INITIAL\", drops) VALUES (";
+                    sql = "INSERT INTO civilization_unit_stats (civilization_id, num_battle, \"type\", \"initial\", drops) VALUES (";
                     sql += id + ",";
                     sql += (i+1) + ",";
                     sql += "'" + title(UnitTypes.values()[j].toString()) + "',";
@@ -376,13 +376,12 @@ public class CivilizationDao {
                 for (int j = 0; j < UnitTypes.values().length; j++) {
                     if (j == 4)
                         break;
-                    sql = "INSERT INTO enemy_unit_stats (civilization_id, num_battle, TYPE, \"INITIAL\", drops) VALUES (";
+                    sql = "INSERT INTO enemy_unit_stats (civilization_id, num_battle, \"type\", \"initial\", drops) VALUES (";
                     sql += id + ",";
                     sql += (i+1) + ",";
                     sql += "'" + title(UnitTypes.values()[j].toString()) + "',";
                     sql += orderedInitialEnemyUnits.get(j).size() + ",";
                     sql += orderedDropsEnemyUnits.get(j).size() + ")";
-                    System.out.println(sql);
                     db.update(sql);
                 }
                 //battle_log

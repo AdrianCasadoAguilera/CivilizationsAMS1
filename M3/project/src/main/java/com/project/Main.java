@@ -50,9 +50,8 @@ public class Main {
         });*/
         MainMenu();
     }
-
     private static void clearConsole() {
-        try {
+        /*try {
             final String os = System.getProperty("os.name");
             if (os.contains("Windows")) {
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -60,8 +59,8 @@ public class Main {
                 Runtime.getRuntime().exec("clear");
             }
         } catch (final Exception e) {
-            // Handle any exceptions.
-        }
+            // Handle any ex1ceptions.
+        }*/
     }
 
     public static String title(String input) {
@@ -373,6 +372,9 @@ public class Main {
                         PauseMenu();
                         if (stopped)
                             return;
+                        break;
+                    case 8: //debug
+                        BattleTimer = 9999;
                         break;
                     case 0:
                         stopped = true;
