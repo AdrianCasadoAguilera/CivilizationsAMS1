@@ -43,7 +43,7 @@ public class Main {
         stopped = false;
 
         System.out.println("Executing on Swing...");
-        Saves.getInstance().AddNewSaveData("test");
+        // Saves.getInstance().AddNewSaveData("test");
         SwingUtilities.invokeLater(()->{
             StartGameUI wdw = new StartGameUI();
             wdw.setVisible(true);
@@ -94,7 +94,6 @@ public class Main {
             civilization.setBattles(civilization.getBattles()+1);
             Battle battle = new Battle((ArrayList<MilitaryUnit>)civilization.getArmy().clone(), (ArrayList<MilitaryUnit>)NextEnemyArmy.clone());
             battle.startBattle();
-            battle.recollectWaste(civilization);
             battle.civilizationArmyAfter(civilization);
             createEnemyArmy();
             battlesFaugth.add(battle);
@@ -109,12 +108,6 @@ public class Main {
         int food = Variables.FOOD_BASE_ENEMY_ARMY;
         int wood = Variables.WOOD_BASE_ENEMY_ARMY;
         int iron = Variables.IRON_BASE_ENEMY_ARMY;
-        /*Para crear el ejército enemigo, dispondremos de unos recursos iniciales, que conforme vayan
-        sucediendo batallas, serán mayores .
-        Iremos creando unidades enemigas aleatoriamente pero con las siguientes probabilidades:
-        Swordsman 35%, Spearman 25%, Crossbow 20%, Cannon 20%.
-        Mientras tengamos suficientes recursos para crear la unidad con menor coste, es decir, Swordsman
-        iremos creando unidades aleatoriamente según las probabilidades anteriores. */
         Random random = new Random();
         while (food >= Variables.FOOD_COST_SWORDSMAN && wood >= Variables.WOOD_COST_SWORDSMAN && iron >= Variables.IRON_COST_SWORDSMAN) {
             int r = random.nextInt(100);
@@ -124,20 +117,26 @@ public class Main {
                 iron -= Variables.IRON_COST_SWORDSMAN;
                 result.add(new Swordsman());
             } else if (r < 60) {
-                food -= Variables.FOOD_COST_SPEARMAN;
-                wood -= Variables.WOOD_COST_SPEARMAN;
-                iron -= Variables.IRON_COST_SPEARMAN;
-                result.add(new Spearman());
+                if (food >= Variables.FOOD_COST_SPEARMAN && wood >= Variables.WOOD_COST_SPEARMAN && iron >= Variables.IRON_COST_SPEARMAN) {
+                    food -= Variables.FOOD_COST_SPEARMAN;
+                    wood -= Variables.WOOD_COST_SPEARMAN;
+                    iron -= Variables.IRON_COST_SPEARMAN;
+                    result.add(new Spearman());
+                }
             } else if (r < 80) {
-                food -= Variables.FOOD_COST_CROSSBOW;
-                wood -= Variables.WOOD_COST_CROSSBOW;
-                iron -= Variables.IRON_COST_CROSSBOW;
-                result.add(new Crossbow());
+                if (food >= Variables.FOOD_COST_CROSSBOW && wood >= Variables.WOOD_COST_CROSSBOW && iron >= Variables.IRON_COST_CROSSBOW) {
+                    food -= Variables.FOOD_COST_CROSSBOW;
+                    wood -= Variables.WOOD_COST_CROSSBOW;
+                    iron -= Variables.IRON_COST_CROSSBOW;
+                    result.add(new Crossbow());
+                }
             } else {
-                food -= Variables.FOOD_COST_CANNON;
-                wood -= Variables.WOOD_COST_CANNON;
-                iron -= Variables.IRON_COST_CANNON;
-                result.add(new Cannon());
+                if (food >= Variables.FOOD_COST_CANNON && wood >= Variables.WOOD_COST_CANNON && iron >= Variables.IRON_COST_CANNON) {
+                    food -= Variables.FOOD_COST_CANNON;
+                    wood -= Variables.WOOD_COST_CANNON;
+                    iron -= Variables.IRON_COST_CANNON;
+                    result.add(new Cannon());
+                }
             }
         }
         return result;
@@ -146,9 +145,10 @@ public class Main {
     private static synchronized void createEnemyArmy() {
         //NOTA: si todos los costes son 0 entonces esto ira infinito
         NextEnemyArmy.clear();
-        int food = Variables.FOOD_BASE_ENEMY_ARMY + Variables.FOOD_BASE_ENEMY_ARMY*Variables.ENEMY_FLEET_INCREASE/100*civilization.getBattles();
-        int wood = Variables.WOOD_BASE_ENEMY_ARMY + Variables.WOOD_BASE_ENEMY_ARMY*Variables.ENEMY_FLEET_INCREASE/100*civilization.getBattles();
-        int iron = Variables.IRON_BASE_ENEMY_ARMY + Variables.IRON_BASE_ENEMY_ARMY*Variables.ENEMY_FLEET_INCREASE/100*civilization.getBattles();
+        double increase = Math.pow(1+Variables.ENEMY_FLEET_INCREASE/100.0, civilization.getBattles());
+        int food = (int)(Variables.FOOD_BASE_ENEMY_ARMY*increase);
+        int wood = (int)(Variables.WOOD_BASE_ENEMY_ARMY*increase);
+        int iron = (int)(Variables.IRON_BASE_ENEMY_ARMY*increase);
         Random random = new Random();
         while (food >= Variables.FOOD_COST_SWORDSMAN && wood >= Variables.WOOD_COST_SWORDSMAN && iron >= Variables.IRON_COST_SWORDSMAN) {
             int r = random.nextInt(100);
@@ -158,20 +158,26 @@ public class Main {
                 iron -= Variables.IRON_COST_SWORDSMAN;
                 NextEnemyArmy.add(new Swordsman());
             } else if (r < 60) {
-                food -= Variables.FOOD_COST_SPEARMAN;
-                wood -= Variables.WOOD_COST_SPEARMAN;
-                iron -= Variables.IRON_COST_SPEARMAN;
-                NextEnemyArmy.add(new Spearman());
+                if (food >= Variables.FOOD_COST_SPEARMAN && wood >= Variables.WOOD_COST_SPEARMAN && iron >= Variables.IRON_COST_SPEARMAN) {
+                    food -= Variables.FOOD_COST_SPEARMAN;
+                    wood -= Variables.WOOD_COST_SPEARMAN;
+                    iron -= Variables.IRON_COST_SPEARMAN;
+                    NextEnemyArmy.add(new Spearman());
+                }
             } else if (r < 80) {
-                food -= Variables.FOOD_COST_CROSSBOW;
-                wood -= Variables.WOOD_COST_CROSSBOW;
-                iron -= Variables.IRON_COST_CROSSBOW;
-                NextEnemyArmy.add(new Crossbow());
+                if (food >= Variables.FOOD_COST_CROSSBOW && wood >= Variables.WOOD_COST_CROSSBOW && iron >= Variables.IRON_COST_CROSSBOW) {
+                    food -= Variables.FOOD_COST_CROSSBOW;
+                    wood -= Variables.WOOD_COST_CROSSBOW;
+                    iron -= Variables.IRON_COST_CROSSBOW;
+                    NextEnemyArmy.add(new Crossbow());
+                }
             } else {
-                food -= Variables.FOOD_COST_CANNON;
-                wood -= Variables.WOOD_COST_CANNON;
-                iron -= Variables.IRON_COST_CANNON;
-                NextEnemyArmy.add(new Cannon());
+                if (food >= Variables.FOOD_COST_CANNON && wood >= Variables.WOOD_COST_CANNON && iron >= Variables.IRON_COST_CANNON) {
+                    food -= Variables.FOOD_COST_CANNON;
+                    wood -= Variables.WOOD_COST_CANNON;
+                    iron -= Variables.IRON_COST_CANNON;
+                    NextEnemyArmy.add(new Cannon());
+                }
             }
         }
     }

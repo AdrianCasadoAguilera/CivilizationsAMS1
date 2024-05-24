@@ -1,42 +1,32 @@
 package com.project;
 
 public class Swordsman extends AttackUnit {
-    private static final int ARMOR_SWORDSMAN = 400;
-    private static final int BASE_DAMAGE_SWORDSMAN = 80;
-
-    public Swordsman(int technologyDefenseLevel, int technologyAttackLevel) {
-        this.armor = ARMOR_SWORDSMAN + (int)(technologyDefenseLevel*PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY)*ARMOR_SWORDSMAN/100;
-        this.initialArmor = this.armor;
-        this.baseDamage = BASE_DAMAGE_SWORDSMAN + (int)(technologyAttackLevel*PLUS_ATTACK_SWORDSMAN_BY_TECHNOLOGY)*BASE_DAMAGE_SWORDSMAN/100;
-        this.experience = 0;
-        this.sanctified = false;
-    }
 
     public Swordsman() {
-        this.armor = ARMOR_SWORDSMAN;
-        this.initialArmor = this.armor;
-        this.baseDamage = BASE_DAMAGE_SWORDSMAN;
+        this.armor = (int)(ARMOR_SWORDSMAN * (1+Civilization.getInstance().getTechnologyDefense()*PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY/100.0));
+        this.initialArmor = armor;
+        this.baseDamage = (int)(BASE_DAMAGE_SWORDSMAN * (1+Civilization.getInstance().getTechnologyDefense()*PLUS_ATTACK_SWORDSMAN_BY_TECHNOLOGY/100.0));
         this.experience = 0;
         this.sanctified = false;
     }
 
     @Override
     public int attack() {
-        int calculatedDamage = (int)(baseDamage + baseDamage * experience * PLUS_ATTACK_UNIT_PER_EXPERIENCE_POINT / 100);
+        int calculatedDamage = (int)(baseDamage * (1+experience * PLUS_ATTACK_UNIT_PER_EXPERIENCE_POINT / 100));
         if (sanctified) {
             calculatedDamage += baseDamage * PLUS_ATTACK_UNIT_SANCTIFIED / 100;
         }
         return calculatedDamage;
     }
 
-@Override
+    @Override
     public void takeDamage(int receivedDamage) {
         if (sanctified)
             receivedDamage *= (1-Variables.PLUS_ARMOR_UNIT_SANCTIFIED/100);
         armor -= receivedDamage;
     }
 
-@Override
+    @Override
     public int getActualArmor() {
         return (int)(armor+initialArmor*experience*PLUS_ARMOR_UNIT_PER_EXPERIENCE_POINT/100);
     }

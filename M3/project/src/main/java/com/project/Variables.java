@@ -4,26 +4,26 @@ public interface Variables {
     //Battle lost resources percentage after a defeat
     public final float BATTLE_LOST_RESOURCES_PERCENTAGE = 0.3f;
     // resources available to create the first enemy fleet
-    public final int IRON_BASE_ENEMY_ARMY = 26000;
-    public final int WOOD_BASE_ENEMY_ARMY = 180000;
-    public final int FOOD_BASE_ENEMY_ARMY = 70000;
+    public final int IRON_BASE_ENEMY_ARMY = 2000;
+    public final int WOOD_BASE_ENEMY_ARMY = 12000;
+    public final int FOOD_BASE_ENEMY_ARMY = 15000;
     // percentage increase of resources available to create enemy fleet
-    public final int ENEMY_FLEET_INCREASE = 6;
+    public final int ENEMY_FLEET_INCREASE = 10;
     // resources increment every minute
-    public final int CIVILIZATION_IRON_GENERATED = 1500;
-    public final int CIVILIZATION_WOOD_GENERATED = 5000;
-    public final int CIVILIZATION_FOOD_GENERATED = 8000;
-    public final int CIVILIZATION_IRON_GENERATED_PER_SMITHY = (int) (0.5*CIVILIZATION_IRON_GENERATED);
-    public final int CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY = (int) (0.5*CIVILIZATION_WOOD_GENERATED);
-    public final int CIVILIZATION_FOOD_GENERATED_PER_FARM = (int) (0.5*CIVILIZATION_FOOD_GENERATED);
-    public final int CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER = 3000;
+    public final int CIVILIZATION_IRON_GENERATED = 2500;
+    public final int CIVILIZATION_WOOD_GENERATED = 15000;
+    public final int CIVILIZATION_FOOD_GENERATED = 20000;
+    public final int CIVILIZATION_IRON_GENERATED_PER_SMITHY = (int) (0.15*CIVILIZATION_IRON_GENERATED);
+    public final int CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY = (int) (0.15*CIVILIZATION_WOOD_GENERATED);
+    public final int CIVILIZATION_FOOD_GENERATED_PER_FARM = (int) (0.15*CIVILIZATION_FOOD_GENERATED);
+    public final int CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER = 1000;
     // TECHNOLOGY COST
     public final int UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST = 2000;
     public final int UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST = 2000;
-    public final int UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST = 200;
-    public final int UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST = 200;
-    public final int UPGRADE_BASE_DEFENSE_TECHNOLOGY_FOOD_COST = 100;
-    public final int UPGRADE_BASE_ATTACK_TECHNOLOGY_FOOD_COST = 100;
+    public final int UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST = 5000;
+    public final int UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST = 5000;
+    public final int UPGRADE_BASE_DEFENSE_TECHNOLOGY_FOOD_COST = 5000;
+    public final int UPGRADE_BASE_ATTACK_TECHNOLOGY_FOOD_COST = 5000;
     //UPGRADE_PLUS
     public final int UPGRADE_PLUS_DEFENSE_TECHNOLOGY_IRON_COST = 20;
     public final int UPGRADE_PLUS_ATTACK_TECHNOLOGY_IRON_COST = 20 ;
@@ -32,46 +32,45 @@ public interface Variables {
     public final int UPGRADE_PLUS_DEFENSE_TECHNOLOGY_FOOD_COST = 10;
     public final int UPGRADE_PLUS_ATTACK_TECHNOLOGY_FOOD_COST = 10;
     // COST ATTACK UNITS
-    public final int FOOD_COST_SWORDSMAN = 8000;
-    public final int FOOD_COST_SPEARMAN = 5000;
-    public final int FOOD_COST_CROSSBOW = 0;
-    public final int FOOD_COST_CANNON = 0;
+    public final int FOOD_COST_SWORDSMAN = 5000;
     public final int WOOD_COST_SWORDSMAN = 3000;
-    public final int WOOD_COST_SPEARMAN = 6500;
-    public final int WOOD_COST_CROSSBOW = 4500;
-    public final int WOOD_COST_CANNON = 30000;
-    public final int IRON_COST_SWORDSMAN = 50;
-    public final int IRON_COST_SPEARMAN = 50;
-    public final int IRON_COST_CROSSBOW = 7000;
-    public final int IRON_COST_CANNON = 15000;
+    public final int IRON_COST_SWORDSMAN = 400;
     public final int MANA_COST_SWORDSMAN = 0;
+    public final int FOOD_COST_SPEARMAN = 6000;
+    public final int WOOD_COST_SPEARMAN = 2000;
+    public final int IRON_COST_SPEARMAN = 600;
     public final int MANA_COST_SPEARMAN = 0;
+    public final int FOOD_COST_CROSSBOW = 7500;
+    public final int WOOD_COST_CROSSBOW = 4500;
+    public final int IRON_COST_CROSSBOW = 1000;
     public final int MANA_COST_CROSSBOW = 0;
+    public final int FOOD_COST_CANNON = 1000;
+    public final int WOOD_COST_CANNON = 10000;
+    public final int IRON_COST_CANNON = 30000;
     public final int MANA_COST_CANNON = 0;
     // COST DEFENSES ARROWTOWER, CATAPULT, ROCKETLAUNCHERTOWER
-    public final int IRON_COST_ARROWTOWER = 0;
-    public final int IRON_COST_CATAPULT = 500;
-    public final int IRON_COST_ROCKETLAUNCHERTOWER = 5000;
-    public final int WOOD_COST_ARROWTOWER = 2000;
-    public final int WOOD_COST_CATAPULT = 4000;
-    public final int WOOD_COST_ROCKETLAUNCHERTOWER = 50000;
-    public final int FOOD_COST_ARROWTOWER = 0;
-    public final int FOOD_COST_CATAPULT = 0;
-    public final int FOOD_COST_ROCKETLAUNCHERTOWER = 0;
+    public final int FOOD_COST_ARROWTOWER = 2000;
+    public final int WOOD_COST_ARROWTOWER = 5000;
+    public final int IRON_COST_ARROWTOWER = 500;
     public final int MANA_COST_ARROWTOWER = 0;
+    public final int FOOD_COST_CATAPULT = 1000;
+    public final int WOOD_COST_CATAPULT = 7000;
+    public final int IRON_COST_CATAPULT = 750;
     public final int MANA_COST_CATAPULT = 0;
+    public final int FOOD_COST_ROCKETLAUNCHERTOWER = 2000;
+    public final int WOOD_COST_ROCKETLAUNCHERTOWER = 2000;
+    public final int IRON_COST_ROCKETLAUNCHERTOWER = 40000;
     public final int MANA_COST_ROCKETLAUNCHERTOWER = 0;
     //Cost Especial units
-    public final int FOOD_COST_MAGICIAN = 12000;
-    public final int FOOD_COST_PRIEST = 15000;
-    public final int WOOD_COST_MAGICIAN = 2000;
-    public final int WOOD_COST_PRIEST = 0;
-    public final int IRON_COST_MAGICIAN = 500;
-    public final int IRON_COST_PRIEST = 0;
+    public final int FOOD_COST_MAGICIAN = 4000;
+    public final int WOOD_COST_MAGICIAN = 4000;
+    public final int IRON_COST_MAGICIAN = 1000;
     public final int MANA_COST_MAGICIAN = 5000;
-    public final int MANA_COST_PRIEST = 0;              // VALOR DE PRUEBA. CAMBIAR!!!!!!!!!
+    public final int FOOD_COST_PRIEST = 5000;
+    public final int WOOD_COST_PRIEST = 2000;
+    public final int IRON_COST_PRIEST = 500;
+    public final int MANA_COST_PRIEST = 7000;              // VALOR DE PRUEBA. CAMBIAR!!!!!!!!!
     // public final int MANA_COST_PRIEST = 15000;
-    public final int MANA_COST_MAGICTOWER = 0;
     // array units costs SWORDSMAN, SPEARMAN, CROSSBOW, CANNON, ARROWTOWER, CATAPULT, ROCKETLAUNCHERTOWER
     public final int WOOD_COST_UNITS[] =
     {WOOD_COST_SWORDSMAN,WOOD_COST_SPEARMAN,WOOD_COST_CROSSBOW,WOOD_COST_CANNON,WOOD_COST_ARROWTOWER,WOOD_COST_CATAPULT,WOOD_COST_ROCKETLAUNCHERTOWER,WOOD_COST_MAGICIAN,WOOD_COST_PRIEST};
@@ -79,40 +78,41 @@ public interface Variables {
     public final int FOOD_COST_UNITS[] = {FOOD_COST_SWORDSMAN,FOOD_COST_SPEARMAN,FOOD_COST_CROSSBOW,FOOD_COST_CANNON,FOOD_COST_ARROWTOWER,FOOD_COST_CATAPULT,FOOD_COST_ROCKETLAUNCHERTOWER,FOOD_COST_MAGICIAN,FOOD_COST_PRIEST};
     //Cost Buildings
     public final int FOOD_COST_FARM = 5000;
-    public final int WOOD_COST_FARM = 10000;
-    public final int IRON_COST_FARM = 12000;
-    public final int FOOD_COST_CARPENTRY = 5000;
-    public final int WOOD_COST_CARPENTRY = 10000;
-    public final int IRON_COST_CARPENTRY = 12000;
-    public final int FOOD_COST_SMITHY = 5000;
-    public final int WOOD_COST_SMITHY = 10000;
-    public final int IRON_COST_SMITHY = 12000;
-    public final int FOOD_COST_CHURCH = 5000;
-    public final int WOOD_COST_CHURCH = 10000;
-    public final int IRON_COST_CHURCH = 12000;
-    public final int MANA_COST_CHURCH = 10000;
-    public final int FOOD_COST_MAGICTOWER = 5000;
-    public final int WOOD_COST_MAGICTOWER = 10000;
-    public final int IRON_COST_MAGICTOWER = 12000;
+    public final int WOOD_COST_FARM = 3000;
+    public final int IRON_COST_FARM = 2000;
+    public final int FOOD_COST_CARPENTRY = 2000;
+    public final int WOOD_COST_CARPENTRY = 5000;
+    public final int IRON_COST_CARPENTRY = 3000;
+    public final int FOOD_COST_SMITHY = 3000;
+    public final int WOOD_COST_SMITHY = 2000;
+    public final int IRON_COST_SMITHY = 5000;
+    public final int FOOD_COST_CHURCH = 7000;
+    public final int WOOD_COST_CHURCH = 2000;
+    public final int IRON_COST_CHURCH = 2000;
+    public final int MANA_COST_CHURCH = 2000;
+    public final int FOOD_COST_MAGICTOWER = 3000;
+    public final int WOOD_COST_MAGICTOWER = 5000;
+    public final int IRON_COST_MAGICTOWER = 5000;
+    public final int MANA_COST_MAGICTOWER = 0;
     // BASE DAMAGE ATTACK UNITS
-    public final int BASE_DAMAGE_SWORDSMAN = 80;
-    public final int BASE_DAMAGE_SPEARMAN = 150;
-    public final int BASE_DAMAGE_CROSSBOW = 1000;
-    public final int BASE_DAMAGE_CANNON = 700;
+    public final int BASE_DAMAGE_SWORDSMAN = 200;
+    public final int BASE_DAMAGE_SPEARMAN = 400;
+    public final int BASE_DAMAGE_CROSSBOW = 400;
+    public final int BASE_DAMAGE_CANNON = 2000;
     // BASE DAMAGE DEFENSES
-    public final int BASE_DAMAGE_ARROWTOWER = 80;
-    public final int BASE_DAMAGE_CATAPULT = 250;
-    public final int BASE_DAMAGE_ROCKETLAUNCHERTOWER = 2000;
-    public final int BASE_DAMAGE_MAGICIAN = 3000;
+    public final int BASE_DAMAGE_ARROWTOWER = 350;
+    public final int BASE_DAMAGE_CATAPULT = 300;
+    public final int BASE_DAMAGE_ROCKETLAUNCHERTOWER = 1000;
+    public final int BASE_DAMAGE_MAGICIAN = 750;
     // ARMOR ATTACK UNITS
-    public final int ARMOR_SWORDSMAN = 400;
-    public final int ARMOR_SPEARMAN = 1000;
-    public final int ARMOR_CROSSBOW = 6000;
-    public final int ARMOR_CANNON = 8000;
+    public final int ARMOR_SWORDSMAN = 750;
+    public final int ARMOR_SPEARMAN = 400;
+    public final int ARMOR_CROSSBOW = 500;
+    public final int ARMOR_CANNON = 3000;
     // ARMOR DEFENSES
-    public final int ARMOR_ARROWTOWER = 200;
-    public final int ARMOR_CATAPULT = 1200;
-    public final int ARMOR_ROCKETLAUNCHERTOWER = 7000;
+    public final int ARMOR_ARROWTOWER = 300;
+    public final int ARMOR_CATAPULT = 800;
+    public final int ARMOR_ROCKETLAUNCHERTOWER = 900;
     // number of units a priest sanctifies 
     public final int NUMBER_OF_UNITS_SANCTIFIED_BY_PRIEST = 5;
     //Attack Units armor increase percentage per tech level
@@ -138,8 +138,8 @@ public interface Variables {
     public final int PLUS_ARMOR_UNIT_PER_EXPERIENCE_POINT = 4;
     public final int PLUS_ATTACK_UNIT_PER_EXPERIENCE_POINT = 4;
     //Units plus armor/attack increase percentage when sanctified
-    public final int PLUS_ARMOR_UNIT_SANCTIFIED = 7;
-    public final int PLUS_ATTACK_UNIT_SANCTIFIED = 7;
+    public final int PLUS_ARMOR_UNIT_SANCTIFIED = 25;
+    public final int PLUS_ATTACK_UNIT_SANCTIFIED = 25;
     public final int SANCTIFIED_AMOUNT_PER_PRIEST = 4;
     // Chance of resurrection by magician
     public final int CHANCE_MAGICIAN_RESSURECT = 2;
@@ -156,15 +156,15 @@ public interface Variables {
     public final int CHANCE_GENERATING_WASTE_PRIEST = 0;
     public final int CHANCE_GENERATING_WASTE_MAGICIAN = 0;
     // AttackUnit chance to attack again
-    public final int CHANCE_ATTACK_AGAIN_SWORDSMAN = 3;
+    public final int CHANCE_ATTACK_AGAIN_SWORDSMAN = 5;
     public final int CHANCE_ATTACK_AGAIN_SPEARMAN = 7;
-    public final int CHANCE_ATTACK_AGAIN_CROSSBOW = 45;
-    public final int CHANCE_ATTACK_AGAIN_CANNON = 70;
+    public final int CHANCE_ATTACK_AGAIN_CROSSBOW = 50;
+    public final int CHANCE_ATTACK_AGAIN_CANNON = 0;
     //Defense chance to attack again
-    public final int CHANCE_ATTACK_AGAIN_ARROWTOWER = 5;
-    public final int CHANCE_ATTACK_AGAIN_CATAPULT = 12;
+    public final int CHANCE_ATTACK_AGAIN_ARROWTOWER = 50;
+    public final int CHANCE_ATTACK_AGAIN_CATAPULT = 10;
     public final int CHANCE_ATTACK_AGAIN_ROCKETLAUNCHERTOWER = 30;
-    public final int CHANCE_ATTACK_AGAIN_MAGICIAN = 75;
+    public final int CHANCE_ATTACK_AGAIN_MAGICIAN = 90;
     public final int CHANCE_ATTACK_AGAIN_PRIEST = 0;
     // CHANCE ATTACK EVERY UNIT
     // SWORDSMAN, SPEARMAN, CROSSBOW, CANNON, ARROWTOWER, CATAPULT, ROCKETLAUNCHERTOWER, MAGICIAN, PRIEST
