@@ -20,13 +20,6 @@ public class Swordsman extends AttackUnit {
     }
 
     @Override
-    public void takeDamage(int receivedDamage) {
-        if (sanctified)
-            receivedDamage *= (1-Variables.PLUS_ARMOR_UNIT_SANCTIFIED/100);
-        armor -= receivedDamage;
-    }
-
-    @Override
     public int getActualArmor() {
         return (int)(armor+initialArmor*experience*PLUS_ARMOR_UNIT_PER_EXPERIENCE_POINT/100);
     }
@@ -64,6 +57,13 @@ public class Swordsman extends AttackUnit {
     @Override
     public void resetArmor() {
         armor = initialArmor;
+    }
+
+    @Override
+    public void takeDamage(int receivedDamage) {
+        if (sanctified)
+            receivedDamage *= (1-Variables.PLUS_ARMOR_UNIT_SANCTIFIED/100);
+        armor -= receivedDamage;
     }
 
     @Override
