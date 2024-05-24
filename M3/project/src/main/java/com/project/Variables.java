@@ -95,14 +95,14 @@ public interface Variables {
     public final int IRON_COST_MAGICTOWER = 5000;
     public final int MANA_COST_MAGICTOWER = 0;
     // BASE DAMAGE ATTACK UNITS
-    public final int BASE_DAMAGE_SWORDSMAN = 200;
+    public final int BASE_DAMAGE_SWORDSMAN = 210;
     public final int BASE_DAMAGE_SPEARMAN = 400;
     public final int BASE_DAMAGE_CROSSBOW = 400;
     public final int BASE_DAMAGE_CANNON = 2000;
     // BASE DAMAGE DEFENSES
     public final int BASE_DAMAGE_ARROWTOWER = 350;
     public final int BASE_DAMAGE_CATAPULT = 300;
-    public final int BASE_DAMAGE_ROCKETLAUNCHERTOWER = 1000;
+    public final int BASE_DAMAGE_ROCKETLAUNCHERTOWER = 700;
     public final int BASE_DAMAGE_MAGICIAN = 750;
     // ARMOR ATTACK UNITS
     public final int ARMOR_SWORDSMAN = 750;
@@ -110,9 +110,9 @@ public interface Variables {
     public final int ARMOR_CROSSBOW = 500;
     public final int ARMOR_CANNON = 3000;
     // ARMOR DEFENSES
-    public final int ARMOR_ARROWTOWER = 300;
+    public final int ARMOR_ARROWTOWER = 420;
     public final int ARMOR_CATAPULT = 800;
-    public final int ARMOR_ROCKETLAUNCHERTOWER = 900;
+    public final int ARMOR_ROCKETLAUNCHERTOWER = 1250;
     // number of units a priest sanctifies 
     public final int NUMBER_OF_UNITS_SANCTIFIED_BY_PRIEST = 5;
     //Attack Units armor increase percentage per tech level
@@ -163,7 +163,7 @@ public interface Variables {
     //Defense chance to attack again
     public final int CHANCE_ATTACK_AGAIN_ARROWTOWER = 50;
     public final int CHANCE_ATTACK_AGAIN_CATAPULT = 10;
-    public final int CHANCE_ATTACK_AGAIN_ROCKETLAUNCHERTOWER = 30;
+    public final int CHANCE_ATTACK_AGAIN_ROCKETLAUNCHERTOWER = 70;
     public final int CHANCE_ATTACK_AGAIN_MAGICIAN = 90;
     public final int CHANCE_ATTACK_AGAIN_PRIEST = 0;
     // CHANCE ATTACK EVERY UNIT

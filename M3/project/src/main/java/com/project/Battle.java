@@ -138,7 +138,12 @@ public class Battle {
                 } while (repeatAttack && CountUnits(civilizationArmyOrdered) > 0 && CountUnits(enemyArmyOrdered) > 0);
                 turn = !turn;
             }
-            Win = civilizationTotalLoses < enemyTotalLoses;
+            if (CountUnits(civilizationArmyOrdered) <= 0)
+                Win = false;
+            else if (CountUnits(enemyArmyOrdered) <= 0)
+                Win = true;
+            else
+                Win = civilizationTotalLoses < enemyTotalLoses;
         }
         else {
             Win = false;
