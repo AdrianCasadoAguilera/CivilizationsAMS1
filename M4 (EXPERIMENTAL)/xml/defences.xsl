@@ -5,20 +5,7 @@
         <html>
             <head>
                 <title>Defence Units</title>
-                <style>
-                    table {
-                        width: 100%;
-                        border-collapse: collapse;
-                    }
-                    th, td {
-                        border: 1px solid black;
-                        padding: 8px;
-                        text-align: left;
-                    }
-                    th {
-                        background-color: #f2f2f2;
-                    }
-                </style>
+    <link rel="stylesheet" href="defences.css">
 <ul>
     <li><a href="buildings.html">Buildings</a></li>
     <li><a href="attack_units.html">Attack Units</a></li>
