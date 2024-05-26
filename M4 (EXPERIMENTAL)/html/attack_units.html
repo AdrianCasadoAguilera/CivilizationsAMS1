@@ -7,44 +7,174 @@
     <link rel="stylesheet" href="attack_units.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
+    <header role="banner">
+        <nav role="navigation">
+            <div class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()">☰</div>
+            <ul id="menu">
                 <li><a href="index.html">Índice</a></li>
-                <li><a href="attack_units.html">Unidades de Ataque</a></li>
+                <li><a href="attack_units.html" aria-current="page">Unidades de Ataque</a></li>
                 <li><a href="buildings.html">Edificios</a></li>
                 <li><a href="defences.html">Defensas</a></li>
                 <li><a href="special_units.html">Unidades Especiales</a></li>
             </ul>
         </nav>
     </header>
-    <main>
-        <section id="attack-units">
-            <h1>Unidades de Ataque</h1>
-            <div id="attack-units-table"></div>
-            <div class="description">
+    <main role="main">
+        <section id="attack-units" aria-labelledby="attack-units-title">
+            <h1 id="attack-units-title">Unidades de Ataque</h1>
+            <article id="swordsman" class="unit-section">
+                <h2>Swordsman</h2>
+                <div class="table-container">
+                    <table>
+                        <caption>Estadísticas de Swordsman</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Base Damage</th>
+                                <th scope="col">Armour</th>
+                                <th scope="col">Waste Chance</th>
+                                <th scope="col">Attack Again Chance</th>
+                                <th scope="col">Food Cost</th>
+                                <th scope="col">Wood Cost</th>
+                                <th scope="col">Iron Cost</th>
+                                <th scope="col">Mana Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>80</td>
+                                <td>400</td>
+                                <td>55%</td>
+                                <td>3%</td>
+                                <td>8000</td>
+                                <td>3000</td>
+                                <td>50</td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <div class="unit">
-                    <img src="images/swordsman.png" alt="Swordsman">
+                    <img src="images/swordsman.png" alt="Imagen de Swordsman">
                     <p>Swordsman: Un soldado armado con espada, especializado en combate cuerpo a cuerpo con alta resistencia y armadura.</p>
                 </div>
+            </article>
+            <article id="spearman" class="unit-section">
+                <h2>Spearman</h2>
+                <div class="table-container">
+                    <table>
+                        <caption>Estadísticas de Spearman</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Base Damage</th>
+                                <th scope="col">Armour</th>
+                                <th scope="col">Waste Chance</th>
+                                <th scope="col">Attack Again Chance</th>
+                                <th scope="col">Food Cost</th>
+                                <th scope="col">Wood Cost</th>
+                                <th scope="col">Iron Cost</th>
+                                <th scope="col">Mana Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>150</td>
+                                <td>1000</td>
+                                <td>65%</td>
+                                <td>7%</td>
+                                <td>5000</td>
+                                <td>6500</td>
+                                <td>50</td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <div class="unit">
-                    <img src="images/spearman.png" alt="Spearman">
+                    <img src="images/spearman.png" alt="Imagen de Spearman">
                     <p>Spearman: Un guerrero armado con lanza, ideal para enfrentar unidades montadas y con una buena defensa.</p>
                 </div>
+            </article>
+            <article id="crossbow" class="unit-section">
+                <h2>Crossbow</h2>
+                <div class="table-container">
+                    <table>
+                        <caption>Estadísticas de Crossbow</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Base Damage</th>
+                                <th scope="col">Armour</th>
+                                <th scope="col">Waste Chance</th>
+                                <th scope="col">Attack Again Chance</th>
+                                <th scope="col">Food Cost</th>
+                                <th scope="col">Wood Cost</th>
+                                <th scope="col">Iron Cost</th>
+                                <th scope="col">Mana Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1000</td>
+                                <td>6000</td>
+                                <td>80%</td>
+                                <td>45%</td>
+                                <td>0</td>
+                                <td>45000</td>
+                                <td>7000</td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <div class="unit">
-                    <img src="images/crossbow.png" alt="Crossbow">
+                    <img src="images/crossbow.png" alt="Imagen de Crossbow">
                     <p>Crossbow: Una unidad de rango, equipada con una ballesta para ataques a distancia con gran precisión.</p>
                 </div>
+            </article>
+            <article id="cannon" class="unit-section">
+                <h2>Cannon</h2>
+                <div class="table-container">
+                    <table>
+                        <caption>Estadísticas de Cannon</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Base Damage</th>
+                                <th scope="col">Armour</th>
+                                <th scope="col">Waste Chance</th>
+                                <th scope="col">Attack Again Chance</th>
+                                <th scope="col">Food Cost</th>
+                                <th scope="col">Wood Cost</th>
+                                <th scope="col">Iron Cost</th>
+                                <th scope="col">Mana Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>700</td>
+                                <td>8000</td>
+                                <td>90%</td>
+                                <td>70%</td>
+                                <td>0</td>
+                                <td>30000</td>
+                                <td>15000</td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <div class="unit">
-                    <img src="images/cannon.png" alt="Cannon">
+                    <img src="images/cannon.png" alt="Imagen de Cannon">
                     <p>Cannon: Artillería pesada utilizada para asediar edificios y fortificaciones enemigas, inflige gran daño pero tiene movilidad limitada.</p>
                 </div>
-            </div>
+            </article>
         </section>
     </main>
-    <footer>
+    <footer role="contentinfo">
         <p>&copy; 2024 Civilizations. Todos los derechos reservados.</p>
+        <p><a href="https://github.com/MarcArques" target="_blank">Marc Arqués Marimón</a></p>
+        <p><a href="https://github.com/AdrianCasadoAguilera" target="_blank">Adrián Casado Aguilera</a></p>
+        <p><a href="https://github.com/AAyoubelbakhti" target="_blank">Ayoub El Bakhti</a></p>
+        <p><a href="https://github.com/OscarMG018" target="_blank">Óscar MG018</a></p>
     </footer>
-    <script src="scripts.js"></script>
+    <script src="minimenu.js"></script>
 </body>
 </html>

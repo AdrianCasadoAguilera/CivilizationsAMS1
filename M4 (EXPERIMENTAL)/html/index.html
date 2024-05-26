@@ -3,120 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Videojuego Similar a Civilizations</title>
+    <title>Videojuego Civilizations</title>
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Índice</a></li>
-                <li><a href="attack_units.html">Unidades de Ataque</a></li>
-                <li><a href="buildings.html">Edificios</a></li>
-                <li><a href="defences.html">Defensas</a></li>
-                <li><a href="special_units.html">Unidades Especiales</a></li>
-            </ul>
-        </nav>
+    <header class="hidden" role="banner">
+        <h1>Videojuego Civilizations</h1>
     </header>
     <main>
-        <section id="index">
-            <h1>Índice</h1>
-            <p>Bienvenido a la base de datos del videojuego similar a Civilizations. Utiliza el menú para navegar por las diferentes secciones.</p>
-            <div class="buttons">
-                <button onclick="location.href='#attack-units'">Unidades de Ataque</button>
-                <button onclick="location.href='#buildings'">Edificios</button>
-                <button onclick="location.href='#defences'">Defensas</button>
-                <button onclick="location.href='#special-units'">Unidades Especiales</button>
-            </div>
-        </section>
-
-        <section id="attack-units">
-            <h1>Unidades de Ataque</h1>
-            <div id="attack-units-table"></div>
-            <div class="description">
-                <div class="unit">
-                    <img src="images/swordsman.png" alt="Swordsman">
-                    <p>Swordsman: Descripción de la unidad Swordsman...</p>
-                </div>
-                <div class="unit">
-                    <img src="images/spearman.png" alt="Spearman">
-                    <p>Spearman: Descripción de la unidad Spearman...</p>
-                </div>
-                <div class="unit">
-                    <img src="images/crossbow.png" alt="Crossbow">
-                    <p>Crossbow: Descripción de la unidad Crossbow...</p>
-                </div>
-                <div class="unit">
-                    <img src="images/cannon.png" alt="Cannon">
-                    <p>Cannon: Descripción de la unidad Cannon...</p>
+        <section id="intro" role="region" aria-label="Introducción">
+            <img src="images/indexBackground.jpg" alt="Imagen introductoria del juego" id="introImage">
+            <div id="introTitle" aria-hidden="true">
+                Civilizations
+                <div id="introNames">
+                    <div>Marc Arques</div>
+                    <div>Adrian Casado</div>
+                    <div>Ayoub El Bakhti</div>
+                    <div>Oscar Medina</div>
                 </div>
             </div>
         </section>
-
-        <section id="buildings">
-            <h1>Edificios</h1>
-            <div id="buildings-table"></div>
-            <div class="description">
-                <div class="unit">
-                    <img src="images/farm.png" alt="Farm">
-                    <p>Farm: Descripción del edificio Farm...</p>
+        <section id="index" class="hidden" role="region" aria-label="Menú principal">
+            <div class="menu-container">
+                <img src="images/bandera.png" alt="Imagen izquierda" class="side-image">
+                <div class="buttons">
+                    <button onclick="location.href='attack_units.html'" aria-label="Unidades de Ataque">Unidades de Ataque</button>
+                    <button onclick="location.href='buildings.html'" aria-label="Edificios">Edificios</button>
+                    <button onclick="location.href='defences.html'" aria-label="Defensas">Defensas</button>
+                    <button onclick="location.href='special_units.html'" aria-label="Unidades Especiales">Unidades Especiales</button>
                 </div>
-                <div class="unit">
-                    <img src="images/carpentry.png" alt="Carpentry">
-                    <p>Carpentry: Descripción del edificio Carpentry...</p>
-                </div>
-                <div class="unit">
-                    <img src="images/smithy.png" alt="Smithy">
-                    <p>Smithy: Descripción del edificio Smithy...</p>
-                </div>
-                <div class="unit">
-                    <img src="images/church.png" alt="Church">
-                    <p>Church: Descripción del edificio Church...</p>
-                </div>
-                <div class="unit">
-                    <img src="images/magicstone.png" alt="Magicstone">
-                    <p>Magicstone: Descripción del edificio Magicstone...</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="defences">
-            <h1>Defensas</h1>
-            <div id="defences-table"></div>
-            <div class="description">
-                <div class="unit">
-                    <img src="images/arrowtower.png" alt="Arrowtower">
-                    <p>Arrowtower: Descripción del edificio Arrowtower...</p>
-                </div>
-                <div class="unit">
-                    <img src="images/catapult.png" alt="Catapult">
-                    <p>Catapult: Descripción del edificio Catapult...</p>
-                </div>
-                <div class="unit">
-                    <img src="images/rocketlauncher.png" alt="RocketLauncherTower">
-                    <p>RocketLauncherTower: Descripción del edificio RocketLauncherTower...</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="special-units">
-            <h1>Unidades Especiales</h1>
-            <div id="special-units-table"></div>
-            <div class="description">
-                <div class="unit">
-                    <img src="images/magician.png" alt="Magician">
-                    <p>Magician: Descripción de la unidad Magician...</p>
-                </div>
-                <div class="unit">
-                    <img src="images/priest.png" alt="Priest">
-                    <p>Priest: Descripción de la unidad Priest...</p>
-                </div>
+                <img src="images/bandera.png" alt="Imagen derecha" class="side-image">
             </div>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2024 Civilizations. Todos los derechos reservados.</p>
+    <footer class="hidden" role="contentinfo">
+        <p>&copy; 2024 Videojuego Civilizations. Todos los derechos reservados.</p>
     </footer>
-    <script src="scripts.js"></script>
+    <script src="menu.js"></script>
 </body>
 </html>

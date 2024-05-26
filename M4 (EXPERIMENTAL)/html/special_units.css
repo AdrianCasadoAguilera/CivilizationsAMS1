@@ -37,7 +37,7 @@ html {
       position: sticky;
       top: 0;
       z-index: 1000;
-      width: 100%;
+      width: 90%;
       transition: background-color 0.3s ease, box-shadow 0.3s ease;
   }
   
@@ -51,7 +51,7 @@ html {
       justify-content: space-between;
       align-items: center;
       padding: 0 1em;
-      width: 90%;
+      width: 100%;
   }
   
   nav ul {
@@ -92,7 +92,7 @@ html {
       background-color: rgba(255, 255, 255, 0.8);
       border-radius: 8px;
       flex: 1;
-      width: 100%;
+      width: calc(100% - 2em);
   }
   
   section {
@@ -111,7 +111,7 @@ html {
       font-family: 'Trajan Pro', serif;
   }
   
-  .unit-section h2 {
+  .special-unit-section h2 {
       font-family: 'Trajan Pro', serif;
       font-size: 1.2em;
       margin-top: 0;
@@ -139,7 +139,7 @@ html {
       color: white;
   }
   
-  .unit {
+  .special-unit {
       display: flex;
       align-items: center;
       margin-bottom: 1em;
@@ -150,11 +150,11 @@ html {
       transition: box-shadow 0.3s ease;
   }
   
-  .unit:hover {
+  .special-unit:hover {
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   
-  .unit img {
+  .special-unit img {
       margin-right: 1em;
       width: 50px; /* Ajustar tamaño de la imagen */
       height: 50px; /* Ajustar tamaño de la imagen */
@@ -197,19 +197,22 @@ html {
       }
   
       nav ul {
-          flex-direction: column;
+          flex-direction: row;
           display: none;
           padding: 0;
           margin: 0;
           width: 100%;
+          justify-content: center; /* Centrar los botones */
       }
   
       nav ul.show {
           display: flex;
+          flex-wrap: wrap; /* Permitir que los elementos se envuelvan en múltiples líneas si es necesario */
       }
   
       nav ul li {
-          margin: 0.5em 0;
+          flex: 1;
+          margin: 0.5em;
       }
   
       header {
@@ -229,13 +232,25 @@ html {
           font-size: 0.9em;
       }
   
-      .unit img {
+      .special-unit img {
           width: 40px; /* Ajustar tamaño de la imagen en móviles */
           height: 40px; /* Ajustar tamaño de la imagen en móviles */
       }
   
-      .unit-section h2 {
+      .special-unit-section h2 {
           font-size: 1em;
       }
-  }
   
+      nav ul li a {
+          display: block;
+          background-color: #3e3e3e;
+          padding: 0.5em;
+          margin: 0.2em;
+          border-radius: 5px;
+          text-align: center;
+      }
+  
+      nav ul li a:hover {
+          background-color: #555;
+      }
+  }

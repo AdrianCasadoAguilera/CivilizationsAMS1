@@ -7,48 +7,160 @@
     <link rel="stylesheet" href="buildings.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
+    <header role="banner">
+        <nav role="navigation">
+            <div class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()">☰</div>
+            <ul id="menu">
                 <li><a href="index.html">Índice</a></li>
                 <li><a href="attack_units.html">Unidades de Ataque</a></li>
-                <li><a href="buildings.html">Edificios</a></li>
+                <li><a href="buildings.html" aria-current="page">Edificios</a></li>
                 <li><a href="defences.html">Defensas</a></li>
                 <li><a href="special_units.html">Unidades Especiales</a></li>
             </ul>
         </nav>
     </header>
-    <main>
-        <section id="buildings">
-            <h1>Edificios</h1>
-            <div id="buildings-table"></div>
-            <div class="description">
-                <div class="unit">
-                    <img src="images/farm.png" alt="Farm">
-                    <p>Farm: Descripción del edificio Farm...</p>
+    <main role="main">
+        <section id="buildings" aria-labelledby="buildings-title">
+            <h1 id="buildings-title">Edificios</h1>
+            <article id="farm" class="building-section">
+                <h2>Farm</h2>
+                <div class="table-container">
+                    <table>
+                        <caption>Estadísticas de Farm</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Food Cost</th>
+                                <th scope="col">Iron Cost</th>
+                                <th scope="col">Wood Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>5000</td>
+                                <td>10000</td>
+                                <td>12000</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="unit">
-                    <img src="images/carpentry.png" alt="Carpentry">
-                    <p>Carpentry: Descripción del edificio Carpentry...</p>
+                <div class="building">
+                    <img src="images/farm.png" alt="Imagen de Farm">
+                    <p>Farm: Un edificio crucial para la producción de alimentos, esencial para mantener a tu ejército y población.</p>
                 </div>
-                <div class="unit">
-                    <img src="images/smithy.png" alt="Smithy">
-                    <p>Smithy: Descripción del edificio Smithy...</p>
+            </article>
+            <article id="carpentry" class="building-section">
+                <h2>Carpentry</h2>
+                <div class="table-container">
+                    <table>
+                        <caption>Estadísticas de Carpentry</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Food Cost</th>
+                                <th scope="col">Iron Cost</th>
+                                <th scope="col">Wood Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>5000</td>
+                                <td>10000</td>
+                                <td>12000</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="unit">
-                    <img src="images/church.png" alt="Church">
-                    <p>Church: Descripción del edificio Church...</p>
+                <div class="building">
+                    <img src="images/carpentry.png" alt="Imagen de Carpentry">
+                    <p>Carpentry: Taller donde se elaboran y reparan herramientas y equipos de madera, fundamental para la construcción.</p>
                 </div>
-                <div class="unit">
-                    <img src="images/magicstone.png" alt="Magicstone">
-                    <p>Magicstone: Descripción del edificio Magicstone...</p>
+            </article>
+            <article id="smithy" class="building-section">
+                <h2>Smithy</h2>
+                <div class="table-container">
+                    <table>
+                        <caption>Estadísticas de Smithy</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Food Cost</th>
+                                <th scope="col">Iron Cost</th>
+                                <th scope="col">Wood Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>5000</td>
+                                <td>10000</td>
+                                <td>12000</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-            </div>
+                <div class="building">
+                    <img src="images/smithy.png" alt="Imagen de Smithy">
+                    <p>Smithy: Forja donde se fabrican armas y armaduras, esencial para equipar a tus unidades militares.</p>
+                </div>
+            </article>
+            <article id="church" class="building-section">
+                <h2>Church</h2>
+                <div class="table-container">
+                    <table>
+                        <caption>Estadísticas de Church</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Food Cost</th>
+                                <th scope="col">Iron Cost</th>
+                                <th scope="col">Wood Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>5000</td>
+                                <td>10000</td>
+                                <td>12000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="building">
+                    <img src="images/church.png" alt="Imagen de Church">
+                    <p>Church: Centro religioso que proporciona apoyo espiritual y beneficios morales a tu civilización.</p>
+                </div>
+            </article>
+            <article id="magicstone" class="building-section">
+                <h2>Magicstone</h2>
+                <div class="table-container">
+                    <table>
+                        <caption>Estadísticas de Magicstone</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Food Cost</th>
+                                <th scope="col">Iron Cost</th>
+                                <th scope="col">Wood Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>5000</td>
+                                <td>10000</td>
+                                <td>12000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="building">
+                    <img src="images/magicstone.png" alt="Imagen de Magicstone">
+                    <p>Magicstone: Edificio mágico que proporciona poderosos encantamientos y recursos místicos para tu civilización.</p>
+                </div>
+            </article>
         </section>
     </main>
-    <footer>
+    <footer role="contentinfo">
         <p>&copy; 2024 Civilizations. Todos los derechos reservados.</p>
+        <p><a href="https://github.com/MarcArques" target="_blank">Marc Arqués Marimón</a></p>
+        <p><a href="https://github.com/AdrianCasadoAguilera" target="_blank">Adrián Casado Aguilera</a></p>
+        <p><a href="https://github.com/AAyoubelbakhti" target="_blank">Ayoub El Bakhti</a></p>
+        <p><a href="https://github.com/OscarMG018" target="_blank">Óscar MG018</a></p>
     </footer>
-    <script src="scripts.js"></script>
+    <script src="minimenu.js"></script>
 </body>
 </html>
