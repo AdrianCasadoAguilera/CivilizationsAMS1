@@ -256,10 +256,6 @@ public class Main {
         MainGameMenu();
     }
 
-    private static void endUI(){
-        window.dispose();
-    }
-
     private static void ContinueMenu() {
         String[] saveNames;
         while (true) {

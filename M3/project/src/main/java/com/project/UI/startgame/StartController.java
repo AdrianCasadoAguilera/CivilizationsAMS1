@@ -1,15 +1,12 @@
 package com.project.UI.startgame;
 
 import java.awt.event.*;
-import java.util.*;
 import javax.swing.*;
 
 import com.project.*;
 import com.project.UI.*;
-import com.project.UI.updatingDB.chargeScreen;
 
 import java.util.ArrayList;
-import java.awt.event.ActionEvent;
 
 public class StartController {
     
