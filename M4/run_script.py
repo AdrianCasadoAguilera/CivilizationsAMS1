@@ -6,9 +6,9 @@ import os
 app = Flask(__name__)
 
 # Ruta para servir archivos estáticos (por ejemplo, archivos JavaScript)
-@app.route('/HTML/<path:path>')
+@app.route('/html/<path:path>')
 def send_html(path):
-    return send_from_directory('HTML', path)
+    return send_from_directory('html', path)
 
 @app.route('/run-script', methods=['GET'])
 def run_script():

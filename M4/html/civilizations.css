@@ -1,5 +1,3 @@
-/* styles.css */
-
 html {
     --s: 82px; /* control the size */
     --c1: #b2b2b2;
@@ -95,31 +93,64 @@ html {
       width: calc(100% - 2em);
   }
   
-  section {
+  .button-container {
+      text-align: center;
+      margin-bottom: 1em;
+  }
+  
+  button {
+      background-color: #3e3e3e; 
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  button:hover {
+      background-color: #232423;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  details {
       margin-bottom: 2em;
       padding: 2em;
       background-color: rgba(255, 255, 255, 0.9);
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       border-radius: 8px;
+      transition: max-height 0.5s ease, opacity 0.5s ease;
+      overflow: hidden;
   }
   
-  section h1 {
+  details[open] {
+      max-height: 100%;
+      opacity: 1;
+  }
+  
+  details:not([open]) {
+      max-height: 2.5em;
+      opacity: 0.7;
+  }
+  
+  summary.section-title {
       border-bottom: 2px solid #3e3e3e;
       padding-bottom: 0.5em;
       margin-bottom: 1em;
       font-size: 1.5em;
       font-family: 'Trajan Pro', serif;
-  }
-  
-  .building-section h2 {
-      font-family: 'Trajan Pro', serif;
-      font-size: 1.2em;
-      margin-top: 0;
-      margin-bottom: 0.5em;
+      cursor: pointer;
   }
   
   .table-container {
       overflow-x: auto;
+      position: relative; /* New */
+      max-height: 400px; /* New: control table height */
   }
   
   table {
@@ -137,6 +168,9 @@ html {
   th {
       background-color: #3e3e3e;
       color: white;
+      position: sticky; /* New */
+      top: 0; /* New */
+      z-index: 1; /* New */
   }
   
   .building {
@@ -221,7 +255,7 @@ html {
           width: calc(100% - 2em);
       }
   
-      section {
+      details {
           padding: 1em;
       }
   
@@ -238,4 +272,3 @@ html {
           font-size: 1em;
       }
   }
-  
