@@ -1,73 +1,109 @@
-<html>
+<html lang="es">
   <head>
-    <title>Special Units</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Unidades Especiales</title>
     <link rel="stylesheet" href="special_units.css"/>
-    <ul>
-      <li>
-        <a href="buildings.html">Buildings</a>
-      </li>
-      <li>
-        <a href="defences.html">Defence Units</a>
-      </li>
-      <li>
-        <a href="attack_units.html">Attack Units</a>
-      </li>
-    </ul>
   </head>
   <body>
-    <h2>Special Units</h2>
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>Base Damage</th>
-        <th>Waste Chance</th>
-        <th>Attack Again Chance</th>
-        <th>Plus Stats (Resurrect Chance)</th>
-        <th>Plus Stats (Armour Technology)</th>
-        <th>Plus Stats (Attack Technology)</th>
-        <th>Plus Stats (Armour Experience)</th>
-        <th>Plus Stats (Attack Experience)</th>
-        <th>Plus Stats (Armour Sanctified)</th>
-        <th>Plus Stats (Attack Sanctified)</th>
-        <th>Costs (Food)</th>
-        <th>Costs (Wood)</th>
-        <th>Costs (Iron)</th>
-        <th>Costs (Mana)</th>
-      </tr>
-      <tr>
-        <td>MAGICIAN</td>
-        <td>3000</td>
-        <td>0</td>
-        <td>75</td>
-        <td>2</td>
-        <td/>
-        <td>6</td>
-        <td>4</td>
-        <td>4</td>
-        <td>7</td>
-        <td>7</td>
-        <td>12000</td>
-        <td>2000</td>
-        <td>500</td>
-        <td>5000</td>
-      </tr>
-      <tr>
-        <td>PRIEST</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td/>
-        <td/>
-        <td/>
-        <td>4</td>
-        <td>4</td>
-        <td>7</td>
-        <td>7</td>
-        <td>15000</td>
-        <td>0</td>
-        <td>0</td>
-        <td>15000</td>
-      </tr>
-    </table>
+    <header role="banner">
+      <nav role="navigation">
+        <div class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()">&#9776;</div>
+        <ul id="menu">
+          <li>
+            <a href="index.html">&#205;ndice</a>
+          </li>
+          <li>
+            <a href="attack_units.html">Unidades de Ataque</a>
+          </li>
+          <li>
+            <a href="buildings.html">Edificios</a>
+          </li>
+          <li>
+            <a href="defences.html">Defensas</a>
+          </li>
+          <li>
+            <a href="special_units.html" aria-current="page">Unidades Especiales</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main role="main">
+      <section id="special_units" aria-labelledby="special_units-title">
+        <h1 id="special_units-title">Unidades Especiales</h1>
+        <article class="special-unit-section" id="magician">
+          <h2>MAGICIAN</h2>
+          <div class="table-container">
+            <table>
+              <caption>Estad&#237;sticas de MAGICIAN</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Base Damage</th>
+                  <th scope="col">Waste Chance</th>
+                  <th scope="col">Attack Again Chance</th>
+                  <th scope="col">Resurrect Chance</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>3000</td>
+                  <td>0</td>
+                  <td>75</td>
+                  <td>2</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="special-unit">
+            <img src="images/magician.png" alt="Imagen de MAGICIAN"/>
+            <p/>
+          </div>
+        </article>
+        <article class="special-unit-section" id="priest">
+          <h2>PRIEST</h2>
+          <div class="table-container">
+            <table>
+              <caption>Estad&#237;sticas de PRIEST</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Base Damage</th>
+                  <th scope="col">Waste Chance</th>
+                  <th scope="col">Attack Again Chance</th>
+                  <th scope="col">Resurrect Chance</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td/>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="special-unit">
+            <img src="images/priest.png" alt="Imagen de PRIEST"/>
+            <p/>
+          </div>
+        </article>
+      </section>
+    </main>
+    <footer role="contentinfo">
+      <p>2024 Civilizations. Todos los derechos reservados.</p>
+      <p>
+        <a href="https://github.com/MarcArques" target="_blank">Marc Arqu&#233;s Marim&#243;n</a>
+      </p>
+      <p>
+        <a href="https://github.com/AdrianCasadoAguilera" target="_blank">Adri&#225;n Casado Aguilera</a>
+      </p>
+      <p>
+        <a href="https://github.com/AAyoubelbakhti" target="_blank">Ayoub El Bakhti</a>
+      </p>
+      <p>
+        <a href="https://github.com/OscarMG018" target="_blank">&#211;scar MG018</a>
+      </p>
+    </footer>
+    <script src="minimenu.js"/>
   </body>
 </html>

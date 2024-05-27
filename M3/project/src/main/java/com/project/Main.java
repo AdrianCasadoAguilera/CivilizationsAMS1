@@ -8,9 +8,13 @@ import java.util.TimerTask;
 import javax.swing.*;
 import com.project.UI.*;
 import com.project.UI.startgame.StartGameUI;
+import java.awt.event.WindowAdapter;
+import javax.swing.SwingUtilities;
+import java.awt.event.WindowEvent;
 
 public class Main {
     private static MainWindow window;
+    private static AppData db;
     public static Timer timer;
     public static Saves saves;
     public static Scanner input = new Scanner(System.in);
@@ -35,7 +39,7 @@ public class Main {
     public static int ActiveSave = -1;
 
     public static void main(String[] args) {
-        AppData data = AppData.getInstance();
+        db = AppData.getInstance();
         timer = new Timer();
         timer.schedule(MainLoop, 0, 1000/UPS);
         stopped = true;
@@ -52,6 +56,16 @@ public class Main {
         });
         // MainMenu();
     }
+
+    public static void closeApp() {
+        System.out.println("Exiting...");
+        System.out.println(ActiveSave);
+        SaveGame();
+        input.close();
+        timer.cancel();
+        db.close();
+    }
+
     private static void clearConsole() {
         try {
             final String os = System.getProperty("os.name");
@@ -234,22 +248,12 @@ public class Main {
             }
         }
     }
-
-    private static void startUI(){
-        window = new MainWindow();
-        window.setVisible(true);
-    }
     
     public static void NewGame(String name) {
         ActiveSave = saves.AddNewSaveData(name);
         NextEnemyArmy = null;
         saves.LoadSaveData(ActiveSave);
         MainGameMenu();
-        endUI();
-    }
-
-    private static void endUI(){
-        window.dispose();
     }
 
     private static void ContinueMenu() {
@@ -320,11 +324,9 @@ public class Main {
     }
 
     private static void ContinueGame(int index) {
-        startUI();
         ActiveSave = index;
         saves.LoadSaveData(index);
         MainGameMenu();
-        endUI();
     }
 
     private static void MainGameMenu() {

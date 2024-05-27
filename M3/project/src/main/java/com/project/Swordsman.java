@@ -5,7 +5,7 @@ public class Swordsman extends AttackUnit {
     public Swordsman() {
         this.armor = (int)(ARMOR_SWORDSMAN * (1+Civilization.getInstance().getTechnologyDefense()*PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY/100.0));
         this.initialArmor = armor;
-        this.baseDamage = (int)(BASE_DAMAGE_SWORDSMAN * (1+Civilization.getInstance().getTechnologyDefense()*PLUS_ATTACK_SWORDSMAN_BY_TECHNOLOGY/100.0));
+        this.baseDamage = (int)(BASE_DAMAGE_SWORDSMAN * (1+Civilization.getInstance().getTechnologyAttack()*PLUS_ATTACK_SWORDSMAN_BY_TECHNOLOGY/100.0));
         this.experience = 0;
         this.sanctified = false;
     }

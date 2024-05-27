@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videojuego Civilizations</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header class="hidden" role="banner">
+        <h1>Videojuego Civilizations</h1>
+    </header>
+    <main>
+        <section id="intro" role="region" aria-label="Introducción">
+            <img src="images/indexBackground.jpg" alt="Imagen introductoria del juego" id="introImage">
+            <div id="introTitle" aria-hidden="true">
+                Civilizations
+                <div id="introNames">
+                    <div>Marc Arques</div>
+                    <div>Adrian Casado</div>
+                    <div>Ayoub El Bakhti</div>
+                    <div>Oscar Medina</div>
+                </div>
+            </div>
+        </section>
+        <section id="index" class="hidden" role="region" aria-label="Menú principal">
+            <div class="menu-container">
+                <img src="images/bandera.png" alt="Imagen izquierda" class="side-image">
+                <div class="buttons">
+                    <button onclick="location.href='attack_units.html'" aria-label="Unidades de Ataque">Unidades de Ataque</button>
+                    <button onclick="location.href='buildings.html'" aria-label="Edificios">Edificios</button>
+                    <button onclick="location.href='defences.html'" aria-label="Defensas">Defensas</button>
+                    <button onclick="location.href='special_units.html'" aria-label="Unidades Especiales">Unidades Especiales</button>
+                </div>
+                <img src="images/bandera.png" alt="Imagen derecha" class="side-image">
+            </div>
+        </section>
+    </main>
+    <footer class="hidden" role="contentinfo">
+        <p>&copy; 2024 Videojuego Civilizations. Todos los derechos reservados.</p>
+    </footer>
+    <script src="menu.js"></script>
+</body>
+</html>

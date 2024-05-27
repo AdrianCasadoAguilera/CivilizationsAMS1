@@ -5,7 +5,7 @@ public class Cannon extends AttackUnit {
     public Cannon() {
         this.armor = (int)(ARMOR_CANNON * (1+Civilization.getInstance().getTechnologyDefense()*PLUS_ARMOR_CANNON_BY_TECHNOLOGY/100.0));
         this.initialArmor = armor;
-        this.baseDamage = (int)(BASE_DAMAGE_CANNON * (1+Civilization.getInstance().getTechnologyDefense()*PLUS_ATTACK_CANNON_BY_TECHNOLOGY/100.0));
+        this.baseDamage = (int)(BASE_DAMAGE_CANNON * (1+Civilization.getInstance().getTechnologyAttack()*PLUS_ATTACK_CANNON_BY_TECHNOLOGY/100.0));
         this.experience = 0;
         this.sanctified = false;
     }

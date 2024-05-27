@@ -2,57 +2,82 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:output method="html" indent="yes"/>
     <xsl:template match="/">
-        <html>
+        <html lang="es">
             <head>
-                <title>Defence Units</title>
-    <link rel="stylesheet" href="defences.css"/>
-<ul>
-    <li><a href="buildings.html">Buildings</a></li>
-    <li><a href="attack_units.html">Attack Units</a></li>
-    <li><a href="special_units.html">Special Units</a></li>
-</ul>
+                <meta charset="UTF-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                <title>Defensas</title>
+                <link rel="stylesheet" href="defences.css"/>
             </head>
             <body>
-                <h2>Defence Units</h2>
+                <header role="banner">
+                    <nav role="navigation">
+                        <div class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()">☰</div>
+                        <ul id="menu">
+                            <li><a href="index.html">Índice</a></li>
+                            <li><a href="attack_units.html">Unidades de Ataque</a></li>
+                            <li><a href="buildings.html">Edificios</a></li>
+                            <li><a href="defences.html" aria-current="page">Defensas</a></li>
+                            <li><a href="special_units.html">Unidades Especiales</a></li>
+                        </ul>
+                    </nav>
+                </header>
+                <main role="main">
+                    <section id="defences" aria-labelledby="defences-title">
+                        <h1 id="defences-title">Defensas</h1>
+                        <xsl:apply-templates select="defence_units/unit"/>
+                    </section>
+                </main>
+                <footer role="contentinfo">
+                    <p>2024 Civilizations. Todos los derechos reservados.</p>
+                    <p><a href="https://github.com/MarcArques" target="_blank">Marc Arqués Marimón</a></p>
+                    <p><a href="https://github.com/AdrianCasadoAguilera" target="_blank">Adrián Casado Aguilera</a></p>
+                    <p><a href="https://github.com/AAyoubelbakhti" target="_blank">Ayoub El Bakhti</a></p>
+                    <p><a href="https://github.com/OscarMG018" target="_blank">Óscar MG018</a></p>
+                </footer>
+                <script src="minimenu.js"></script>
+            </body>
+        </html>
+    </xsl:template>
+
+    <xsl:template match="unit">
+        <article class="defence-section">
+            <xsl:attribute name="id">
+                <xsl:value-of select="translate(name, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')"/>
+            </xsl:attribute>
+            <h2><xsl:value-of select="name"/></h2>
+            <div class="table-container">
                 <table>
-                    <tr>
-                        <th>Name</th>
-                        <th>Base Damage</th>
-                        <th>Armour</th>
-                        <th>Waste Chance</th>
-                        <th>Attack Again Chance</th>
-                        <th>Plus Stats (Armour Technology)</th>
-                        <th>Plus Stats (Attack Technology)</th>
-                        <th>Plus Stats (Armour Experience)</th>
-                        <th>Plus Stats (Attack Experience)</th>
-                        <th>Plus Stats (Armour Sanctified)</th>
-                        <th>Plus Stats (Attack Sanctified)</th>
-                        <th>Costs (Food)</th>
-                        <th>Costs (Wood)</th>
-                        <th>Costs (Iron)</th>
-                        <th>Costs (Mana)</th>
-                    </tr>
-                    <xsl:for-each select="defence_units/unit">
+                    <caption>Estadísticas de <xsl:value-of select="name"/></caption>
+                    <thead>
                         <tr>
-                            <td><xsl:value-of select="name"/></td>
+                            <th scope="col">Base Damage</th>
+                            <th scope="col">Armour</th>
+                            <th scope="col">Waste Chance</th>
+                            <th scope="col">Attack Again Chance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
                             <td><xsl:value-of select="base_damage"/></td>
                             <td><xsl:value-of select="armour"/></td>
                             <td><xsl:value-of select="waste_chance"/></td>
                             <td><xsl:value-of select="attack_again_chance"/></td>
-                            <td><xsl:value-of select="plus_stats/armour_technology"/></td>
-                            <td><xsl:value-of select="plus_stats/attack_technology"/></td>
-                            <td><xsl:value-of select="plus_stats/armour_experience"/></td>
-                            <td><xsl:value-of select="plus_stats/attack_experience"/></td>
-                            <td><xsl:value-of select="plus_stats/armour_sanctified"/></td>
-                            <td><xsl:value-of select="plus_stats/attack_sanctified"/></td>
-                            <td><xsl:value-of select="costs/food_cost"/></td>
-                            <td><xsl:value-of select="costs/wood_cost"/></td>
-                            <td><xsl:value-of select="costs/iron_cost"/></td>
-                            <td><xsl:value-of select="costs/mana_cost"/></td>
                         </tr>
-                    </xsl:for-each>
+                    </tbody>
                 </table>
-            </body>
-        </html>
+            </div>
+            <div class="defence">
+                <img>
+                    <xsl:attribute name="src">
+                        <xsl:value-of select="concat('images/', translate(name, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.png')"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="alt">
+                        <xsl:value-of select="concat('Imagen de ', name)"/>
+                    </xsl:attribute>
+                </img>
+                <p><xsl:value-of select="description"/></p>
+            </div>
+        </article>
     </xsl:template>
 </xsl:stylesheet>
