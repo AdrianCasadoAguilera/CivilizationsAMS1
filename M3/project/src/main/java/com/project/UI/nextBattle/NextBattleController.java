@@ -34,7 +34,7 @@ public class NextBattleController {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 nextBattlePanel.timeToBattleLabel.setText(String.valueOf((int)(Main.NextBattleIn-Main.BattleTimer)));
-                if(Main.BattleTimer >= Main.NextBattleIn-1){
+                if(Main.BattleTimer >= Main.NextBattleIn-1 && battleHappened != null){
                     battleHappened.setVisible(true);
                     new Timer(5000, new ActionListener() {
                         
@@ -54,9 +54,11 @@ public class NextBattleController {
     }
 
     private void setListeners(){
-        battleHappened.seeLog.addActionListener(e->{
-            System.out.println("Boton pulsado");
-            cardLayout.show(cards, "battlelog");
-        });
+        if (battleHappened != null) {
+            battleHappened.seeLog.addActionListener(e->{
+                System.out.println("Boton pulsado");
+                cardLayout.show(cards, "battlelog");
+            });
+        }
     }
 }

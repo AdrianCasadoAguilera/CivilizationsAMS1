@@ -10,6 +10,7 @@ import com.project.UI.util.swing_elements.*;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.BoxLayout;
 
 public class MainView extends JPanel {
 
@@ -23,9 +24,11 @@ public class MainView extends JPanel {
 
     // CENTRAL ELEMENTS
     public JPanel buttonsPanel;
-        public PButton createBuildingButton;
-        public PButton trainButton;
-        public PButton upgradeTechLevelButton;
+    public PButton createBuildingButton;
+    public PButton trainButton;
+    public PButton upgradeTechLevelButton;
+    public PButton ThreadButton;
+    public PButton BattlesButton;
     public SeeEntitiesView infoPanel;
 
     public MainView(CardLayout cardLayout,JPanel cards){
@@ -50,17 +53,25 @@ public class MainView extends JPanel {
         createBuildingButton = new PButton("Create Building");
         trainButton = new PButton("Train Units");
         upgradeTechLevelButton = new PButton("Upgrade Technology Level");
+        ThreadButton = new PButton("View Thread");
+        BattlesButton = new PButton("View Battles");
     }
 
     private void setCentralOptions(){
         JPanel centralPanel = new JPanel();
         buttonsPanel = new JPanel();
-        buttonsPanel.setLayout(new FlowLayout());
+        buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.Y_AXIS));
         buttonsPanel.setBorder(BorderFactory.createEmptyBorder(1,1,1,1));
 
-        buttonsPanel.add(createBuildingButton);
-        buttonsPanel.add(trainButton);
-        buttonsPanel.add(upgradeTechLevelButton);
+        JPanel topPanel = new JPanel();
+        topPanel.add(createBuildingButton);
+        topPanel.add(trainButton);
+        topPanel.add(upgradeTechLevelButton);
+        buttonsPanel.add(topPanel);
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.add(ThreadButton);
+        bottomPanel.add(BattlesButton);
+        buttonsPanel.add(bottomPanel);
 
         infoPanel = new SeeEntitiesView();
         new entitiesController(infoPanel);

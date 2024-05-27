@@ -5,7 +5,7 @@ public class Catapult extends DefenseUnit{
     public Catapult() {
         this.armor = (int)(ARMOR_CATAPULT * (1+Civilization.getInstance().getTechnologyDefense()*PLUS_ARMOR_CATAPULT_BY_TECHNOLOGY/100.0));
         this.initialArmor = armor;
-        this.baseDamage = (int)(BASE_DAMAGE_CATAPULT * (1+Civilization.getInstance().getTechnologyDefense()*PLUS_ATTACK_CATAPULT_BY_TECHNOLOGY/100.0));
+        this.baseDamage = (int)(BASE_DAMAGE_CATAPULT * (1+Civilization.getInstance().getTechnologyAttack()*PLUS_ATTACK_CATAPULT_BY_TECHNOLOGY/100.0));
         this.experience = 0;
         this.sanctified = false;
     }

@@ -5,7 +5,7 @@ public class Spearman extends AttackUnit {
     public Spearman() {
         this.armor = (int)(ARMOR_SPEARMAN * (1+Civilization.getInstance().getTechnologyDefense()*PLUS_ARMOR_SPEARMAN_BY_TECHNOLOGY/100.0));
         this.initialArmor = armor;
-        this.baseDamage = (int)(BASE_DAMAGE_SPEARMAN * (1+Civilization.getInstance().getTechnologyDefense()*PLUS_ATTACK_SPEARMAN_BY_TECHNOLOGY/100.0));
+        this.baseDamage = (int)(BASE_DAMAGE_SPEARMAN * (1+Civilization.getInstance().getTechnologyAttack()*PLUS_ATTACK_SPEARMAN_BY_TECHNOLOGY/100.0));
         this.experience = 0;
         this.sanctified = false;
     }

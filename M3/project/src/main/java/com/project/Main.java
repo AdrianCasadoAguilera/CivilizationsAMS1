@@ -5,16 +5,17 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
-import javax.swing.*;
 import com.project.UI.*;
 import com.project.UI.startgame.StartGameUI;
+import javax.swing.SwingUtilities;
 
 public class Main {
     private static MainWindow window;
+    private static AppData db;
     public static Timer timer;
     public static Saves saves;
     public static Scanner input = new Scanner(System.in);
-    public static int UPS = 1;
+    public static int UPS = 60;
     public static float deltaTime = 1.0f/UPS;
     public static Civilization civilization;
     public static Boolean stopped = false;
@@ -35,7 +36,7 @@ public class Main {
     public static int ActiveSave = -1;
 
     public static void main(String[] args) {
-        AppData data = AppData.getInstance();
+        db = AppData.getInstance();
         timer = new Timer();
         timer.schedule(MainLoop, 0, 1000/UPS);
         stopped = true;
@@ -52,6 +53,16 @@ public class Main {
         });
         // MainMenu();
     }
+
+    public static void closeApp() {
+        System.out.println("Exiting...");
+        System.out.println(ActiveSave);
+        SaveGame();
+        input.close();
+        timer.cancel();
+        db.close();
+    }
+
     private static void clearConsole() {
         try {
             final String os = System.getProperty("os.name");
@@ -183,7 +194,7 @@ public class Main {
         }
     }
 
-    private static int CountUnitType(ArrayList<MilitaryUnit> army, UnitTypes unitType) {
+    public static int CountUnitType(ArrayList<MilitaryUnit> army, UnitTypes unitType) {
         int count = 0;
         for (MilitaryUnit unit : army) {
             if (unit.getType().equals(unitType)) {
@@ -234,22 +245,12 @@ public class Main {
             }
         }
     }
-
-    private static void startUI(){
-        window = new MainWindow();
-        window.setVisible(true);
-    }
     
     public static void NewGame(String name) {
         ActiveSave = saves.AddNewSaveData(name);
         NextEnemyArmy = null;
         saves.LoadSaveData(ActiveSave);
         MainGameMenu();
-        endUI();
-    }
-
-    private static void endUI(){
-        window.dispose();
     }
 
     private static void ContinueMenu() {
@@ -320,11 +321,9 @@ public class Main {
     }
 
     private static void ContinueGame(int index) {
-        startUI();
         ActiveSave = index;
         saves.LoadSaveData(index);
         MainGameMenu();
-        endUI();
     }
 
     private static void MainGameMenu() {

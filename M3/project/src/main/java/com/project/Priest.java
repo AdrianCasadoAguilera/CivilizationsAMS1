@@ -3,9 +3,9 @@ package com.project;
 public class Priest extends SpecialUnit {
 
     public Priest(){
-        this.armor = 0;
-        this.initialArmor = this.armor;
-        this.baseDamage = 0;
+        this.armor = 1;
+        this.initialArmor = armor;
+        this.baseDamage = 1;
         this.experience = 0;
     }
 
