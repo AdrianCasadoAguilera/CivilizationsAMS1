@@ -1,9 +1,12 @@
 package com.project.UI.startgame;
 
+import java.awt.event.*;
+
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import com.project.Main;
+import com.project.Saves;
 import com.project.UI.MainWindow;
 import com.project.UI.resources.ResourcesController;
 
@@ -27,8 +30,14 @@ public class StartController {
             Main.ActiveSave = Main.saves.AddNewSaveData(name);
             Main.NextEnemyArmy = null;
             Main.saves.LoadSaveData(Main.ActiveSave);
-            new MainWindow().setVisible(true);
-
+            MainWindow m = new MainWindow();
+            m.setVisible(true);
+            m.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent windowEvent) {
+                    Main.closeApp();
+                }
+            });
             
 
             // Main.NewGame("");

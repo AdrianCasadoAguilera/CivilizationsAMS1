@@ -256,6 +256,7 @@ public class CivilizationDao {
         sql += " battle_timer = " + save.getBattleTimer() + ",";
         sql += " NextBattleIn = " + save.getNextBattleIn() + " ";
         sql += " WHERE civilization_id = " + id;
+        System.out.println(sql);
         db.update(sql);
         //Army
         System.out.println("Saving own army");

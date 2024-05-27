@@ -42,6 +42,8 @@ public class Saves {
     public void SaveDataToDB(int index) {
         CivilizationDao dao = new CivilizationDao();
         SaveData data = savedata.get(index);
+        System.out.println(data.getSaveId());
+        data.setWood(1000);
         dao.updateSave(data);
     }
     
@@ -94,8 +96,8 @@ public class Saves {
         ArrayList<MilitaryUnit> enemyArmy = Main.NewEnemyArmy();
         save.setEnemyArmy(enemyArmy);
 
-        // CivilizationDao dao = new CivilizationDao();
-        // dao.addSave(save);
+        CivilizationDao dao = new CivilizationDao();
+        dao.addSave(save);
         savedata.add(save);
         return savedata.size() - 1;
     }

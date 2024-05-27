@@ -8,9 +8,13 @@ import java.util.TimerTask;
 import javax.swing.*;
 import com.project.UI.*;
 import com.project.UI.startgame.StartGameUI;
+import java.awt.event.WindowAdapter;
+import javax.swing.SwingUtilities;
+import java.awt.event.WindowEvent;
 
 public class Main {
     private static MainWindow window;
+    private static AppData db;
     public static Timer timer;
     public static Saves saves;
     public static Scanner input = new Scanner(System.in);
@@ -35,7 +39,7 @@ public class Main {
     public static int ActiveSave = -1;
 
     public static void main(String[] args) {
-        AppData data = AppData.getInstance();
+        db = AppData.getInstance();
         timer = new Timer();
         timer.schedule(MainLoop, 0, 1000/UPS);
         stopped = true;
@@ -49,9 +53,26 @@ public class Main {
             StartGameUI wdw = new StartGameUI();
             wdw.setVisible(true);
             wdw.setLocationRelativeTo(null);
+            wdw.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    Main.closeApp();
+                }
+
+            });
         });
         // MainMenu();
     }
+
+    public static void closeApp() {
+        System.out.println("Exiting...");
+        System.out.println(ActiveSave);
+        SaveGame();
+        input.close();
+        timer.cancel();
+        db.close();
+    }
+
     private static void clearConsole() {
         try {
             final String os = System.getProperty("os.name");
