@@ -15,6 +15,7 @@ import com.project.UI.newBuilding.NewBuildingView;
 import com.project.UI.newUnits.TrainUnitsController;
 import com.project.UI.newUnits.TrainUnitsView;
 import com.project.UI.newUnits.unitsViews.SwordsmanView;
+import com.project.UI.newUnits.unitsViews.UnitsViewsController;
 import com.project.UI.nextBattle.NextBattleController;
 
 public class MainWindow extends JFrame {
@@ -43,6 +44,7 @@ public class MainWindow extends JFrame {
         new Controller(cardLayout,cards,mainView);
         new TrainUnitsController(cardLayout, cards, trainUnitsView);
         new NewBuildingController(cardLayout, cards, newBuildingView);
+        new UnitsViewsController(cardLayout, cards, swordsmanView);
 
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {
 

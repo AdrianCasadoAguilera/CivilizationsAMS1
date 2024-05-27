@@ -23,5 +23,8 @@ public class TrainUnitsController {
         trainUnitsView.returnButton.addActionListener(e->{
             layout.show(cards, "main");
         });
+        trainUnitsView.swordsmanButton.addActionListener(e->{
+            layout.show(cards, "swordsman");
+        });
     }
 }
