@@ -151,7 +151,7 @@ public class CivilizationDao {
                 }
                 newBattle.setEnemyLoses(enemyLosesInt);
                 //civilization_unit_stats
-                System.out.println("loading civilization_unit_stats");
+                //.println("loading civilization_unit_stats");
                 List<Map<String, Object>> civilizationUnitStats = db.query("SELECT * FROM civilization_unit_stats WHERE num_battle = " + battle.get("num_battle") + " and civilization_id = " + newSave.getSaveId());
                 ArrayList<MilitaryUnit> initialUnits = new ArrayList<>();
                 ArrayList<MilitaryUnit> dropsUnits = new ArrayList<>();
@@ -236,7 +236,7 @@ public class CivilizationDao {
     }
 
     public void updateSave(SaveData save) {
-        System.out.println("Saving civilization stat");
+        //System.out.println("Saving civilization stat");
         AppData db = AppData.getInstance();
         int id = save.getSaveId();
         //Civilization
@@ -256,10 +256,9 @@ public class CivilizationDao {
         sql += " battle_timer = " + save.getBattleTimer() + ",";
         sql += " NextBattleIn = " + save.getNextBattleIn() + " ";
         sql += " WHERE civilization_id = " + id;
-        System.out.println(sql);
         db.update(sql);
         //Army
-        System.out.println("Saving own army");
+        //System.out.println("Saving own army");
         List<Map<String, Object>> army = db.query("SELECT * FROM units WHERE civilization_id = " + id);
         if (save.getOwnArmy().size() > army.size()) {
             for (int i = 0; i < army.size(); i++) {
@@ -292,7 +291,7 @@ public class CivilizationDao {
             //delete the rest
         }
         //Enemy
-        System.out.println("Saving enemy army");
+        //System.out.println("Saving enemy army");
         List<Map<String, Object>> enemy =  db.query("SELECT * FROM enemy_unit WHERE civilization_id = " + id);
         if (save.getEnemyArmy().size() > enemy.size()) {
             for (int i = 0; i < enemy.size(); i++) {
@@ -325,7 +324,7 @@ public class CivilizationDao {
             }
         }
         //Battles
-        System.out.println("Saving battles");
+        //System.out.println("Saving battles");
         List<Map<String, Object>> battles = db.query("Select * FROM battle_stats WHERE civilization_id = " + id);
         if (save.getBattles().size() > battles.size()) {
             //Insert the new Battles
@@ -358,7 +357,7 @@ public class CivilizationDao {
                 sql += "))";
                 db.update(sql);
                 //civilization_unit_stats
-                System.out.println("saving battle civilization units");
+                //System.out.println("saving battle civilization units");
                 ArrayList<ArrayList<MilitaryUnit>> orderedInitialUnits = battle.orderByUnitType(battle.getCivilizationArmy());
                 ArrayList<ArrayList<MilitaryUnit>> orderedDropsUnits = battle.getCivilizationArmyOrdered();
                 for (int j = 0; j < UnitTypes.values().length; j++) {
@@ -371,7 +370,7 @@ public class CivilizationDao {
                     db.update(sql);
                 }
                 //enemy_unit_stats
-                System.out.println("saving battle enemy units");
+                //System.out.println("saving battle enemy units");
                 ArrayList<ArrayList<MilitaryUnit>> orderedInitialEnemyUnits = battle.orderByUnitType(battle.getEnemyArmy());
                 ArrayList<ArrayList<MilitaryUnit>> orderedDropsEnemyUnits = battle.getEnemyArmyOrdered();
                 for (int j = 0; j < UnitTypes.values().length; j++) {

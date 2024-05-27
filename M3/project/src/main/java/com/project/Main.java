@@ -18,7 +18,7 @@ public class Main {
     public static Timer timer;
     public static Saves saves;
     public static Scanner input = new Scanner(System.in);
-    public static int UPS = 1;
+    public static int UPS = 60;
     public static float deltaTime = 1.0f/UPS;
     public static Civilization civilization;
     public static Boolean stopped = false;
