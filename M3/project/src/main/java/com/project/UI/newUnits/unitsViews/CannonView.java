@@ -2,7 +2,6 @@ package com.project.UI.newUnits.unitsViews;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Image;
 import java.net.URL;
@@ -10,6 +9,7 @@ import java.net.URL;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+import com.project.Cannon;
 import com.project.MilitaryUnit;
 import com.project.Swordsman;
 import com.project.Variables;
@@ -17,14 +17,13 @@ import com.project.UI.util.fonts.Fonts;
 import com.project.UI.util.swing_elements.PButton;
 import com.project.UI.util.swing_elements.PLabel;
 
-public class SwordsmanView extends JPanel {
+public class CannonView extends JPanel {
 
     public PButton returnButton;
 
-    public JSpinner amount;
     public PButton createUnit;
 
-    private String unitName = "Swordsman";
+    private String unitName = "Cannon";
     private String descString = "sadijidabsjasdskjpnaib djasdjasnd ja dhasduand asdjasdjasb dasd";
 
     private ImageIcon woodIcon;
@@ -32,17 +31,12 @@ public class SwordsmanView extends JPanel {
     private ImageIcon ironIcon;
     private ImageIcon manaIcon;
 
-    public JLabel foodCost;
-    public JLabel woodCost;
-    public JLabel ironCost;
-    public JLabel manaCost;
-
     private JLabel armorValue;
     private JLabel damageValue;
 
-    public MilitaryUnit unit = new Swordsman();
+    public MilitaryUnit unit = new Cannon();
 
-    public SwordsmanView(){
+    public CannonView(){
         setLayout(new BorderLayout());
 
         setImages();
@@ -85,11 +79,6 @@ public class SwordsmanView extends JPanel {
     }
 
     private void setMainContent(){
-
-        amount = new JSpinner();
-        amount.setMaximumSize(new Dimension(50,50));
-        amount.setAlignmentX(CENTER_ALIGNMENT);
-
         JPanel mainContentPanel = new JPanel();
             BoxLayout mainContentLayout = new BoxLayout(mainContentPanel, BoxLayout.Y_AXIS);
             mainContentPanel.setLayout(mainContentLayout);
@@ -150,16 +139,16 @@ public class SwordsmanView extends JPanel {
                 costsPanel.setLayout(costsLayout);
                 
                 JLabel foodLabel = new JLabel(foodIcon);
-                foodCost = new JLabel(String.valueOf(unit.getFoodCost()*(int)amount.getValue()));
+                JLabel foodCost = new JLabel(String.valueOf(unit.getFoodCost()));
 
                 JLabel woodLabel = new JLabel(woodIcon);
-                woodCost = new JLabel(String.valueOf(unit.getWoodCost()*(int)amount.getValue()));
+                JLabel woodCost = new JLabel(String.valueOf(unit.getWoodCost()));
 
                 JLabel ironLabel = new JLabel(ironIcon);
-                ironCost = new JLabel(String.valueOf(unit.getIronCost()*(int)amount.getValue()));
+                JLabel ironCost = new JLabel(String.valueOf(unit.getIronCost()));
                 
                 JLabel manaLabel = new JLabel(manaIcon);
-                manaCost = new JLabel(String.valueOf(unit.getManaCost()*(int)amount.getValue()));
+                JLabel manaCost = new JLabel(String.valueOf(unit.getManaCost()));
 
                 costsPanel.add(foodLabel);
                 costsPanel.add(foodCost);
@@ -177,8 +166,6 @@ public class SwordsmanView extends JPanel {
         createUnit = new PButton("Create unit");
         createUnit.setAlignmentX(CENTER_ALIGNMENT);
 
-        mainContentPanel.add(amount);
-        mainContentPanel.add(Box.createHorizontalStrut(10));
         mainContentPanel.add(createUnit);
 
         add(mainContentPanel,BorderLayout.CENTER);
@@ -210,19 +197,9 @@ public class SwordsmanView extends JPanel {
     }
 
     public void updateValues(){
-        unit = new Swordsman();
+        unit = new Cannon();
         armorValue.setText(String.valueOf(unit.getActualArmor()));
         damageValue.setText(String.valueOf(unit.attack()));
-        repaint();
-    }
-
-    public void updateCosts(){
-        System.out.println("Updating cost");
-        foodCost.setText(String.valueOf(unit.getFoodCost()*(int)amount.getValue()));
-        woodCost.setText(String.valueOf(unit.getWoodCost()*(int)amount.getValue()));
-        ironCost.setText(String.valueOf(unit.getIronCost()*(int)amount.getValue()));
-        manaCost.setText(String.valueOf(unit.getManaCost()*(int)amount.getValue()));
-        revalidate();
         repaint();
     }
 }
