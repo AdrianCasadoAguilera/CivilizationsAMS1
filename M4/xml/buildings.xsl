@@ -6,8 +6,8 @@
             <head>
                 <meta charset="UTF-8"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                <title>Unidades Especiales</title>
-                <link rel="stylesheet" href="special_units.css"/>
+                <title>Edificios</title>
+                <link rel="stylesheet" href="buildings.css"/>
             </head>
             <body>
                 <header role="banner">
@@ -16,16 +16,16 @@
                         <ul id="menu">
                             <li><a href="index.html">Índice</a></li>
                             <li><a href="attack_units.html">Unidades de Ataque</a></li>
-                            <li><a href="buildings.html">Edificios</a></li>
+                            <li><a href="buildings.html" aria-current="page">Edificios</a></li>
                             <li><a href="defences.html">Defensas</a></li>
-                            <li><a href="special_units.html" aria-current="page">Unidades Especiales</a></li>
+                            <li><a href="special_units.html">Unidades Especiales</a></li>
                         </ul>
                     </nav>
                 </header>
                 <main role="main">
-                    <section id="special_units" aria-labelledby="special_units-title">
-                        <h1 id="special_units-title">Unidades Especiales</h1>
-                        <xsl:apply-templates select="special_units/unit"/>
+                    <section id="buildings" aria-labelledby="buildings-title">
+                        <h1 id="buildings-title">Edificios</h1>
+                        <xsl:apply-templates select="buildings/building"/>
                     </section>
                 </main>
                 <footer role="contentinfo">
@@ -40,8 +40,8 @@
         </html>
     </xsl:template>
 
-    <xsl:template match="unit">
-        <article class="special-unit-section">
+    <xsl:template match="building">
+        <article class="building-section">
             <xsl:attribute name="id">
                 <xsl:value-of select="translate(name, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')"/>
             </xsl:attribute>
@@ -51,23 +51,21 @@
                     <caption>Estadísticas de <xsl:value-of select="name"/></caption>
                     <thead>
                         <tr>
-                            <th scope="col">Base Damage</th>
-                            <th scope="col">Waste Chance</th>
-                            <th scope="col">Attack Again Chance</th>
-                            <th scope="col">Resurrect Chance</th>
+                            <th scope="col">Food Cost</th>
+                            <th scope="col">Iron Cost</th>
+                            <th scope="col">Wood Cost</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><xsl:value-of select="base_damage"/></td>
-                            <td><xsl:value-of select="waste_chance"/></td>
-                            <td><xsl:value-of select="attack_again_chance"/></td>
-                            <td><xsl:value-of select="plus_stats/resurect_chance"/></td>
+                            <td><xsl:value-of select="costs/food_cost"/></td>
+                            <td><xsl:value-of select="costs/iron_cost"/></td>
+                            <td><xsl:value-of select="costs/wood_cost"/></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="special-unit">
+            <div class="building">
                 <img>
                     <xsl:attribute name="src">
                         <xsl:value-of select="concat('images/', translate(name, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.png')"/>

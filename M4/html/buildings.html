@@ -1,71 +1,183 @@
-<html>
+<html lang="es">
   <head>
-    <title>Buildings</title>
-    <style>
-                    table {
-                        width: 100%;
-                        border-collapse: collapse;
-                    }
-                    th, td {
-                        border: 1px solid black;
-                        padding: 8px;
-                        text-align: left;
-                    }
-                    th {
-                        background-color: #f2f2f2;
-                    }
-                </style>
-    <ul>
-      <li>
-        <a href="attack_units.html">Attack Units</a>
-      </li>
-      <li>
-        <a href="defences.html">Defence Units</a>
-      </li>
-      <li>
-        <a href="special_units.html">Special Units</a>
-      </li>
-    </ul>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Edificios</title>
+    <link rel="stylesheet" href="buildings.css"/>
   </head>
   <body>
-    <h2>Buildings</h2>
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>Food Cost</th>
-        <th>Iron Cost</th>
-        <th>Wood Cost</th>
-      </tr>
-      <tr>
-        <td>FARM</td>
-        <td>5000</td>
-        <td>10000</td>
-        <td>12000</td>
-      </tr>
-      <tr>
-        <td>CARPENTRY</td>
-        <td>5000</td>
-        <td>10000</td>
-        <td>12000</td>
-      </tr>
-      <tr>
-        <td>SMITHY</td>
-        <td>5000</td>
-        <td>10000</td>
-        <td>12000</td>
-      </tr>
-      <tr>
-        <td>CHURCH</td>
-        <td>5000</td>
-        <td>10000</td>
-        <td>12000</td>
-      </tr>
-      <tr>
-        <td>MAGICTOWE</td>
-        <td>5000</td>
-        <td>10000</td>
-        <td>12000</td>
-      </tr>
-    </table>
+    <header role="banner">
+      <nav role="navigation">
+        <div class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()">&#9776;</div>
+        <ul id="menu">
+          <li>
+            <a href="index.html">&#205;ndice</a>
+          </li>
+          <li>
+            <a href="attack_units.html">Unidades de Ataque</a>
+          </li>
+          <li>
+            <a href="buildings.html" aria-current="page">Edificios</a>
+          </li>
+          <li>
+            <a href="defences.html">Defensas</a>
+          </li>
+          <li>
+            <a href="special_units.html">Unidades Especiales</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main role="main">
+      <section id="buildings" aria-labelledby="buildings-title">
+        <h1 id="buildings-title">Edificios</h1>
+        <article class="building-section" id="farm">
+          <h2>FARM</h2>
+          <div class="table-container">
+            <table>
+              <caption>Estad&#237;sticas de FARM</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Food Cost</th>
+                  <th scope="col">Iron Cost</th>
+                  <th scope="col">Wood Cost</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>5000</td>
+                  <td>10000</td>
+                  <td>12000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="building">
+            <img src="images/farm.png" alt="Imagen de FARM"/>
+            <p/>
+          </div>
+        </article>
+        <article class="building-section" id="carpentry">
+          <h2>CARPENTRY</h2>
+          <div class="table-container">
+            <table>
+              <caption>Estad&#237;sticas de CARPENTRY</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Food Cost</th>
+                  <th scope="col">Iron Cost</th>
+                  <th scope="col">Wood Cost</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>5000</td>
+                  <td>10000</td>
+                  <td>12000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="building">
+            <img src="images/carpentry.png" alt="Imagen de CARPENTRY"/>
+            <p/>
+          </div>
+        </article>
+        <article class="building-section" id="smithy">
+          <h2>SMITHY</h2>
+          <div class="table-container">
+            <table>
+              <caption>Estad&#237;sticas de SMITHY</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Food Cost</th>
+                  <th scope="col">Iron Cost</th>
+                  <th scope="col">Wood Cost</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>5000</td>
+                  <td>10000</td>
+                  <td>12000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="building">
+            <img src="images/smithy.png" alt="Imagen de SMITHY"/>
+            <p/>
+          </div>
+        </article>
+        <article class="building-section" id="church">
+          <h2>CHURCH</h2>
+          <div class="table-container">
+            <table>
+              <caption>Estad&#237;sticas de CHURCH</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Food Cost</th>
+                  <th scope="col">Iron Cost</th>
+                  <th scope="col">Wood Cost</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>5000</td>
+                  <td>10000</td>
+                  <td>12000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="building">
+            <img src="images/church.png" alt="Imagen de CHURCH"/>
+            <p/>
+          </div>
+        </article>
+        <article class="building-section" id="magictowe">
+          <h2>MAGICTOWE</h2>
+          <div class="table-container">
+            <table>
+              <caption>Estad&#237;sticas de MAGICTOWE</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Food Cost</th>
+                  <th scope="col">Iron Cost</th>
+                  <th scope="col">Wood Cost</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>5000</td>
+                  <td>10000</td>
+                  <td>12000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="building">
+            <img src="images/magictowe.png" alt="Imagen de MAGICTOWE"/>
+            <p/>
+          </div>
+        </article>
+      </section>
+    </main>
+    <footer role="contentinfo">
+      <p>2024 Civilizations. Todos los derechos reservados.</p>
+      <p>
+        <a href="https://github.com/MarcArques" target="_blank">Marc Arqu&#233;s Marim&#243;n</a>
+      </p>
+      <p>
+        <a href="https://github.com/AdrianCasadoAguilera" target="_blank">Adri&#225;n Casado Aguilera</a>
+      </p>
+      <p>
+        <a href="https://github.com/AAyoubelbakhti" target="_blank">Ayoub El Bakhti</a>
+      </p>
+      <p>
+        <a href="https://github.com/OscarMG018" target="_blank">&#211;scar MG018</a>
+      </p>
+    </footer>
+    <script src="minimenu.js"/>
   </body>
 </html>
