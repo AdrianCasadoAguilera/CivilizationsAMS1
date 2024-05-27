@@ -25,6 +25,7 @@ public class StartController {
             wdw.dispose();
             new MainWindow().setVisible(true);
 
+            Main.stopped = false;
             Main.ActiveSave = Main.saves.AddNewSaveData(name);
             Main.NextEnemyArmy = null;
             Main.saves.LoadSaveData(Main.ActiveSave);

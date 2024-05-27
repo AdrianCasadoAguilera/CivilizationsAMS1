@@ -92,7 +92,7 @@ public class MainPanel extends JPanel {
         titleLabel.setAlignmentX(CENTER_ALIGNMENT);
         titleLabel.setFont(Fonts.getInstance().rusticFont.deriveFont(Font.BOLD,50));
 
-        Timer timer = new Timer(50, new ActionListener() {
+        new Timer(50, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 opacity += 0.03f; 
@@ -102,8 +102,7 @@ public class MainPanel extends JPanel {
                 }
                 titleLabel.setForeground(new Color(1f, 0.8f, 0.1f, opacity)); 
             }
-        });
-        timer.start();
+        }).start();
         centerPanel.add(Box.createVerticalGlue());
         centerPanel.add(titleLabel);
         centerPanel.add(Box.createRigidArea(new Dimension(0, 20)));

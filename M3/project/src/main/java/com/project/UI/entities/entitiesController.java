@@ -21,11 +21,10 @@ public class entitiesController {
     }
 
     private void setTimer(){
-        int delay = 1000; //milliseconds
+        int delay = 1000; 
         ActionListener taskPerformer = new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 seeEntitiesView.foodInfoLabel.setText(String.valueOf(civilization.getFood()));
-                seeEntitiesView.foodInfoLabel.repaint();
             }
         };
         new Timer(delay, taskPerformer).start();

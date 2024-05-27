@@ -1,5 +1,7 @@
 package com.project.UI;
 
+import com.project.UI.entities.SeeEntitiesView;
+import com.project.UI.nextBattle.BattleHappened;
 import com.project.UI.nextBattle.NextBattleController;
 import com.project.UI.nextBattle.NextBattlePanel;
 import com.project.UI.resources.ResourcesPanel;
@@ -11,18 +13,21 @@ import javax.swing.*;
 public class MainView extends JPanel {
 
     // NEXT BALLE ELEMENTS
+    public JPanel southernPanel;
     public NextBattlePanel nextBattlePanel;
+    public BattleHappened battleHappened;
 
     // RESOURCES ELEMENTS
     public ResourcesPanel resourcesPanel;
 
     // CENTRAL ELEMENTS
-    public JPanel centralPanel;
-    public PButton createBuildingButton;
-    public PButton trainButton;
-    public PButton upgradeTechLevelButton;
+    public JPanel buttonsPanel;
+        public PButton createBuildingButton;
+        public PButton trainButton;
+        public PButton upgradeTechLevelButton;
+    public SeeEntitiesView infoPanel;
 
-    public MainView(){
+    public MainView(CardLayout cardLayout,JPanel cards){
         setLayout(new BorderLayout());
 
         setNorthPanel();
@@ -31,7 +36,7 @@ public class MainView extends JPanel {
         
         setMenuOptions();
 
-        new NextBattleController(nextBattlePanel);
+        new NextBattleController(cardLayout,cards,nextBattlePanel,battleHappened);
     }
     
     private void setNorthPanel(){
@@ -47,20 +52,33 @@ public class MainView extends JPanel {
     }
 
     private void setCentralOptions(){
-        centralPanel = new JPanel();
-        centralPanel.setLayout(new FlowLayout());
-        centralPanel.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.BLACK));
+        JPanel centralPanel = new JPanel();
+        buttonsPanel = new JPanel();
+        buttonsPanel.setLayout(new FlowLayout());
+        buttonsPanel.setBorder(BorderFactory.createEmptyBorder(1,1,1,1));
 
-        centralPanel.add(createBuildingButton);
-        centralPanel.add(trainButton);
-        centralPanel.add(upgradeTechLevelButton);
+        buttonsPanel.add(createBuildingButton);
+        buttonsPanel.add(trainButton);
+        buttonsPanel.add(upgradeTechLevelButton);
 
+        infoPanel = new SeeEntitiesView();
+
+        centralPanel.add(infoPanel);
+        centralPanel.add(buttonsPanel);
         add(centralPanel,BorderLayout.CENTER);
     }
 
     private void setMenuOptions(){
+        southernPanel = new JPanel();
+        southernPanel.setLayout(new BorderLayout());
         nextBattlePanel = new NextBattlePanel();
 
-        add(nextBattlePanel,BorderLayout.SOUTH);
+        battleHappened = new BattleHappened();
+        battleHappened.setVisible(false);
+
+        southernPanel.add(battleHappened,BorderLayout.CENTER);
+        southernPanel.add(nextBattlePanel,BorderLayout.SOUTH);
+
+        add(southernPanel,BorderLayout.SOUTH);
     }
 }

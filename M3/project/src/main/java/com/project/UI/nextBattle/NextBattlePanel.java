@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.net.URL;
+import java.util.concurrent.Flow;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -21,7 +22,7 @@ public class NextBattlePanel extends JPanel {
     public JLabel timeToBattleLabel;
     
     public NextBattlePanel(){
-        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        setLayout(new FlowLayout());
         setAlignmentX(CENTER_ALIGNMENT);
         setBorder(BorderFactory.createMatteBorder(0,1,1,1,Color.BLACK));
         setBackground(Color.LIGHT_GRAY);

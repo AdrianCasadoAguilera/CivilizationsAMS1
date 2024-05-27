@@ -10,16 +10,21 @@ class AppData {
     private static AppData instance;
     private Connection conn;
 
-    private String HostName = "20.224.68.0";
-    private String Port = "1521";
-    private String DatabaseName = "MYDB";
-    private String Username = "USUARIO";
-    private String Password = "1234";
+    // private String HostName = "20.224.68.0";
+    // private String Port = "1521";
+    // private String DatabaseName = "MYDB";
+    // private String Username = "USUARIO";
+    // private String Password = "1234";
+    private String HostName = "";
+    private String Port = "";
+    private String DatabaseName = "";
+    private String Username = "";
+    private String Password = "";
 
     private AppData() {
         // Connecta al crear la primera instància
         System.out.println("Connecting to the database...");
-        connect();
+        // connect();
         System.out.println("Connected");
     }
 
@@ -73,26 +78,26 @@ class AppData {
 
     public int insertAndGetId(String sql) {
         int generatedId = -1;
-        try (Statement stmt = conn.createStatement()) {
-            // Execute the update
-            stmt.executeUpdate(sql);
-            conn.commit();  // Make sure to commit the transaction if auto-commit is disabled
+        // try (Statement stmt = conn.createStatement()) {
+        //     // Execute the update
+        //     stmt.executeUpdate(sql);
+        //     conn.commit();  // Make sure to commit the transaction if auto-commit is disabled
     
-            // Query the last inserted row ID
-            try (ResultSet rs = stmt.executeQuery("SELECT last_insert_rowid()")) {
-                if (rs.next()) {
-                    generatedId = rs.getInt(1); // Retrieve the last inserted ID
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            try {
-                conn.rollback(); // Rollback the transaction in case of error
-            } catch (SQLException ex) {
-                System.out.println("Error during rollback.");
-                ex.printStackTrace();
-            }
-        }
+        //     // Query the last inserted row ID
+        //     try (ResultSet rs = stmt.executeQuery("SELECT last_insert_rowid()")) {
+        //         if (rs.next()) {
+        //             generatedId = rs.getInt(1); // Retrieve the last inserted ID
+        //         }
+        //     }
+        // } catch (SQLException e) {
+        //     System.out.println(e.getMessage());
+        //     try {
+        //         conn.rollback(); // Rollback the transaction in case of error
+        //     } catch (SQLException ex) {
+        //         System.out.println("Error during rollback.");
+        //         ex.printStackTrace();
+        //     }
+        // }
         return generatedId;
     }
    

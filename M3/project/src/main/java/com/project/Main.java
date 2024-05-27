@@ -18,7 +18,7 @@ public class Main {
     public static float deltaTime = 1.0f/UPS;
     public static Civilization civilization;
     public static Boolean stopped = false;
-    public static float BattleTimer = 0;
+    public static float BattleTimer = 9999;
     public static TimerTask MainLoop = new TimerTask() {
         @Override
         public void run() {
@@ -29,7 +29,8 @@ public class Main {
     };
     public static ArrayList<Battle> battlesFaugth = new ArrayList<>();
     public static ArrayList<MilitaryUnit> NextEnemyArmy = new ArrayList<>();
-    public static int NextBattleIn = 180;
+    // public static int NextBattleIn = 180;
+    public static int NextBattleIn = 20;
     public static String ActiveMenu = "";
     public static int ActiveSave = -1;
 
@@ -40,7 +41,7 @@ public class Main {
         stopped = true;
         civilization = Civilization.getInstance();
         saves = Saves.getInstance();
-        stopped = false;
+        // stopped = false;
 
         System.out.println("Executing on Swing...");
         // Saves.getInstance().AddNewSaveData("test");
@@ -89,7 +90,8 @@ public class Main {
         civilization.GenerateResources(deltaTime);
         BattleTimer += deltaTime;
         if (BattleTimer >= NextBattleIn) {
-            NextBattleIn = 120 + new Random().nextInt(300 - 120 + 1);
+            // NextBattleIn = 120 + new Random().nextInt(300 - 120 + 1);
+            NextBattleIn = 20;
             BattleTimer = 0;
             civilization.setBattles(civilization.getBattles()+1);
             Battle battle = new Battle((ArrayList<MilitaryUnit>)civilization.getArmy().clone(), (ArrayList<MilitaryUnit>)NextEnemyArmy.clone());

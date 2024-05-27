@@ -23,8 +23,9 @@ public class MainWindow extends JFrame {
     private SeeEntitiesView seeEntitiesView;
     private NewBuildingView newBuildingView;
     private PauseView pauseView;
+    public BattleLogView battleLog;
 
-    public boolean canPause = true;
+    public boolean canPause = true;  
     
     public MainWindow(){
         super("Civilization");
@@ -60,14 +61,16 @@ public class MainWindow extends JFrame {
         cards = new JPanel();
         cards.setLayout(cardLayout);
 
-        mainView = new MainView();
+        mainView = new MainView(cardLayout,cards);
         seeEntitiesView = new SeeEntitiesView();
         newBuildingView = new NewBuildingView();
         pauseView = new PauseView();
+        battleLog = new BattleLogView();
         cards.add(mainView,"main");
         cards.add(seeEntitiesView,"entities");
         cards.add(newBuildingView,"new building");
         cards.add(pauseView,"pause");
+        cards.add(battleLog,"battlelog");
 
         cardLayout.show(cards, "main");
 

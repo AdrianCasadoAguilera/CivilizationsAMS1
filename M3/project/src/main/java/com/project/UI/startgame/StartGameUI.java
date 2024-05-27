@@ -23,7 +23,5 @@ public class StartGameUI extends JFrame {
         mainPanel = new MainPanel();
 
         add(mainPanel);
-
-        validate();
     }
 }
