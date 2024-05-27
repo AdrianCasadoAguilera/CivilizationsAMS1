@@ -29,7 +29,7 @@ public class Controller {
             layout.show(cards, "train units");
         });
         mainView.upgradeTechLevelButton.addActionListener(e->{
-            
+            layout.show(cards, "tech");
         });
         mainView.ThreadButton.addActionListener(e->{
             layout.show(cards, "thread");

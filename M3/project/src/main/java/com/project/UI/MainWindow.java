@@ -30,6 +30,7 @@ public class MainWindow extends JFrame {
     private TrainUnitsView trainUnitsView;
     private PauseView pauseView;
     private ThreadView threadView;
+    private TechnologyView technologyView;
     public BattleLogView battleLog;
 
     public SwordsmanView swordsmanView;
@@ -49,6 +50,7 @@ public class MainWindow extends JFrame {
         new NewBuildingController(cardLayout, cards, newBuildingView);
         new UnitsViewsController(cardLayout, cards, swordsmanView);
         new ThreadController(cardLayout, cards, threadView);
+        new TechnologyController(cardLayout, cards, technologyView);
 
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {
 
@@ -76,6 +78,7 @@ public class MainWindow extends JFrame {
         newBuildingView = new NewBuildingView();
         trainUnitsView = new TrainUnitsView();
         threadView = new ThreadView();
+        technologyView = new TechnologyView();
         addUnitsViews();
         pauseView = new PauseView();
         battleLog = new BattleLogView();
@@ -86,7 +89,7 @@ public class MainWindow extends JFrame {
         cards.add(pauseView,"pause");
         cards.add(threadView, "thread");
         //cards.add(BattlesView, "battles");
-        //cards.add(Technology, "tech");
+        cards.add(technologyView, "tech");
         cards.add(battleLog,"battlelog");
 
         cardLayout.show(cards, "main");
