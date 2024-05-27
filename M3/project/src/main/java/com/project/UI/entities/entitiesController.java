@@ -10,10 +10,11 @@ import com.project.*;
 public class entitiesController {
     
     SeeEntitiesView seeEntitiesView;
-    Civilization civilization = Civilization.getInstance();
+    Civilization civilization;
 
     public entitiesController(SeeEntitiesView seeEntitiesView){
         this.seeEntitiesView = seeEntitiesView;
+        civilization = Civilization.getInstance();
 
         setTimer();
 
@@ -21,11 +22,14 @@ public class entitiesController {
     }
 
     private void setTimer(){
-        int delay = 1000; //milliseconds
+        int delay = 1000; 
         ActionListener taskPerformer = new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                seeEntitiesView.foodInfoLabel.setText(String.valueOf(civilization.getFood()));
-                seeEntitiesView.foodInfoLabel.repaint();
+                seeEntitiesView.smithyQuantity.setText(String.valueOf(civilization.getSmithy()));
+                seeEntitiesView.carpentryQuantity.setText(String.valueOf(civilization.getCarpentry()));
+                seeEntitiesView.farmQuantity.setText(String.valueOf(civilization.getFarm()));
+                seeEntitiesView.magicTowerQuantity.setText(String.valueOf(civilization.getMagicTower()));
+                seeEntitiesView.churchQuantity.setText(String.valueOf(civilization.getChurch()));
             }
         };
         new Timer(delay, taskPerformer).start();

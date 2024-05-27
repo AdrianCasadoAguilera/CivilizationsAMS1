@@ -1,7 +1,11 @@
 package com.project.UI.startgame;
 
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 import com.project.Main;
 import com.project.UI.MainWindow;
+import com.project.UI.resources.ResourcesController;
 
 public class StartController {
     
@@ -17,11 +21,17 @@ public class StartController {
     private void setListeners(){
         mainPanel.closeButton.addActionListener(e->{System.exit(0);});
         mainPanel.newGameButton.addActionListener(e->{
-            new Thread(new Runnable() {
-                public void run() {
-                    wdw.dispose();Main.NewGame("");
-                }
-            }).start();
+            String name = JOptionPane.showInputDialog(null,"Insert your name","Your name",JOptionPane.PLAIN_MESSAGE);
+            wdw.dispose();
+            Main.stopped = false;
+            Main.ActiveSave = Main.saves.AddNewSaveData(name);
+            Main.NextEnemyArmy = null;
+            Main.saves.LoadSaveData(Main.ActiveSave);
+            new MainWindow().setVisible(true);
+
+            
+
+            // Main.NewGame("");
         });
     }
 }

@@ -10,21 +10,21 @@ class AppData {
     private static AppData instance;
     private Connection conn;
     
-    private String HostName = "localhost";
+    /*private String HostName = "localhost";
     private String Port = "1521";
     private String DatabaseName = "xe";
     private String Username = "botiga";
-    private String Password = "botiga";
-    /*private String HostName = "20.224.68.0";
+    private String Password = "botiga";*/
+    private String HostName = "20.224.68.0";
     private String Port = "1521";
     private String DatabaseName = "MYDB";
     private String Username = "usuario";
-    private String Password = "1234";*/
+    private String Password = "1234";
 
     private AppData() {
         // Connecta al crear la primera instància
         System.out.println("Connecting to the database...");
-        connect();
+        // connect();
         System.out.println("Connected");
     }
 
@@ -62,42 +62,42 @@ class AppData {
     }
 
     public void update(String sql) {
-        try (Statement stmt = conn.createStatement()) {
-            stmt.executeUpdate(sql);
-            conn.commit(); // Confirma els canvis
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            try {
-                conn.rollback(); // Reverteix els canvis en cas d'error
-            } catch (SQLException ex) {
-                System.out.println("Error en fer rollback.");
-                ex.printStackTrace();
-            }
-        }
+        // try (Statement stmt = conn.createStatement()) {
+        //     stmt.executeUpdate(sql);
+        //     conn.commit(); // Confirma els canvis
+        // } catch (SQLException e) {
+        //     System.out.println(e.getMessage());
+        //     try {
+        //         conn.rollback(); // Reverteix els canvis en cas d'error
+        //     } catch (SQLException ex) {
+        //         System.out.println("Error en fer rollback.");
+        //         ex.printStackTrace();
+        //     }
+        // }
     }
 
     public int insertAndGetId(String sql) {
         int generatedId = -1;
-        try (Statement stmt = conn.createStatement()) {
-            // Execute the update
-            stmt.executeUpdate(sql);
-            conn.commit();  // Make sure to commit the transaction if auto-commit is disabled
+        // try (Statement stmt = conn.createStatement()) {
+        //     // Execute the update
+        //     stmt.executeUpdate(sql);
+        //     conn.commit();  // Make sure to commit the transaction if auto-commit is disabled
     
-            // Query the last inserted row ID
-            try (ResultSet rs = stmt.executeQuery("SELECT last_insert_rowid()")) {
-                if (rs.next()) {
-                    generatedId = rs.getInt(1); // Retrieve the last inserted ID
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            try {
-                conn.rollback(); // Rollback the transaction in case of error
-            } catch (SQLException ex) {
-                System.out.println("Error during rollback.");
-                ex.printStackTrace();
-            }
-        }
+        //     // Query the last inserted row ID
+        //     try (ResultSet rs = stmt.executeQuery("SELECT last_insert_rowid()")) {
+        //         if (rs.next()) {
+        //             generatedId = rs.getInt(1); // Retrieve the last inserted ID
+        //         }
+        //     }
+        // } catch (SQLException e) {
+        //     System.out.println(e.getMessage());
+        //     try {
+        //         conn.rollback(); // Rollback the transaction in case of error
+        //     } catch (SQLException ex) {
+        //         System.out.println("Error during rollback.");
+        //         ex.printStackTrace();
+        //     }
+        // }
         return generatedId;
     }
    
@@ -106,21 +106,21 @@ class AppData {
     public List<Map<String, Object>> query(String sql) {
         List<Map<String, Object>> resultList = new ArrayList<>();
 
-        // try-with-resources tancarà el ResultSet quan acabi el bloc
-        try (Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            ResultSetMetaData metaData = rs.getMetaData();
-            int columnCount = metaData.getColumnCount();
-            while (rs.next()) {
-                Map<String, Object> row = new HashMap<>();
-                for (int i = 1; i <= columnCount; i++) {
-                    row.put(metaData.getColumnLabel(i).toLowerCase(), rs.getObject(i));
-                }
-                resultList.add(row);
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+    //     // try-with-resources tancarà el ResultSet quan acabi el bloc
+    //     try (Statement stmt = conn.createStatement();
+    //          ResultSet rs = stmt.executeQuery(sql)) {
+    //         ResultSetMetaData metaData = rs.getMetaData();
+    //         int columnCount = metaData.getColumnCount();
+    //         while (rs.next()) {
+    //             Map<String, Object> row = new HashMap<>();
+    //             for (int i = 1; i <= columnCount; i++) {
+    //                 row.put(metaData.getColumnLabel(i).toLowerCase(), rs.getObject(i));
+    //             }
+    //             resultList.add(row);
+    //         }
+    //     } catch (SQLException e) {
+    //         System.out.println(e.getMessage());
+    //     }
         return resultList;
     }
 }

@@ -6,11 +6,17 @@ public class RocketLauncherTower extends DefenseUnit{
         this.armor = (int)(ARMOR_ROCKETLAUNCHERTOWER * (1+Civilization.getInstance().getTechnologyDefense()*PLUS_ARMOR_ROCKETLAUNCHERTOWER_BY_TECHNOLOGY/100.0));
         this.initialArmor = armor;
         this.baseDamage = (int)(BASE_DAMAGE_ROCKETLAUNCHERTOWER * (1+Civilization.getInstance().getTechnologyDefense()*PLUS_ATTACK_ROCKETLAUNCHERTOWER_BY_TECHNOLOGY/100.0));
+        this.experience = 0;
+        this.sanctified = false;
     }
 
     @Override
     public int attack() {
-        return (int)(baseDamage+baseDamage*experience*PLUS_ATTACK_UNIT_PER_EXPERIENCE_POINT/100);
+        int calculatedDamage = (int)(baseDamage * (1+experience * PLUS_ATTACK_UNIT_PER_EXPERIENCE_POINT / 100));
+        if (sanctified) {
+            calculatedDamage += baseDamage * PLUS_ATTACK_UNIT_SANCTIFIED / 100;
+        }
+        return calculatedDamage;
     }
 
     @Override

@@ -1,5 +1,11 @@
 package com.project.UI;
 
+import com.project.UI.entities.SeeEntitiesView;
+import com.project.UI.entities.entitiesController;
+import com.project.UI.nextBattle.BattleHappened;
+import com.project.UI.nextBattle.NextBattleController;
+import com.project.UI.nextBattle.NextBattlePanel;
+import com.project.UI.resources.ResourcesPanel;
 import com.project.UI.util.swing_elements.*;
 
 import java.awt.*;
@@ -7,62 +13,74 @@ import javax.swing.*;
 
 public class MainView extends JPanel {
 
-    // MENU OPTIONS ELEMENTS
-    public JPanel menuOptionsPanel;
-    public JButton pause;
-    public JButton resume;
+    // NEXT BALLE ELEMENTS
+    public JPanel southernPanel;
+    public NextBattlePanel nextBattlePanel;
+    public BattleHappened battleHappened;
+
+    // RESOURCES ELEMENTS
+    public ResourcesPanel resourcesPanel;
 
     // CENTRAL ELEMENTS
-    public JPanel centralPanel;
-    public JButton createBuildingButton;
-    public JButton trainButton;
-    public JButton upgradeTechLevelButton;
+    public JPanel buttonsPanel;
+        public PButton createBuildingButton;
+        public PButton trainButton;
+        public PButton upgradeTechLevelButton;
+    public SeeEntitiesView infoPanel;
 
-    public MainView(){
+    public MainView(CardLayout cardLayout,JPanel cards){
         setLayout(new BorderLayout());
 
+        setNorthPanel();
         setUpButtons();
         setCentralOptions();
         
         setMenuOptions();
+
+        new NextBattleController(cardLayout,cards,nextBattlePanel,battleHappened);
+    }
+    
+    private void setNorthPanel(){
+        resourcesPanel = new ResourcesPanel();
+
+        add(resourcesPanel,BorderLayout.NORTH);
     }
 
     private void setUpButtons(){
-        createBuildingButton = new JButton("Create Building");
-        trainButton = new JButton("Train Units");
-        upgradeTechLevelButton = new JButton("Upgrade Technology Level");
-
-        upgradeTechLevelButton.setBorderPainted(false);
-        // upgradeTechLevelButton.back
-
-        pause = new JButton("Pause");
-        resume = new JButton("Resume");
+        createBuildingButton = new PButton("Create Building");
+        trainButton = new PButton("Train Units");
+        upgradeTechLevelButton = new PButton("Upgrade Technology Level");
     }
 
     private void setCentralOptions(){
-        centralPanel = new JPanel();
-        centralPanel.setLayout(new FlowLayout());
-        centralPanel.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.BLACK));
+        JPanel centralPanel = new JPanel();
+        buttonsPanel = new JPanel();
+        buttonsPanel.setLayout(new FlowLayout());
+        buttonsPanel.setBorder(BorderFactory.createEmptyBorder(1,1,1,1));
 
-        centralPanel.add(createBuildingButton);
-        centralPanel.add(trainButton);
-        centralPanel.add(upgradeTechLevelButton);
+        buttonsPanel.add(createBuildingButton);
+        buttonsPanel.add(trainButton);
+        buttonsPanel.add(upgradeTechLevelButton);
 
+        infoPanel = new SeeEntitiesView();
+        new entitiesController(infoPanel);
+
+        centralPanel.add(infoPanel);
+        centralPanel.add(buttonsPanel);
         add(centralPanel,BorderLayout.CENTER);
     }
 
     private void setMenuOptions(){
-        menuOptionsPanel = new JPanel();
-        menuOptionsPanel.setLayout(new FlowLayout());
-        menuOptionsPanel.setBorder(BorderFactory.createMatteBorder(0,1,1,1,Color.BLACK));
-        menuOptionsPanel.setBackground(Color.LIGHT_GRAY);
+        southernPanel = new JPanel();
+        southernPanel.setLayout(new BorderLayout());
+        nextBattlePanel = new NextBattlePanel();
 
-        pause.setVisible(true);
-        resume.setVisible(false);
+        battleHappened = new BattleHappened();
+        battleHappened.setVisible(false);
 
-        menuOptionsPanel.add(pause);
-        menuOptionsPanel.add(resume);
+        southernPanel.add(battleHappened,BorderLayout.CENTER);
+        southernPanel.add(nextBattlePanel,BorderLayout.SOUTH);
 
-        add(menuOptionsPanel,BorderLayout.SOUTH);
+        add(southernPanel,BorderLayout.SOUTH);
     }
 }

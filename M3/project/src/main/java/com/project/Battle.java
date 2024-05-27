@@ -2,6 +2,10 @@ package com.project;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.*;
 import java.util.Arrays;
 
 public class Battle {
@@ -138,7 +142,12 @@ public class Battle {
                 } while (repeatAttack && CountUnits(civilizationArmyOrdered) > 0 && CountUnits(enemyArmyOrdered) > 0);
                 turn = !turn;
             }
-            Win = civilizationTotalLoses < enemyTotalLoses;
+            if (CountUnits(civilizationArmyOrdered) <= 0)
+                Win = false;
+            else if (CountUnits(enemyArmyOrdered) <= 0)
+                Win = true;
+            else
+                Win = civilizationTotalLoses < enemyTotalLoses;
         }
         else {
             Win = false;
@@ -467,6 +476,72 @@ public class Battle {
 
     public void setEnemyArmyOrdered(ArrayList<ArrayList<MilitaryUnit>> enemyArmyOrdered) {
         this.enemyArmyOrdered = enemyArmyOrdered;
+    }
+
+    public ArrayList<JPanel> getDeteiledReportSwing() {
+        ArrayList<String> lines = new ArrayList<>();
+        String report = getDeteiledReport();
+        lines = new ArrayList<String>(Arrays.asList(report.split("\n")));
+        ArrayList<ArrayList<String>> attacks = new ArrayList<>();
+        ArrayList<String> attack = new ArrayList<>();
+        for (String line : lines) {
+            if (line.equals("********************CHANGE ATTACKER********************")) {
+                attacks.add(attack);
+                attack = new ArrayList<>();
+            }
+            else {
+                attack.add(line);
+            }
+        }
+        attacks.add(attack);
+        attacks.remove(0);
+        //System.out.println(attacks);
+        ArrayList<JPanel> panels = new ArrayList<>();
+        for (ArrayList<String> att : attacks) {
+           JPanel panel = new JPanel();
+           panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+           JLabel title = new JLabel(att.get(0));
+           panel.add(title);
+           JLabel body = new JLabel();
+           for (int i=1; i<att.size(); i++) {
+               body.setText(body.getText()+att.get(i)+"\n");
+           }
+           panel.add(body);
+           panels.add(panel);
+        }
+        return panels;
+    }
+
+    public ArrayList<JPanel> getReportSwing() {
+        ArrayList<String> lines = new ArrayList<>();
+        String report = getReport();
+        lines = new ArrayList<String>(Arrays.asList(report.split("\n")));
+        ArrayList<ArrayList<String>> sections = new ArrayList<>();
+        ArrayList<String> section = new ArrayList<>();
+        for (String line : lines) {
+            if (line.equals(("*".repeat(25+6+10+40+25+6+10) + "\n"))) {
+                sections.add(section);
+                section = new ArrayList<>();
+            }
+            else {
+                section.add(line);
+            }
+        }
+        sections.add(section);
+        sections.remove(0);
+        System.out.println(section);
+        ArrayList<JPanel> panels = new ArrayList<>();
+        for (ArrayList<String> att : sections) {
+           JPanel panel = new JPanel();
+           panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+           JLabel body = new JLabel();
+           for (String line : att) {
+               body.setText(body.getText()+line+"\n");
+           }
+           panel.add(body);
+           panels.add(panel);
+        }
+        return panels;
     }
 
 }

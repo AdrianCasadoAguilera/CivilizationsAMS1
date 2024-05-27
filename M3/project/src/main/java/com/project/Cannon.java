@@ -2,25 +2,17 @@ package com.project;
 
 public class Cannon extends AttackUnit {
 
-    public Cannon(int armor, int baseDamage) {
-        this.armor = ARMOR_CANNON + (int)(PLUS_ARMOR_CANNON_BY_TECHNOLOGY * Civilization.getInstance().getTechnologyDefense())*ARMOR_CANNON/100;
-        this.initialArmor = this.armor;
-        this.baseDamage = BASE_DAMAGE_CANNON + (int)(PLUS_ARMOR_CANNON_BY_TECHNOLOGY * Civilization.getInstance().getTechnologyAttack())*BASE_DAMAGE_CANNON/100;
-        this.experience = 0;
-        this.sanctified = false;
-    }
-
     public Cannon() {
-        this.armor = ARMOR_CANNON;
-        this.initialArmor = this.armor;
-        this.baseDamage = BASE_DAMAGE_CANNON;
+        this.armor = (int)(ARMOR_CANNON * (1+Civilization.getInstance().getTechnologyDefense()*PLUS_ARMOR_CANNON_BY_TECHNOLOGY/100.0));
+        this.initialArmor = armor;
+        this.baseDamage = (int)(BASE_DAMAGE_CANNON * (1+Civilization.getInstance().getTechnologyDefense()*PLUS_ATTACK_CANNON_BY_TECHNOLOGY/100.0));
         this.experience = 0;
         this.sanctified = false;
     }
 
     @Override
     public int attack() {
-        int calculatedDamage = (int)(baseDamage + baseDamage * experience * PLUS_ATTACK_UNIT_PER_EXPERIENCE_POINT / 100);
+        int calculatedDamage = (int)(baseDamage * (1+experience * PLUS_ATTACK_UNIT_PER_EXPERIENCE_POINT / 100));
         if (sanctified) {
             calculatedDamage += baseDamage * PLUS_ATTACK_UNIT_SANCTIFIED / 100;
         }
