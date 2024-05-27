@@ -53,13 +53,6 @@ public class Main {
             StartGameUI wdw = new StartGameUI();
             wdw.setVisible(true);
             wdw.setLocationRelativeTo(null);
-            wdw.addWindowListener(new WindowAdapter() {
-                @Override
-                public void windowClosing(WindowEvent e) {
-                    Main.closeApp();
-                }
-
-            });
         });
         // MainMenu();
     }
@@ -255,18 +248,12 @@ public class Main {
             }
         }
     }
-
-    private static void startUI(){
-        window = new MainWindow();
-        window.setVisible(true);
-    }
     
     public static void NewGame(String name) {
         ActiveSave = saves.AddNewSaveData(name);
         NextEnemyArmy = null;
         saves.LoadSaveData(ActiveSave);
         MainGameMenu();
-        endUI();
     }
 
     private static void endUI(){
@@ -341,11 +328,9 @@ public class Main {
     }
 
     private static void ContinueGame(int index) {
-        startUI();
         ActiveSave = index;
         saves.LoadSaveData(index);
         MainGameMenu();
-        endUI();
     }
 
     private static void MainGameMenu() {
