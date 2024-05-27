@@ -26,7 +26,7 @@ public class BattleTest {
         ArrayList<MilitaryUnit> enemyUnits = GenerateUnits(enemyArmy);
         Battle battle = new Battle(armyUnits,enemyUnits);
         battle.startBattle();
-        battle.getDeteiledReportSwing();
+        battle.getReportSwing();
         while (true) {
             System.out.println("1. Report");
             System.out.println("2. Detailed Report");
