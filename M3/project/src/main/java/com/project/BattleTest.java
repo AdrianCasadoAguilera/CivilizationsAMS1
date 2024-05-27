@@ -16,16 +16,17 @@ public class BattleTest {
             put(UnitTypes.PRIEST,0);
         }};
         Map<UnitTypes,Integer> enemyArmy = new HashMap<UnitTypes,Integer>() {{
-            put(UnitTypes.SWORDSMAN,0);
+            put(UnitTypes.SWORDSMAN,10);
             put(UnitTypes.SPEARMAN,0);
             put(UnitTypes.CROSSBOW,0);
             put(UnitTypes.CANNON,0);
         }};
-        /*
+        
         ArrayList<MilitaryUnit> armyUnits = GenerateUnits(civArmy);
         ArrayList<MilitaryUnit> enemyUnits = GenerateUnits(enemyArmy);
         Battle battle = new Battle(armyUnits,enemyUnits);
         battle.startBattle();
+        battle.getDeteiledReportSwing();
         while (true) {
             System.out.println("1. Report");
             System.out.println("2. Detailed Report");
@@ -43,7 +44,7 @@ public class BattleTest {
             }
 
         }
-        */
+        /*
         int Simulations = 1000;
         int Wins = 0;
         int Loses = 0;
@@ -57,7 +58,7 @@ public class BattleTest {
             else
                 Loses++;
         }
-        System.out.println(Wins + ":" + Loses);
+        System.out.println(Wins + ":" + Loses);*/
     }
 
     private static ArrayList<MilitaryUnit> GenerateUnits(Map<UnitTypes,Integer> army) {
