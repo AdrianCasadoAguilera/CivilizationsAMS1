@@ -5,22 +5,23 @@ import java.util.*;
 public class BattleTest {
     public static void main(String[] args) {
         Map<UnitTypes,Integer> civArmy = new HashMap<UnitTypes,Integer>() {{
-            put(UnitTypes.SWORDSMAN,40);
-            put(UnitTypes.SPEARMAN,30);
-            put(UnitTypes.CROSSBOW,30);
-            put(UnitTypes.CANNON,10);
-            put(UnitTypes.ARROWTOWER,20);
-            put(UnitTypes.CATAPULT,10);
-            put(UnitTypes.ROCKETLAUNCHERTOWER,10);
-            put(UnitTypes.MAGICIAN,10);
-            put(UnitTypes.PRIEST,10);
+            put(UnitTypes.SWORDSMAN,0);
+            put(UnitTypes.SPEARMAN,0);
+            put(UnitTypes.CROSSBOW,0);
+            put(UnitTypes.CANNON,0);
+            put(UnitTypes.ARROWTOWER,0);
+            put(UnitTypes.CATAPULT,0);
+            put(UnitTypes.ROCKETLAUNCHERTOWER,1);
+            put(UnitTypes.MAGICIAN,0);
+            put(UnitTypes.PRIEST,0);
         }};
         Map<UnitTypes,Integer> enemyArmy = new HashMap<UnitTypes,Integer>() {{
-            put(UnitTypes.SWORDSMAN,50);
-            put(UnitTypes.SPEARMAN,50);
-            put(UnitTypes.CROSSBOW,30);
-            put(UnitTypes.CANNON,10);
+            put(UnitTypes.SWORDSMAN,0);
+            put(UnitTypes.SPEARMAN,0);
+            put(UnitTypes.CROSSBOW,0);
+            put(UnitTypes.CANNON,0);
         }};
+        /*
         ArrayList<MilitaryUnit> armyUnits = GenerateUnits(civArmy);
         ArrayList<MilitaryUnit> enemyUnits = GenerateUnits(enemyArmy);
         Battle battle = new Battle(armyUnits,enemyUnits);
@@ -38,8 +39,25 @@ public class BattleTest {
                     System.out.println(battle.getDeteiledReport());
             } catch (Exception e) {
                 System.out.println("Invalid choice");
+                break;
             }
+
         }
+        */
+        int Simulations = 1000;
+        int Wins = 0;
+        int Loses = 0;
+        for (int i = 0; i < Simulations; i++) {
+            ArrayList<MilitaryUnit> a = GenerateUnits(civArmy);
+            ArrayList<MilitaryUnit> e = GenerateUnits(enemyArmy);
+            Battle b = new Battle(a,e);
+            b.startBattle();
+            if (b.isWin())
+                Wins++;
+            else
+                Loses++;
+        }
+        System.out.println(Wins + ":" + Loses);
     }
 
     private static ArrayList<MilitaryUnit> GenerateUnits(Map<UnitTypes,Integer> army) {
