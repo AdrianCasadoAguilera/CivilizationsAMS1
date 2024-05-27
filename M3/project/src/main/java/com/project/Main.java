@@ -5,12 +5,9 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
-import javax.swing.*;
 import com.project.UI.*;
 import com.project.UI.startgame.StartGameUI;
-import java.awt.event.WindowAdapter;
 import javax.swing.SwingUtilities;
-import java.awt.event.WindowEvent;
 
 public class Main {
     private static MainWindow window;
@@ -197,7 +194,7 @@ public class Main {
         }
     }
 
-    private static int CountUnitType(ArrayList<MilitaryUnit> army, UnitTypes unitType) {
+    public static int CountUnitType(ArrayList<MilitaryUnit> army, UnitTypes unitType) {
         int count = 0;
         for (MilitaryUnit unit : army) {
             if (unit.getType().equals(unitType)) {

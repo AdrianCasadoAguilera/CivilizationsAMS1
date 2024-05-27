@@ -28,7 +28,15 @@ public class Controller {
         mainView.trainButton.addActionListener(e->{
             layout.show(cards, "train units");
         });
-        
+        mainView.upgradeTechLevelButton.addActionListener(e->{
+            
+        });
+        mainView.ThreadButton.addActionListener(e->{
+            layout.show(cards, "thread");
+        });
+        mainView.BattlesButton.addActionListener(e->{
+            
+        });
     }
     
 }

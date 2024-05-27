@@ -9,6 +9,8 @@ import javax.swing.*;
 import com.project.Main;
 import com.project.SaveData;
 import com.project.Saves;
+import com.project.UI.ThreadMenu.ThreadController;
+import com.project.UI.ThreadMenu.ThreadView;
 import com.project.UI.entities.*;
 import com.project.UI.newBuilding.NewBuildingController;
 import com.project.UI.newBuilding.NewBuildingView;
@@ -27,6 +29,7 @@ public class MainWindow extends JFrame {
     private NewBuildingView newBuildingView;
     private TrainUnitsView trainUnitsView;
     private PauseView pauseView;
+    private ThreadView threadView;
     public BattleLogView battleLog;
 
     public SwordsmanView swordsmanView;
@@ -45,6 +48,7 @@ public class MainWindow extends JFrame {
         new TrainUnitsController(cardLayout, cards, trainUnitsView);
         new NewBuildingController(cardLayout, cards, newBuildingView);
         new UnitsViewsController(cardLayout, cards, swordsmanView);
+        new ThreadController(cardLayout, cards, threadView);
 
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {
 
@@ -71,6 +75,7 @@ public class MainWindow extends JFrame {
         mainView = new MainView(cardLayout,cards);
         newBuildingView = new NewBuildingView();
         trainUnitsView = new TrainUnitsView();
+        threadView = new ThreadView();
         addUnitsViews();
         pauseView = new PauseView();
         battleLog = new BattleLogView();
@@ -79,6 +84,9 @@ public class MainWindow extends JFrame {
         cards.add(newBuildingView,"new building");
         cards.add(trainUnitsView,"train units");
         cards.add(pauseView,"pause");
+        cards.add(threadView, "thread");
+        //cards.add(BattlesView, "battles");
+        //cards.add(Technology, "tech");
         cards.add(battleLog,"battlelog");
 
         cardLayout.show(cards, "main");
