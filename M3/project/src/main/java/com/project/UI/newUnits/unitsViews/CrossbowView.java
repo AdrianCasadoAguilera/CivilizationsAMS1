@@ -2,27 +2,25 @@ package com.project.UI.newUnits.unitsViews;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Image;
 import java.net.URL;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 
+import com.project.Crossbow;
 import com.project.MilitaryUnit;
 import com.project.Swordsman;
-import com.project.Variables;
 import com.project.UI.util.fonts.Fonts;
 import com.project.UI.util.swing_elements.PButton;
 import com.project.UI.util.swing_elements.PLabel;
 
-public class SwordsmanView extends JPanel {
+public class CrossbowView extends JPanel {
 
     public PButton returnButton;
 
     public PButton createUnit;
 
-    private String unitName = "Swordsman";
+    private String unitName = "Crossbow";
     private String descString = "sadijidabsjasdskjpnaib djasdjasnd ja dhasduand asdjasdjasb dasd";
 
     private ImageIcon woodIcon;
@@ -30,9 +28,12 @@ public class SwordsmanView extends JPanel {
     private ImageIcon ironIcon;
     private ImageIcon manaIcon;
 
+    public JLabel armorValue;
+    public JLabel damageValue;
+
     public MilitaryUnit unit = new Swordsman();
 
-    public SwordsmanView(){
+    public CrossbowView(){
         setLayout(new BorderLayout());
 
         setImages();
@@ -88,7 +89,7 @@ public class SwordsmanView extends JPanel {
                     armorPanel.setLayout(new BoxLayout(armorPanel,BoxLayout.X_AXIS));
                     JLabel armorLabel = new JLabel("BASE ARMOR: ");
                         armorLabel.setFont(Fonts.getInstance().rusticFont);
-                    JLabel armorValue = new JLabel(String.valueOf(unit.getActualArmor()));
+                    armorValue = new JLabel(String.valueOf(unit.getActualArmor()));
                         armorValue.setFont(Fonts.getInstance().itemsFont);
                 armorPanel.add(armorLabel);
                 armorPanel.add(armorValue);
@@ -97,7 +98,7 @@ public class SwordsmanView extends JPanel {
                     damagePanel.setLayout(new BoxLayout(damagePanel, BoxLayout.X_AXIS));
                     JLabel damageLabel = new JLabel("BASE DAMAGE: ");
                         damageLabel.setFont(Fonts.getInstance().rusticFont);
-                    JLabel damageValue = new JLabel(String.valueOf(unit.attack()));
+                    damageValue = new JLabel(String.valueOf(unit.attack()));
                         damageValue.setFont(Fonts.getInstance().itemsFont);
                 damagePanel.add(damageLabel);
                 damagePanel.add(damageValue);
@@ -193,7 +194,9 @@ public class SwordsmanView extends JPanel {
     }
 
     public void updateValues(){
-        unit = new Swordsman();
+        unit = new Crossbow();
+        armorValue.setText(String.valueOf(unit.getActualArmor()));
+        damageValue.setText(String.valueOf(unit.attack()));
         repaint();
     }
 }

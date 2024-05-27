@@ -28,6 +28,10 @@ public class Controller {
         mainView.trainButton.addActionListener(e->{
             layout.show(cards, "train units");
         });
+        mainView.upgradeTechLevelButton.addActionListener(e->{
+            Civilization.getInstance().setTechnologyAttack(Civilization.getInstance().getTechnologyAttack()+1);
+            System.out.println(Civilization.getInstance().getTechnologyAttack());
+        });
     }
     
 }

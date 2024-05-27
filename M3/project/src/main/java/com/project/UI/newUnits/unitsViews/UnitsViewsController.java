@@ -6,13 +6,17 @@ import javax.swing.*;
 public class UnitsViewsController {
  
     SwordsmanView swordsman;
+    SpearmanView spearman;
+    CrossbowView crossbow;
     CardLayout layout;
     JPanel cards;
     
-    public UnitsViewsController(CardLayout layout,JPanel cards,SwordsmanView swordsman){
+    public UnitsViewsController(CardLayout layout,JPanel cards,SwordsmanView swordsman,SpearmanView spearman,CrossbowView crossbow){
         this.layout = layout;
         this.cards = cards;
         this.swordsman = swordsman;
+        this.spearman = spearman;
+        this.crossbow = crossbow;
 
         setListeners();
         setGoBackListeners();
@@ -28,6 +32,8 @@ public class UnitsViewsController {
 
     private void setGoBackListeners(){
         swordsman.returnButton.addActionListener(e->goBack());
+        spearman.returnButton.addActionListener(e->goBack());
+        crossbow.returnButton.addActionListener(e->goBack());
     }
 
     private void goBack(){
