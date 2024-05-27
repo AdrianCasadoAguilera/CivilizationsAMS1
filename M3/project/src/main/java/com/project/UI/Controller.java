@@ -28,6 +28,7 @@ public class Controller {
         mainView.trainButton.addActionListener(e->{
             layout.show(cards, "train units");
         });
+        
     }
     
 }
