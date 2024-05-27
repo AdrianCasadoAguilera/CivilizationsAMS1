@@ -1,6 +1,7 @@
 package com.project.UI;
 
 import com.project.UI.entities.SeeEntitiesView;
+import com.project.UI.entities.entitiesController;
 import com.project.UI.nextBattle.BattleHappened;
 import com.project.UI.nextBattle.NextBattleController;
 import com.project.UI.nextBattle.NextBattlePanel;
@@ -62,6 +63,7 @@ public class MainView extends JPanel {
         buttonsPanel.add(upgradeTechLevelButton);
 
         infoPanel = new SeeEntitiesView();
+        new entitiesController(infoPanel);
 
         centralPanel.add(infoPanel);
         centralPanel.add(buttonsPanel);

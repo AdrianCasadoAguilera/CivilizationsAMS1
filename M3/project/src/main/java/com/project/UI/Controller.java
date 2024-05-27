@@ -25,6 +25,9 @@ public class Controller {
         mainView.createBuildingButton.addActionListener(e->{
             layout.show(cards, "new building");
         });
+        mainView.trainButton.addActionListener(e->{
+            layout.show(cards, "train units");
+        });
     }
     
 }

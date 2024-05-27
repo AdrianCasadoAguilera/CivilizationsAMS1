@@ -23,12 +23,13 @@ public class StartController {
         mainPanel.newGameButton.addActionListener(e->{
             String name = JOptionPane.showInputDialog(null,"Insert your name","Your name",JOptionPane.PLAIN_MESSAGE);
             wdw.dispose();
-            new MainWindow().setVisible(true);
-
             Main.stopped = false;
             Main.ActiveSave = Main.saves.AddNewSaveData(name);
             Main.NextEnemyArmy = null;
             Main.saves.LoadSaveData(Main.ActiveSave);
+            new MainWindow().setVisible(true);
+
+            
 
             // Main.NewGame("");
         });

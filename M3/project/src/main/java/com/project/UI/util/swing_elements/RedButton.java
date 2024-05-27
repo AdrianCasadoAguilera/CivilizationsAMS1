@@ -11,14 +11,14 @@ import javax.swing.JButton;
 
 import javax.swing.ImageIcon;
 
-public class PlainButton extends JButton {
+public class RedButton extends JButton {
 
     private int cornerRadius = 15; // Radio de las esquinas redondeadas
 
-    public PlainButton(ImageIcon icon) {
+    public RedButton(ImageIcon icon) {
         super.setIcon(icon);
 
-        setBackground(new Color(173,216,230));
+        setBackground(new Color(247, 106, 106));
         setFocusPainted(false);
         setBorderPainted(false);
         setOpaque(false); 
@@ -31,19 +31,19 @@ public class PlainButton extends JButton {
         return new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent arg0) {
-                setBackground(new Color(34,113,179));
+                setBackground(new Color(213,16,16));
             }
             @Override
             public void mouseExited(MouseEvent arg0) {
-                setBackground(new Color(173,216,230));
+                setBackground(new Color(247, 106, 106));
             }
             @Override
             public void mousePressed(MouseEvent arg0){
-                setBackground(new Color(34,113,179));
+                setBackground(new Color(213,16,16));
             }
             @Override
             public void mouseReleased(MouseEvent arg0){
-                setBackground(new Color(173,216,230));
+                setBackground(new Color(247, 106, 106));
             }
         };
     }    

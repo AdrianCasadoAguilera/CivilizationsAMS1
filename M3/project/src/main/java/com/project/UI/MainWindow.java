@@ -12,6 +12,9 @@ import com.project.Saves;
 import com.project.UI.entities.*;
 import com.project.UI.newBuilding.NewBuildingController;
 import com.project.UI.newBuilding.NewBuildingView;
+import com.project.UI.newUnits.TrainUnitsController;
+import com.project.UI.newUnits.TrainUnitsView;
+import com.project.UI.newUnits.unitsViews.SwordsmanView;
 import com.project.UI.nextBattle.NextBattleController;
 
 public class MainWindow extends JFrame {
@@ -20,10 +23,12 @@ public class MainWindow extends JFrame {
     private JPanel cards;
 
     private MainView mainView;
-    private SeeEntitiesView seeEntitiesView;
     private NewBuildingView newBuildingView;
+    private TrainUnitsView trainUnitsView;
     private PauseView pauseView;
     public BattleLogView battleLog;
+
+    public SwordsmanView swordsmanView;
 
     public boolean canPause = true;  
     
@@ -36,7 +41,7 @@ public class MainWindow extends JFrame {
         setView();
 
         new Controller(cardLayout,cards,mainView);
-        new entitiesController(seeEntitiesView);
+        new TrainUnitsController(cardLayout, cards, trainUnitsView);
         new NewBuildingController(cardLayout, cards, newBuildingView);
 
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {
@@ -62,18 +67,26 @@ public class MainWindow extends JFrame {
         cards.setLayout(cardLayout);
 
         mainView = new MainView(cardLayout,cards);
-        seeEntitiesView = new SeeEntitiesView();
         newBuildingView = new NewBuildingView();
+        trainUnitsView = new TrainUnitsView();
+        addUnitsViews();
         pauseView = new PauseView();
         battleLog = new BattleLogView();
+
         cards.add(mainView,"main");
-        cards.add(seeEntitiesView,"entities");
         cards.add(newBuildingView,"new building");
+        cards.add(trainUnitsView,"train units");
         cards.add(pauseView,"pause");
         cards.add(battleLog,"battlelog");
 
         cardLayout.show(cards, "main");
 
         add(cards);
+    }
+
+    private void addUnitsViews(){
+        swordsmanView = new SwordsmanView();
+
+        cards.add(swordsmanView,"swordsman");
     }
 }
