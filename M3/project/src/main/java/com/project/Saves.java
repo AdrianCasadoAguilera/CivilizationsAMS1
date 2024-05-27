@@ -94,8 +94,8 @@ public class Saves {
         ArrayList<MilitaryUnit> enemyArmy = Main.NewEnemyArmy();
         save.setEnemyArmy(enemyArmy);
 
-        CivilizationDao dao = new CivilizationDao();
-        dao.addSave(save);
+        // CivilizationDao dao = new CivilizationDao();
+        // dao.addSave(save);
         savedata.add(save);
         return savedata.size() - 1;
     }

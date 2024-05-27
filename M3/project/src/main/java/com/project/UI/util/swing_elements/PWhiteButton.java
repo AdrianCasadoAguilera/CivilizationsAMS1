@@ -14,19 +14,22 @@ import com.project.UI.util.fonts.Fonts;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class PFrontpageButton extends JButton {
+public class PWhiteButton extends JButton {
 
-    String originalTxt;
+    private String originalTxt;
 
-    public PFrontpageButton(String txt){
+    public PWhiteButton(String txt){
         super(txt);
+
         originalTxt = txt;
+
         setContentAreaFilled(false);
         setOpaque(false);
         setBorderPainted(false);
         setFocusPainted(false);
-        setForeground(new Color(255,255,255));
+        setForeground(new Color(185,185,185));
         setFont(Fonts.getInstance().rusticFont);
+        setBackground(new Color(126,214,108));
 
         addMouseListener(setHover());
     }
@@ -35,14 +38,19 @@ public class PFrontpageButton extends JButton {
         return new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent arg0) {
-                setText("> "+getText()+" <");
-                setFont(Fonts.getInstance().rusticFont.deriveFont(Font.BOLD,15));
+                // setFont(Fonts.getInstance().rusticFont.deriveFont(Font.BOLD,15));
+                setText("> "+originalTxt+" <");
+                setForeground(new Color(255,255,255));
+                setBorderPainted(false);
             }
             @Override
             public void mouseExited(MouseEvent arg0) {
+                // setFont(Fonts.getInstance().rusticFont);
                 setText(originalTxt);
-                setFont(Fonts.getInstance().rusticFont);
+                setForeground(new Color(185,185,185));
+                setBorderPainted(false);
             }
         };
     }
+    
 }

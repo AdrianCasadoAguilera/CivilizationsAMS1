@@ -19,6 +19,7 @@ import java.util.TimerTask;
 import javax.swing.*;
 import javax.swing.border.Border;
 
+import com.project.Saves;
 import com.project.UI.util.fonts.Fonts;
 import com.project.UI.util.swing_elements.BorderedLabel;
 import com.project.UI.util.swing_elements.PFrontpageButton;
@@ -32,6 +33,7 @@ public class MainPanel extends JPanel {
     // JPanel 
     PFrontpageButton closeButton;
     PFrontpageButton newGameButton;
+    PFrontpageButton continueButton;
 
     private float opacity = 0.0f;
 
@@ -73,8 +75,13 @@ public class MainPanel extends JPanel {
             closeButton.setAlignmentX(CENTER_ALIGNMENT);
             newGameButton = new PFrontpageButton("New game");
             newGameButton.setAlignmentX(CENTER_ALIGNMENT);
+            continueButton = new PFrontpageButton("Continue");
+            continueButton.setAlignmentX(CENTER_ALIGNMENT);
 
         buttonPanel.add(newGameButton);
+        if(Saves.getInstance().GetSaveCount()>0){
+            buttonPanel.add(continueButton);
+        }
         buttonPanel.add(closeButton);
         buttonPanel.setAlignmentX(CENTER_ALIGNMENT);
         JPanel centerPanel = new JPanel();
@@ -85,7 +92,7 @@ public class MainPanel extends JPanel {
         titleLabel.setAlignmentX(CENTER_ALIGNMENT);
         titleLabel.setFont(Fonts.getInstance().rusticFont.deriveFont(Font.BOLD,50));
 
-        Timer timer = new Timer(50, new ActionListener() {
+        new Timer(50, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 opacity += 0.03f; 
@@ -95,8 +102,7 @@ public class MainPanel extends JPanel {
                 }
                 titleLabel.setForeground(new Color(1f, 0.8f, 0.1f, opacity)); 
             }
-        });
-        timer.start();
+        }).start();
         centerPanel.add(Box.createVerticalGlue());
         centerPanel.add(titleLabel);
         centerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
