@@ -8,14 +8,14 @@ public interface Variables {
     public final int WOOD_BASE_ENEMY_ARMY = 12000;
     public final int FOOD_BASE_ENEMY_ARMY = 15000;
     // percentage increase of resources available to create enemy fleet
-    public final int ENEMY_FLEET_INCREASE = 10;
+    public final int ENEMY_FLEET_INCREASE = 30;
     // resources increment every minute
     public final int CIVILIZATION_IRON_GENERATED = 2500;
     public final int CIVILIZATION_WOOD_GENERATED = 15000;
     public final int CIVILIZATION_FOOD_GENERATED = 20000;
-    public final int CIVILIZATION_IRON_GENERATED_PER_SMITHY = (int) (0.15*CIVILIZATION_IRON_GENERATED);
-    public final int CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY = (int) (0.15*CIVILIZATION_WOOD_GENERATED);
-    public final int CIVILIZATION_FOOD_GENERATED_PER_FARM = (int) (0.15*CIVILIZATION_FOOD_GENERATED);
+    public final int CIVILIZATION_IRON_GENERATED_PER_SMITHY = (int) (0.3*CIVILIZATION_IRON_GENERATED);
+    public final int CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY = (int) (0.3*CIVILIZATION_WOOD_GENERATED);
+    public final int CIVILIZATION_FOOD_GENERATED_PER_FARM = (int) (0.3*CIVILIZATION_FOOD_GENERATED);
     public final int CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER = 1000;
     // TECHNOLOGY COST
     public final int UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST = 2000;
