@@ -36,7 +36,11 @@ if __name__ == "__main__":
     xml_path4 = './xml/special_units.xml'
     xsl_path4 = './xml/special_units.xsl'
     output_path4 = './html/special_units.html'
+    xml_path5 = './xml/civilizations.xml'
+    xsl_path5 = './xml/civilizations.xsl'
+    output_path5 = './html/civilizations.html'
     transform_xml_to_html(xml_path1, xsl_path1, output_path1)
     transform_xml_to_html(xml_path2, xsl_path2, output_path2)
     transform_xml_to_html(xml_path3, xsl_path3, output_path3)
     transform_xml_to_html(xml_path4, xsl_path4, output_path4)
+    transform_xml_to_html(xml_path5, xsl_path5, output_path5)

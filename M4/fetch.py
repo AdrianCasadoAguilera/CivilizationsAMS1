@@ -48,7 +48,6 @@ def fetch_xml_from_db(output_path):
             full_xml_var = cursor.var(oracledb.CLOB)
             cursor.execute(plsql_query, full_xml=full_xml_var)
             full_xml = full_xml_var.getvalue()
-        strxml = full_xml.read()
 
         # Guardar el xml en la ruta o crearla si no existe
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
