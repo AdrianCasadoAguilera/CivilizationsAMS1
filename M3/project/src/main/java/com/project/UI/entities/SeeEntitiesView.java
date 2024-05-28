@@ -8,6 +8,7 @@ import com.project.UI.util.swing_elements.PLabel;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.io.File;
 import java.net.URL;
@@ -27,7 +28,24 @@ public class SeeEntitiesView extends JPanel {
     public JLabel churchIconLabel;
     public JLabel churchQuantity;
 
-    
+    public JLabel swordsmanIconLabel;
+    public JLabel swordsmanQuantity;
+    public JLabel spearmanIconLabel;
+    public JLabel spearmanQuantity;
+    public JLabel crossbowIconLabel;
+    public JLabel crossbowQuantity;
+    public JLabel cannonIconLabel;
+    public JLabel cannonQuantity;
+    public JLabel arrowTowerIconLabel;
+    public JLabel arrowTowerQuantity;
+    public JLabel catapultIconLabel;
+    public JLabel catapultQuantity;
+    public JLabel rocketLauncherIconLabel;
+    public JLabel rocketLauncherQuantity;
+    public JLabel magicianIconLabel;
+    public JLabel magicianQuantity;
+    public JLabel priestIconLabel;
+    public JLabel priestQuantity;
 
     public SeeEntitiesView(){
         BoxLayout layout = new BoxLayout(this,BoxLayout.Y_AXIS);
@@ -75,6 +93,51 @@ public class SeeEntitiesView extends JPanel {
         link = getClass().getResource(linkString+"church_icon.png");
         icon = new ImageIcon(new ImageIcon(link).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
         churchIconLabel.setIcon(icon);
+
+        swordsmanIconLabel = new JLabel();
+        link = getClass().getResource(linkString+"swordsman.png");
+        icon = new ImageIcon(new ImageIcon(link).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
+        swordsmanIconLabel.setIcon(icon);
+
+        spearmanIconLabel = new JLabel();
+        link = getClass().getResource(linkString+"spearman.png");
+        icon = new ImageIcon(new ImageIcon(link).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
+        spearmanIconLabel.setIcon(icon);
+
+        crossbowIconLabel = new JLabel();
+        link = getClass().getResource(linkString+"crossbow.png");
+        icon = new ImageIcon(new ImageIcon(link).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
+        crossbowIconLabel.setIcon(icon);
+
+        cannonIconLabel = new JLabel();
+        link = getClass().getResource(linkString+"cannon.png");
+        icon = new ImageIcon(new ImageIcon(link).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
+        cannonIconLabel.setIcon(icon);
+        
+        arrowTowerIconLabel = new JLabel();
+        link = getClass().getResource(linkString+"arrow_tower.png");
+        icon = new ImageIcon(new ImageIcon(link).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
+        arrowTowerIconLabel.setIcon(icon);
+
+        catapultIconLabel = new JLabel();
+        link = getClass().getResource(linkString+"catapult.png");
+        icon = new ImageIcon(new ImageIcon(link).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
+        catapultIconLabel.setIcon(icon);
+
+        rocketLauncherIconLabel = new JLabel();
+        link = getClass().getResource(linkString+"rocket_launcher.png");
+        icon = new ImageIcon(new ImageIcon(link).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
+        rocketLauncherIconLabel.setIcon(icon);
+
+        magicianIconLabel = new JLabel();
+        link = getClass().getResource(linkString+"magician.png");
+        icon = new ImageIcon(new ImageIcon(link).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
+        magicianIconLabel.setIcon(icon);
+
+        priestIconLabel = new JLabel();
+        link = getClass().getResource(linkString+"priest.png");
+        icon = new ImageIcon(new ImageIcon(link).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
+        priestIconLabel.setIcon(icon);
     }
 
     private void initBuildings(){
@@ -108,5 +171,57 @@ public class SeeEntitiesView extends JPanel {
         buildingsPanel.setBorder(BorderFactory.createTitledBorder("Buildings"));
 
         add(buildingsPanel);
+
+        JPanel armyPanel = new JPanel();
+
+        armyPanel.add(swordsmanIconLabel);
+            swordsmanQuantity = new JLabel("0");
+            swordsmanQuantity.setFont(Fonts.getInstance().itemsFont);
+        armyPanel.add(swordsmanQuantity);
+
+        armyPanel.add(spearmanIconLabel);
+            spearmanQuantity = new JLabel("0");
+            spearmanQuantity.setFont(Fonts.getInstance().itemsFont);
+        armyPanel.add(spearmanQuantity);
+
+        armyPanel.add(crossbowIconLabel);
+            crossbowQuantity = new JLabel("0");
+            crossbowQuantity.setFont(Fonts.getInstance().itemsFont);
+        armyPanel.add(crossbowQuantity);
+
+        armyPanel.add(cannonIconLabel);
+            cannonQuantity = new JLabel("0");
+            cannonQuantity.setFont(Fonts.getInstance().itemsFont);
+        armyPanel.add(cannonQuantity);
+        
+        armyPanel.add(arrowTowerIconLabel);
+            arrowTowerQuantity = new JLabel("0");
+            arrowTowerQuantity.setFont(Fonts.getInstance().itemsFont);
+        armyPanel.add(arrowTowerQuantity);
+
+        armyPanel.add(catapultIconLabel);
+            catapultQuantity = new JLabel("0");
+            catapultQuantity.setFont(Fonts.getInstance().itemsFont);
+        armyPanel.add(catapultQuantity);
+
+        armyPanel.add(rocketLauncherIconLabel);
+            rocketLauncherQuantity = new JLabel("0");
+            rocketLauncherQuantity.setFont(Fonts.getInstance().itemsFont);
+        armyPanel.add(rocketLauncherQuantity);
+
+        armyPanel.add(magicianIconLabel);
+            magicianQuantity = new JLabel("0");
+            magicianQuantity.setFont(Fonts.getInstance().itemsFont);
+        armyPanel.add(magicianQuantity);
+
+        armyPanel.add(priestIconLabel);
+            priestQuantity = new JLabel("0");
+            priestQuantity.setFont(Fonts.getInstance().itemsFont);
+        armyPanel.add(priestQuantity);
+
+        armyPanel.setLayout(new GridLayout(3,4));
+        armyPanel.setBorder(BorderFactory.createTitledBorder("Your army"));
+
+        add(armyPanel);
     }
 }

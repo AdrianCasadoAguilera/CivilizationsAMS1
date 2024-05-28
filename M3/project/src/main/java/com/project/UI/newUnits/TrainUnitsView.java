@@ -20,6 +20,18 @@ public class TrainUnitsView extends JPanel {
     public RedButton crossbowButton;
     private ImageIcon cannonIcon;
     public RedButton cannonButton;
+
+    private ImageIcon arrowTowerIcon;
+    public BlueButton arrowTowerButton;
+    private ImageIcon catapultIcon;
+    public BlueButton catapultButton;
+    private ImageIcon rocketLauncherIcon;
+    public BlueButton rocketLauncherButton;
+
+    private ImageIcon magicianIcon;
+    public PurpleButton magicianButton;
+    private ImageIcon priestIcon;
+    public PurpleButton priestButton;
  
     public TrainUnitsView(){
         setLayout(new BorderLayout());
@@ -37,11 +49,11 @@ public class TrainUnitsView extends JPanel {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
-        JPanel attackUnitsPanel = new JPanel();
-        attackUnitsPanel.setLayout(new GridLayout(2,2,20,20));
-        attackUnitsPanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
-
         initImages();
+
+        JPanel attackUnitsPanel = new JPanel();
+        attackUnitsPanel.setLayout(new GridLayout(1,3,20,20));
+        attackUnitsPanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
 
         swordsmanButton = new RedButton(swordsmanIcon);
         spearmanButton = new RedButton(spearmanIcon);
@@ -54,6 +66,32 @@ public class TrainUnitsView extends JPanel {
         attackUnitsPanel.add(cannonButton);
 
         mainPanel.add(attackUnitsPanel);
+
+        JPanel defenseUnitsPanel = new JPanel();
+        defenseUnitsPanel.setLayout(new GridLayout(1,3,20,20));
+        defenseUnitsPanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
+
+        arrowTowerButton = new BlueButton(arrowTowerIcon);
+        catapultButton = new BlueButton(catapultIcon);
+        rocketLauncherButton = new BlueButton(rocketLauncherIcon);
+
+        defenseUnitsPanel.add(arrowTowerButton);
+        defenseUnitsPanel.add(catapultButton);
+        defenseUnitsPanel.add(rocketLauncherButton);
+
+        mainPanel.add(defenseUnitsPanel);
+
+        JPanel specialUnitsPanel = new JPanel();
+        specialUnitsPanel.setLayout(new GridLayout(1,3,20,20));
+        specialUnitsPanel.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
+
+        magicianButton = new PurpleButton(magicianIcon);
+        priestButton = new PurpleButton(priestIcon);
+
+        specialUnitsPanel.add(magicianButton);
+        specialUnitsPanel.add(priestButton);
+
+        mainPanel.add(specialUnitsPanel);
         
         add(mainPanel,BorderLayout.CENTER);
     }
@@ -73,6 +111,21 @@ public class TrainUnitsView extends JPanel {
 
         link = getClass().getResource(linkString+"cannon.png");
         cannonIcon = new ImageIcon(new ImageIcon(link).getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+
+        link = getClass().getResource(linkString+"arrow_tower.png");
+        arrowTowerIcon = new ImageIcon(new ImageIcon(link).getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+
+        link = getClass().getResource(linkString+"catapult.png");
+        catapultIcon = new ImageIcon(new ImageIcon(link).getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+
+        link = getClass().getResource(linkString+"rocket_launcher.png");
+        rocketLauncherIcon = new ImageIcon(new ImageIcon(link).getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+
+        link = getClass().getResource(linkString+"magician.png");
+        magicianIcon = new ImageIcon(new ImageIcon(link).getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+
+        link = getClass().getResource(linkString+"priest.png");
+        priestIcon = new ImageIcon(new ImageIcon(link).getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
     }
 
     private void initButtons(){
