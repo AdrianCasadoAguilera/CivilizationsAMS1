@@ -28,7 +28,9 @@ public class PauseController {
             wdw.canPause = true;
             layout.show(cards, "main");
             Main.stopped = false;
-            Main.SaveGame();
+        });
+        pauseView.exitButton.addActionListener(e->{
+            wdw.dispose();
         });
     }
 }
