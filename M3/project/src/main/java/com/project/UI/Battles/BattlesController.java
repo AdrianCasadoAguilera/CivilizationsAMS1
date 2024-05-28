@@ -6,7 +6,6 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import com.project.Main;
-import com.project.UI.BattleLogController;
 
 public class BattlesController {
 
@@ -14,16 +13,16 @@ public class BattlesController {
     private JPanel cards;
     private BattlesView battlesView;
     private BattleLogView battleLogView;
-    private BattleLogController battleLogController;
+    public BattleLogController battleLogController;
 
 
-    public BattlesController(CardLayout cardLayout, JPanel cards, BattlesView battlesView,BattleLogView battleLogView,BattleLogController battleLogController) {
+    public BattlesController(CardLayout cardLayout, JPanel cards, BattlesView battlesView,BattleLogView battleLogView) {
         this.cardLayout = cardLayout;
         this.cards = cards;
         this.battlesView = battlesView;
         this.battleLogView = battleLogView;
-        this.battleLogController = battleLogController;
-
+        battleLogController = new BattleLogController(cardLayout, cards, battleLogView);
+        battleLogView.controler = battleLogController;
         setListeners();
     }
 
@@ -32,24 +31,28 @@ public class BattlesController {
         battlesView.BattleLog.addActionListener(e->{
             battleLogView.detailed = false;
             battleLogView.index = 0;
+            battleLogController.CurrentIndex = 0;
             battleLogView.LoadLog();
             cardLayout.show(cards, "battlelog");
         });
         battlesView.detailedBattleLog.addActionListener(e->{
             battleLogView.detailed = true;
             battleLogView.index = 0;
+            battleLogController.CurrentIndex = 0;
             battleLogView.LoadLog();
             cardLayout.show(cards, "battlelog");
         });
         battlesView.lastDetailedLog.addActionListener(e->{
-            battleLogView.detailed = false;
+            battleLogView.detailed = true;
             battleLogView.index = Main.battlesFaugth.size() - 1;
+            battleLogController.CurrentIndex = Main.battlesFaugth.size() - 1;
             battleLogView.LoadLog();
             cardLayout.show(cards, "battlelog");
         });
         battlesView.lastLog.addActionListener(e->{
-            battleLogView.detailed = true;
+            battleLogView.detailed = false;
             battleLogView.index = Main.battlesFaugth.size() - 1;
+            battleLogController.CurrentIndex = Main.battlesFaugth.size() - 1;
             battleLogView.LoadLog();
             cardLayout.show(cards, "battlelog");
         });

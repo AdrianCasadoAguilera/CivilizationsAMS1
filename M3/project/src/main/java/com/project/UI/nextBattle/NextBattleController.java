@@ -7,8 +7,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import com.project.Battle;
 import com.project.Civilization;
 import com.project.Main;
+import com.project.UI.Battles.*;
 
 public class NextBattleController {
     
@@ -19,6 +21,8 @@ public class NextBattleController {
 
     CardLayout cardLayout;
     JPanel cards;
+    public BattleLogView battleLogView;
+    public BattleLogController battleLogController;
 
     public NextBattleController(CardLayout cardLayout,JPanel cards,NextBattlePanel nextBattlePanel,BattleHappened battleHappened){
         this.nextBattlePanel = nextBattlePanel;
@@ -56,7 +60,11 @@ public class NextBattleController {
     private void setListeners(){
         if (battleHappened != null) {
             battleHappened.seeLog.addActionListener(e->{
-                System.out.println("Boton pulsado");
+                battleLogView.detailed = false;
+                battleLogView.index = Main.battlesFaugth.size() - 1;
+                battleLogController.CurrentIndex = Main.battlesFaugth.size() - 1;
+                battleLogController.mainreturn = true;
+                battleLogView.LoadLog();
                 cardLayout.show(cards, "battlelog");
             });
         }
