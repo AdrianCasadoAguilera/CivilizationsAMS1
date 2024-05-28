@@ -1,12 +1,10 @@
 package com.project.UI.startgame;
 
 import java.awt.event.*;
-import javax.swing.*;
 
 import com.project.*;
 import com.project.UI.*;
-
-import java.util.ArrayList;
+import com.project.UI.startgame.initialScreens.InitialScreens;
 
 public class StartController {
     
@@ -22,20 +20,20 @@ public class StartController {
     private void setListeners(){
         mainPanel.closeButton.addActionListener(e->{System.exit(0);});
         mainPanel.newGameButton.addActionListener(e->{
-            String name = JOptionPane.showInputDialog(null,"Insert your name","Your name",JOptionPane.PLAIN_MESSAGE);
+            String name = askName();
             wdw.dispose();
-            Main.stopped = false;
-            Main.ActiveSave = Main.saves.AddNewSaveData(name);
-            Main.NextEnemyArmy = null;
-            Main.saves.LoadSaveData(Main.ActiveSave);
-            MainWindow m = new MainWindow();
-            m.setVisible(true);
-            m.addWindowListener(new WindowAdapter() {
-                @Override
-                public void windowClosing(WindowEvent windowEvent) {
-                    Main.closeApp();
-                }
-            });
+            // Main.stopped = false;
+            // Main.ActiveSave = Main.saves.AddNewSaveData(name);
+            // Main.NextEnemyArmy = null;
+            // Main.saves.LoadSaveData(Main.ActiveSave);
+            // MainWindow m = new MainWindow();
+            // m.setVisible(true);
+            // m.addWindowListener(new WindowAdapter() {
+            //     @Override
+            //     public void windowClosing(WindowEvent windowEvent) {
+            //         Main.closeApp();
+            //     }
+            // });
         });
         mainPanel.continueButton.addActionListener(e->{
             wdw.remove(mainPanel);
@@ -76,42 +74,9 @@ public class StartController {
             });
         });
     }
-}
 
-class ContinueView extends JPanel{
-
-    ArrayList<JButton> playButtons = new ArrayList<>();
-    ArrayList<JButton> deleteButtons = new ArrayList<>();
-
-    public ContinueView(){
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        JLabel title = new JLabel("Saves");
-        add(title);
-        title.setAlignmentX(CENTER_ALIGNMENT);
-        LoadSaves();
-    }
-
-    public void LoadSaves() {
-        removeAll();
-        playButtons.clear();
-        deleteButtons.clear();
-        ArrayList<JPanel> saves = new ArrayList<>();
-        String[] saveNames = Saves.getInstance().GetSaveNames();
-        for (int i = 0; i < saveNames.length; i++) {
-            JPanel save =  new JPanel();
-            save.add(new JLabel(saveNames[i]));
-            JButton plaButton = new JButton("Play");
-            save.add(plaButton);
-            playButtons.add(plaButton);
-            JButton delButton = new JButton("Delete");
-            save.add(delButton);
-            deleteButtons.add(delButton);
-            saves.add(save);
-        }
-        for (JPanel save : saves) {
-            add(save);
-        }
-        revalidate();
-        repaint();
+    private String askName(){
+        new InitialScreens();
+        return "";
     }
 }

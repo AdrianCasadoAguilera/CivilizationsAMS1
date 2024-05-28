@@ -1,6 +1,5 @@
 package com.project.UI.startgame;
 
-import java.awt.GraphicsEnvironment;
 import javax.swing.*;
 
 public class StartGameUI extends JFrame {

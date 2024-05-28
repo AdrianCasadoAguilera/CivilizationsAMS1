@@ -4,27 +4,19 @@ import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.TimerTask;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 
 import com.project.Saves;
 import com.project.UI.util.fonts.Fonts;
 import com.project.UI.util.swing_elements.BorderedLabel;
 import com.project.UI.util.swing_elements.PFrontpageButton;
-
-import oracle.net.aso.f;
 
 public class MainPanel extends JPanel {
     
@@ -67,13 +59,15 @@ public class MainPanel extends JPanel {
                 g2d.dispose();
             }
         };
+
+        buttonPanel.setMaximumSize(new Dimension(200,400));
         buttonPanel.setOpaque(false);
         buttonPanel.setBackground(Color.BLACK);
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
             closeButton = new PFrontpageButton("Close game");
             closeButton.setAlignmentX(CENTER_ALIGNMENT);
-            newGameButton = new PFrontpageButton("New game");
+            newGameButton = new PFrontpageButton("New Game");
             newGameButton.setAlignmentX(CENTER_ALIGNMENT);
             continueButton = new PFrontpageButton("Continue");
             continueButton.setAlignmentX(CENTER_ALIGNMENT);

@@ -2,23 +2,17 @@ package com.project.UI;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.*;
 
 import com.project.Main;
-import com.project.SaveData;
-import com.project.Saves;
 import com.project.UI.ThreadMenu.ThreadController;
 import com.project.UI.ThreadMenu.ThreadView;
-import com.project.Spearman;
-import com.project.UI.entities.*;
 import com.project.UI.newBuilding.NewBuildingController;
 import com.project.UI.newBuilding.NewBuildingView;
 import com.project.UI.newUnits.TrainUnitsController;
 import com.project.UI.newUnits.TrainUnitsView;
 import com.project.UI.newUnits.unitsViews.*;
-import com.project.UI.nextBattle.NextBattleController;
 
 public class MainWindow extends JFrame {
 
@@ -38,6 +32,10 @@ public class MainWindow extends JFrame {
     public CrossbowView crossbowView;
     public CannonView cannonView;
     public ArrowTowerView arrowTowerView;
+    public CatapultView catapultView;
+    public RocketLauncherView rocketLauncherView;
+    public MagicianView magicianView;
+    public PriestView priestView;
 
     public boolean canPause = true;  
     
@@ -46,15 +44,16 @@ public class MainWindow extends JFrame {
         setSize(600,600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        setResizable(false);
 
         setView();
 
         new Controller(cardLayout,cards,mainView);
-        new TrainUnitsController(cardLayout, cards, trainUnitsView, swordsmanView, spearmanView, crossbowView, cannonView, arrowTowerView);
+        new TrainUnitsController(cardLayout, cards, trainUnitsView, swordsmanView, spearmanView, crossbowView, cannonView, arrowTowerView, catapultView, rocketLauncherView, magicianView, priestView);
         new NewBuildingController(cardLayout, cards, newBuildingView);
         new ThreadController(cardLayout, cards, threadView);
         new TechnologyController(cardLayout, cards, technologyView);
-        new UnitsViewsController(cardLayout, cards, swordsmanView, spearmanView, crossbowView, cannonView, arrowTowerView);
+        new UnitsViewsController(cardLayout, cards, swordsmanView, spearmanView, crossbowView, cannonView, arrowTowerView, catapultView, rocketLauncherView, magicianView, priestView);
 
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {
 
@@ -92,7 +91,7 @@ public class MainWindow extends JFrame {
         cards.add(trainUnitsView,"train units");
         cards.add(pauseView,"pause");
         cards.add(threadView, "thread");
-        //cards.add(BattlesView, "battles");
+        // cards.add(BattlesView, "battles");
         cards.add(technologyView, "tech");
         cards.add(battleLog,"battlelog");
 
@@ -107,11 +106,19 @@ public class MainWindow extends JFrame {
         crossbowView = new CrossbowView();
         cannonView = new CannonView();
         arrowTowerView = new ArrowTowerView();
+        catapultView = new CatapultView();
+        rocketLauncherView = new RocketLauncherView();
+        magicianView = new MagicianView();
+        priestView = new PriestView();
 
         cards.add(swordsmanView,"swordsman");
         cards.add(spearmanView,"spearman");
         cards.add(crossbowView,"crossbow");
         cards.add(cannonView,"cannon");
         cards.add(arrowTowerView,"arrowtower");
+        cards.add(catapultView,"catapult");
+        cards.add(rocketLauncherView,"rocketlauncher");
+        cards.add(magicianView,"magician");
+        cards.add(priestView,"priest");
     }
 }

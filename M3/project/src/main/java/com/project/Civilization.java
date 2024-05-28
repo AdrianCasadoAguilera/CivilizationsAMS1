@@ -422,10 +422,9 @@ public class Civilization {
                     army.add(new RocketLauncherTower());
                     break;
                 case MAGICIAN:
-                    //army.add(new Magician());
+                    army.add(new Magician());
                     break;
                 case PRIEST:
-                    System.out.println("ENTRA PRIEST");
                     army.add(new Priest());
                     break;
                 default:

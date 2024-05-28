@@ -1,16 +1,12 @@
 package com.project.UI.entities;
 
-import com.project.Civilization;
 import com.project.Main;
-import com.project.UI.*;
 import com.project.UI.util.fonts.*;
 import com.project.UI.util.swing_elements.PLabel;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.io.File;
 import java.net.URL;
 
 import javax.swing.*;
