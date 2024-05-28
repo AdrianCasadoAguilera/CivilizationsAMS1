@@ -1,4 +1,4 @@
-package com.project.UI;
+package com.project.UI.Pause;
 
 import java.awt.*;
 

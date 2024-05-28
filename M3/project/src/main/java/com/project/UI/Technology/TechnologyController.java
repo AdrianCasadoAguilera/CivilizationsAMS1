@@ -1,4 +1,4 @@
-package com.project.UI;
+package com.project.UI.Technology;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;

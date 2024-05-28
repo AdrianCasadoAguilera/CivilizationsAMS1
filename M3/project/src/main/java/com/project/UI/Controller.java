@@ -35,9 +35,7 @@ public class Controller {
             layout.show(cards, "thread");
         });
         mainView.BattlesButton.addActionListener(e->{
-            
-            Civilization.getInstance().setTechnologyAttack(Civilization.getInstance().getTechnologyAttack()+1);
-            System.out.println(Civilization.getInstance().getTechnologyAttack());
+            layout.show(cards, "battle");
         });
     }
     

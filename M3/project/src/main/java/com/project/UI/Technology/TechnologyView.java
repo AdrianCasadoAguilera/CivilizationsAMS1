@@ -1,4 +1,4 @@
-package com.project.UI;
+package com.project.UI.Technology;
 
 import javax.swing.*;
 import java.awt.*;
