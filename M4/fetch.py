@@ -86,4 +86,4 @@ def remove_duplicate_xml_headers(file_path):
     except Exception as e:
         print(f"Error al procesar el archivo XML: {str(e)}")
 
-fetch_xml_from_db('./xml/civilizations.xml')
+# fetch_xml_from_db('./xml/civilizations.xml')
