@@ -2,6 +2,7 @@ package com.project.UI.newUnits.unitsViews;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Image;
 import java.net.URL;
 
@@ -18,6 +19,7 @@ public class CrossbowView extends JPanel {
 
     public PButton returnButton;
 
+    public JSpinner amount;
     public PButton createUnit;
 
     private String unitName = "Crossbow";
@@ -30,6 +32,11 @@ public class CrossbowView extends JPanel {
 
     public JLabel armorValue;
     public JLabel damageValue;
+
+    public JLabel foodCost;
+    public JLabel woodCost;
+    public JLabel ironCost;
+    public JLabel manaCost;
 
     public MilitaryUnit unit = new Swordsman();
 
@@ -76,6 +83,11 @@ public class CrossbowView extends JPanel {
     }
 
     private void setMainContent(){
+
+        amount = new JSpinner();
+        amount.setMaximumSize(new Dimension(50,50));
+        amount.setAlignmentX(CENTER_ALIGNMENT);
+
         JPanel mainContentPanel = new JPanel();
             BoxLayout mainContentLayout = new BoxLayout(mainContentPanel, BoxLayout.Y_AXIS);
             mainContentPanel.setLayout(mainContentLayout);
@@ -136,16 +148,16 @@ public class CrossbowView extends JPanel {
                 costsPanel.setLayout(costsLayout);
                 
                 JLabel foodLabel = new JLabel(foodIcon);
-                JLabel foodCost = new JLabel(String.valueOf(unit.getFoodCost()));
+                foodCost = new JLabel(String.valueOf(unit.getFoodCost()*(int)amount.getValue()));
 
                 JLabel woodLabel = new JLabel(woodIcon);
-                JLabel woodCost = new JLabel(String.valueOf(unit.getWoodCost()));
+                woodCost = new JLabel(String.valueOf(unit.getWoodCost()*(int)amount.getValue()));
 
                 JLabel ironLabel = new JLabel(ironIcon);
-                JLabel ironCost = new JLabel(String.valueOf(unit.getIronCost()));
+                ironCost = new JLabel(String.valueOf(unit.getIronCost()*(int)amount.getValue()));
                 
                 JLabel manaLabel = new JLabel(manaIcon);
-                JLabel manaCost = new JLabel(String.valueOf(unit.getManaCost()));
+                manaCost = new JLabel(String.valueOf(unit.getManaCost()*(int)amount.getValue()));
 
                 costsPanel.add(foodLabel);
                 costsPanel.add(foodCost);
@@ -163,6 +175,8 @@ public class CrossbowView extends JPanel {
         createUnit = new PButton("Create unit");
         createUnit.setAlignmentX(CENTER_ALIGNMENT);
 
+        mainContentPanel.add(amount);
+        mainContentPanel.add(Box.createHorizontalStrut(10));
         mainContentPanel.add(createUnit);
 
         add(mainContentPanel,BorderLayout.CENTER);
@@ -197,6 +211,15 @@ public class CrossbowView extends JPanel {
         unit = new Crossbow();
         armorValue.setText(String.valueOf(unit.getActualArmor()));
         damageValue.setText(String.valueOf(unit.attack()));
+        repaint();
+    }
+
+    public void updateCosts(){
+        woodCost.setText(String.valueOf(unit.getWoodCost()*(int)amount.getValue()));
+        foodCost.setText(String.valueOf(unit.getFoodCost()*(int)amount.getValue()));
+        ironCost.setText(String.valueOf(unit.getIronCost()*(int)amount.getValue()));
+        manaCost.setText(String.valueOf(unit.getManaCost()*(int)amount.getValue()));
+        revalidate();
         repaint();
     }
 }

@@ -39,12 +39,19 @@ public class UnitsViewsController {
     private void setListeners(){
         setSwordsmanListeners();
         setSpearmanListeners();
+        setCrossbowListeners();
+        setCannonListeners();
     }
 
     private void setSwordsmanListeners(){
         swordsman.createUnit.addActionListener(e->{
             if((int)swordsman.amount.getValue()>0){
-                civilization.AddUnit(UnitTypes.SWORDSMAN, (int)swordsman.amount.getValue());
+                int done = civilization.AddUnit(UnitTypes.SWORDSMAN, (int)swordsman.amount.getValue());
+                if(done>0){
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(spearman),String.valueOf(done)+" swordsmans have just been added to your army!.",new Color(0, 166, 11));
+                }else{
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(spearman),"Not enough resources",Color.RED);
+                }
             }
         });
         swordsman.amount.addChangeListener(e->{
@@ -64,6 +71,38 @@ public class UnitsViewsController {
         });
         spearman.amount.addChangeListener(e->{
             spearman.updateCosts();
+        });
+    }
+
+    private void setCrossbowListeners(){
+        crossbow.createUnit.addActionListener(e->{
+            if((int)crossbow.amount.getValue()>0){
+                int done = civilization.AddUnit(UnitTypes.CROSSBOW, (int)crossbow.amount.getValue());
+                if(done>0){
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(crossbow),String.valueOf(done)+" crossbows have just been added to your army!.",new Color(0, 166, 11));
+                }else{
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(crossbow),"Not enough resources",Color.RED);
+                }
+            }
+        });
+        crossbow.amount.addChangeListener(e->{
+            crossbow.updateCosts();
+        });
+    }
+
+    private void setCannonListeners(){
+        cannon.createUnit.addActionListener(e->{
+            if((int)cannon.amount.getValue()>0){
+                int done = civilization.AddUnit(UnitTypes.CANNON, (int)cannon.amount.getValue());
+                if(done>0){
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(cannon),String.valueOf(done)+" cannons have just been added to your army!.",new Color(0, 166, 11));
+                }else{
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(cannon),"Not enough resources",Color.RED);
+                }
+            }
+        });
+        cannon.amount.addChangeListener(e->{
+            cannon.updateCosts();
         });
     }
 

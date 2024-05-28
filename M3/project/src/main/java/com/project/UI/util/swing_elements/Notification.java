@@ -61,24 +61,4 @@ public class Notification extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
     }
-
-    public static void main(String[] args) {
-        // Crear un nuevo hilo de ejecución para la interfaz gráfica de usuario
-        SwingUtilities.invokeLater(() -> {
-            // Crear y configurar el marco principal
-            JFrame frame = new JFrame("Notificación Redondeada");
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setSize(400, 300);
-            frame.setLayout(new BorderLayout());
-
-            // Crear un botón que al ser presionado mostrará la notificación
-            JButton button = new JButton("Mostrar Notificación");
-            button.addActionListener(e -> new Notification(frame, "Esta es una notificación de ejemplo", new Color(255, 105, 180)));
-
-            frame.add(button, BorderLayout.SOUTH);
-
-            // Hacer visible el marco
-            frame.setVisible(true);
-        });
-    }
 }

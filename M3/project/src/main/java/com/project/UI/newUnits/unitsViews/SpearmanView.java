@@ -180,6 +180,7 @@ public class SpearmanView extends JPanel {
         createUnit.setAlignmentX(CENTER_ALIGNMENT);
 
         mainContentPanel.add(amount);
+        mainContentPanel.add(Box.createHorizontalStrut(10));
         mainContentPanel.add(createUnit);
 
         add(mainContentPanel,BorderLayout.CENTER);
