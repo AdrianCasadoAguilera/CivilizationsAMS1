@@ -46,7 +46,7 @@ public class entitiesController {
     private Map<String,Integer> getArmy(){
         Map<String,Integer> quantities = new HashMap();
         for(MilitaryUnit unit : civilization.getArmy()){
-            System.out.println(unit.getType().toString());
+            //System.out.println(unit.getType().toString());
             if(quantities.get(unit.getType().toString())==null){
                 quantities.put(unit.getType().toString(), 1);
             }else{
@@ -54,7 +54,7 @@ public class entitiesController {
             }
             // quantities.put(unit.getType().toString(),(quantities.get(unit.getType().toString()).equals(null) ? 0 : (int)quantities.get(unit.getType().toString()))+1);
         }
-        System.out.println(quantities);
+        //System.out.println(quantities);
         return quantities;
         
     }

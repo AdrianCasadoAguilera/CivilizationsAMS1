@@ -1,11 +1,13 @@
 package com.project;
 
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.*;
+
+import oracle.net.aso.f;
+
 import java.util.Arrays;
 
 public class Battle {
@@ -495,17 +497,20 @@ public class Battle {
         }
         attacks.add(attack);
         attacks.remove(0);
-        //System.out.println(attacks);
         ArrayList<JPanel> panels = new ArrayList<>();
         for (ArrayList<String> att : attacks) {
-           JPanel panel = new JPanel();
-           panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-           JLabel title = new JLabel(att.get(0));
-           panel.add(title);
-           JLabel body = new JLabel();
-           for (int i=1; i<att.size(); i++) {
-               body.setText(body.getText()+att.get(i)+"\n");
-           }
+            JPanel panel = new JPanel();
+            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+            JLabel title = new JLabel(att.get(0));
+            panel.add(title);
+            JLabel body = new JLabel();
+            String bodyText = "<html>";
+            for (int i=1; i<att.size(); i++) {
+                bodyText += att.get(i)+"<br>";
+            }
+            bodyText += "</html>";
+            body.setText(bodyText);
+            System.out.println(body.getText());
            panel.add(body);
            panels.add(panel);
         }
@@ -519,7 +524,7 @@ public class Battle {
         ArrayList<ArrayList<String>> sections = new ArrayList<>();
         ArrayList<String> section = new ArrayList<>();
         for (String line : lines) {
-            if (line.equals(("*".repeat(25+6+10+40+25+6+10) + "\n"))) {
+            if (line.equals(("*".repeat(25+6+10+40+25+6+10)))) {
                 sections.add(section);
                 section = new ArrayList<>();
             }
@@ -528,16 +533,21 @@ public class Battle {
             }
         }
         sections.add(section);
-        sections.remove(0);
-        System.out.println(section);
+        //sections.remove(0);
+        System.out.println(sections);
         ArrayList<JPanel> panels = new ArrayList<>();
         for (ArrayList<String> att : sections) {
            JPanel panel = new JPanel();
            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
            JLabel body = new JLabel();
+           String bodyText = "<html>";
            for (String line : att) {
-               body.setText(body.getText()+line+"\n");
+               bodyText += line.replace(" ", "&nbsp;") + "<br>";
            }
+           bodyText += "</html>";
+           body.setText(bodyText);
+           Font font = new Font(Font.MONOSPACED,Font.PLAIN,14);
+           body.setFont(font);
            panel.add(body);
            panels.add(panel);
         }

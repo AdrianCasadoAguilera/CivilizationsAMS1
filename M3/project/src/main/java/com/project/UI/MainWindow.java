@@ -9,6 +9,13 @@ import javax.swing.*;
 import com.project.Main;
 import com.project.SaveData;
 import com.project.Saves;
+import com.project.UI.Battles.BattleLogView;
+import com.project.UI.Battles.BattlesController;
+import com.project.UI.Battles.BattlesView;
+import com.project.UI.Pause.PauseController;
+import com.project.UI.Pause.PauseView;
+import com.project.UI.Technology.TechnologyController;
+import com.project.UI.Technology.TechnologyView;
 import com.project.UI.ThreadMenu.ThreadController;
 import com.project.UI.ThreadMenu.ThreadView;
 import com.project.Spearman;
@@ -18,7 +25,6 @@ import com.project.UI.newBuilding.NewBuildingView;
 import com.project.UI.newUnits.TrainUnitsController;
 import com.project.UI.newUnits.TrainUnitsView;
 import com.project.UI.newUnits.unitsViews.*;
-import com.project.UI.nextBattle.NextBattleController;
 
 public class MainWindow extends JFrame {
 
@@ -31,6 +37,7 @@ public class MainWindow extends JFrame {
     private PauseView pauseView;
     private ThreadView threadView;
     private TechnologyView technologyView;
+    private BattlesView battlesView;
     public BattleLogView battleLog;
 
     public SwordsmanView swordsmanView;
@@ -55,7 +62,9 @@ public class MainWindow extends JFrame {
         new ThreadController(cardLayout, cards, threadView);
         new TechnologyController(cardLayout, cards, technologyView);
         new UnitsViewsController(cardLayout, cards, swordsmanView, spearmanView, crossbowView, cannonView, arrowTowerView);
-
+        BattlesController bc = new BattlesController(cardLayout, cards, battlesView, battleLog);
+        mainView.nextBattleController.battleLogView = battleLog;
+        mainView.nextBattleController.battleLogController = bc.battleLogController;
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {
 
             @Override
@@ -83,6 +92,7 @@ public class MainWindow extends JFrame {
         trainUnitsView = new TrainUnitsView();
         threadView = new ThreadView();
         technologyView = new TechnologyView();
+        battlesView = new BattlesView();
         addUnitsViews();
         pauseView = new PauseView();
         battleLog = new BattleLogView();
@@ -92,7 +102,7 @@ public class MainWindow extends JFrame {
         cards.add(trainUnitsView,"train units");
         cards.add(pauseView,"pause");
         cards.add(threadView, "thread");
-        //cards.add(BattlesView, "battles");
+        cards.add(battlesView, "battles");
         cards.add(technologyView, "tech");
         cards.add(battleLog,"battlelog");
 

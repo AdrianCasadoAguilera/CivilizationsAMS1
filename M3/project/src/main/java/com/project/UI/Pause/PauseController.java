@@ -1,10 +1,11 @@
-package com.project.UI;
+package com.project.UI.Pause;
 
 import java.awt.CardLayout;
 
 import javax.swing.JPanel;
 
 import com.project.Main;
+import com.project.UI.MainWindow;
 
 public class PauseController {
     

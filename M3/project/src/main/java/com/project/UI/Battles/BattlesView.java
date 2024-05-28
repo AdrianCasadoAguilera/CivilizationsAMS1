@@ -1,20 +1,24 @@
-package com.project.UI;
+package com.project.UI.Battles;
 
 import javax.swing.*;
-import java.awt.*;
 
 import com.project.UI.resources.ResourcesPanel;
 import com.project.UI.util.swing_elements.PButton;
+
+import java.awt.*;
 import java.awt.GridLayout;
 
-public class TechnologyView extends JPanel {
+public class BattlesView extends JPanel {
 
-    public PButton returnButton;
-    public PButton AttackTech;
-    public PButton DefenseTech;
+    PButton returnButton;
+    PButton lastLog;
+    PButton lastDetailedLog;
+    PButton BattleLog;
+    PButton detailedBattleLog;
 
-    public TechnologyView() {
+    public BattlesView(){
         setLayout(new BorderLayout());
+
         initNorth();
         initContent();
         initButtons();
@@ -22,11 +26,11 @@ public class TechnologyView extends JPanel {
 
     private void initContent() {
         JPanel contentPanel = new JPanel();
-        contentPanel.setLayout(new GridLayout(2, 1));
-        AttackTech = new PButton("Attack");
-        DefenseTech = new PButton("Defense");
-        contentPanel.add(AttackTech);
-        contentPanel.add(DefenseTech);
+        contentPanel.setLayout(new GridLayout(2,2));
+        contentPanel.add(lastLog = new PButton("View Last Battle log"));
+        contentPanel.add(lastDetailedLog = new PButton("View Last Detailed Battle log"));
+        contentPanel.add(BattleLog = new PButton("View All Battle logs"));
+        contentPanel.add(detailedBattleLog = new PButton("View All Detailed Battle logs"));
         add(contentPanel, BorderLayout.CENTER);
     }
 
@@ -38,6 +42,7 @@ public class TechnologyView extends JPanel {
         buttonsPanel.add(returnButton);
 
         add(buttonsPanel,BorderLayout.SOUTH);
+
     }
 
     private void initNorth(){

@@ -13,17 +13,17 @@ Para hacer funcionar la página web y mostrar los recursos en tiempo real, sigue
    Abre tu terminal o línea de comandos y ejecuta el siguiente comando:
 
    ```bash
-   python run_script.py
+   python main.py
    ```
 
    Deja la terminal abierta, ya que este es el servidor Flask encargado de recibir las peticiones.
 
-3. Abrir la página "civilizations" y refrescar:
+3. Abrir la página "index" y refrescar:
 
-   - Dirígete a la página "civilizations" en tu navegador web.
-   - Haz clic en el botón de refrescar.
+   - Dirígete a la página "index" en tu navegador.
+   - Haz clic en el botón para ir a "Civilizations".
 
-   Nota: Al hacer clic en el botón de refrescar, se abrirá el script y se actualizará. Si aparece una ventana emergente, simplemente ciérrala. Alternativamente, puedes actualizar la página presionando F5 para que esté actualizada.
+   Nota: Al hacer clic en el botón de refrescar, se abrirá el script y se actualizará el contenido de "Civilzations". Si aparece una ventana emergente, simplemente ciérrala. 
 
-¡Listo! Ahora deberías poder ver los recursos en tiempo real en la página web.
+¡Listo! Ahora deberías poder ver los recursos actualizados del juego.
 ```
