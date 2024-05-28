@@ -38,23 +38,61 @@ public class entitiesController {
                 }else{
                     seeEntitiesView.swordsmanQuantity.setText("0");
                 }
+                if(army.get("SPEARMAN")!=null){
+                    seeEntitiesView.spearmanQuantity.setText(army.get("SPEARMAN").toString());
+                }else{
+                    seeEntitiesView.spearmanQuantity.setText("0");
+                }
+                if(army.get("CROSSBOW")!=null){
+                    seeEntitiesView.crossbowQuantity.setText(army.get("CROSSBOW").toString());
+                }else{
+                    seeEntitiesView.crossbowQuantity.setText("0");
+                }
+                if(army.get("CANNON")!=null){
+                    seeEntitiesView.cannonQuantity.setText(army.get("CANNON").toString());
+                }else{
+                    seeEntitiesView.cannonQuantity.setText("0");
+                }
+                if(army.get("ARROWTOWER")!=null){
+                    seeEntitiesView.arrowTowerQuantity.setText(army.get("ARROWTOWER").toString());
+                }else{
+                    seeEntitiesView.arrowTowerQuantity.setText("0");
+                }
+                if(army.get("CATAPULT")!=null){
+                    seeEntitiesView.catapultQuantity.setText(army.get("CATAPULT").toString());
+                }else{
+                    seeEntitiesView.catapultQuantity.setText("0");
+                }
+                if(army.get("ROCKETLAUNCHER")!=null){
+                    seeEntitiesView.rocketLauncherQuantity.setText(army.get("ROCKETLAUNCHER").toString());
+                }else{
+                    seeEntitiesView.rocketLauncherQuantity.setText("0");
+                }
+                if(army.get("MAGICIAN")!=null){
+                    seeEntitiesView.magicianQuantity.setText(army.get("MAGICIAN").toString());
+                }else{
+                    seeEntitiesView.magicianQuantity.setText("0");
+                }
+                if(army.get("PRIEST")!=null){
+                    seeEntitiesView.priestQuantity.setText(army.get("PRIEST").toString());
+                }else{
+                    seeEntitiesView.priestQuantity.setText("0");
+                }
+
             }
         };
         new Timer(delay, taskPerformer).start();
     }
 
     private Map<String,Integer> getArmy(){
-        Map<String,Integer> quantities = new HashMap();
+        Map<String,Integer> quantities = new HashMap<String,Integer>();
         for(MilitaryUnit unit : civilization.getArmy()){
-            //System.out.println(unit.getType().toString());
             if(quantities.get(unit.getType().toString())==null){
                 quantities.put(unit.getType().toString(), 1);
             }else{
                 quantities.put(unit.getType().toString(),quantities.get(unit.getType().toString())+1);
             }
-            // quantities.put(unit.getType().toString(),(quantities.get(unit.getType().toString()).equals(null) ? 0 : (int)quantities.get(unit.getType().toString()))+1);
         }
-        //System.out.println(quantities);
         return quantities;
         
     }

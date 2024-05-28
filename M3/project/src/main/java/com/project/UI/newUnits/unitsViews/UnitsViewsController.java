@@ -19,11 +19,15 @@ public class UnitsViewsController {
     CrossbowView crossbow;
     CannonView cannon;
     ArrowTowerView arrowTower;
+    CatapultView catapult;
+    RocketLauncherView rocketLauncher;
+    MagicianView magician;
+    PriestView priest;
 
     CardLayout layout;
     JPanel cards;
     
-    public UnitsViewsController(CardLayout layout,JPanel cards,SwordsmanView swordsman,SpearmanView spearman,CrossbowView crossbow,CannonView cannon,ArrowTowerView arrowTower){
+    public UnitsViewsController(CardLayout layout,JPanel cards,SwordsmanView swordsman,SpearmanView spearman,CrossbowView crossbow,CannonView cannon,ArrowTowerView arrowTower,CatapultView catapult,RocketLauncherView rocketLauncher,MagicianView magician,PriestView priest){
         this.layout = layout;
         this.cards = cards;
         this.swordsman = swordsman;
@@ -31,6 +35,10 @@ public class UnitsViewsController {
         this.crossbow = crossbow;
         this.cannon = cannon;
         this.arrowTower = arrowTower;
+        this.catapult = catapult;
+        this.rocketLauncher = rocketLauncher;
+        this.magician = magician;
+        this.priest = priest;
         
         civilization = Civilization.getInstance();
 
@@ -44,6 +52,10 @@ public class UnitsViewsController {
         setCrossbowListeners();
         setCannonListeners();
         setArrowTowerListeners();
+        setCatapultListeners();
+        setRocketLauncherListeners();
+        setMagicianListeners();
+        setPriestListeners();
     }
 
     private void setSwordsmanListeners(){
@@ -125,12 +137,80 @@ public class UnitsViewsController {
         });
     }
 
+    private void setCatapultListeners(){
+        catapult.createUnit.addActionListener(e->{
+            if((int)catapult.amount.getValue()>0){
+                int done = civilization.AddUnit(UnitTypes.CATAPULT, (int)catapult.amount.getValue());
+                if(done>0){
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(catapult),String.valueOf(done)+" catapults have just been added to your army!.",new Color(0, 166, 11));
+                }else{
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(catapult),"Not enough resources",Color.RED);
+                }
+            }
+        });
+        catapult.amount.addChangeListener(e->{
+            catapult.updateCosts();
+        });
+    }
+    
+    private void setRocketLauncherListeners(){
+        rocketLauncher.createUnit.addActionListener(e->{
+            if((int)rocketLauncher.amount.getValue()>0){
+                int done = civilization.AddUnit(UnitTypes.ROCKETLAUNCHERTOWER, (int)rocketLauncher.amount.getValue());
+                if(done>0){
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(rocketLauncher),String.valueOf(done)+" catapults have just been added to your army!.",new Color(0, 166, 11));
+                }else{
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(rocketLauncher),"Not enough resources",Color.RED);
+                }
+            }
+        });
+        rocketLauncher.amount.addChangeListener(e->{
+            rocketLauncher.updateCosts();
+        });
+    }
+
+    private void setMagicianListeners(){
+        magician.createUnit.addActionListener(e->{
+            if((int)magician.amount.getValue()>0){
+                int done = civilization.AddUnit(UnitTypes.MAGICIAN, (int)magician.amount.getValue());
+                if(done>0){
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(magician),String.valueOf(done)+" catapults have just been added to your army!.",new Color(0, 166, 11));
+                }else{
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(magician),"Not enough resources",Color.RED);
+                }
+            }
+        });
+        magician.amount.addChangeListener(e->{
+            magician.updateCosts();
+        });
+    }
+    
+    private void setPriestListeners(){
+        priest.createUnit.addActionListener(e->{
+            if((int)priest.amount.getValue()>0){
+                int done = civilization.AddUnit(UnitTypes.PRIEST, (int)priest.amount.getValue());
+                if(done>0){
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(priest),String.valueOf(done)+" catapults have just been added to your army!.",new Color(0, 166, 11));
+                }else{
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(priest),"Not enough resources",Color.RED);
+                }
+            }
+        });
+        priest.amount.addChangeListener(e->{
+            priest.updateCosts();
+        });
+    }
+    
     private void setGoBackListeners(){
         swordsman.returnButton.addActionListener(e->goBack());
         spearman.returnButton.addActionListener(e->goBack());
         crossbow.returnButton.addActionListener(e->goBack());
         cannon.returnButton.addActionListener(e->goBack());
         arrowTower.returnButton.addActionListener(e->goBack());
+        catapult.returnButton.addActionListener(e->goBack());
+        rocketLauncher.returnButton.addActionListener(e->goBack());
+        magician.returnButton.addActionListener(e->goBack());
+        priest.returnButton.addActionListener(e->goBack());
     }
 
     private void goBack(){
