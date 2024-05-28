@@ -10,6 +10,7 @@ import java.net.*;
 import com.project.*;
 import com.project.UI.nextBattle.NextBattlePanel;
 import com.project.UI.resources.ResourcesPanel;
+import com.project.UI.util.fonts.Fonts;
 import com.project.UI.util.swing_elements.*;
 import javax.swing.ImageIcon;
 
@@ -45,6 +46,7 @@ public class ThreadView extends JPanel {
             panel.add(labelImage);
             //Number
             JLabel label = new JLabel("0");
+            label.setFont(Fonts.getInstance().itemsFont);
             labels.add(label);
             panel.add(label);
             threadPanel.add(panel);
