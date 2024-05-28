@@ -22,7 +22,7 @@ def transform_xml_to_html(xml_path, xsl_path, output_path, **params):
     html_dom = transform(xml_tree, **params)
     html_result = etree.tostring(html_dom, pretty_print=True).decode('utf-8')
     write_html(output_path, html_result)
-
+""""""
 if __name__ == "__main__":
     xml_path1 = './xml/attack_units.xml'
     xsl_path1 = './xml/attack_units.xsl'
@@ -44,3 +44,4 @@ if __name__ == "__main__":
     transform_xml_to_html(xml_path3, xsl_path3, output_path3)
     transform_xml_to_html(xml_path4, xsl_path4, output_path4)
     transform_xml_to_html(xml_path5, xsl_path5, output_path5)
+""""""
