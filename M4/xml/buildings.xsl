@@ -8,6 +8,18 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <title>Edificios</title>
                 <link rel="stylesheet" href="buildings.css"/>
+                <script>
+                    function toggleMenu() {
+                        const menu = document.getElementById('menu');
+                        const toggleButton = document.querySelector('.menu-toggle');
+                        const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
+                    
+                        console.log('Menu toggled');  // Agrega este log para verificar que la función se está ejecutando
+                    
+                        toggleButton.setAttribute('aria-expanded', !isExpanded);
+                        menu.style.display = isExpanded ? 'none' : 'flex';
+                    }
+                </script>
             </head>
             <body>
                 <header role="banner">
@@ -35,7 +47,6 @@
                     <p><a href="https://github.com/AAyoubelbakhti" target="_blank">Ayoub El Bakhti</a></p>
                     <p><a href="https://github.com/OscarMG018" target="_blank">Óscar MG018</a></p>
                 </footer>
-                <script src="minimenu.js"></script>
             </body>
         </html>
     </xsl:template>

@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Videojuego Civilizations</title>
     <link rel="stylesheet" href="index.css">
+    <script>
+        function refrescar() {
+                      var url = 'http://localhost:5000/run-script';
+                      var nuevaVentana = window.open(url, '_blank');
+                      return false;
+                    }
+    function actualizarYRedirigir() {
+        refrescar();
+        setTimeout(function() {
+            location.href = 'civilizations.html';
+        }, 1000); // 1 segundo de retraso
+    }
+    </script>
 </head>
 <body>
     <header class="hidden" role="banner">
@@ -31,7 +44,7 @@
                     <button onclick="location.href='buildings.html'" aria-label="Edificios">Edificios</button>
                     <button onclick="location.href='defences.html'" aria-label="Defensas">Defensas</button>
                     <button onclick="location.href='special_units.html'" aria-label="Unidades Especiales">Unidades Especiales</button>
-                </div>
+                    <button onclick="actualizarYRedirigir()" aria-label="Civilization Stats and Update Resources">Civilization Stats and Update Resources</button>                </div>
                 <img src="images/bandera.png" alt="Imagen derecha" class="side-image">
             </div>
         </section>
