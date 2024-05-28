@@ -20,7 +20,7 @@ public class StartController {
     private void setListeners(){
         mainPanel.closeButton.addActionListener(e->{System.exit(0);});
         mainPanel.newGameButton.addActionListener(e->{
-            String name = askName();
+            askName();
             wdw.dispose();
             // Main.stopped = false;
             // Main.ActiveSave = Main.saves.AddNewSaveData(name);
@@ -76,7 +76,23 @@ public class StartController {
     }
 
     private String askName(){
-        new InitialScreens();
+        new InitialScreens(this);
         return "";
+    }
+
+    public void executeApp(String name){
+        
+        Main.ActiveSave = Main.saves.AddNewSaveData(name);
+        Main.NextEnemyArmy = null;
+        Main.saves.LoadSaveData(Main.ActiveSave);
+        MainWindow m = new MainWindow();
+        m.setVisible(true);
+        m.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent windowEvent) {
+                Main.closeApp();
+            }
+        });
+        Main.stopped = false;
     }
 }
