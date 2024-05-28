@@ -36,7 +36,7 @@ class AppData {
         return instance;
     }
 
-    private void connect() {
+    public void connect() {
         String url = "jdbc:oracle:thin:" + Username + "/" + Password + "@" + HostName + ":" + Port + ":" + DatabaseName;
         try {
             conn = DriverManager.getConnection(url);

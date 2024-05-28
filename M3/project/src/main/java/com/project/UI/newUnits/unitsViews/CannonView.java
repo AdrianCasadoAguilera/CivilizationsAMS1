@@ -10,6 +10,7 @@ import java.net.URL;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+import com.project.Cannon;
 import com.project.MilitaryUnit;
 import com.project.Swordsman;
 import com.project.Variables;
@@ -17,14 +18,14 @@ import com.project.UI.util.fonts.Fonts;
 import com.project.UI.util.swing_elements.PButton;
 import com.project.UI.util.swing_elements.PLabel;
 
-public class SwordsmanView extends JPanel {
+public class CannonView extends JPanel {
 
     public PButton returnButton;
 
     public JSpinner amount;
     public PButton createUnit;
 
-    private String unitName = "Swordsman";
+    private String unitName = "Cannon";
     private String descString = "sadijidabsjasdskjpnaib djasdjasnd ja dhasduand asdjasdjasb dasd";
 
     private ImageIcon woodIcon;
@@ -32,17 +33,17 @@ public class SwordsmanView extends JPanel {
     private ImageIcon ironIcon;
     private ImageIcon manaIcon;
 
-    public JLabel foodCost;
-    public JLabel woodCost;
-    public JLabel ironCost;
-    public JLabel manaCost;
+    private JLabel foodCost;
+    private JLabel woodCost;
+    private JLabel ironCost;
+    private JLabel manaCost;
 
     private JLabel armorValue;
     private JLabel damageValue;
 
-    public MilitaryUnit unit = new Swordsman();
+    public MilitaryUnit unit = new Cannon();
 
-    public SwordsmanView(){
+    public CannonView(){
         setLayout(new BorderLayout());
 
         setImages();
@@ -85,7 +86,6 @@ public class SwordsmanView extends JPanel {
     }
 
     private void setMainContent(){
-
         amount = new JSpinner();
         amount.setMaximumSize(new Dimension(50,50));
         amount.setAlignmentX(CENTER_ALIGNMENT);
@@ -210,16 +210,15 @@ public class SwordsmanView extends JPanel {
     }
 
     public void updateValues(){
-        unit = new Swordsman();
+        unit = new Cannon();
         armorValue.setText(String.valueOf(unit.getActualArmor()));
         damageValue.setText(String.valueOf(unit.attack()));
         repaint();
     }
 
     public void updateCosts(){
-        System.out.println("Updating cost");
-        foodCost.setText(String.valueOf(unit.getFoodCost()*(int)amount.getValue()));
         woodCost.setText(String.valueOf(unit.getWoodCost()*(int)amount.getValue()));
+        foodCost.setText(String.valueOf(unit.getFoodCost()*(int)amount.getValue()));
         ironCost.setText(String.valueOf(unit.getIronCost()*(int)amount.getValue()));
         manaCost.setText(String.valueOf(unit.getManaCost()*(int)amount.getValue()));
         revalidate();

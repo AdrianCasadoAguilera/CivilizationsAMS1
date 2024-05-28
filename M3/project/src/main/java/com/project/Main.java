@@ -30,8 +30,7 @@ public class Main {
     };
     public static ArrayList<Battle> battlesFaugth = new ArrayList<>();
     public static ArrayList<MilitaryUnit> NextEnemyArmy = new ArrayList<>();
-    // public static int NextBattleIn = 180;
-    public static int NextBattleIn = 20;
+    public static int NextBattleIn = 180;
     public static String ActiveMenu = "";
     public static int ActiveSave = -1;
 
@@ -100,8 +99,7 @@ public class Main {
         civilization.GenerateResources(deltaTime);
         BattleTimer += deltaTime;
         if (BattleTimer >= NextBattleIn) {
-            // NextBattleIn = 120 + new Random().nextInt(300 - 120 + 1);
-            NextBattleIn = 20;
+            NextBattleIn = 120 + new Random().nextInt(300 - 120 + 1);
             BattleTimer = 0;
             civilization.setBattles(civilization.getBattles()+1);
             Battle battle = new Battle((ArrayList<MilitaryUnit>)civilization.getArmy().clone(), (ArrayList<MilitaryUnit>)NextEnemyArmy.clone());

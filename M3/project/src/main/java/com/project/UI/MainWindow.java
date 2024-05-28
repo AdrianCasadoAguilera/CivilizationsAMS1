@@ -11,13 +11,13 @@ import com.project.SaveData;
 import com.project.Saves;
 import com.project.UI.ThreadMenu.ThreadController;
 import com.project.UI.ThreadMenu.ThreadView;
+import com.project.Spearman;
 import com.project.UI.entities.*;
 import com.project.UI.newBuilding.NewBuildingController;
 import com.project.UI.newBuilding.NewBuildingView;
 import com.project.UI.newUnits.TrainUnitsController;
 import com.project.UI.newUnits.TrainUnitsView;
-import com.project.UI.newUnits.unitsViews.SwordsmanView;
-import com.project.UI.newUnits.unitsViews.UnitsViewsController;
+import com.project.UI.newUnits.unitsViews.*;
 import com.project.UI.nextBattle.NextBattleController;
 
 public class MainWindow extends JFrame {
@@ -34,6 +34,9 @@ public class MainWindow extends JFrame {
     public BattleLogView battleLog;
 
     public SwordsmanView swordsmanView;
+    public SpearmanView spearmanView;
+    public CrossbowView crossbowView;
+    public CannonView cannonView;
 
     public boolean canPause = true;  
     
@@ -46,11 +49,11 @@ public class MainWindow extends JFrame {
         setView();
 
         new Controller(cardLayout,cards,mainView);
-        new TrainUnitsController(cardLayout, cards, trainUnitsView);
+        new TrainUnitsController(cardLayout, cards, trainUnitsView, swordsmanView, spearmanView, crossbowView, cannonView);
         new NewBuildingController(cardLayout, cards, newBuildingView);
-        new UnitsViewsController(cardLayout, cards, swordsmanView);
         new ThreadController(cardLayout, cards, threadView);
         new TechnologyController(cardLayout, cards, technologyView);
+        new UnitsViewsController(cardLayout, cards, swordsmanView, spearmanView, crossbowView, cannonView);
 
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {
 
@@ -99,7 +102,13 @@ public class MainWindow extends JFrame {
 
     private void addUnitsViews(){
         swordsmanView = new SwordsmanView();
+        spearmanView = new SpearmanView();
+        crossbowView = new CrossbowView();
+        cannonView = new CannonView();
 
         cards.add(swordsmanView,"swordsman");
+        cards.add(spearmanView,"spearman");
+        cards.add(crossbowView,"crossbow");
+        cards.add(cannonView,"cannon");
     }
 }
