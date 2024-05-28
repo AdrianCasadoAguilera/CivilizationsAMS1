@@ -43,7 +43,6 @@ public class Saves {
         CivilizationDao dao = new CivilizationDao();
         SaveData data = savedata.get(index);
         System.out.println(data.getSaveId());
-        data.setWood(1000);
         dao.updateSave(data);
     }
     

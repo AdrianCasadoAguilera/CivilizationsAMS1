@@ -19,7 +19,11 @@ public class BattlesController {
     }
 
     private void setListeners() {
-        
+        battlesView.returnButton.addActionListener(e -> cardLayout.show(cards, "main"));
+        battlesView.BattleLog.addActionListener(e->cardLayout.show(cards, "battlelog"));
+        battlesView.detailedBattleLog.addActionListener(e->cardLayout.show(cards, "battlelog"));
+        battlesView.lastDetailedLog.addActionListener(e->cardLayout.show(cards, "battlelog"));
+        battlesView.lastLog.addActionListener(e->cardLayout.show(cards, "battlelog"));
     }
 
 }

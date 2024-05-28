@@ -35,7 +35,7 @@ public class Controller {
             layout.show(cards, "thread");
         });
         mainView.BattlesButton.addActionListener(e->{
-            layout.show(cards, "battle");
+            layout.show(cards, "battles");
         });
     }
     

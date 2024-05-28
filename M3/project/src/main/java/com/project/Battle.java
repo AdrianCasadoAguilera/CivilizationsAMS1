@@ -529,7 +529,7 @@ public class Battle {
         }
         sections.add(section);
         sections.remove(0);
-        System.out.println(section);
+        //System.out.println(section);
         ArrayList<JPanel> panels = new ArrayList<>();
         for (ArrayList<String> att : sections) {
            JPanel panel = new JPanel();
