@@ -20,6 +20,12 @@ def run_script():
     try:
         fetch_xml_from_db('./xml/civilizations.xml')
         time.sleep(2)
+        file_path = '/html/civilizations.html'
+        if os.path.exists(file_path):
+            os.remove(file_path)
+            print(f'El archivo {file_path} ha sido borrado.')
+        else:
+            print(f'El archivo {file_path} no existe.')
         xml_path1 = './xml/attack_units.xml'
         xsl_path1 = './xml/attack_units.xsl'
         output_path1 = './html/attack_units.html'

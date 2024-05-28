@@ -4,6 +4,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Defensas</title>
     <link rel="stylesheet" href="defences.css"/>
+    <script>
+                    function toggleMenu() {
+                        const menu = document.getElementById('menu');
+                        const toggleButton = document.querySelector('.menu-toggle');
+                        const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
+                    
+                        console.log('Menu toggled');  // Agrega este log para verificar que la funci&#243;n se est&#225; ejecutando
+                    
+                        toggleButton.setAttribute('aria-expanded', !isExpanded);
+                        menu.style.display = isExpanded ? 'none' : 'flex';
+                    }
+                </script>
   </head>
   <body>
     <header role="banner">
@@ -132,6 +144,5 @@
         <a href="https://github.com/OscarMG018" target="_blank">&#211;scar MG018</a>
       </p>
     </footer>
-    <script src="minimenu.js"/>
   </body>
 </html>
