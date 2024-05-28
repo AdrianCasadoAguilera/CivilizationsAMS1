@@ -7,7 +7,7 @@
                 <meta charset="UTF-8"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <title>Edificios</title>
-                <link rel="stylesheet" href="buildings.css"/>
+                <link rel="stylesheet" href="style.css"/>
                 <script>
                     function toggleMenu() {
                         const menu = document.getElementById('menu');
@@ -76,7 +76,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="building">
+            <div class="unit">
                 <img>
                     <xsl:attribute name="src">
                         <xsl:value-of select="concat('images/', translate(name, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.png')"/>

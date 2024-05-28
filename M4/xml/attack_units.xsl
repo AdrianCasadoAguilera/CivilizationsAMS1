@@ -7,7 +7,7 @@
                 <meta charset="UTF-8"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <title>Unidades de Ataque</title>
-                <link rel="stylesheet" href="attack_units.css"/>
+                <link rel="stylesheet" href="style.css"/>
                 <script>
                     function toggleMenu() {
                         const menu = document.getElementById('menu');

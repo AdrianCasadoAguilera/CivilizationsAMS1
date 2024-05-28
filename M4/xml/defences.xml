@@ -20,6 +20,7 @@
 			<iron_cost>0</iron_cost>
 			<mana_cost>0</mana_cost>
 		</costs>
+		<description>La Torre de Flechas es una defensa básica que proporciona protección contra enemigos con un daño base de 80 y una armadura de 200. Requiere 2000 de madera para su construcción. Su oportunidad de desperdiciar es del 55% y tiene una posibilidad del 5% de atacar nuevamente."</description>
 		<sprite></sprite>
 	</unit>
 	<unit>
@@ -42,6 +43,7 @@
 			<iron_cost>500</iron_cost>
 			<mana_cost>0</mana_cost>
 		</costs>
+		<description>La Catapulta es una poderosa unidad de asedio con un daño base de 250 y una armadura de 1200. Su construcción cuesta 4000 de madera y 500 de hierro. Tiene un 65% de oportunidad de desperdiciar y un 12% de posibilidad de atacar nuevamente, lo que la hace efectiva en combates prolongados.</description>
 		<sprite></sprite>
 	</unit>
 	<unit>
@@ -64,6 +66,7 @@
 			<iron_cost>5000</iron_cost>
 			<mana_cost>0</mana_cost>
 		</costs>
+		<description>La Torre de Lanzamiento de Cohetes es una unidad de defensa avanzada con un impresionante daño base de 2000 y una armadura de 7000. Su construcción es costosa, requiriendo 50000 de madera y 5000 de hierro. Tiene una alta oportunidad de desperdiciar del 75% y un 30% de posibilidad de atacar nuevamente, siendo una defensa formidable contra ataques masivos.</description>
 		<sprite></sprite>
 	</unit>
 </defence_units>

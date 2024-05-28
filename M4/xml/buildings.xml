@@ -6,6 +6,7 @@
 			<iron_cost>10000</iron_cost>
 			<wood_cost>12000</wood_cost>
 		</costs>
+		<description>La Granja es el principal productor de alimentos en tu civilización. Con un costo de 5000 de comida, 10000 de hierro y 12000 de madera, proporciona los recursos necesarios para mantener a tu población y alimentar a tus tropas.</description>
 		<sprite></sprite>
 	</building>
 	<building>
@@ -15,6 +16,7 @@
 			<iron_cost>10000</iron_cost>
 			<wood_cost>12000</wood_cost>
 		</costs>
+		<description>La Carpintería es esencial para la producción y reparación de estructuras de madera. Requiere 5000 de comida, 10000 de hierro y 12000 de madera para su construcción, y es crucial para mantener tu infraestructura en buen estado.</description>
 		<sprite></sprite>
 	</building>
 	<building>
@@ -24,6 +26,7 @@
 			<iron_cost>10000</iron_cost>
 			<wood_cost>12000</wood_cost>
 		</costs>
+		<description>La Herrería es donde se forjan las armas y armaduras para tus tropas. Con un costo de 5000 de comida, 10000 de hierro y 12000 de madera, este edificio mejora la capacidad ofensiva y defensiva de tu ejército.</description>
 		<sprite></sprite>
 	</building>
 	<building>
@@ -33,15 +36,17 @@
 			<iron_cost>10000</iron_cost>
 			<wood_cost>12000</wood_cost>
 		</costs>
+		<description>La Iglesia es un centro espiritual que proporciona beneficios a tus unidades y mejora la moral de tu civilización. Requiere 5000 de comida, 10000 de hierro y 12000 de madera para ser construida, y es fundamental para mantener la fe y el bienestar en tu comunidad.</description>
 		<sprite></sprite>
 	</building>
 	<building>
-		<name>MAGICTOWE</name>
+		<name>MAGICTOWER</name>
 		<costs>
 			<food_cost>5000</food_cost>
 			<iron_cost>10000</iron_cost>
 			<wood_cost>12000</wood_cost>
 		</costs>
+		<description>La Torre Mágica es un edificio avanzado que otorga poderosos hechizos y defensa mágica a tu civilización. Su construcción cuesta 5000 de comida, 10000 de hierro y 12000 de madera, y es vital para protegerte contra ataques mágicos y potenciar tus habilidades mágicas.</description>
 		<sprite></sprite>
 	</building>
 </buildings>

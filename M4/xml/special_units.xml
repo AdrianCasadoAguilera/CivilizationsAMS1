@@ -20,6 +20,7 @@
 			<iron_cost>500</iron_cost>
 			<mana_cost>5000</mana_cost>
 		</costs>
+		<description>El Mago es una unidad especial con un alto daño base de 3000 y una impresionante capacidad de atacar nuevamente con una probabilidad del 75%. Requiere 12000 de comida, 2000 de madera, 500 de hierro y 5000 de maná para su construcción. Además, tiene una pequeña posibilidad del 2% de resucitar, lo que lo convierte en una poderosa adición a cualquier ejército.</description>
 		<sprite></sprite>
 	</unit>
 	<unit>
@@ -41,6 +42,7 @@
 			<iron_cost>0</iron_cost>
 			<mana_cost>15000</mana_cost>
 		</costs>
+		<description>El Sacerdote es una unidad de apoyo sin capacidad de ataque directo, pero con habilidades excepcionales para fortalecer a tus unidades. Con un costo de 15000 de comida y 15000 de maná, el Sacerdote es fundamental para mantener la salud y la moral de tu ejército, proporcionando beneficios significativos a la resistencia y al ataque de tus tropas.</description>
 		<sprite></sprite>
 	</unit>
 </special_units>

@@ -11,12 +11,12 @@
                       var nuevaVentana = window.open(url, '_blank');
                       return false;
                     }
-    function actualizarYRedirigir() {
-        refrescar();
-        setTimeout(function() {
-            location.href = 'civilizations.html';
-        }, 1000); // 1 segundo de retraso
-    }
+        function actualizarYRedirigir() {
+            refrescar();
+            setTimeout(function() {
+                location.href = 'civilizations.html';
+            }, 1000); // 1 segundo de retraso
+        }
     </script>
 </head>
 <body>
@@ -44,13 +44,25 @@
                     <button onclick="location.href='buildings.html'" aria-label="Edificios">Edificios</button>
                     <button onclick="location.href='defences.html'" aria-label="Defensas">Defensas</button>
                     <button onclick="location.href='special_units.html'" aria-label="Unidades Especiales">Unidades Especiales</button>
-                    <button onclick="actualizarYRedirigir()" aria-label="Civilization Stats and Update Resources">Civilization Stats and Update Resources</button>                </div>
+                    <button onclick="actualizarYRedirigir()" aria-label="Civilization Stats and Update Resources">Civilization Stats y Recargar Recursos</button>                </div>
                 <img src="images/bandera.png" alt="Imagen derecha" class="side-image">
             </div>
         </section>
     </main>
     <footer class="hidden" role="contentinfo">
-        <p>&copy; 2024 Videojuego Civilizations. Todos los derechos reservados.</p>
+            <p>2024 Civilizations. Todos los derechos reservados.</p>
+            <p>
+              <a href="https://github.com/MarcArques" target="_blank">Marc Arqu&#233;s Marim&#243;n</a>
+            </p>
+            <p>
+              <a href="https://github.com/AdrianCasadoAguilera" target="_blank">Adri&#225;n Casado Aguilera</a>
+            </p>
+            <p>
+              <a href="https://github.com/AAyoubelbakhti" target="_blank">Ayoub El Bakhti</a>
+            </p>
+            <p>
+              <a href="https://github.com/OscarMG018" target="_blank">&#211;scar MG018</a>
+            </p>
     </footer>
     <script src="menu.js"></script>
 </body>
