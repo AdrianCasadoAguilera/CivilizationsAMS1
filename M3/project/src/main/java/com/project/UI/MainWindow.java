@@ -64,6 +64,7 @@ public class MainWindow extends JFrame {
         new TechnologyController(cardLayout, cards, technologyView);
         new UnitsViewsController(cardLayout, cards, swordsmanView, spearmanView, crossbowView, cannonView, arrowTowerView);
         new BattlesController(cardLayout, cards, battlesView);
+        new BattleLogController(cardLayout, cards, battleLog);
 
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {
 
