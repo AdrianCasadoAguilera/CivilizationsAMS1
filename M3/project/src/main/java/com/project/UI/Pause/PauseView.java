@@ -43,7 +43,7 @@ public class PauseView extends JPanel {
         contentPanel.add(resumeButton,gbc);
         gbc.gridy++;
         contentPanel.add(exitButton,gbc);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 11; i++) {
             contentPanel.add(new JLabel(""), gbc);
             gbc.gridy++;
         }
