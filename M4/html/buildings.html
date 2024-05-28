@@ -3,7 +3,19 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Edificios</title>
-    <link rel="stylesheet" href="buildings.css"/>
+    <link rel="stylesheet" href="style.css"/>
+    <script>
+                    function toggleMenu() {
+                        const menu = document.getElementById('menu');
+                        const toggleButton = document.querySelector('.menu-toggle');
+                        const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
+                    
+                        console.log('Menu toggled');  // Agrega este log para verificar que la funci&#243;n se est&#225; ejecutando
+                    
+                        toggleButton.setAttribute('aria-expanded', !isExpanded);
+                        menu.style.display = isExpanded ? 'none' : 'flex';
+                    }
+                </script>
   </head>
   <body>
     <header role="banner">
@@ -52,9 +64,9 @@
               </tbody>
             </table>
           </div>
-          <div class="building">
+          <div class="unit">
             <img src="images/farm.png" alt="Imagen de FARM"/>
-            <p/>
+            <p>La Granja es el principal productor de alimentos en tu civilizaci&#243;n. Con un costo de 5000 de comida, 10000 de hierro y 12000 de madera, proporciona los recursos necesarios para mantener a tu poblaci&#243;n y alimentar a tus tropas.</p>
           </div>
         </article>
         <article class="building-section" id="carpentry">
@@ -78,9 +90,9 @@
               </tbody>
             </table>
           </div>
-          <div class="building">
+          <div class="unit">
             <img src="images/carpentry.png" alt="Imagen de CARPENTRY"/>
-            <p/>
+            <p>La Carpinter&#237;a es esencial para la producci&#243;n y reparaci&#243;n de estructuras de madera. Requiere 5000 de comida, 10000 de hierro y 12000 de madera para su construcci&#243;n, y es crucial para mantener tu infraestructura en buen estado.</p>
           </div>
         </article>
         <article class="building-section" id="smithy">
@@ -104,9 +116,9 @@
               </tbody>
             </table>
           </div>
-          <div class="building">
+          <div class="unit">
             <img src="images/smithy.png" alt="Imagen de SMITHY"/>
-            <p/>
+            <p>La Herrer&#237;a es donde se forjan las armas y armaduras para tus tropas. Con un costo de 5000 de comida, 10000 de hierro y 12000 de madera, este edificio mejora la capacidad ofensiva y defensiva de tu ej&#233;rcito.</p>
           </div>
         </article>
         <article class="building-section" id="church">
@@ -130,16 +142,16 @@
               </tbody>
             </table>
           </div>
-          <div class="building">
+          <div class="unit">
             <img src="images/church.png" alt="Imagen de CHURCH"/>
-            <p/>
+            <p>La Iglesia es un centro espiritual que proporciona beneficios a tus unidades y mejora la moral de tu civilizaci&#243;n. Requiere 5000 de comida, 10000 de hierro y 12000 de madera para ser construida, y es fundamental para mantener la fe y el bienestar en tu comunidad.</p>
           </div>
         </article>
-        <article class="building-section" id="magictowe">
-          <h2>MAGICTOWE</h2>
+        <article class="building-section" id="magictower">
+          <h2>MAGICTOWER</h2>
           <div class="table-container">
             <table>
-              <caption>Estad&#237;sticas de MAGICTOWE</caption>
+              <caption>Estad&#237;sticas de MAGICTOWER</caption>
               <thead>
                 <tr>
                   <th scope="col">Food Cost</th>
@@ -156,9 +168,9 @@
               </tbody>
             </table>
           </div>
-          <div class="building">
-            <img src="images/magictowe.png" alt="Imagen de MAGICTOWE"/>
-            <p/>
+          <div class="unit">
+            <img src="images/magictower.png" alt="Imagen de MAGICTOWER"/>
+            <p>La Torre M&#225;gica es un edificio avanzado que otorga poderosos hechizos y defensa m&#225;gica a tu civilizaci&#243;n. Su construcci&#243;n cuesta 5000 de comida, 10000 de hierro y 12000 de madera, y es vital para protegerte contra ataques m&#225;gicos y potenciar tus habilidades m&#225;gicas.</p>
           </div>
         </article>
       </section>
@@ -178,6 +190,5 @@
         <a href="https://github.com/OscarMG018" target="_blank">&#211;scar MG018</a>
       </p>
     </footer>
-    <script src="minimenu.js"/>
   </body>
 </html>

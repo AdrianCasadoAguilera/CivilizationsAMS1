@@ -205,6 +205,18 @@ footer {
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
 
+footer p {
+    margin: 0.25em 0; /* Reducir el margen de los párrafos dentro del footer */
+}
+
+footer a {
+    color: white; /* Establecer el color del enlace al mismo que el texto */
+    text-decoration: none; /* Eliminar subrayado si lo deseas */
+}
+
+footer a:hover {
+    color: #d9d9d9; /* Cambiar el color al pasar el ratón por encima si lo deseas */
+}
 @media (max-width: 768px) {
     #intro {
         display: none; 

@@ -16,6 +16,16 @@
                       var nuevaVentana = window.open(url, '_blank');
                       return false;
                     }
+                    function toggleMenu() {
+                        const menu = document.getElementById('menu');
+                        const toggleButton = document.querySelector('.menu-toggle');
+                        const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
+                    
+                        console.log('Menu toggled');  // Agrega este log para verificar que la función se está ejecutando
+                    
+                        toggleButton.setAttribute('aria-expanded', !isExpanded);
+                        menu.style.display = isExpanded ? 'none' : 'flex';
+                    }
                 </script>
             </head>
             <body>
@@ -24,19 +34,14 @@
                         <div class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()">☰</div>
                         <ul id="menu">
                             <li><a href="index.html">Índice</a></li>
-                            <li><a href="#civilization_stats" aria-current="page">Civilization Stats</a></li>
-                            <li><a href="#units">Units</a></li>
-                            <li><a href="#enemy_unit">Enemy Units</a></li>
-                            <li><a href="#battle_stats">Battle Stats</a></li>
-                            <li><a href="#enemy_unit_stats">Enemy Unit Stats</a></li>
-                            <li><a href="#civilization_unit_stats">Civilization Unit Stats</a></li>
+                            <li><a href="attack_units.html">Unidades de Ataque</a></li>
+                            <li><a href="buildings.html">Edificios</a></li>
+                            <li><a href="defences.html">Defensas</a></li>
+                            <li><a href="special_units.html">Unidades Especiales</a></li>
                         </ul>
                     </nav>
                 </header>
                 <main role="main">
-                    <div class="button-container">
-                        <button onclick="refrescar()">Actualizar recursos</button>
-                    </div>
                     <details id="civilization_stats">
                         <summary class="section-title">Civilization Stats</summary>
                         <div class="table-container">

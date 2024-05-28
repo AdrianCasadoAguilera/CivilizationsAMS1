@@ -1,5 +1,7 @@
 package com.project.UI;
 
+import com.project.UI.Battles.BattleLogController;
+import com.project.UI.Battles.BattleLogView;
 import com.project.UI.entities.SeeEntitiesView;
 import com.project.UI.entities.entitiesController;
 import com.project.UI.nextBattle.BattleHappened;
@@ -30,6 +32,9 @@ public class MainView extends JPanel {
     public PButton ThreadButton;
     public PButton BattlesButton;
     public SeeEntitiesView infoPanel;
+    public NextBattleController nextBattleController;
+    public BattleLogController battleLogController;
+    public BattleLogView battleLogView;
 
     public MainView(CardLayout cardLayout,JPanel cards){
         setLayout(new BorderLayout());
@@ -40,7 +45,9 @@ public class MainView extends JPanel {
         
         setMenuOptions();
 
-        new NextBattleController(cardLayout,cards,nextBattlePanel,battleHappened);
+        nextBattleController = new NextBattleController(cardLayout,cards,nextBattlePanel,battleHappened);
+        nextBattleController.battleLogController = this.battleLogController;
+        nextBattleController.battleLogView = this.battleLogView;
     }
     
     private void setNorthPanel(){

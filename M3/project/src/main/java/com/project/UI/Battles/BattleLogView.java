@@ -7,7 +7,6 @@ import javax.swing.*;
 
 import com.project.Main;
 import com.project.UI.util.swing_elements.PButton;
-import javax.swing.BoxLayout;
 
 
 public class BattleLogView extends JPanel {
@@ -17,10 +16,10 @@ public class BattleLogView extends JPanel {
     public PButton returnButton;
     public PButton previus;
     public PButton next;
+    public BattleLogController controler;
 
     public BattleLogView(){
         setLayout(new BorderLayout());
-        LoadLog();
     }
 
     public void initNorth() {
@@ -35,20 +34,14 @@ public class BattleLogView extends JPanel {
     }
 
     public void initSouth() {
-        JPanel buttonsPanel = new JPanel();
-        buttonsPanel.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
-        buttonsPanel.setBackground(Color.lightGray);
         returnButton = new PButton("Go back");
-        buttonsPanel.add(returnButton);
-
-        add(buttonsPanel,BorderLayout.SOUTH);
+        add(returnButton,BorderLayout.SOUTH);
 
     }
 
     public void LoadLog(){
         removeAll();
         initNorth();
-        initSouth();
         JPanel logPanel = new JPanel();
         logPanel.setLayout(new BoxLayout(logPanel, BoxLayout.Y_AXIS));
         ArrayList<JPanel> panels = new ArrayList<>();
@@ -58,12 +51,15 @@ public class BattleLogView extends JPanel {
         else {
             panels = Main.battlesFaugth.get(index).getReportSwing();
         }
+        System.out.println("size" + panels.size());
         for (JPanel panel : panels) {
             logPanel.add(panel);
         }
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.getViewport().add(logPanel);
         add(scrollPane, BorderLayout.CENTER);
-
+        initSouth();
+        controler.setListeners();
+        controler.startTimer();
     }
 }

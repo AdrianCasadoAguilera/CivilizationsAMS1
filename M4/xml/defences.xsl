@@ -7,7 +7,19 @@
                 <meta charset="UTF-8"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <title>Defensas</title>
-                <link rel="stylesheet" href="defences.css"/>
+                <link rel="stylesheet" href="style.css"/>
+                <script>
+                    function toggleMenu() {
+                        const menu = document.getElementById('menu');
+                        const toggleButton = document.querySelector('.menu-toggle');
+                        const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
+                    
+                        console.log('Menu toggled');  // Agrega este log para verificar que la función se está ejecutando
+                    
+                        toggleButton.setAttribute('aria-expanded', !isExpanded);
+                        menu.style.display = isExpanded ? 'none' : 'flex';
+                    }
+                </script>
             </head>
             <body>
                 <header role="banner">
@@ -35,7 +47,6 @@
                     <p><a href="https://github.com/AAyoubelbakhti" target="_blank">Ayoub El Bakhti</a></p>
                     <p><a href="https://github.com/OscarMG018" target="_blank">Óscar MG018</a></p>
                 </footer>
-                <script src="minimenu.js"></script>
             </body>
         </html>
     </xsl:template>
@@ -61,13 +72,13 @@
                         <tr>
                             <td><xsl:value-of select="base_damage"/></td>
                             <td><xsl:value-of select="armour"/></td>
-                            <td><xsl:value-of select="waste_chance"/></td>
-                            <td><xsl:value-of select="attack_again_chance"/></td>
+                            <td><xsl:value-of select="concat(waste_chance, '%')"/></td>
+                            <td><xsl:value-of select="concat(attack_again_chance, '%')"/></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="defence">
+            <div class="unit">
                 <img>
                     <xsl:attribute name="src">
                         <xsl:value-of select="concat('images/', translate(name, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.png')"/>

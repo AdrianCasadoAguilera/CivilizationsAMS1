@@ -3,7 +3,19 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Unidades de Ataque</title>
-    <link rel="stylesheet" href="attack_units.css"/>
+    <link rel="stylesheet" href="style.css"/>
+    <script>
+                    function toggleMenu() {
+                        const menu = document.getElementById('menu');
+                        const toggleButton = document.querySelector('.menu-toggle');
+                        const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
+                    
+                        console.log('Menu toggled');  // Agrega este log para verificar que la funci&#243;n se est&#225; ejecutando
+                    
+                        toggleButton.setAttribute('aria-expanded', !isExpanded);
+                        menu.style.display = isExpanded ? 'none' : 'flex';
+                    }
+                </script>
   </head>
   <body>
     <header role="banner">
@@ -64,7 +76,7 @@
           </div>
           <div class="unit">
             <img src="images/swordsman.png" alt="Imagen de SWORDSMAN"/>
-            <p/>
+            <p>El Espadach&#237;n es una unidad de ataque cuerpo a cuerpo con una base de da&#241;o de 80. Con una impresionante armadura de 400, est&#225; bien protegido contra ataques enemigos. Aunque tiene un 55% de probabilidad de desperdiciar un ataque, su oportunidad de atacar nuevamente es del 3%. Es una opci&#243;n econ&#243;mica en t&#233;rminos de hierro, requiriendo solo 50 unidades, pero tiene un costo considerable de 8000 de comida y 3000 de madera. Mejorado con tecnolog&#237;a y experiencia, este guerrero es una columna vertebral en las batallas cuerpo a cuerpo.</p>
           </div>
         </article>
         <article class="unit-section" id="spearman">
@@ -100,7 +112,7 @@
           </div>
           <div class="unit">
             <img src="images/spearman.png" alt="Imagen de SPEARMAN"/>
-            <p/>
+            <p>El Lancero es una unidad vers&#225;til con un da&#241;o base de 150 y una armadura de 1000, lo que lo convierte en una opci&#243;n robusta contra las unidades montadas y a pie. Con una alta probabilidad de desperdicio del 65%, pero una notable oportunidad de ataque adicional del 7%, el Lancero puede ser un elemento sorpresa en el campo de batalla. Sus costos incluyen 5000 de comida, 6500 de madera y 50 de hierro, lo que lo hace una inversi&#243;n equilibrada para su alto rendimiento defensivo y ofensivo.</p>
           </div>
         </article>
         <article class="unit-section" id="crossbow">
@@ -136,7 +148,7 @@
           </div>
           <div class="unit">
             <img src="images/crossbow.png" alt="Imagen de CROSSBOW"/>
-            <p/>
+            <p>El Ballestero es una unidad de ataque a distancia extremadamente potente con un da&#241;o base de 1000 y una armadura de 6000. Su alta probabilidad de desperdicio del 80% se compensa con una notable oportunidad de ataque adicional del 45%. Sin costos en comida, pero con un alto requerimiento de 45000 de madera y 7000 de hierro, el Ballestero es una inversi&#243;n pesada pero extremadamente efectiva en desmantelar las defensas enemigas desde lejos.</p>
           </div>
         </article>
         <article class="unit-section" id="cannon">
@@ -172,7 +184,7 @@
           </div>
           <div class="unit">
             <img src="images/cannon.png" alt="Imagen de CANNON"/>
-            <p/>
+            <p>El Ca&#241;&#243;n es una unidad de artiller&#237;a pesada con un da&#241;o base de 700 y una armadura de 8000. Su probabilidad de desperdicio es alta, del 90%, pero su oportunidad de ataque adicional del 70% lo convierte en una amenaza constante. Sin necesidad de comida pero con altos costos de 30000 de madera y 15000 de hierro, el Ca&#241;&#243;n es ideal para desmantelar estructuras enemigas y causar grandes estragos en formaciones enemigas densas. Su poder de fuego y resistencia lo hacen una unidad indispensable en batallas largas y asedios.</p>
           </div>
         </article>
       </section>
@@ -192,6 +204,5 @@
         <a href="https://github.com/OscarMG018" target="_blank">&#211;scar MG018</a>
       </p>
     </footer>
-    <script src="minimenu.js"/>
   </body>
 </html>

@@ -20,6 +20,7 @@
 			<iron_cost>50</iron_cost>
 			<mana_cost>0</mana_cost>
 		</costs>
+		<description>El Espadachín es una unidad de ataque cuerpo a cuerpo con una base de daño de 80. Con una impresionante armadura de 400, está bien protegido contra ataques enemigos. Aunque tiene un 55% de probabilidad de desperdiciar un ataque, su oportunidad de atacar nuevamente es del 3%. Es una opción económica en términos de hierro, requiriendo solo 50 unidades, pero tiene un costo considerable de 8000 de comida y 3000 de madera. Mejorado con tecnología y experiencia, este guerrero es una columna vertebral en las batallas cuerpo a cuerpo.</description>
 		<sprite></sprite>
 	</unit>
 	<unit>
@@ -42,6 +43,7 @@
 			<iron_cost>50</iron_cost>
 			<mana_cost>0</mana_cost>
 		</costs>
+		<description>El Lancero es una unidad versátil con un daño base de 150 y una armadura de 1000, lo que lo convierte en una opción robusta contra las unidades montadas y a pie. Con una alta probabilidad de desperdicio del 65%, pero una notable oportunidad de ataque adicional del 7%, el Lancero puede ser un elemento sorpresa en el campo de batalla. Sus costos incluyen 5000 de comida, 6500 de madera y 50 de hierro, lo que lo hace una inversión equilibrada para su alto rendimiento defensivo y ofensivo.</description>
 		<sprite></sprite>
 	</unit>
 	<unit>
@@ -64,6 +66,7 @@
 			<iron_cost>7000</iron_cost>
 			<mana_cost>0</mana_cost>
 		</costs>
+		<description>El Ballestero es una unidad de ataque a distancia extremadamente potente con un daño base de 1000 y una armadura de 6000. Su alta probabilidad de desperdicio del 80% se compensa con una notable oportunidad de ataque adicional del 45%. Sin costos en comida, pero con un alto requerimiento de 45000 de madera y 7000 de hierro, el Ballestero es una inversión pesada pero extremadamente efectiva en desmantelar las defensas enemigas desde lejos.</description>
 		<sprite></sprite>
 	</unit>
 	<unit>
@@ -86,6 +89,7 @@
 			<iron_cost>15000</iron_cost>
 			<mana_cost>0</mana_cost>
 		</costs>
+		<description>El Cañón es una unidad de artillería pesada con un daño base de 700 y una armadura de 8000. Su probabilidad de desperdicio es alta, del 90%, pero su oportunidad de ataque adicional del 70% lo convierte en una amenaza constante. Sin necesidad de comida pero con altos costos de 30000 de madera y 15000 de hierro, el Cañón es ideal para desmantelar estructuras enemigas y causar grandes estragos en formaciones enemigas densas. Su poder de fuego y resistencia lo hacen una unidad indispensable en batallas largas y asedios.</description>
 		<sprite></sprite>
 	</unit>
 </attack_units>
