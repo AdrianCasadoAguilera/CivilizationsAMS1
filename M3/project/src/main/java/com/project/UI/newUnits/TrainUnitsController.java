@@ -17,8 +17,9 @@ public class TrainUnitsController {
     SpearmanView spearmanView;
     CrossbowView crossbowView;
     CannonView cannonView;
+    ArrowTowerView arrowTowerView;
 
-    public TrainUnitsController(CardLayout layout,JPanel cards,TrainUnitsView trainUnitsView,SwordsmanView swordsmanView,SpearmanView spearmanView,CrossbowView crossbowView,CannonView cannonView){
+    public TrainUnitsController(CardLayout layout,JPanel cards,TrainUnitsView trainUnitsView,SwordsmanView swordsmanView,SpearmanView spearmanView,CrossbowView crossbowView,CannonView cannonView, ArrowTowerView arrowTowerView){
         this.trainUnitsView = trainUnitsView;
         this.layout = layout;
         this.cards = cards;
@@ -27,6 +28,7 @@ public class TrainUnitsController {
         this.spearmanView = spearmanView;
         this.crossbowView = crossbowView;
         this.cannonView = cannonView;
+        this.arrowTowerView = arrowTowerView;
 
         setListeners();
     }
@@ -50,6 +52,10 @@ public class TrainUnitsController {
         trainUnitsView.cannonButton.addActionListener(e->{
             cannonView.updateValues();
             layout.show(cards,"cannon");
+        });
+        trainUnitsView.arrowTowerButton.addActionListener(e->{
+            arrowTowerView.updateValues();
+            layout.show(cards, "arrowtower");
         });
     }
 }

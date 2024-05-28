@@ -37,6 +37,7 @@ public class MainWindow extends JFrame {
     public SpearmanView spearmanView;
     public CrossbowView crossbowView;
     public CannonView cannonView;
+    public ArrowTowerView arrowTowerView;
 
     public boolean canPause = true;  
     
@@ -49,11 +50,11 @@ public class MainWindow extends JFrame {
         setView();
 
         new Controller(cardLayout,cards,mainView);
-        new TrainUnitsController(cardLayout, cards, trainUnitsView, swordsmanView, spearmanView, crossbowView, cannonView);
+        new TrainUnitsController(cardLayout, cards, trainUnitsView, swordsmanView, spearmanView, crossbowView, cannonView, arrowTowerView);
         new NewBuildingController(cardLayout, cards, newBuildingView);
         new ThreadController(cardLayout, cards, threadView);
         new TechnologyController(cardLayout, cards, technologyView);
-        new UnitsViewsController(cardLayout, cards, swordsmanView, spearmanView, crossbowView, cannonView);
+        new UnitsViewsController(cardLayout, cards, swordsmanView, spearmanView, crossbowView, cannonView, arrowTowerView);
 
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {
 
@@ -105,10 +106,12 @@ public class MainWindow extends JFrame {
         spearmanView = new SpearmanView();
         crossbowView = new CrossbowView();
         cannonView = new CannonView();
+        arrowTowerView = new ArrowTowerView();
 
         cards.add(swordsmanView,"swordsman");
         cards.add(spearmanView,"spearman");
         cards.add(crossbowView,"crossbow");
         cards.add(cannonView,"cannon");
+        cards.add(arrowTowerView,"arrowtower");
     }
 }

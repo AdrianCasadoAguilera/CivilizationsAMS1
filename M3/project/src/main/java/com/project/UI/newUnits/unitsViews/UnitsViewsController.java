@@ -18,17 +18,19 @@ public class UnitsViewsController {
     SpearmanView spearman;
     CrossbowView crossbow;
     CannonView cannon;
+    ArrowTowerView arrowTower;
 
     CardLayout layout;
     JPanel cards;
     
-    public UnitsViewsController(CardLayout layout,JPanel cards,SwordsmanView swordsman,SpearmanView spearman,CrossbowView crossbow,CannonView cannon){
+    public UnitsViewsController(CardLayout layout,JPanel cards,SwordsmanView swordsman,SpearmanView spearman,CrossbowView crossbow,CannonView cannon,ArrowTowerView arrowTower){
         this.layout = layout;
         this.cards = cards;
         this.swordsman = swordsman;
         this.spearman = spearman;
         this.crossbow = crossbow;
         this.cannon = cannon;
+        this.arrowTower = arrowTower;
         
         civilization = Civilization.getInstance();
 
@@ -41,6 +43,7 @@ public class UnitsViewsController {
         setSpearmanListeners();
         setCrossbowListeners();
         setCannonListeners();
+        setArrowTowerListeners();
     }
 
     private void setSwordsmanListeners(){
@@ -106,11 +109,28 @@ public class UnitsViewsController {
         });
     }
 
+    private void setArrowTowerListeners(){
+        arrowTower.createUnit.addActionListener(e->{
+            if((int)arrowTower.amount.getValue()>0){
+                int done = civilization.AddUnit(UnitTypes.ARROWTOWER, (int)arrowTower.amount.getValue());
+                if(done>0){
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(arrowTower),String.valueOf(done)+" cannons have just been added to your army!.",new Color(0, 166, 11));
+                }else{
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(arrowTower),"Not enough resources",Color.RED);
+                }
+            }
+        });
+        arrowTower.amount.addChangeListener(e->{
+            arrowTower.updateCosts();
+        });
+    }
+
     private void setGoBackListeners(){
         swordsman.returnButton.addActionListener(e->goBack());
         spearman.returnButton.addActionListener(e->goBack());
         crossbow.returnButton.addActionListener(e->goBack());
         cannon.returnButton.addActionListener(e->goBack());
+        arrowTower.returnButton.addActionListener(e->goBack());
     }
 
     private void goBack(){
