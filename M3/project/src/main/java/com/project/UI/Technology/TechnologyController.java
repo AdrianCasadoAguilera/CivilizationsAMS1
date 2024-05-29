@@ -25,9 +25,11 @@ public class TechnologyController {
         });
         technologyView.AttackTech.addActionListener(e->{
             Civilization.getInstance().upgradeTechnologyAttack();
+            technologyView.setToolTips();
         });
         technologyView.DefenseTech.addActionListener(e->{
             Civilization.getInstance().upgradeTechnologyDefense();
+            technologyView.setToolTips();
         });
     }
 

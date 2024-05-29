@@ -3,10 +3,10 @@ package com.project.UI.Technology;
 import javax.swing.*;
 import java.awt.*;
 
+
 import com.project.UI.resources.ResourcesPanel;
 import com.project.UI.util.swing_elements.PButton;
-import java.awt.GridLayout;
-
+import com.project.*;
 public class TechnologyView extends JPanel {
 
     public PButton returnButton;
@@ -24,10 +24,53 @@ public class TechnologyView extends JPanel {
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(new GridLayout(2, 1));
         AttackTech = new PButton("Attack");
-        DefenseTech = new PButton("Defense");
         contentPanel.add(AttackTech);
+        DefenseTech = new PButton("Defense");
         contentPanel.add(DefenseTech);
         add(contentPanel, BorderLayout.CENTER);
+        setToolTips();
+    }
+
+    public void setToolTips() {
+        Civilization civ = Civilization.getInstance();
+        
+        String foodImageHtml = getClass().getResource("/com/project/UI/src/resources_food.png").toString();
+        String woodImageHtml = getClass().getResource("/com/project/UI/src/resources_wood.png").toString();
+        String ironImageHtml = getClass().getResource("/com/project/UI/src/resources_iron.png").toString();
+
+        int attackFoodCost = (int)(Variables.UPGRADE_BASE_ATTACK_TECHNOLOGY_FOOD_COST *(1.0+Variables.UPGRADE_PLUS_ATTACK_TECHNOLOGY_FOOD_COST * civ.getTechnologyAttack()/100.0));
+        int attackWoodCost = (int)(Variables.UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST *(1.0+Variables.UPGRADE_PLUS_ATTACK_TECHNOLOGY_WOOD_COST * civ.getTechnologyAttack()/100.0));
+        int attackIronCost = (int)(Variables.UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST *(1.0+Variables.UPGRADE_PLUS_ATTACK_TECHNOLOGY_IRON_COST * civ.getTechnologyAttack()/100.0));
+        System.out.println(civ.getTechnologyAttack());
+        int defenseFoodCost = (int)(Variables.UPGRADE_BASE_DEFENSE_TECHNOLOGY_FOOD_COST *(1.0+Variables.UPGRADE_PLUS_DEFENSE_TECHNOLOGY_FOOD_COST * civ.getTechnologyDefense()/100.0));
+        int defenseWoodCost = (int)(Variables.UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST *(1.0+Variables.UPGRADE_PLUS_DEFENSE_TECHNOLOGY_WOOD_COST * civ.getTechnologyDefense()/100.0));
+        int defenseIronCost = (int)(Variables.UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST *(1.0+Variables.UPGRADE_PLUS_DEFENSE_TECHNOLOGY_IRON_COST * civ.getTechnologyDefense()/100.0));
+
+        String attackToolTip =    "<html><b>Attack</b><br><table>" +
+                                "<tr>" +
+                                "<td><img height=20 width=20 src='" + foodImageHtml + "'/></td><td>"+attackFoodCost+"</td>" +
+                                "</tr>" +
+                                "<tr>" +
+                                "<td><img height=20 width=20 src='" + woodImageHtml + "'/></td><td>"+attackWoodCost+"</td>" +
+                                "</tr>" +
+                                "<tr>" +
+                                "<td><img height=20 width=20 src='" + ironImageHtml + "'/></td><td>"+attackIronCost+"</td>" +
+                                "</tr>" +
+                                "</table></html>";
+        AttackTech.setToolTipText(attackToolTip);
+
+        String defenseToolTip =    "<html><b>Defense</b><br><table>" +
+                                "<tr>" +
+                                "<td><img height=20 width=20 src='" + foodImageHtml + "'/></td><td>"+defenseFoodCost+"</td>" +
+                                "</tr>" +
+                                "<tr>" +
+                                "<td><img height=20 width=20 src='" + woodImageHtml + "'/></td><td>"+defenseWoodCost+"</td>" +
+                                "</tr>" +
+                                "<tr>" +
+                                "<td><img height=20 width=20 src='" + ironImageHtml + "'/></td><td>"+defenseIronCost+"</td>" +
+                                "</tr>" +
+                                "</table></html>"; 
+        DefenseTech.setToolTipText(defenseToolTip);
     }
 
     private void initButtons(){
