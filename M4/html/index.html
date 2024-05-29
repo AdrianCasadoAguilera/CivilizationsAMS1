@@ -6,11 +6,16 @@
     <title>Videojuego Civilizations</title>
     <link rel="stylesheet" href="index.css">
     <script>
-        function refrescar() {
-                      var url = 'http://localhost:5000/run-script';
-                      var nuevaVentana = window.open(url, '_blank');
-                      return false;
+        async function refrescar() {
+                        var url = 'http://localhost:5000/run-script';
+                        try{ 
+                            await fetch(url)
+                        } catch (e) {
+                            console.error(e);
+                        }
+                        return false;
                     }
+
         function actualizarYRedirigir() {
             refrescar();
             setTimeout(function() {
