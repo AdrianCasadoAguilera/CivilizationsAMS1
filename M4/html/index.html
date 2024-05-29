@@ -5,24 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Videojuego Civilizations</title>
     <link rel="stylesheet" href="index.css">
-    <script>
-        async function refrescar() {
-                        var url = 'http://localhost:5000/run-script';
-                        try{ 
-                            await fetch(url)
-                        } catch (e) {
-                            console.error(e);
-                        }
-                        return false;
-                    }
-
-        function actualizarYRedirigir() {
-            refrescar();
-            setTimeout(function() {
-                location.href = 'civilizations.html';
-            }, 1000); // 1 segundo de retraso
+<script>
+    async function refrescar() {
+        var url = 'http://localhost:5000/run-script';
+        try {
+            await fetch(url);
+        } catch (e) {
+            console.error(e);
         }
-    </script>
+        return false;
+    }
+
+    async function actualizarYRedirigir() {
+        await refrescar();
+        setTimeout(function() {
+            location.href = 'civilizations.html';
+        }, 1000); // 1 segundo de retraso
+    }
+</script>
 </head>
 <body>
     <header class="hidden" role="banner">
