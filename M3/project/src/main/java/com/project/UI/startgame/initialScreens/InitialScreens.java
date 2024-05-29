@@ -19,6 +19,7 @@ import javax.swing.*;
 import com.project.Main;
 import com.project.UI.MainWindow;
 import com.project.UI.startgame.StartController;
+import com.project.UI.util.clips.Clips;
 import com.project.UI.util.swing_elements.PButton;
 import com.project.UI.util.swing_elements.PLabel;
 
@@ -39,6 +40,7 @@ public class InitialScreens extends JFrame {
 
     public InitialScreens(StartController cont){
         super("Hello, dear visitor");
+        Clips.playAudio(Clips.ELF);
         this.cont = cont;
         setResizable(false);
         setSize(500,500);
@@ -73,13 +75,16 @@ public class InitialScreens extends JFrame {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 if(i<3){
+                    Clips.playAudio(Clips.ELF);
                     i = (i+1)%txt.length;
                     initialText.setText(txt[i]);
                 }else if(i==3){
+                    Clips.playAudio(Clips.ELF);
                     nextButton.setText("Of course!");
                     i = (i+1)%txt.length;
                     initialText.setText(txt[i]);
                 }else{
+                    Clips.stopPlaying(Clips.START);
                     instance.dispose();
                     cont.executeApp(name);
                 }
