@@ -71,13 +71,15 @@ public class MainView extends JPanel {
     }
 
     private void setCentralOptions(){
-        JPanel centralPanel = new JPanel(new GridBagLayout());
+        JPanel centralPanel = new JPanel();
         centralPanel.setOpaque(false);
+        centralPanel.setLayout(new BoxLayout(centralPanel, BoxLayout.Y_AXIS));
 
         JPanel buttonsPanel = new JPanel();
-        buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.Y_AXIS));
-        buttonsPanel.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        buttonsPanel.setBackground(new Color(255, 255, 255, 128)); 
+        buttonsPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 20));
+
+        buttonsPanel.setOpaque(false);
+        buttonsPanel.setAlignmentX(CENTER_ALIGNMENT);
 
         buttonsPanel.add(createBuildingButton);
         buttonsPanel.add(trainButton);
@@ -85,24 +87,12 @@ public class MainView extends JPanel {
         buttonsPanel.add(ThreadButton);
         buttonsPanel.add(BattlesButton);
 
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.fill = GridBagConstraints.VERTICAL;
-        gbc.weighty = 1.0;
-
-        centralPanel.add(buttonsPanel, gbc);
-
         infoPanel = new SeeEntitiesView();
+        infoPanel.setBorder(BorderFactory.createEmptyBorder(0, 40, 0, 40));
         new entitiesController(infoPanel);
 
-        gbc = new GridBagConstraints();
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.weightx = 1.0;
-
-        centralPanel.add(infoPanel, gbc);
+        centralPanel.add(infoPanel);
+        centralPanel.add(buttonsPanel);
 
         add(centralPanel, BorderLayout.CENTER);
     }
