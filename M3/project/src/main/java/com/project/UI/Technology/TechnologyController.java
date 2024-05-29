@@ -1,9 +1,16 @@
 package com.project.UI.Technology;
 
 import java.awt.CardLayout;
+
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.project.Civilization;
+
+import java.awt.Color;
+import javax.swing.SwingUtilities;
+
+import com.project.UI.util.swing_elements.*;
 
 public class TechnologyController {
 
@@ -24,11 +31,29 @@ public class TechnologyController {
             layout.show(cards, "main");
         });
         technologyView.AttackTech.addActionListener(e->{
-            Civilization.getInstance().upgradeTechnologyAttack();
+            int code = Civilization.getInstance().upgradeTechnologyAttack();
+            if (code == 1) {
+                new Notification((JFrame)SwingUtilities.getWindowAncestor(technologyView),"Technology upgraded",Color.GREEN);
+            }
+            else if (code == 0) {
+                new Notification((JFrame)SwingUtilities.getWindowAncestor(technologyView), "Not enough resources", Color.RED);
+            }
+            else {
+                new Notification((JFrame)SwingUtilities.getWindowAncestor(technologyView), "Technology has reached max level", Color.YELLOW);
+            }
             technologyView.setToolTips();
         });
         technologyView.DefenseTech.addActionListener(e->{
-            Civilization.getInstance().upgradeTechnologyDefense();
+            int code = Civilization.getInstance().upgradeTechnologyDefense();
+            if (code == 1) {
+                new Notification((JFrame)SwingUtilities.getWindowAncestor(technologyView),"Technology upgraded",Color.GREEN);
+            }
+            else if (code == 0) {
+                new Notification((JFrame)SwingUtilities.getWindowAncestor(technologyView), "Not enough resources", Color.RED);
+            }
+            else {
+                new Notification((JFrame)SwingUtilities.getWindowAncestor(technologyView), "Technology has reached max level", Color.YELLOW);
+            }
             technologyView.setToolTips();
         });
     }

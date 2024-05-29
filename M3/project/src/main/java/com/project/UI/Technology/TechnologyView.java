@@ -6,12 +6,13 @@ import java.awt.*;
 
 import com.project.UI.resources.ResourcesPanel;
 import com.project.UI.util.swing_elements.PButton;
+import com.project.UI.util.swing_elements.PlainButton;
 import com.project.*;
 public class TechnologyView extends JPanel {
 
     public PButton returnButton;
-    public PButton AttackTech;
-    public PButton DefenseTech;
+    public PlainButton AttackTech;
+    public PlainButton DefenseTech;
 
     public TechnologyView() {
         setLayout(new BorderLayout());
@@ -22,10 +23,10 @@ public class TechnologyView extends JPanel {
 
     private void initContent() {
         JPanel contentPanel = new JPanel();
-        contentPanel.setLayout(new GridLayout(2, 1));
-        AttackTech = new PButton("Attack");
+        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
+        AttackTech = new PlainButton("Attack",new Color(173,216,230));
         contentPanel.add(AttackTech);
-        DefenseTech = new PButton("Defense");
+        DefenseTech = new PlainButton("Defense",new Color(173,216,230));
         contentPanel.add(DefenseTech);
         add(contentPanel, BorderLayout.CENTER);
         setToolTips();
