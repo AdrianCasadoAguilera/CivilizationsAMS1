@@ -64,6 +64,47 @@ main {
     overflow: hidden;
 }
 
+/* Estilo para el div de carga */
+#loading {
+    z-index: 10000; 
+    display: flex; 
+    color: black; 
+    background-color: white; 
+    width: 120px; 
+    height: 120px;
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+    margin-bottom: 10px;
+}
+
+
 #intro {
     position: absolute;
     top: 0;
