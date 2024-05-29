@@ -62,9 +62,13 @@ public class UnitsViewsController {
         swordsman.createUnit.addActionListener(e->{
             if((int)swordsman.amount.getValue()>0){
                 int done = civilization.AddUnit(UnitTypes.SWORDSMAN, (int)swordsman.amount.getValue());
-                if(done>0){
-                    new Notification((JFrame)SwingUtilities.getWindowAncestor(spearman),String.valueOf(done)+" swordsmans have just been added to your army!.",new Color(0, 166, 11));
-                }else{
+                if(done>1){
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(spearman),String.valueOf(done)+" swordsmans have just been added to your army!",new Color(0, 166, 11));
+                }
+                else if (done==1){
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(spearman), "1 swordsman has just been added to your army!", new Color(0, 166, 11));
+                }
+                else{
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(spearman),"Not enough resources",Color.RED);
                 }
             }
@@ -73,13 +77,18 @@ public class UnitsViewsController {
             swordsman.updateCosts();
         });
     }
+    
     private void setSpearmanListeners(){
         spearman.createUnit.addActionListener(e->{
             if((int)spearman.amount.getValue()>0){
                 int done = civilization.AddUnit(UnitTypes.SPEARMAN, (int)spearman.amount.getValue());
-                if(done>0){
-                    new Notification((JFrame)SwingUtilities.getWindowAncestor(spearman),String.valueOf(done)+" spearmans have just been added to your army!.",new Color(0, 166, 11));
-                }else{
+                if(done>1){
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(spearman),String.valueOf(done)+" spearmans have just been added to your army!",new Color(0, 166, 11));
+                }
+                else if (done==1){
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(spearman), "1 spearman has just been added to your army!", new Color(0, 166, 11));
+                }
+                else{
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(spearman),"Not enough resources",Color.RED);
                 }
             }
@@ -93,9 +102,13 @@ public class UnitsViewsController {
         crossbow.createUnit.addActionListener(e->{
             if((int)crossbow.amount.getValue()>0){
                 int done = civilization.AddUnit(UnitTypes.CROSSBOW, (int)crossbow.amount.getValue());
-                if(done>0){
-                    new Notification((JFrame)SwingUtilities.getWindowAncestor(crossbow),String.valueOf(done)+" crossbows have just been added to your army!.",new Color(0, 166, 11));
-                }else{
+                if(done>1){
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(crossbow),String.valueOf(done)+" crossbows have just been added to your army!",new Color(0, 166, 11));
+                }
+                else if (done==1){
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(crossbow), "1 crossbow has just been added to your army!", new Color(0, 166, 11));
+                }
+                else{
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(crossbow),"Not enough resources",Color.RED);
                 }
             }
@@ -109,9 +122,13 @@ public class UnitsViewsController {
         cannon.createUnit.addActionListener(e->{
             if((int)cannon.amount.getValue()>0){
                 int done = civilization.AddUnit(UnitTypes.CANNON, (int)cannon.amount.getValue());
-                if(done>0){
-                    new Notification((JFrame)SwingUtilities.getWindowAncestor(cannon),String.valueOf(done)+" cannons have just been added to your army!.",new Color(0, 166, 11));
-                }else{
+                if(done>1){
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(cannon),String.valueOf(done)+" cannons have just been added to your army!",new Color(0, 166, 11));
+                }
+                else if (done==1){
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(cannon), "1 cannon has just been added to your army!", new Color(0, 166, 11));
+                }
+                else{
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(cannon),"Not enough resources",Color.RED);
                 }
             }
@@ -125,9 +142,13 @@ public class UnitsViewsController {
         arrowTower.createUnit.addActionListener(e->{
             if((int)arrowTower.amount.getValue()>0){
                 int done = civilization.AddUnit(UnitTypes.ARROWTOWER, (int)arrowTower.amount.getValue());
-                if(done>0){
-                    new Notification((JFrame)SwingUtilities.getWindowAncestor(arrowTower),String.valueOf(done)+" cannons have just been added to your army!.",new Color(0, 166, 11));
-                }else{
+                if(done>1){
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(arrowTower),String.valueOf(done)+" arrow tower have just been added to your defences!",new Color(0, 166, 11));
+                }
+                else if (done==1){
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(arrowTower), "1 arrow tower has just been added to your defences!", new Color(0, 166, 11));
+                }
+                else{
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(arrowTower),"Not enough resources",Color.RED);
                 }
             }
@@ -141,9 +162,13 @@ public class UnitsViewsController {
         catapult.createUnit.addActionListener(e->{
             if((int)catapult.amount.getValue()>0){
                 int done = civilization.AddUnit(UnitTypes.CATAPULT, (int)catapult.amount.getValue());
-                if(done>0){
-                    new Notification((JFrame)SwingUtilities.getWindowAncestor(catapult),String.valueOf(done)+" catapults have just been added to your army!.",new Color(0, 166, 11));
-                }else{
+                if(done>1){
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(catapult),String.valueOf(done)+" catapults have just been added to your defences!",new Color(0, 166, 11));
+                }
+                else if (done==1){
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(catapult), "1 catapult has just been added to your defences!", new Color(0, 166, 11));
+                }
+                else{
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(catapult),"Not enough resources",Color.RED);
                 }
             }
@@ -157,9 +182,13 @@ public class UnitsViewsController {
         rocketLauncher.createUnit.addActionListener(e->{
             if((int)rocketLauncher.amount.getValue()>0){
                 int done = civilization.AddUnit(UnitTypes.ROCKETLAUNCHERTOWER, (int)rocketLauncher.amount.getValue());
-                if(done>0){
-                    new Notification((JFrame)SwingUtilities.getWindowAncestor(rocketLauncher),String.valueOf(done)+" catapults have just been added to your army!.",new Color(0, 166, 11));
-                }else{
+                if(done>1){
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(rocketLauncher),String.valueOf(done)+" catapults have just been added to your defences!",new Color(0, 166, 11));
+                }
+                else if (done==1){
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(rocketLauncher), "1 catapult has just been added to your defences!", new Color(0, 166, 11));
+                }
+                else{
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(rocketLauncher),"Not enough resources",Color.RED);
                 }
             }
@@ -173,9 +202,16 @@ public class UnitsViewsController {
         magician.createUnit.addActionListener(e->{
             if((int)magician.amount.getValue()>0){
                 int done = civilization.AddUnit(UnitTypes.MAGICIAN, (int)magician.amount.getValue());
-                if(done>0){
-                    new Notification((JFrame)SwingUtilities.getWindowAncestor(magician),String.valueOf(done)+" catapults have just been added to your army!.",new Color(0, 166, 11));
-                }else{
+                if(done>1){
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(magician),String.valueOf(done)+" magician have just been added to your army!",new Color(0, 166, 11));
+                }
+                else if (done==1){
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(magician), "1 magician has just been added to your army!", new Color(0, 166, 11));
+                }
+                else if (done==-1) {
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(magician), "You need to build more magic towers to train more magicians", Color.RED);
+                }
+                else{
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(magician),"Not enough resources",Color.RED);
                 }
             }
@@ -189,9 +225,16 @@ public class UnitsViewsController {
         priest.createUnit.addActionListener(e->{
             if((int)priest.amount.getValue()>0){
                 int done = civilization.AddUnit(UnitTypes.PRIEST, (int)priest.amount.getValue());
-                if(done>0){
-                    new Notification((JFrame)SwingUtilities.getWindowAncestor(priest),String.valueOf(done)+" catapults have just been added to your army!.",new Color(0, 166, 11));
-                }else{
+                if(done>1){
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(priest),String.valueOf(done)+" priest have just been added to your army!",new Color(0, 166, 11));
+                }
+                else if (done==1){
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(priest), "1 priest has just been added to your army!", new Color(0, 166, 11));
+                }
+                else if (done==-1) {
+                    new Notification((JFrame)SwingUtilities.getWindowAncestor(priest), "You need to build more churches to train more priests", Color.RED);
+                }
+                else{
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(priest),"Not enough resources",Color.RED);
                 }
             }

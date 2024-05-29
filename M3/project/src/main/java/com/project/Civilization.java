@@ -329,7 +329,10 @@ public class Civilization {
             }
             catch (BuildingException e) {
                 System.out.println(e.getMessage());
-                return total;
+                if (total == 0)
+                    return -1;
+                else
+                    return total;
             }
             switch (unitType) {
                 case SWORDSMAN:

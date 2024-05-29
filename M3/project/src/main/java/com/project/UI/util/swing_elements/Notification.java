@@ -29,7 +29,8 @@ public class Notification extends JPanel {
         innerPanel.setLayout(new BorderLayout());
         innerPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        JLabel label = new JLabel(message);
+        JLabel label = new JLabel();
+        label.setText("<html><p>" + message + "</p></html>");
         label.setForeground(Color.BLACK); // Puedes ajustar el color del texto aquí
         innerPanel.add(label, BorderLayout.CENTER);
 
