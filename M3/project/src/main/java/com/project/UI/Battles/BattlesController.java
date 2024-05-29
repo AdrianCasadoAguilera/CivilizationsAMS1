@@ -29,6 +29,8 @@ public class BattlesController {
     private void setListeners() {
         battlesView.returnButton.addActionListener(e -> cardLayout.show(cards, "main"));
         battlesView.BattleLog.addActionListener(e->{
+            if (Main.battlesFaugth.size() == 0)
+                return;
             battleLogView.detailed = false;
             battleLogView.index = 0;
             battleLogController.CurrentIndex = 0;
@@ -36,6 +38,8 @@ public class BattlesController {
             cardLayout.show(cards, "battlelog");
         });
         battlesView.detailedBattleLog.addActionListener(e->{
+            if (Main.battlesFaugth.size() == 0)
+                return;
             battleLogView.detailed = true;
             battleLogView.index = 0;
             battleLogController.CurrentIndex = 0;
@@ -43,6 +47,8 @@ public class BattlesController {
             cardLayout.show(cards, "battlelog");
         });
         battlesView.lastDetailedLog.addActionListener(e->{
+            if (Main.battlesFaugth.size() == 0)
+                return;
             battleLogView.detailed = true;
             battleLogView.index = Main.battlesFaugth.size() - 1;
             battleLogController.CurrentIndex = Main.battlesFaugth.size() - 1;
@@ -50,6 +56,8 @@ public class BattlesController {
             cardLayout.show(cards, "battlelog");
         });
         battlesView.lastLog.addActionListener(e->{
+            if (Main.battlesFaugth.size() == 0)
+                return;
             battleLogView.detailed = false;
             battleLogView.index = Main.battlesFaugth.size() - 1;
             battleLogController.CurrentIndex = Main.battlesFaugth.size() - 1;

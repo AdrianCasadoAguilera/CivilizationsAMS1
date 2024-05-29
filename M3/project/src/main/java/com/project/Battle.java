@@ -6,6 +6,8 @@ import java.util.Random;
 
 import javax.swing.*;
 
+import com.project.UI.util.fonts.Fonts;
+
 import oracle.net.aso.f;
 
 import java.util.Arrays;
@@ -496,7 +498,8 @@ public class Battle {
             }
         }
         attacks.add(attack);
-        attacks.remove(0);
+        if (attacks.size() > 1)
+            attacks.remove(0);
         ArrayList<JPanel> panels = new ArrayList<>();
         for (ArrayList<String> att : attacks) {
             JPanel panel = new JPanel();
