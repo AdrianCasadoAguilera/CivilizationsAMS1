@@ -236,22 +236,13 @@ public class Civilization {
         iron -= Variables.IRON_COST_SMITHY;
     }
 
-    public void upgradeTechnologyDefense() {
+    public int upgradeTechnologyDefense() {
         if (technologyDefense >= 50) {
-            System.out.println("Defense technology level has reached the limit");
-            return;
+            return -1;
         }
-        int baseFoodCost = Variables.UPGRADE_BASE_DEFENSE_TECHNOLOGY_FOOD_COST;
-        int plusFoodPercentage = Variables.UPGRADE_PLUS_DEFENSE_TECHNOLOGY_FOOD_COST * technologyDefense;
-        int totalFoodCost = baseFoodCost + baseFoodCost*plusFoodPercentage/100;
-        
-        int baseWoodCost = Variables.UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST;
-        int plusWoodPercentage = Variables.UPGRADE_PLUS_DEFENSE_TECHNOLOGY_WOOD_COST * technologyDefense;
-        int totalWoodCost = baseWoodCost + baseWoodCost*plusWoodPercentage/100;
-
-        int baseIronCost = Variables.UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST;
-        int plusIronPercentage = Variables.UPGRADE_PLUS_DEFENSE_TECHNOLOGY_IRON_COST * technologyDefense;
-        int totalIronCost = baseIronCost + baseIronCost*plusIronPercentage/100;
+        int totalFoodCost = (int)(Variables.UPGRADE_BASE_DEFENSE_TECHNOLOGY_FOOD_COST *(1.0+Variables.UPGRADE_PLUS_DEFENSE_TECHNOLOGY_FOOD_COST * technologyDefense/100.0));
+        int totalWoodCost = (int)(Variables.UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST *(1.0+Variables.UPGRADE_PLUS_DEFENSE_TECHNOLOGY_WOOD_COST * technologyDefense/100.0));
+        int totalIronCost = (int)(Variables.UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST *(1.0+Variables.UPGRADE_PLUS_DEFENSE_TECHNOLOGY_IRON_COST * technologyDefense/100.0));
 
         try {
             if (food < totalFoodCost) {
@@ -265,30 +256,22 @@ public class Civilization {
             }
         } catch (ResourceException e) {
             System.out.println(e.getMessage());
-            return;
+            return 0;
         }
         technologyDefense++;
         food -= totalFoodCost;
         wood -= totalWoodCost;
         iron -= totalIronCost;
+        return 1;
     }
 
-    public void upgradeTechnologyAttack() {
+    public int upgradeTechnologyAttack() {
         if (technologyAttack >= 50) {
-            System.out.println("Attack technology level has reached the limit");
-            return;
+            return -1;
         }
-        int baseFoodCost = Variables.UPGRADE_BASE_ATTACK_TECHNOLOGY_FOOD_COST;
-        int plusFoodPercentage = Variables.UPGRADE_PLUS_ATTACK_TECHNOLOGY_FOOD_COST * technologyDefense;
-        int totalFoodCost = baseFoodCost + baseFoodCost*plusFoodPercentage/100;
-        
-        int baseWoodCost = Variables.UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST;
-        int plusWoodPercentage = Variables.UPGRADE_PLUS_ATTACK_TECHNOLOGY_WOOD_COST * technologyDefense;
-        int totalWoodCost = baseWoodCost + baseWoodCost*plusWoodPercentage/100;
-
-        int baseIronCost = Variables.UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST;
-        int plusIronPercentage = Variables.UPGRADE_PLUS_ATTACK_TECHNOLOGY_IRON_COST * technologyDefense;
-        int totalIronCost = baseIronCost + baseIronCost*plusIronPercentage/100;
+        int totalFoodCost = (int)(Variables.UPGRADE_BASE_ATTACK_TECHNOLOGY_FOOD_COST *(1.0+Variables.UPGRADE_PLUS_ATTACK_TECHNOLOGY_FOOD_COST * technologyAttack/100.0));
+        int totalWoodCost = (int)(Variables.UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST *(1.0+Variables.UPGRADE_PLUS_ATTACK_TECHNOLOGY_WOOD_COST * technologyAttack/100.0));
+        int totalIronCost = (int)(Variables.UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST *(1.0+Variables.UPGRADE_PLUS_ATTACK_TECHNOLOGY_IRON_COST * technologyAttack/100.0));
 
         try {
             if (food < totalFoodCost) {
@@ -302,12 +285,13 @@ public class Civilization {
             }
         } catch (ResourceException e) {
             System.out.println(e.getMessage());
-            return;
+            return 0;
         }
         technologyAttack++;
         food -= totalFoodCost;
         wood -= totalWoodCost;
         iron -= totalIronCost;
+        return 1;
     }
 
     public int AddUnit(UnitTypes unitType, int amount) {

@@ -27,6 +27,18 @@ public class PlainButton extends JButton {
         addMouseListener(setHover());
     }
 
+    public PlainButton(String text, Color color) {
+        super(text);
+
+        setBackground(color);
+        setFocusPainted(false);
+        setBorderPainted(false);
+        setOpaque(false);
+        setContentAreaFilled(false);
+
+        addMouseListener(setHover());
+    }
+
     private MouseAdapter setHover(){
         return new MouseAdapter() {
             @Override
