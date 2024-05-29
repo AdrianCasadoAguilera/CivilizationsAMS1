@@ -1,11 +1,7 @@
 package com.project.UI.util.swing_elements;
 
-import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
@@ -31,7 +27,7 @@ public class PFrontpageButton extends JButton {
         addMouseListener(setHover());
     }
 
-    private MouseAdapter setHover(){
+    protected MouseAdapter setHover(){
         return new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent arg0) {

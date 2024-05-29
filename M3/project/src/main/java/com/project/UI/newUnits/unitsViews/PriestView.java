@@ -8,20 +8,20 @@ import java.net.URL;
 
 import javax.swing.*;
 
-import com.project.ArrowTower;
 import com.project.MilitaryUnit;
+import com.project.Priest;
 import com.project.UI.util.fonts.Fonts;
 import com.project.UI.util.swing_elements.PButton;
 import com.project.UI.util.swing_elements.PLabel;
 
-public class ArrowTowerView extends JPanel {
+public class PriestView extends JPanel {
 
     public PButton returnButton;
 
     public JSpinner amount;
     public PButton createUnit;
 
-    private String unitName = "Arrow Tower";
+    private String unitName = "Priest";
     private String descString = "sadijidabsjasdskjpnaib djasdjasnd ja dhasduand asdjasdjasb dasd";
 
     private ImageIcon woodIcon;
@@ -37,9 +37,9 @@ public class ArrowTowerView extends JPanel {
     private JLabel armorValue;
     private JLabel damageValue;
 
-    public MilitaryUnit unit = new ArrowTower();
+    public MilitaryUnit unit = new Priest();
 
-    public ArrowTowerView(){
+    public PriestView(){
         setLayout(new BorderLayout());
 
         setImages();
@@ -58,7 +58,7 @@ public class ArrowTowerView extends JPanel {
 
             JPanel photoPanel = new JPanel();
             photoPanel.setOpaque(false);
-                URL link = getClass().getResource("/com/project/UI/src/arrow_tower.png");
+                URL link = getClass().getResource("/com/project/UI/src/priest.png");
                 Icon photoIcon = new ImageIcon(new ImageIcon(link).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
                 JLabel photoLabel = new JLabel();
                     photoLabel.setIcon(photoIcon);
@@ -207,7 +207,7 @@ public class ArrowTowerView extends JPanel {
     }
 
     public void updateValues(){
-        unit = new ArrowTower();
+        unit = new Priest();
         armorValue.setText(String.valueOf(unit.getActualArmor()));
         damageValue.setText(String.valueOf(unit.attack()));
         repaint();
@@ -222,3 +222,4 @@ public class ArrowTowerView extends JPanel {
         repaint();
     }
 }
+

@@ -4,7 +4,6 @@ import java.awt.CardLayout;
 
 import javax.swing.JPanel;
 
-import com.project.*;
 import com.project.UI.newUnits.unitsViews.*;
 
 public class TrainUnitsController {
@@ -18,8 +17,12 @@ public class TrainUnitsController {
     CrossbowView crossbowView;
     CannonView cannonView;
     ArrowTowerView arrowTowerView;
+    CatapultView catapultView;
+    RocketLauncherView rocketLauncherView;
+    MagicianView magicianView;
+    PriestView priestView;
 
-    public TrainUnitsController(CardLayout layout,JPanel cards,TrainUnitsView trainUnitsView,SwordsmanView swordsmanView,SpearmanView spearmanView,CrossbowView crossbowView,CannonView cannonView, ArrowTowerView arrowTowerView){
+    public TrainUnitsController(CardLayout layout,JPanel cards,TrainUnitsView trainUnitsView,SwordsmanView swordsmanView,SpearmanView spearmanView,CrossbowView crossbowView,CannonView cannonView, ArrowTowerView arrowTowerView, CatapultView catapultView, RocketLauncherView rocketLauncherView, MagicianView magicianView, PriestView priestView){
         this.trainUnitsView = trainUnitsView;
         this.layout = layout;
         this.cards = cards;
@@ -29,6 +32,10 @@ public class TrainUnitsController {
         this.crossbowView = crossbowView;
         this.cannonView = cannonView;
         this.arrowTowerView = arrowTowerView;
+        this.catapultView = catapultView;
+        this.rocketLauncherView = rocketLauncherView;
+        this.magicianView = magicianView;
+        this.priestView = priestView;
 
         setListeners();
     }
@@ -56,6 +63,22 @@ public class TrainUnitsController {
         trainUnitsView.arrowTowerButton.addActionListener(e->{
             arrowTowerView.updateValues();
             layout.show(cards, "arrowtower");
+        });
+        trainUnitsView.catapultButton.addActionListener(e->{
+            catapultView.updateValues();
+            layout.show(cards, "catapult");
+        });
+        trainUnitsView.rocketLauncherButton.addActionListener(e->{
+            rocketLauncherView.updateValues();
+            layout.show(cards, "rocketlauncher");
+        });
+        trainUnitsView.magicianButton.addActionListener(e->{
+            magicianView.updateValues();
+            layout.show(cards, "magician");
+        });
+        trainUnitsView.priestButton.addActionListener(e->{
+            priestView.updateValues();
+            layout.show(cards, "priest");
         });
     }
 }

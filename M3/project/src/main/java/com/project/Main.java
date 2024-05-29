@@ -5,12 +5,10 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
-import com.project.UI.*;
 import com.project.UI.startgame.StartGameUI;
 import javax.swing.SwingUtilities;
 
 public class Main {
-    private static MainWindow window;
     private static AppData db;
     public static Timer timer;
     public static Saves saves;
@@ -202,47 +200,47 @@ public class Main {
         return count;
     }
 
-    private static void MainMenu() {
-        clearConsole();
-        while (true) {
-            System.out.println("1. New Game");
-            if (saves.GetSaveCount() > 0) {
-                System.out.println("2. Continue");
-            }
-            System.out.println("0. Quit\n");
-            System.out.print("Choose an option: ");
-            int option = -1;
-            try {
-                option = input.nextInt();
-            } catch (Exception e) {
-                System.out.println("Invalid option");
-            }
-            clearConsole();
-            input.nextLine();
-            switch (option) {
-                case 0:
-                    return;
-                case 1: 
-                    System.out.println("Enter your name: ");
-                    String name = input.nextLine();
-                    NewGame(name);
-                    clearConsole();
+    // private static void MainMenu() {
+    //     clearConsole();
+    //     while (true) {
+    //         System.out.println("1. New Game");
+    //         if (saves.GetSaveCount() > 0) {
+    //             System.out.println("2. Continue");
+    //         }
+    //         System.out.println("0. Quit\n");
+    //         System.out.print("Choose an option: ");
+    //         int option = -1;
+    //         try {
+    //             option = input.nextInt();
+    //         } catch (Exception e) {
+    //             System.out.println("Invalid option");
+    //         }
+    //         clearConsole();
+    //         input.nextLine();
+    //         switch (option) {
+    //             case 0:
+    //                 return;
+    //             case 1: 
+    //                 System.out.println("Enter your name: ");
+    //                 String name = input.nextLine();
+    //                 NewGame(name);
+    //                 clearConsole();
                     
-                    break;
-                case 2:
-                    if (saves.GetSaveCount() == 0) {
-                        System.out.println("Invalid option");
-                        break;
-                    }
-                    ContinueMenu();
-                    clearConsole();
-                    break;
-                default:
-                    System.out.println("Invalid option");
-                    break;
-            }
-        }
-    }
+    //                 break;
+    //             case 2:
+    //                 if (saves.GetSaveCount() == 0) {
+    //                     System.out.println("Invalid option");
+    //                     break;
+    //                 }
+    //                 ContinueMenu();
+    //                 clearConsole();
+    //                 break;
+    //             default:
+    //                 System.out.println("Invalid option");
+    //                 break;
+    //         }
+    //     }
+    // }
     
     public static void NewGame(String name) {
         ActiveSave = saves.AddNewSaveData(name);
@@ -251,78 +249,78 @@ public class Main {
         MainGameMenu();
     }
 
-    private static void ContinueMenu() {
-        String[] saveNames;
-        while (true) {
-            saveNames = saves.GetSaveNames();
-            for (int i = 0; i < saveNames.length; i++) {
-                System.out.println(i + 1 + " Save name: " + saveNames[i]);
-            }
-            System.out.println("0. Back");
-            System.out.print("Choose an option: ");
-            int option = -1;
-            try {
-                option = input.nextInt();
-            } catch (Exception e) {
-                clearConsole();
-                System.out.println("Invalid option");
-                continue;
-            }
-            input.nextLine();
-            if (option == 0) {
-                return;
-            }
-            else if (option < 0 || option > saves.GetSaveCount()) {
-                clearConsole();
-                System.out.println("Invalid option");
-                continue;
-            }
-            int saveId = option-1;
-            option = -1;
-            System.out.println("1. Play");
-            System.out.println("2. Delete");
-            System.out.println("0. Back");
-            try {
-                option = input.nextInt();
-            } catch (Exception e) {
-                clearConsole();
-                System.out.println("Invalid option");
-            }
-            input.nextLine();
-            if (option == 0) {
-                clearConsole();
-                continue;
-            }
-            if (option < 0 || option > 2) {
-                clearConsole();
-                System.out.println("Invalid option");
-                continue;
-            }
-            if (option == 1) {
-                ContinueGame(option-1);
-                return;
-            }
-            if (option == 2) {
-                System.out.println("Write 'DELETE' to confirm");
-                String confirm = input.nextLine();
-                if (confirm.equals("DELETE")) {
-                    DeleteSave(saveId);
-                    System.out.println("Save Deleted");
-                }
-                clearConsole();
-            }
-        }
-    }
+    // private static void ContinueMenu() {
+    //     String[] saveNames;
+    //     while (true) {
+    //         saveNames = saves.GetSaveNames();
+    //         for (int i = 0; i < saveNames.length; i++) {
+    //             System.out.println(i + 1 + " Save name: " + saveNames[i]);
+    //         }
+    //         System.out.println("0. Back");
+    //         System.out.print("Choose an option: ");
+    //         int option = -1;
+    //         try {
+    //             option = input.nextInt();
+    //         } catch (Exception e) {
+    //             clearConsole();
+    //             System.out.println("Invalid option");
+    //             continue;
+    //         }
+    //         input.nextLine();
+    //         if (option == 0) {
+    //             return;
+    //         }
+    //         else if (option < 0 || option > saves.GetSaveCount()) {
+    //             clearConsole();
+    //             System.out.println("Invalid option");
+    //             continue;
+    //         }
+    //         int saveId = option-1;
+    //         option = -1;
+    //         System.out.println("1. Play");
+    //         System.out.println("2. Delete");
+    //         System.out.println("0. Back");
+    //         try {
+    //             option = input.nextInt();
+    //         } catch (Exception e) {
+    //             clearConsole();
+    //             System.out.println("Invalid option");
+    //         }
+    //         input.nextLine();
+    //         if (option == 0) {
+    //             clearConsole();
+    //             continue;
+    //         }
+    //         if (option < 0 || option > 2) {
+    //             clearConsole();
+    //             System.out.println("Invalid option");
+    //             continue;
+    //         }
+    //         if (option == 1) {
+    //             ContinueGame(option-1);
+    //             return;
+    //         }
+    //         if (option == 2) {
+    //             System.out.println("Write 'DELETE' to confirm");
+    //             String confirm = input.nextLine();
+    //             if (confirm.equals("DELETE")) {
+    //                 DeleteSave(saveId);
+    //                 System.out.println("Save Deleted");
+    //             }
+    //             clearConsole();
+    //         }
+    //     }
+    // }
 
-    private static void DeleteSave(int saveId) {
-        saves.DeleteSaveData(saveId);
-    }
+    // private static void DeleteSave(int saveId) {
+    //     saves.DeleteSaveData(saveId);
+    // }
 
-    private static void ContinueGame(int index) {
-        ActiveSave = index;
-        saves.LoadSaveData(index);
-        MainGameMenu();
-    }
+    // private static void ContinueGame(int index) {
+    //     ActiveSave = index;
+    //     saves.LoadSaveData(index);
+    //     MainGameMenu();
+    // }
 
     private static void MainGameMenu() {
         stopped = false;

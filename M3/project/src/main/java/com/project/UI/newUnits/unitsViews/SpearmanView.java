@@ -3,18 +3,12 @@ package com.project.UI.newUnits.unitsViews;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Image;
 import java.net.URL;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-
-import com.project.Civilization;
 import com.project.MilitaryUnit;
 import com.project.Spearman;
-import com.project.Swordsman;
-import com.project.Variables;
 import com.project.UI.util.fonts.Fonts;
 import com.project.UI.util.swing_elements.PButton;
 import com.project.UI.util.swing_elements.PLabel;
