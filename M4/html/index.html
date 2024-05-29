@@ -5,45 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Videojuego Civilizations</title>
     <link rel="stylesheet" href="index.css">
-    <script>
-        function wait(seconds) {
-            return new Promise((resolve, reject) => {
-                setTimeout(resolve, seconds * 1000);
-            })
+<script>
+    async function refrescar() {
+        var url = 'http://localhost:5000/run-script';
+        try {
+            await fetch(url);
+        } catch (e) {
+            console.error(e);
         }
-        async function refrescar() {
-                        var url = 'http://127.0.0.1:5000/run-script';
-                        try {
-                            var loading = document.querySelector("#loading")
-                            loading.style.display = "block"
-                            loading.innerHTML = "Loading"
-                            await fetch(url);
-                            await wait(1)
-                            loading.innerHTML = "Loading 5"
-                            await wait(1)
-                            loading.innerHTML = "Loading 4"
-                            await wait(1)
-                            loading.innerHTML = "Loading 3"
-                            await wait(1)
-                            loading.innerHTML = "Loading 2"
-                            await wait(1)
-                            loading.innerHTML = "Loading 1"
-                            loading.style.display = "none"
-                            window.location.href = 'civilizations.html';
-                        } catch (e) {
-                            console.error(e);
-                        }
+        return false;
+    }
 
-                        return false;
-                    }
-
-        function actualizarYRedirigir() {
-            refrescar();
-            //setTimeout(function() {
-            //    location.href = 'civilizations.html';
-            //}, 3400); // 1 segundo de retraso
-        }
-    </script>
+    async function actualizarYRedirigir() {
+        await refrescar();
+        setTimeout(function() {
+            location.href = 'civilizations.html';
+        }, 1000); // 1 segundo de retraso
+    }
+</script>
 </head>
 <body>
     <header class="hidden" role="banner">
