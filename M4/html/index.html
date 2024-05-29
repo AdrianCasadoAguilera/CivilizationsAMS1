@@ -6,50 +6,23 @@
     <title>Videojuego Civilizations</title>
     <link rel="stylesheet" href="index.css">
     <script>
-
         async function refrescar() {
-    var url = 'http://127.0.0.1:5000/run-script';
-    try {
-        var loading = document.querySelector("#loading");
-        var loadingText = document.querySelector("#loading-text");
-        loading.style.visibility = "visible";
-        loading.style.opacity = "1";
-        loadingText.innerHTML = "Loading";
-
-        await fetch(url);
-
-        for (let i = 3; i > 0; i--) {
-            loadingText.innerHTML = "Loading " + i;
-            await wait(1);
-        }
-
-        loading.style.opacity = "0";
-        loading.style.visibility = "hidden";
-        setTimeout(() => {
-            loading.style.display = "none";
-        }, 500); // espera a que termine la transición
-
-        window.location.href = 'civilizations.html';
-    } catch (e) {
-        console.error(e);
-    }
-
-    return false;
-}
-
-function wait(seconds) {
-    return new Promise(resolve => setTimeout(resolve, seconds * 1000));
-}
-
+                        var url = 'http://localhost:5000/run-script';
+                        try{ 
+                            await fetch(url)
+                        } catch (e) {
+                            console.error(e);
+                        }
+                        return false;
+                    }
 
         function actualizarYRedirigir() {
             refrescar();
-            //setTimeout(function() {
-            //    location.href = 'civilizations.html';
-            //}, 3400); // 1 segundo de retraso
+            setTimeout(function() {
+                location.href = 'civilizations.html';
+            }, 1000); // 1 segundo de retraso
         }
-    </script>
-</head>
+    </script></head>
 <body>
     <header class="hidden" role="banner">
         <h1>Videojuego Civilizations</h1>
