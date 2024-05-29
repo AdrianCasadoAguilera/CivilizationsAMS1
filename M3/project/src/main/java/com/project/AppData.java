@@ -65,6 +65,9 @@ class AppData {
         try (Statement stmt = conn.createStatement()) {
              stmt.executeUpdate(sql);
              conn.commit(); // Confirma els canvis
+        }catch(SQLRecoverableException exc){
+            connect();
+            update(sql);
         }
         catch (SQLException e) {
             System.out.println(e.getMessage());

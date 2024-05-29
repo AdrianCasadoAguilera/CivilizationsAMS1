@@ -8,6 +8,7 @@ public class Fonts {
     private static Fonts instance;
 
     public Font rusticFont;
+    public Font rusticTitleFont;
     public Font itemsFont;
 
     private Fonts(){
@@ -20,6 +21,12 @@ public class Fonts {
         try{
             URL url = getClass().getResource("/com/project/UI/util/fonts/items.ttf");
             itemsFont = Font.createFont(Font.TRUETYPE_FONT, new File(url.getPath())).deriveFont(25f);
+        }catch(Exception e){
+            System.out.println("Error obtaining fonts");
+        }
+        try{
+            URL url = getClass().getResource("/com/project/UI/util/fonts/rustic.ttf");
+            rusticTitleFont = Font.createFont(Font.TRUETYPE_FONT, new File(url.getPath())).deriveFont(35f);
         }catch(Exception e){
             System.out.println("Error obtaining fonts");
         }

@@ -1,34 +1,82 @@
 <h1 align="center">Civilization Game</h1>
 
-<h2>Description</h2>
-<p>
-  Civilization is a simulation game where the player manages and defends a small civilization. The player's civilization has resources (food, wood, iron, mana), buildings (farms, carpentry, smithy, magic towers, churches), technologies (defense and attack), and military units (offensive units like swordsmen, spearmen, crossbowmen, cannons; defensive units like arrow towers, catapults, rocket launcher towers; and special units like magicians and priests).
-</p>
 
-<p>
-  The goal is to survive constant attacks from enemy civilizations by carefully managing resources, upgrading technologies, constructing buildings, and building a strong army with a good mix of offensive, defensive, and special units.
-</p>
-<p>
-  The game features a detailed combat system where attacking and defending groups of units are randomly selected based on probability calculations. Units deal damage, lose armor, have chances to attack again, and can generate material waste when defeated, which the player can collect after winning battles.
-</p>
+Welcome to Civilization Simulator! This is a simulation game where you manage and defend a small civilization. Your goal is to survive constant attacks from enemy civilizations by carefully managing resources, upgrading technologies, constructing buildings, and building a strong army with a good mix of offensive, defensive, and special units.
 
-<h2>Screenshots</h2>
-<p>Screenshots from the game</p>
+## Table of Contents
+- [Gameplay Overview](#gameplay-overview)
+- [Resources](#resources)
+- [Buildings](#buildings)
+- [Technologies](#technologies)
+- [Military Units](#military-units)
+- [Combat System](#combat-system)
+- [Technologies Used](#technologies-used)
+- [Screenshots](#screenshots)
+- [Usage](#usage)
+- [Collaborators](#collaborators)
 
-<h2>Languages and Technologies</h2>
-<p>
-  <img src="images/java.png" width="100" alt="Java"/>
-  <img src="images/swing.png" width="100" alt="Swing"/>
-  <img src="images/azure.jpg" height="100" alt="Azure"/>
-  <img src="images/plsql.png" height="100" alt="PlSql"/>
-  <img src="images/xml.png" width="100" alt="Xml"/>
-  <img src="images/xslt.jpg" width="100" alt="Xmlt"/>
-  <img src="images/python.jpg" height="100" alt="Python"/>
-  <img src="images/flask.png" width="100" alt="flask.jpg"/>
-</p>
+## Gameplay Overview
 
-<h2>Controls</h2>
-<p>Point and click controls</p>
+In Civilization Simulator, you will:
+- Manage resources like food, wood, iron, and mana.
+- Construct various buildings such as farms, carpentry, smithy, magic towers, and churches.
+- Research and upgrade technologies related to defense and attack.
+- Train military units including offensive units (swordsmen, spearmen, crossbowmen, cannons), defensive units (arrow towers, catapults, rocket launcher towers), and special units (magicians, priests).
+
+## Resources
+
+Your civilization has four main resources:
+- **Food**: Essential for feeding your population and training certain units.
+- **Wood**: Used for constructing buildings and some units.
+- **Iron**: Needed for advanced units and building upgrades.
+- **Mana**: Required for magical units and special abilities.
+
+## Buildings
+
+Construct and upgrade buildings to enhance your civilization:
+- **Farms**: Produce food.
+- **Carpentry**: Produce wood.
+- **Smithy**: Produce iron.
+- **Magic Towers**: Generate mana.
+- **Churches**: Provide various benefits and special units.
+
+## Technologies
+
+Research and upgrade technologies to improve your civilization's defense and attack capabilities. Technologies will enhance your units and buildings, providing a strategic advantage in combat.
+
+## Military Units
+
+Train a variety of military units to defend against enemy attacks and conquer other civilizations:
+- **Offensive Units**: Swordsmen, Spearmen, Crossbowmen, Cannons.
+- **Defensive Units**: Arrow Towers, Catapults, Rocket Launcher Towers.
+- **Special Units**: Magicians, Priests.
+
+## Combat System
+
+The game features a detailed combat system where attacking and defending groups of units are randomly selected based on probability calculations. Units deal damage, lose armor, have chances to attack again, and can generate material waste when defeated, which the player can collect after winning battles.
+
+## Technologies Used
+
+The game is developed using a variety of technologies, including:
+- **Java**: Core game logic and backend development.
+- **Swing**: Graphical user interface.
+- **PL/SQL**: Database management.
+- **XML/XSLT**: Data storage and transformation.
+- **Python**: Additional scripting and automation.
+- **Flask**: Web server for online functionalities.
+- **HTML/CSS**: Web interface design.
+- **Azure**: Cloud services and hosting.
+
+## Screenshots
+
+
+## Usage
+
+Start the game and follow the on-screen instructions with a point and click controlls to manage your civilization. Utilize the resources, construct buildings, research technologies, and build your army to defend against enemy attacks.
+
+---
+
+We hope you enjoy playing Civilization Simulator! If you have any questions or feedback, please feel free to open an issue or contact us.
 
 <h2>Collaborators</h2>
 <p>

@@ -6,16 +6,42 @@
     <title>Videojuego Civilizations</title>
     <link rel="stylesheet" href="index.css">
     <script>
-        function refrescar() {
-                      var url = 'http://localhost:5000/run-script';
-                      var nuevaVentana = window.open(url, '_blank');
-                      return false;
+        function wait(seconds) {
+            return new Promise((resolve, reject) => {
+                setTimeout(resolve, seconds * 1000);
+            })
+        }
+        async function refrescar() {
+                        var url = 'http://127.0.0.1:5000/run-script';
+                        try {
+                            var loading = document.querySelector("#loading")
+                            loading.style.display = "block"
+                            loading.innerHTML = "Loading"
+                            await fetch(url);
+                            await wait(1)
+                            loading.innerHTML = "Loading 5"
+                            await wait(1)
+                            loading.innerHTML = "Loading 4"
+                            await wait(1)
+                            loading.innerHTML = "Loading 3"
+                            await wait(1)
+                            loading.innerHTML = "Loading 2"
+                            await wait(1)
+                            loading.innerHTML = "Loading 1"
+                            loading.style.display = "none"
+                            window.location.href = 'civilizations.html';
+                        } catch (e) {
+                            console.error(e);
+                        }
+
+                        return false;
                     }
+
         function actualizarYRedirigir() {
             refrescar();
-            setTimeout(function() {
-                location.href = 'civilizations.html';
-            }, 1000); // 1 segundo de retraso
+            //setTimeout(function() {
+            //    location.href = 'civilizations.html';
+            //}, 3400); // 1 segundo de retraso
         }
     </script>
 </head>
@@ -24,6 +50,7 @@
         <h1>Videojuego Civilizations</h1>
     </header>
     <main>
+        <div id="loading" style="z-index: 10000; display: none; color:black; background-color: white; width: 100px;">&nbsp;</div>
         <section id="intro" role="region" aria-label="Introducción">
             <img src="images/indexBackground.jpg" alt="Imagen introductoria del juego" id="introImage">
             <div id="introTitle" aria-hidden="true">
