@@ -41,7 +41,7 @@ public class TechnologyController {
             else {
                 new Notification((JFrame)SwingUtilities.getWindowAncestor(technologyView), "Technology has reached max level", Color.YELLOW);
             }
-            technologyView.setToolTips();
+            technologyView.setResources();
         });
         technologyView.DefenseTech.addActionListener(e->{
             int code = Civilization.getInstance().upgradeTechnologyDefense();
@@ -54,7 +54,7 @@ public class TechnologyController {
             else {
                 new Notification((JFrame)SwingUtilities.getWindowAncestor(technologyView), "Technology has reached max level", Color.YELLOW);
             }
-            technologyView.setToolTips();
+            technologyView.setResources();
         });
     }
 
