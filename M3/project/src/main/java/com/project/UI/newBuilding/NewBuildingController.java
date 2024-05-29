@@ -3,12 +3,13 @@ package com.project.UI.newBuilding;
 import java.awt.CardLayout;
 import java.awt.Color;
 
+import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import com.project.Civilization;
-
+import com.project.UI.util.clips.Clips;
 import com.project.UI.util.swing_elements.Notification;
 
 public class NewBuildingController {
@@ -38,8 +39,10 @@ public class NewBuildingController {
             civilization.newSmithy();
             boolean created = build < civilization.getSmithy();
             if(created == true){
+                Clips.playAudio(Clips.CONTRUCTIONDONE);
                 new Notification((JFrame)SwingUtilities.getWindowAncestor(newBuildingView),"Smithy created succesfully",Color.GREEN);
             }else{
+                Clips.playAudio(Clips.FAILEDCONSTRUCTION);
                 new Notification((JFrame)SwingUtilities.getWindowAncestor(newBuildingView),"Not enough resources",Color.RED);
             }
         });
@@ -49,8 +52,10 @@ public class NewBuildingController {
             civilization.newCarpentry();
             boolean created = build < civilization.getCarpentry();
             if(created == true){
+                Clips.playAudio(Clips.CONTRUCTIONDONE);
                 new Notification((JFrame)SwingUtilities.getWindowAncestor(newBuildingView),"Carpentry created succesfully",Color.GREEN);
             }else{
+                Clips.playAudio(Clips.FAILEDCONSTRUCTION);
                 new Notification((JFrame)SwingUtilities.getWindowAncestor(newBuildingView),"Not enough resources",Color.RED);
             }
         });
@@ -60,8 +65,10 @@ public class NewBuildingController {
             civilization.newFarm();
             boolean created = build < civilization.getFarm();
             if(created == true){
+                Clips.playAudio(Clips.CONTRUCTIONDONE);
                 new Notification((JFrame)SwingUtilities.getWindowAncestor(newBuildingView),"Farm created succesfully",Color.GREEN);
             }else{
+                Clips.playAudio(Clips.FAILEDCONSTRUCTION);
                 new Notification((JFrame)SwingUtilities.getWindowAncestor(newBuildingView),"Not enough resources",Color.RED);
             }
         });
@@ -71,8 +78,10 @@ public class NewBuildingController {
             civilization.newMagicTower();
             boolean created = build < civilization.getMagicTower();
             if(created == true){
+                Clips.playAudio(Clips.CONTRUCTIONDONE);
                 new Notification((JFrame)SwingUtilities.getWindowAncestor(newBuildingView),"Magic Tower created succesfully",Color.GREEN);
             }else{
+                Clips.playAudio(Clips.FAILEDCONSTRUCTION);
                 new Notification((JFrame)SwingUtilities.getWindowAncestor(newBuildingView),"Not enough resources",Color.RED);
             }
         });
@@ -82,8 +91,10 @@ public class NewBuildingController {
             civilization.newChurch();
             boolean created = build < civilization.getChurch();
             if(created == true){
+                Clips.playAudio(Clips.CONTRUCTIONDONE);
                 new Notification((JFrame)SwingUtilities.getWindowAncestor(newBuildingView),"Church created succesfully",Color.GREEN);
             }else{
+                Clips.playAudio(Clips.FAILEDCONSTRUCTION);
                 new Notification((JFrame)SwingUtilities.getWindowAncestor(newBuildingView),"Not enough resources",Color.RED);
             }
         });
