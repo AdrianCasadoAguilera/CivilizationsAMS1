@@ -82,6 +82,7 @@ public class MainWindow extends JFrame {
                 return false;
             }
         });
+
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {
 
             @Override
@@ -134,6 +135,7 @@ public class MainWindow extends JFrame {
                 return false;
             }
         });
+        
         setFocusable(true);
         addKeyListener(new KeyAdapter() {
             @Override
@@ -144,6 +146,51 @@ public class MainWindow extends JFrame {
                 }
             }
         });
+
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {
+
+            @Override
+            public boolean dispatchKeyEvent(KeyEvent e) {
+                //q resources
+                if(e.getKeyCode() == KeyEvent.VK_A){
+                    Civilization civ = Civilization.getInstance();
+                    civ.setFood(0);
+                    civ.setWood(0);
+                    civ.setIron(0);
+                    civ.setMana(0);
+                }
+                return false;
+            }
+        });
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {
+
+            @Override
+            public boolean dispatchKeyEvent(KeyEvent e) {
+                //w buildings
+                if(e.getKeyCode() == KeyEvent.VK_S){
+                    Civilization civ = Civilization.getInstance();
+                    civ.setSmithy(0);
+                    civ.setFarm(0);
+                    civ.setCarpentry(0);
+                    civ.setMagicTower(0);
+                    civ.setChurch(0);
+                }
+                return false;
+            }
+        });
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {
+
+            @Override
+            public boolean dispatchKeyEvent(KeyEvent e) {
+                //e units
+                if(e.getKeyCode() == KeyEvent.VK_D){
+                    Civilization civ = Civilization.getInstance();
+                    civ.setArmy(new ArrayList<>());
+                }
+                return false;
+            }
+        });
+        
 
         new PauseController(cardLayout, cards, pauseView,this);
     }

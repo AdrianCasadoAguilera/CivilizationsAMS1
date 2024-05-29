@@ -63,8 +63,8 @@ public class entitiesController {
                 }else{
                     seeEntitiesView.catapultQuantity.setText("0");
                 }
-                if(army.get("ROCKETLAUNCHER")!=null){
-                    seeEntitiesView.rocketLauncherQuantity.setText(army.get("ROCKETLAUNCHER").toString());
+                if(army.get("ROCKETLAUNCHERTOWER")!=null){
+                    seeEntitiesView.rocketLauncherQuantity.setText(army.get("ROCKETLAUNCHERTOWER").toString());
                 }else{
                     seeEntitiesView.rocketLauncherQuantity.setText("0");
                 }
