@@ -2,6 +2,7 @@ package com.project.UI.newBuilding;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.net.URL;
@@ -15,6 +16,8 @@ import com.project.UI.util.swing_elements.PlainButton;
 
 public class NewBuildingView extends JPanel {
     
+    Image bgImage;
+
     public PButton returnButton;
 
     public PlainButton smithyButton;
@@ -25,6 +28,8 @@ public class NewBuildingView extends JPanel {
 
     public NewBuildingView(){
         setLayout(new BorderLayout());
+
+        bgImage = new ImageIcon(getClass().getResource("/com/project/UI/src/bg_build.png")).getImage();
 
         initNorth();
         initOptions();
@@ -37,8 +42,9 @@ public class NewBuildingView extends JPanel {
 
     private void initOptions(){
         JPanel optionsPanel = new JPanel();
-        optionsPanel.setLayout(new GridLayout(3,2,20,20));
-        optionsPanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
+        optionsPanel.setOpaque(false);
+        optionsPanel.setLayout(new GridLayout(3,2,80,60));
+        optionsPanel.setBorder(BorderFactory.createEmptyBorder(40, 80, 40, 80));
 
         String foodImageHtml = getClass().getResource("/com/project/UI/src/resources_food.png").toString();
         String woodImageHtml = getClass().getResource("/com/project/UI/src/resources_wood.png").toString();
@@ -163,5 +169,15 @@ public class NewBuildingView extends JPanel {
 
         add(buttonsPanel,BorderLayout.SOUTH);
 
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (bgImage != null) {
+            g.drawImage(bgImage, 0, 0,getWidth(),getHeight(), this);
+        }else{
+            System.out.println("NULL IMAGE");
+        }
     }
 }
