@@ -11,10 +11,13 @@ import com.project.UI.resources.ResourcesPanel;
 import com.project.UI.util.swing_elements.*;
 
 import java.awt.*;
+import java.net.URL;
+
 import javax.swing.*;
-import javax.swing.BoxLayout;
 
 public class MainView extends JPanel {
+
+    Image bgImage;
 
     // NEXT BALLE ELEMENTS
     public JPanel southernPanel;
@@ -39,6 +42,8 @@ public class MainView extends JPanel {
     public MainView(CardLayout cardLayout,JPanel cards){
         setLayout(new BorderLayout());
 
+        initBgImage();
+
         setNorthPanel();
         setUpButtons();
         setCentralOptions();
@@ -48,6 +53,7 @@ public class MainView extends JPanel {
         nextBattleController = new NextBattleController(cardLayout,cards,nextBattlePanel,battleHappened);
         nextBattleController.battleLogController = this.battleLogController;
         nextBattleController.battleLogView = this.battleLogView;
+
     }
     
     private void setNorthPanel(){
@@ -65,27 +71,40 @@ public class MainView extends JPanel {
     }
 
     private void setCentralOptions(){
-        JPanel centralPanel = new JPanel();
-        buttonsPanel = new JPanel();
-        buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.Y_AXIS));
-        buttonsPanel.setBorder(BorderFactory.createEmptyBorder(1,1,1,1));
+        JPanel centralPanel = new JPanel(new GridBagLayout());
+        centralPanel.setOpaque(false);
 
-        JPanel topPanel = new JPanel();
-        topPanel.add(createBuildingButton);
-        topPanel.add(trainButton);
-        topPanel.add(upgradeTechLevelButton);
-        buttonsPanel.add(topPanel);
-        JPanel bottomPanel = new JPanel();
-        bottomPanel.add(ThreadButton);
-        bottomPanel.add(BattlesButton);
-        buttonsPanel.add(bottomPanel);
+        JPanel buttonsPanel = new JPanel();
+        buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.Y_AXIS));
+        buttonsPanel.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        buttonsPanel.setBackground(new Color(255, 255, 255, 128)); 
+
+        buttonsPanel.add(createBuildingButton);
+        buttonsPanel.add(trainButton);
+        buttonsPanel.add(upgradeTechLevelButton);
+        buttonsPanel.add(ThreadButton);
+        buttonsPanel.add(BattlesButton);
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.fill = GridBagConstraints.VERTICAL;
+        gbc.weighty = 1.0;
+
+        centralPanel.add(buttonsPanel, gbc);
 
         infoPanel = new SeeEntitiesView();
         new entitiesController(infoPanel);
 
-        centralPanel.add(infoPanel);
-        centralPanel.add(buttonsPanel);
-        add(centralPanel,BorderLayout.CENTER);
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weightx = 1.0;
+
+        centralPanel.add(infoPanel, gbc);
+
+        add(centralPanel, BorderLayout.CENTER);
     }
 
     private void setMenuOptions(){
@@ -100,5 +119,20 @@ public class MainView extends JPanel {
         southernPanel.add(nextBattlePanel,BorderLayout.SOUTH);
 
         add(southernPanel,BorderLayout.SOUTH);
+    }
+
+    private void initBgImage(){
+        URL imageURL = getClass().getResource("/com/project/UI/src/mainBgImage.gif");
+        bgImage = new ImageIcon(imageURL).getImage();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (bgImage != null) {
+            g.drawImage(bgImage, 0, 0,getWidth(),getHeight(), this);
+        }else{
+            System.out.println("NULL IMAGE");
+        }
     }
 }

@@ -46,6 +46,7 @@ public class SeeEntitiesView extends JPanel {
     public SeeEntitiesView(){
         BoxLayout layout = new BoxLayout(this,BoxLayout.Y_AXIS);
         setLayout(layout);
+        setOpaque(false);
 
         PLabel titleLabel = new PLabel(Main.saves.GetSaveNames()[Main.ActiveSave]+"'s Civilization");
         titleLabel.setForeground(Color.BLACK);
@@ -138,6 +139,8 @@ public class SeeEntitiesView extends JPanel {
 
     private void initBuildings(){
         JPanel buildingsPanel = new JPanel();
+        buildingsPanel.setBackground(new Color(103, 103, 103,100));
+        buildingsPanel.setOpaque(true);
 
         buildingsPanel.add(smithyIconLabel);
             smithyQuantity = new JLabel("0");
@@ -169,49 +172,60 @@ public class SeeEntitiesView extends JPanel {
         add(buildingsPanel);
 
         JPanel armyPanel = new JPanel();
+        armyPanel.setBackground(new Color(103, 103, 103,100));
+        armyPanel.setOpaque(true);
 
         armyPanel.add(swordsmanIconLabel);
             swordsmanQuantity = new JLabel("0");
+            swordsmanQuantity.setForeground(Color.WHITE);
             swordsmanQuantity.setFont(Fonts.getInstance().itemsFont);
         armyPanel.add(swordsmanQuantity);
 
         armyPanel.add(spearmanIconLabel);
             spearmanQuantity = new JLabel("0");
+            spearmanQuantity.setForeground(Color.WHITE);
             spearmanQuantity.setFont(Fonts.getInstance().itemsFont);
         armyPanel.add(spearmanQuantity);
 
         armyPanel.add(crossbowIconLabel);
             crossbowQuantity = new JLabel("0");
+            crossbowQuantity.setForeground(Color.WHITE);
             crossbowQuantity.setFont(Fonts.getInstance().itemsFont);
         armyPanel.add(crossbowQuantity);
 
         armyPanel.add(cannonIconLabel);
             cannonQuantity = new JLabel("0");
+            cannonQuantity.setForeground(Color.WHITE);
             cannonQuantity.setFont(Fonts.getInstance().itemsFont);
         armyPanel.add(cannonQuantity);
         
         armyPanel.add(arrowTowerIconLabel);
             arrowTowerQuantity = new JLabel("0");
+            arrowTowerQuantity.setForeground(Color.WHITE);
             arrowTowerQuantity.setFont(Fonts.getInstance().itemsFont);
         armyPanel.add(arrowTowerQuantity);
 
         armyPanel.add(catapultIconLabel);
             catapultQuantity = new JLabel("0");
+            catapultQuantity.setForeground(Color.WHITE);
             catapultQuantity.setFont(Fonts.getInstance().itemsFont);
         armyPanel.add(catapultQuantity);
 
         armyPanel.add(rocketLauncherIconLabel);
             rocketLauncherQuantity = new JLabel("0");
+            rocketLauncherQuantity.setForeground(Color.WHITE);
             rocketLauncherQuantity.setFont(Fonts.getInstance().itemsFont);
         armyPanel.add(rocketLauncherQuantity);
 
         armyPanel.add(magicianIconLabel);
             magicianQuantity = new JLabel("0");
+            magicianQuantity.setForeground(Color.WHITE);
             magicianQuantity.setFont(Fonts.getInstance().itemsFont);
         armyPanel.add(magicianQuantity);
 
         armyPanel.add(priestIconLabel);
             priestQuantity = new JLabel("0");
+            priestQuantity.setForeground(Color.WHITE);
             priestQuantity.setFont(Fonts.getInstance().itemsFont);
         armyPanel.add(priestQuantity);
 
