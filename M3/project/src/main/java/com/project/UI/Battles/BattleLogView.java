@@ -34,8 +34,13 @@ public class BattleLogView extends JPanel {
     }
 
     public void initSouth() {
+        JPanel buttonsPanel = new JPanel();
+        buttonsPanel.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
+        buttonsPanel.setBackground(Color.lightGray);
         returnButton = new PButton("Go back");
-        add(returnButton,BorderLayout.SOUTH);
+        buttonsPanel.add(returnButton);
+
+        add(buttonsPanel,BorderLayout.SOUTH);
 
     }
 

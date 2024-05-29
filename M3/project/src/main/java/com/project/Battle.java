@@ -6,6 +6,8 @@ import java.util.Random;
 
 import javax.swing.*;
 
+import com.project.UI.util.fonts.Fonts;
+
 import oracle.net.aso.f;
 
 import java.util.Arrays;
