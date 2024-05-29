@@ -498,7 +498,8 @@ public class Battle {
             }
         }
         attacks.add(attack);
-        attacks.remove(0);
+        if (attacks.size() > 1)
+            attacks.remove(0);
         ArrayList<JPanel> panels = new ArrayList<>();
         for (ArrayList<String> att : attacks) {
             JPanel panel = new JPanel();

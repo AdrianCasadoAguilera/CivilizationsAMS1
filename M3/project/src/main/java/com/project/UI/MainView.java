@@ -67,7 +67,7 @@ public class MainView extends JPanel {
         trainButton = new PButton("Train Units");
         upgradeTechLevelButton = new PButton("Upgrade Technology Level");
         ThreadButton = new PButton("View Thread");
-        BattlesButton = new PButton("View Battles");
+        BattlesButton = new PButton("View Battles");    
     }
 
     private void setCentralOptions(){

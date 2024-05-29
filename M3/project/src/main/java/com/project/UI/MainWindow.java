@@ -1,13 +1,13 @@
 package com.project.UI;
 
 import java.awt.*;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
-import com.project.Main;
-import com.project.SaveData;
-import com.project.Saves;
 import com.project.UI.Battles.BattleLogView;
 import com.project.UI.Battles.BattlesController;
 import com.project.UI.Battles.BattlesView;
@@ -22,6 +22,7 @@ import com.project.UI.newBuilding.NewBuildingView;
 import com.project.UI.newUnits.TrainUnitsController;
 import com.project.UI.newUnits.TrainUnitsView;
 import com.project.UI.newUnits.unitsViews.*;
+import com.project.*;
 
 public class MainWindow extends JFrame {
 
@@ -79,6 +80,68 @@ public class MainWindow extends JFrame {
                     Main.SaveGame();
                 }
                 return false;
+            }
+        });
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {
+
+            @Override
+            public boolean dispatchKeyEvent(KeyEvent e) {
+                //q resources
+                if(e.getKeyCode() == KeyEvent.VK_Q){
+                    Civilization civ = Civilization.getInstance();
+                    civ.setFood(100000);
+                    civ.setWood(100000);
+                    civ.setIron(100000);
+                    civ.setMana(100000);
+                }
+                return false;
+            }
+        });
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {
+
+            @Override
+            public boolean dispatchKeyEvent(KeyEvent e) {
+                //w buildings
+                if(e.getKeyCode() == KeyEvent.VK_W){
+                    Civilization civ = Civilization.getInstance();
+                    civ.setSmithy(civ.getSmithy()+1);
+                    civ.setFarm(civ.getFarm()+1);
+                    civ.setCarpentry(civ.getCarpentry()+1);
+                    civ.setMagicTower(civ.getMagicTower()+1);
+                    civ.setChurch(civ.getChurch()+1);
+                }
+                return false;
+            }
+        });
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {
+
+            @Override
+            public boolean dispatchKeyEvent(KeyEvent e) {
+                //e units
+                if(e.getKeyCode() == KeyEvent.VK_E){
+                    Civilization civ = Civilization.getInstance();
+                    ArrayList<MilitaryUnit> army = civ.getArmy();
+                    army.add(new Swordsman());
+                    army.add(new Spearman());
+                    army.add(new Crossbow());
+                    army.add(new Cannon());
+                    army.add(new ArrowTower());
+                    army.add(new Catapult());
+                    army.add(new RocketLauncherTower());
+                    army.add(new Magician());
+                    army.add(new Priest());
+                }
+                return false;
+            }
+        });
+        setFocusable(true);
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                //r battle
+                if(e.getKeyCode() == KeyEvent.VK_R){
+                    Main.BattleTimer = 1000;
+                }
             }
         });
 
