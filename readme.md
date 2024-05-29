@@ -78,10 +78,17 @@ Start the game and follow the on-screen instructions with a point and click cont
 
 We hope you enjoy playing Civilization Simulator! If you have any questions or feedback, please feel free to open an issue or contact us.
 
-<h2>Collaborators</h2>
+<h2>About Us</h2>
 <p>
   <a href="https://github.com/OscarMG018">Óscar MG018</a><br>
+  A software developer passionate about creating efficient and well-structured solutions. It stands out for its attention to detail and its ability to solve complex problems, always seeking to improve the user experience through intuitive and functional interfaces.
+  
   <a href="https://github.com/AdrianCasadoAguilera">Adrián Casado Aguilera</a><br>
+  Frontend developer and designer. Created the visual application and helped the backend development at the start of the production.
+  
   <a href="https://github.com/AAyoubelbakhti">Ayoub El Bakhti</a><br>
+  Growing backend developer with knowledge of Python, Java and Flutter principles. Experience in local networks and management of operating systems.
+  
   <a href="https://github.com/MarcArques">Marc Arqués Marimón</a>
+  Backend developer, sysadmin and web developer. Helped with backend development and created and managed Azure virtual machine, including Oracle 19.0, and creating Oracle databases. I have also developed an interactive website about the video game.
 </p>
