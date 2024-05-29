@@ -10,16 +10,24 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URL;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 
 import com.project.Saves;
+import com.project.UI.util.clips.Clips;
 import com.project.UI.util.fonts.Fonts;
 import com.project.UI.util.swing_elements.BorderedLabel;
 import com.project.UI.util.swing_elements.PFrontpageButton;
 
 public class MainPanel extends JPanel {
     
+    Clip clip;
     Image backgroundImage;
 
     // JPanel 
@@ -40,6 +48,8 @@ public class MainPanel extends JPanel {
             }
             
         }).start();
+
+        setMusic();
 
         setLayout(new BorderLayout());
 
@@ -104,6 +114,10 @@ public class MainPanel extends JPanel {
         centerPanel.add(Box.createVerticalGlue());
         
         add(centerPanel,BorderLayout.CENTER);
+    }
+
+    private void setMusic(){
+        Clips.playAudio(Clips.START);
     }
 
     @Override
