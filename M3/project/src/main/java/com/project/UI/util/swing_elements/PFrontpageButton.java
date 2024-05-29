@@ -5,6 +5,7 @@ import java.awt.Font;
 
 import javax.swing.*;
 
+import com.project.UI.util.clips.Clips;
 import com.project.UI.util.fonts.Fonts;
 
 import java.awt.event.MouseAdapter;
@@ -33,6 +34,7 @@ public class PFrontpageButton extends JButton {
             public void mouseEntered(MouseEvent arg0) {
                 setText("> "+getText()+" <");
                 setFont(Fonts.getInstance().rusticFont.deriveFont(Font.BOLD,15));
+                Clips.playAudio(Clips.BUTTONHOVERED);
             }
             @Override
             public void mouseExited(MouseEvent arg0) {

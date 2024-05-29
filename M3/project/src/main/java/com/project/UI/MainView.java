@@ -11,12 +11,18 @@ import com.project.UI.resources.ResourcesPanel;
 import com.project.UI.util.swing_elements.*;
 
 import java.awt.*;
+import java.io.IOException;
 import java.net.URL;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 
 public class MainView extends JPanel {
 
+    Clip clip;
     Image bgImage;
 
     // NEXT BALLE ELEMENTS
@@ -49,6 +55,8 @@ public class MainView extends JPanel {
         setCentralOptions();
         
         setMenuOptions();
+
+        setMusic();
 
         nextBattleController = new NextBattleController(cardLayout,cards,nextBattlePanel,battleHappened);
         nextBattleController.battleLogController = this.battleLogController;
@@ -114,6 +122,21 @@ public class MainView extends JPanel {
     private void initBgImage(){
         URL imageURL = getClass().getResource("/com/project/UI/src/mainBgImage.gif");
         bgImage = new ImageIcon(imageURL).getImage();
+    }
+
+    private void setMusic(){
+        URL route = getClass().getResource("/com/project/UI/src/audio/main_music.wav");
+        try {
+            clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(route));
+            clip.start();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
