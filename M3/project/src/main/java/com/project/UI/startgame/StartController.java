@@ -5,6 +5,9 @@ import javax.swing.*;
 import com.project.*;
 import com.project.UI.*;
 import com.project.UI.startgame.initialScreens.InitialScreens;
+import com.project.UI.util.clips.Clips;
+
+import oracle.ons.Cli;
 
 public class StartController {
 
@@ -35,6 +38,7 @@ public class StartController {
 
     private void setContinueViewEvents(ContinueView continueView) {
         continueView.getPlayButton().addActionListener(e -> {
+            Clips.stopPlaying(Clips.START);
             int selectedIndex = continueView.getSavesList().getSelectedRow();
             if (selectedIndex != -1) {
                 ContinueSave(selectedIndex).actionPerformed(e);
