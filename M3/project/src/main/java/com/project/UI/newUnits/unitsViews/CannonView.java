@@ -22,7 +22,7 @@ public class CannonView extends JPanel {
     public PButton createUnit;
 
     private String unitName = "Cannon";
-    private String descString = "sadijidabsjasdskjpnaib djasdjasnd ja dhasduand asdjasdjasb dasd";
+    private String descString = "Making fireworks out of foes, one explosion at a time.";
 
     private ImageIcon woodIcon;
     private ImageIcon foodIcon;
@@ -53,7 +53,7 @@ public class CannonView extends JPanel {
         JPanel titlePanel = new JPanel();
             BoxLayout titleLayout = new BoxLayout(titlePanel, BoxLayout.X_AXIS);
             titlePanel.setLayout(titleLayout);
-            titlePanel.setBackground(Color.DARK_GRAY);
+            titlePanel.setBackground(new Color(213,16,16));
             titlePanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
             JPanel photoPanel = new JPanel();

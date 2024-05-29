@@ -21,7 +21,7 @@ public class MagicianView extends JPanel {
     public PButton createUnit;
 
     private String unitName = "Magician";
-    private String descString = "sadijidabsjasdskjpnaib djasdjasnd ja dhasduand asdjasdjasb dasd";
+    private String descString = "Making enemies disappear, and occasionally his own hat.";
 
     private ImageIcon woodIcon;
     private ImageIcon foodIcon;
@@ -52,7 +52,7 @@ public class MagicianView extends JPanel {
         JPanel titlePanel = new JPanel();
             BoxLayout titleLayout = new BoxLayout(titlePanel, BoxLayout.X_AXIS);
             titlePanel.setLayout(titleLayout);
-            titlePanel.setBackground(Color.DARK_GRAY);
+            titlePanel.setBackground(new Color(169, 67, 202));
             titlePanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
             JPanel photoPanel = new JPanel();

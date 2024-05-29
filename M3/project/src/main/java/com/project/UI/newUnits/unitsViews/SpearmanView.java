@@ -21,7 +21,7 @@ public class SpearmanView extends JPanel {
     public PButton createUnit;
 
     private String unitName = "Spearman";
-    private String descString = "sadijidabsjasdskjpnaib djasdjasnd ja dhasduand asdjasdjasb dasd";
+    private String descString = "He likes to keep enemies at bay—on a pointy stick.";
 
     private ImageIcon woodIcon;
     private ImageIcon foodIcon;
@@ -52,7 +52,7 @@ public class SpearmanView extends JPanel {
         JPanel titlePanel = new JPanel();
             BoxLayout titleLayout = new BoxLayout(titlePanel, BoxLayout.X_AXIS);
             titlePanel.setLayout(titleLayout);
-            titlePanel.setBackground(Color.DARK_GRAY);
+            titlePanel.setBackground(new Color(213,16,16));
             titlePanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
             JPanel photoPanel = new JPanel();

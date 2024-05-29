@@ -21,7 +21,7 @@ public class CatapultView extends JPanel {
     public PButton createUnit;
 
     private String unitName = "Catapult";
-    private String descString = "sadijidabsjasdskjpnaib djasdjasnd ja dhasduand asdjasdjasb dasd";
+    private String descString = "Launching rocks and hoping for the best—accuracy optional.";
 
     private ImageIcon woodIcon;
     private ImageIcon foodIcon;
@@ -52,7 +52,7 @@ public class CatapultView extends JPanel {
         JPanel titlePanel = new JPanel();
             BoxLayout titleLayout = new BoxLayout(titlePanel, BoxLayout.X_AXIS);
             titlePanel.setLayout(titleLayout);
-            titlePanel.setBackground(Color.DARK_GRAY);
+            titlePanel.setBackground(new Color(030, 144, 255));
             titlePanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
             JPanel photoPanel = new JPanel();

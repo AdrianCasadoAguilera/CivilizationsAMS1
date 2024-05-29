@@ -23,7 +23,7 @@ public class CrossbowView extends JPanel {
     public PButton createUnit;
 
     private String unitName = "Crossbow";
-    private String descString = "sadijidabsjasdskjpnaib djasdjasnd ja dhasduand asdjasdjasb dasd";
+    private String descString = "Aiming for the bullseye, but mostly just hitting 'send help' signals.";
 
     private ImageIcon woodIcon;
     private ImageIcon foodIcon;
@@ -54,7 +54,7 @@ public class CrossbowView extends JPanel {
         JPanel titlePanel = new JPanel();
             BoxLayout titleLayout = new BoxLayout(titlePanel, BoxLayout.X_AXIS);
             titlePanel.setLayout(titleLayout);
-            titlePanel.setBackground(Color.DARK_GRAY);
+            titlePanel.setBackground(new Color(213,16,16));
             titlePanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
             JPanel photoPanel = new JPanel();

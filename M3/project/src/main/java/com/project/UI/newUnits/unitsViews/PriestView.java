@@ -22,7 +22,7 @@ public class PriestView extends JPanel {
     public PButton createUnit;
 
     private String unitName = "Priest";
-    private String descString = "sadijidabsjasdskjpnaib djasdjasnd ja dhasduand asdjasdjasb dasd";
+    private String descString = "Healing allies while praying for better team coordination.";
 
     private ImageIcon woodIcon;
     private ImageIcon foodIcon;
@@ -53,7 +53,7 @@ public class PriestView extends JPanel {
         JPanel titlePanel = new JPanel();
             BoxLayout titleLayout = new BoxLayout(titlePanel, BoxLayout.X_AXIS);
             titlePanel.setLayout(titleLayout);
-            titlePanel.setBackground(Color.DARK_GRAY);
+            titlePanel.setBackground(new Color(169, 67, 202));
             titlePanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
             JPanel photoPanel = new JPanel();

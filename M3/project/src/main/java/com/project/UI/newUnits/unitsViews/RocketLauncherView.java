@@ -22,7 +22,7 @@ public class RocketLauncherView extends JPanel {
     public PButton createUnit;
 
     private String unitName = "Rocket Launcher Tower";
-    private String descString = "sadijidabsjasdskjpnaib djasdjasnd ja dhasduand asdjasdjasb dasd";
+    private String descString = "When in doubt, blow it up—subtlety is overrated.";
 
     private ImageIcon woodIcon;
     private ImageIcon foodIcon;
@@ -53,7 +53,7 @@ public class RocketLauncherView extends JPanel {
         JPanel titlePanel = new JPanel();
             BoxLayout titleLayout = new BoxLayout(titlePanel, BoxLayout.X_AXIS);
             titlePanel.setLayout(titleLayout);
-            titlePanel.setBackground(Color.DARK_GRAY);
+            titlePanel.setBackground(new Color(030, 144, 255));
             titlePanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
             JPanel photoPanel = new JPanel();
