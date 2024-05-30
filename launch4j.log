@@ -1,0 +1,20 @@
+
+
+Version:	3.50
+CmdLine:	C:\Users\acasa\OneDrive\Documentos\GitHub\CivilizationsAMS1\CivilizationAMS1.exe --l4j-debug
+JNI:		No
+WOW64:		Yes
+Working dir:	C:\Users\acasa\OneDrive\Documentos\GitHub\CivilizationsAMS1\.
+Requires JDK:	No
+Requires 64-Bit: No
+Java min ver:	
+Java max ver:	
+Substitute:	JAVA_HOME = D:\Program Files\Java\jdk-22
+Substitute:	PATH = C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;D:\Program Files\Maven\apache-maven-3.9.6\bin;D:\Program Files\Java\jdk-22\bin;C:\Program Files\Docker\Docker\resources\bin;D:\MongoDB_Tools\mongodb-database-tools-windows-x86_64-100.9.4\bin;C:\Users\acasa\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\Scripts;C:\Users\acasa\AppData\Local\Programs\Python\Python312\Scripts;C:\Users\acasa\AppData\Local\Programs\Python\Launcher\;C:\Users\acasa\AppData\Local\Microsoft\WindowsApps;C:\Users\acasa\AppData\Local\GitHubDesktop\bin;C:\Users\acasa\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\acasa\AppData\Local\Microsoft\WinGet\Packages\Schniz.fnm_Microsoft.Winget.Source_8wekyb3d8bbwe;;D:\Program Files\Java\jdk-22\bin
+JRE paths:	D:\Program Files\Java\jdk-22;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;D:\Program Files\Maven\apache-maven-3.9.6\bin;D:\Program Files\Java\jdk-22\bin;C:\Program Files\Docker\Docker\resources\bin;D:\MongoDB_Tools\mongodb-database-tools-windows-x86_64-100.9.4\bin;C:\Users\acasa\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\Scripts;C:\Users\acasa\AppData\Local\Programs\Python\Python312\Scripts;C:\Users\acasa\AppData\Local\Programs\Python\Launcher\;C:\Users\acasa\AppData\Local\Microsoft\WindowsApps;C:\Users\acasa\AppData\Local\GitHubDesktop\bin;C:\Users\acasa\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\acasa\AppData\Local\Microsoft\WinGet\Packages\Schniz.fnm_Microsoft.Winget.Source_8wekyb3d8bbwe;;D:\Program Files\Java\jdk-22\bin
+Check launcher:	D:\Program Files\Java\jdk-22\bin\javaw.exe (OK)
+Version string: 1.022.000 / 64-Bit (OK)
+Launcher:	D:\Program Files\Java\jdk-22\bin\javaw.exe
+Launcher args:	-jar "C:\Users\acasa\OneDrive\Documentos\GitHub\CivilizationsAMS1\CivilizationAMS1.exe"
+Args length:	87/32768 chars
+Exit code:	0

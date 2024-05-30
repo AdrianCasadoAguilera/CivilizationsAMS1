@@ -22,6 +22,7 @@ import com.project.UI.newBuilding.NewBuildingView;
 import com.project.UI.newUnits.TrainUnitsController;
 import com.project.UI.newUnits.TrainUnitsView;
 import com.project.UI.newUnits.unitsViews.*;
+import com.project.UI.util.clips.Clips;
 import com.project.*;
 
 public class MainWindow extends JFrame {
@@ -75,6 +76,7 @@ public class MainWindow extends JFrame {
             public boolean dispatchKeyEvent(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_ESCAPE && canPause == true){
                     canPause = false;
+                    Clips.stopPlaying(Clips.MAINVIEW);
                     cardLayout.show(cards, "pause");
                     Main.stopped = true;
                     Main.SaveGame();
