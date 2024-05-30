@@ -76,6 +76,7 @@ public class CrossbowView extends JPanel {
                 description.setForeground(Color.white);
             nameDescPanel.add(name);
             nameDescPanel.add(description);
+
         titlePanel.add(photoPanel);
         titlePanel.add(nameDescPanel);
 

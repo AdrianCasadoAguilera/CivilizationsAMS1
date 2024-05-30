@@ -3,11 +3,13 @@ package com.project.UI.newUnits.unitsViews;
 import java.awt.CardLayout;
 import java.awt.Color;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import com.project.Civilization;
 import com.project.UnitTypes;
-
+import com.project.UI.util.clips.Clips;
 import com.project.UI.util.swing_elements.Notification;
 
 public class UnitsViewsController {
@@ -63,12 +65,15 @@ public class UnitsViewsController {
             if((int)swordsman.amount.getValue()>0){
                 int done = civilization.AddUnit(UnitTypes.SWORDSMAN, (int)swordsman.amount.getValue());
                 if(done>1){
+                    Clips.playAudio(Clips.SWORDSMAN);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(spearman),String.valueOf(done)+" swordsmans have just been added to your army!",new Color(0, 166, 11));
                 }
                 else if (done==1){
+                    Clips.playAudio(Clips.SWORDSMAN);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(spearman), "1 swordsman has just been added to your army!", new Color(0, 166, 11));
                 }
                 else{
+                    Clips.playAudio(Clips.FAILEDCONSTRUCTION);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(spearman),"Not enough resources",Color.RED);
                 }
             }
@@ -83,12 +88,15 @@ public class UnitsViewsController {
             if((int)spearman.amount.getValue()>0){
                 int done = civilization.AddUnit(UnitTypes.SPEARMAN, (int)spearman.amount.getValue());
                 if(done>1){
+                    Clips.playAudio(Clips.SPEARMAN);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(spearman),String.valueOf(done)+" spearmans have just been added to your army!",new Color(0, 166, 11));
                 }
                 else if (done==1){
+                    Clips.playAudio(Clips.SPEARMAN);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(spearman), "1 spearman has just been added to your army!", new Color(0, 166, 11));
                 }
                 else{
+                    Clips.playAudio(Clips.FAILEDCONSTRUCTION);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(spearman),"Not enough resources",Color.RED);
                 }
             }
@@ -103,12 +111,15 @@ public class UnitsViewsController {
             if((int)crossbow.amount.getValue()>0){
                 int done = civilization.AddUnit(UnitTypes.CROSSBOW, (int)crossbow.amount.getValue());
                 if(done>1){
+                    Clips.playAudio(Clips.CROSSBOW);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(crossbow),String.valueOf(done)+" crossbows have just been added to your army!",new Color(0, 166, 11));
                 }
                 else if (done==1){
+                    Clips.playAudio(Clips.CROSSBOW);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(crossbow), "1 crossbow has just been added to your army!", new Color(0, 166, 11));
                 }
                 else{
+                    Clips.playAudio(Clips.FAILEDCONSTRUCTION);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(crossbow),"Not enough resources",Color.RED);
                 }
             }
@@ -123,12 +134,15 @@ public class UnitsViewsController {
             if((int)cannon.amount.getValue()>0){
                 int done = civilization.AddUnit(UnitTypes.CANNON, (int)cannon.amount.getValue());
                 if(done>1){
+                    Clips.playAudio(Clips.CANNON);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(cannon),String.valueOf(done)+" cannons have just been added to your army!",new Color(0, 166, 11));
                 }
                 else if (done==1){
+                    Clips.playAudio(Clips.CANNON);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(cannon), "1 cannon has just been added to your army!", new Color(0, 166, 11));
                 }
                 else{
+                    Clips.playAudio(Clips.FAILEDCONSTRUCTION);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(cannon),"Not enough resources",Color.RED);
                 }
             }
@@ -143,12 +157,15 @@ public class UnitsViewsController {
             if((int)arrowTower.amount.getValue()>0){
                 int done = civilization.AddUnit(UnitTypes.ARROWTOWER, (int)arrowTower.amount.getValue());
                 if(done>1){
+                    Clips.playAudio(Clips.ARROWTOWER);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(arrowTower),String.valueOf(done)+" arrow tower have just been added to your defences!",new Color(0, 166, 11));
                 }
                 else if (done==1){
+                    Clips.playAudio(Clips.ARROWTOWER);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(arrowTower), "1 arrow tower has just been added to your defences!", new Color(0, 166, 11));
                 }
                 else{
+                    Clips.playAudio(Clips.FAILEDCONSTRUCTION);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(arrowTower),"Not enough resources",Color.RED);
                 }
             }
@@ -163,12 +180,15 @@ public class UnitsViewsController {
             if((int)catapult.amount.getValue()>0){
                 int done = civilization.AddUnit(UnitTypes.CATAPULT, (int)catapult.amount.getValue());
                 if(done>1){
+                    Clips.playAudio(Clips.CATAPULT);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(catapult),String.valueOf(done)+" catapults have just been added to your defences!",new Color(0, 166, 11));
                 }
                 else if (done==1){
+                    Clips.playAudio(Clips.CATAPULT);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(catapult), "1 catapult has just been added to your defences!", new Color(0, 166, 11));
                 }
                 else{
+                    Clips.playAudio(Clips.FAILEDCONSTRUCTION);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(catapult),"Not enough resources",Color.RED);
                 }
             }
@@ -183,12 +203,15 @@ public class UnitsViewsController {
             if((int)rocketLauncher.amount.getValue()>0){
                 int done = civilization.AddUnit(UnitTypes.ROCKETLAUNCHERTOWER, (int)rocketLauncher.amount.getValue());
                 if(done>1){
+                    Clips.playAudio(Clips.ROCKETLAUNCHER);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(rocketLauncher),String.valueOf(done)+" catapults have just been added to your defences!",new Color(0, 166, 11));
                 }
                 else if (done==1){
+                    Clips.playAudio(Clips.ROCKETLAUNCHER);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(rocketLauncher), "1 catapult has just been added to your defences!", new Color(0, 166, 11));
                 }
                 else{
+                    Clips.playAudio(Clips.FAILEDCONSTRUCTION);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(rocketLauncher),"Not enough resources",Color.RED);
                 }
             }
@@ -203,15 +226,19 @@ public class UnitsViewsController {
             if((int)magician.amount.getValue()>0){
                 int done = civilization.AddUnit(UnitTypes.MAGICIAN, (int)magician.amount.getValue());
                 if(done>1){
+                    Clips.playAudio(Clips.MAGICIAN);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(magician),String.valueOf(done)+" magician have just been added to your army!",new Color(0, 166, 11));
                 }
                 else if (done==1){
+                    Clips.playAudio(Clips.MAGICIAN);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(magician), "1 magician has just been added to your army!", new Color(0, 166, 11));
                 }
                 else if (done==-1) {
+                    Clips.playAudio(Clips.FAILEDCONSTRUCTION);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(magician), "You need to build more magic towers to train more magicians", Color.RED);
                 }
                 else{
+                    Clips.playAudio(Clips.FAILEDCONSTRUCTION);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(magician),"Not enough resources",Color.RED);
                 }
             }
@@ -226,15 +253,19 @@ public class UnitsViewsController {
             if((int)priest.amount.getValue()>0){
                 int done = civilization.AddUnit(UnitTypes.PRIEST, (int)priest.amount.getValue());
                 if(done>1){
+                    Clips.playAudio(Clips.PRIEST);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(priest),String.valueOf(done)+" priest have just been added to your army!",new Color(0, 166, 11));
                 }
                 else if (done==1){
+                    Clips.playAudio(Clips.PRIEST);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(priest), "1 priest has just been added to your army!", new Color(0, 166, 11));
                 }
                 else if (done==-1) {
+                    Clips.playAudio(Clips.FAILEDCONSTRUCTION);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(priest), "You need to build more churches to train more priests", Color.RED);
                 }
                 else{
+                    Clips.playAudio(Clips.FAILEDCONSTRUCTION);
                     new Notification((JFrame)SwingUtilities.getWindowAncestor(priest),"Not enough resources",Color.RED);
                 }
             }

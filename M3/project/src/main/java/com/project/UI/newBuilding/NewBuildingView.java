@@ -11,6 +11,7 @@ import javax.swing.*;
 
 import com.project.Variables;
 import com.project.UI.resources.ResourcesPanel;
+import com.project.UI.util.swing_elements.BorderedLabel;
 import com.project.UI.util.swing_elements.PButton;
 import com.project.UI.util.swing_elements.PlainButton;
 
@@ -43,8 +44,8 @@ public class NewBuildingView extends JPanel {
     private void initOptions(){
         JPanel optionsPanel = new JPanel();
         optionsPanel.setOpaque(false);
-        optionsPanel.setLayout(new GridLayout(3,2,80,60));
-        optionsPanel.setBorder(BorderFactory.createEmptyBorder(40, 80, 40, 80));
+        optionsPanel.setLayout(new GridLayout(3,2,40,40));
+        optionsPanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
 
         String foodImageHtml = getClass().getResource("/com/project/UI/src/resources_food.png").toString();
         String woodImageHtml = getClass().getResource("/com/project/UI/src/resources_wood.png").toString();

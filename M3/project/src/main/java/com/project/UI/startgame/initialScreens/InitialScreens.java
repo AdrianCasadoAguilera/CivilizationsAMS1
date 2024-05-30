@@ -158,6 +158,7 @@ public class InitialScreens extends JFrame {
     }
 
     private void setSecondView(int prev){
+        Clips.playAudio(Clips.ELF);
         JPanel secondPanel = new JPanel(new BorderLayout()){
             @Override
             protected void paintComponent(Graphics g) {
@@ -235,6 +236,7 @@ public class InitialScreens extends JFrame {
     }
 
     private void setThirdView(String name){
+        Clips.playAudio(Clips.ELF);
         JPanel secondPanel = new JPanel(new BorderLayout()){
             @Override
             protected void paintComponent(Graphics g) {

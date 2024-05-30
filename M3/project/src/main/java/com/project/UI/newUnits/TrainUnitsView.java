@@ -10,6 +10,8 @@ import javax.swing.*;
 
 public class TrainUnitsView extends JPanel {
 
+    Image bgImage;
+
     public PButton returnButton;
 
     private ImageIcon swordsmanIcon;
@@ -36,6 +38,8 @@ public class TrainUnitsView extends JPanel {
     public TrainUnitsView(){
         setLayout(new BorderLayout());
 
+        bgImage = new ImageIcon(getClass().getResource("/com/project/UI/src/bg_train.png")).getImage();
+
         initNorth();
         initOptions();
         initButtons();
@@ -48,12 +52,21 @@ public class TrainUnitsView extends JPanel {
     private void initOptions(){
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        mainPanel.setOpaque(false);
+
+        mainPanel.add(new BorderedLabel("Training Ground"){
+            @Override
+            public void setAlignmentX(float arg0) {
+                super.setAlignmentX(CENTER_ALIGNMENT);
+            }
+        });
 
         initImages();
 
         JPanel attackUnitsPanel = new JPanel();
         attackUnitsPanel.setLayout(new GridLayout(1,3,20,20));
-        attackUnitsPanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
+        attackUnitsPanel.setBorder(BorderFactory.createEmptyBorder(5, 30, 5, 30));
+        attackUnitsPanel.setOpaque(false);
 
         swordsmanButton = new RedButton(swordsmanIcon);
         spearmanButton = new RedButton(spearmanIcon);
@@ -65,11 +78,22 @@ public class TrainUnitsView extends JPanel {
         attackUnitsPanel.add(crossbowButton);
         attackUnitsPanel.add(cannonButton);
 
+        mainPanel.add(new BorderedLabel("Attack Units"){
+            @Override
+            public void setFont(Font arg0) {
+                super.setFont(arg0.deriveFont(20f));
+            }
+            @Override
+            public void setAlignmentX(float arg0) {
+                super.setAlignmentX(CENTER_ALIGNMENT);
+            }
+        });
         mainPanel.add(attackUnitsPanel);
 
         JPanel defenseUnitsPanel = new JPanel();
         defenseUnitsPanel.setLayout(new GridLayout(1,3,20,20));
-        defenseUnitsPanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
+        defenseUnitsPanel.setBorder(BorderFactory.createEmptyBorder(5, 30, 5, 30));
+        defenseUnitsPanel.setOpaque(false);
 
         arrowTowerButton = new BlueButton(arrowTowerIcon);
         catapultButton = new BlueButton(catapultIcon);
@@ -79,11 +103,22 @@ public class TrainUnitsView extends JPanel {
         defenseUnitsPanel.add(catapultButton);
         defenseUnitsPanel.add(rocketLauncherButton);
 
+        mainPanel.add(new BorderedLabel("Defense Units"){
+            @Override
+            public void setFont(Font arg0) {
+                super.setFont(arg0.deriveFont(20f));
+            }
+            @Override
+            public void setAlignmentX(float arg0) {
+                super.setAlignmentX(CENTER_ALIGNMENT);
+            }
+        });
         mainPanel.add(defenseUnitsPanel);
 
         JPanel specialUnitsPanel = new JPanel();
         specialUnitsPanel.setLayout(new GridLayout(1,3,20,20));
-        specialUnitsPanel.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
+        specialUnitsPanel.setBorder(BorderFactory.createEmptyBorder(5,30,5,30));
+        specialUnitsPanel.setOpaque(false);
 
         magicianButton = new PurpleButton(magicianIcon);
         priestButton = new PurpleButton(priestIcon);
@@ -91,6 +126,16 @@ public class TrainUnitsView extends JPanel {
         specialUnitsPanel.add(magicianButton);
         specialUnitsPanel.add(priestButton);
 
+        mainPanel.add(new BorderedLabel("Special Units"){
+            @Override
+            public void setFont(Font arg0) {
+                super.setFont(arg0.deriveFont(20f));
+            }
+            @Override
+            public void setAlignmentX(float arg0) {
+                super.setAlignmentX(CENTER_ALIGNMENT);
+            }
+        });
         mainPanel.add(specialUnitsPanel);
         
         add(mainPanel,BorderLayout.CENTER);
@@ -136,5 +181,15 @@ public class TrainUnitsView extends JPanel {
         buttonsPanel.add(returnButton);
 
         add(buttonsPanel,BorderLayout.SOUTH);
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if(bgImage!=null){
+            g.drawImage(bgImage, 0, 0, getWidth(),getHeight(),this);
+        }else{
+            System.out.println("NULL IMAGE");
+        }
     }
 }
